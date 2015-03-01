@@ -6,24 +6,16 @@
         <!-- Customize your theme here. -->
 
         <item name="android:actionBarStyle">@style/ActionBarBaseStyle</item>
-        <!-- 自定义的actionbar向上按钮 -->
-        <item name="android:homeAsUpIndicator">@drawable/actionbar_back_icon_normal</item>
 
         <!-- Support library compatibility -->
         <item name="actionBarStyle">@style/ActionBarBaseStyle</item>
-        <!-- 自定义的actionbar向上按钮 -->
-        <item name="homeAsUpIndicator">@drawable/actionbar_back_icon_normal</item>
     </style>
 
     <style name="ActionBarBaseStyle" parent="@style/Widget.AppCompat.Light.ActionBar">
         <item name="android:background">@color/actionbar_background</item>
-        <!-- 在样式里面去掉acionbar的标题 -->
-        <item name="android:displayOptions">useLogo|showHome</item>
 
         <!-- Support library compatibility -->
         <item name="background">@color/actionbar_background</item>
-        <!-- 在样式里面去掉acionbar的标题 -->
-        <item name="displayOptions">useLogo|showHome</item>
     </style>
 
 </resources>

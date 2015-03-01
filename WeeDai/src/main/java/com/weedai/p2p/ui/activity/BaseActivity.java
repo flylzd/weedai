@@ -30,10 +30,8 @@ public class BaseActivity extends ActionBarActivity {
 
     protected void initActionBar() {
 
-        mActionBar.setDisplayShowHomeEnabled(false);
-        mActionBar.setDisplayHomeAsUpEnabled(true);
+        mActionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         mActionBar.setDisplayShowCustomEnabled(true);
-//        mActionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         View view = mInflater.inflate(R.layout.actionbar_custom, null);
 
         mTvActionBarTitle = (TextView) view.findViewById(R.id.tvActionbarTitle);
@@ -49,7 +47,7 @@ public class BaseActivity extends ActionBarActivity {
         ActionBar.LayoutParams params = new ActionBar.LayoutParams(
                 ActionBar.LayoutParams.MATCH_PARENT,
                 ActionBar.LayoutParams.MATCH_PARENT);
-        mActionBar.setCustomView(view, params);
+        mActionBar.setCustomView(view,params);
     }
 
 
@@ -80,7 +78,7 @@ public class BaseActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    protected  void backClick() {
+    protected void backClick() {
 //        finish();
     }
 
