@@ -1,12 +1,10 @@
-package com.weedai.p2p.ui;
+package com.weedai.p2p.ui.activity;
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.weedai.p2p.R;
-import com.weedai.p2p.ui.activity.BaseActivity;
 
 
 public class MainActivity extends BaseActivity {

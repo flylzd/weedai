@@ -4,8 +4,9 @@
     <color name="white">#ffffff</color>
     <color name="transparent">#00000000</color>
 
-    <color name="actionbar_background">#ff5601</color>
+    <color name="main_tab_background">#f0f0f0</color>
 
+    <color name="actionbar_background">#ff5601</color>
     <color name="actionbar_item_background_normal">@color/transparent</color>
     <color name="actionbar_item_background_pressed">#3b351e</color>
 

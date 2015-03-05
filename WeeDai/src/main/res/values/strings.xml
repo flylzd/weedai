@@ -5,4 +5,9 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
 
+    <string name="main_tab_home">首页</string>
+    <string name="main_tab_my">我的</string>
+    <string name="main_tab_bbs">论坛</string>
+    <string name="main_tab_more">更多</string>
+
 </resources>

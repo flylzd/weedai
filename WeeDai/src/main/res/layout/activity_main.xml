@@ -2,9 +2,48 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <com.fool.pad.ops.view.fragmentswitcher.FragmentSwitcher
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/rgMainTab"></com.fool.pad.ops.view.fragmentswitcher.FragmentSwitcher>
+
+
+    <RadioGroup
+        android:id="@+id/rgMainTab"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+        android:layout_alignParentBottom="true"
+        android:background="@color/main_tab_background"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="5dp">
+
+        <RadioButton
+            android:id="@+id/rbMainTabHome"
+            style="@style/radioMainTabStyle"
+            android:checked="true"
+            android:drawableTop="@drawable/selector_main_tab_home"
+            android:text="@string/main_tab_home" />
+
+        <RadioButton
+            android:id="@+id/rbMainTabMy"
+            style="@style/radioMainTabStyle"
+            android:drawableTop="@drawable/selector_main_tab_my"
+            android:text="@string/main_tab_my" />
+
+        <RadioButton
+            android:id="@+id/rbMainTabBbs"
+            style="@style/radioMainTabStyle"
+            android:drawableTop="@drawable/selector_main_tab_bbs"
+            android:text="@string/main_tab_bbs" />
+
+        <RadioButton
+            android:id="@+id/rbMainTabMore"
+            style="@style/radioMainTabStyle"
+            android:drawableTop="@drawable/selector_main_tab_more"
+            android:text="@string/main_tab_more" />
+    </RadioGroup>
+
 
 </RelativeLayout>
