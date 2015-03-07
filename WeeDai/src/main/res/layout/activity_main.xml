@@ -2,11 +2,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.fool.pad.ops.view.fragmentswitcher.FragmentSwitcher
+    <com.lemon.aklib.widget.fragmentswitcher.FragmentSwitcher
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/rgMainTab"></com.fool.pad.ops.view.fragmentswitcher.FragmentSwitcher>
+        android:layout_above="@+id/rgMainTab"></com.lemon.aklib.widget.fragmentswitcher.FragmentSwitcher>
 
 
     <RadioGroup
