@@ -10,4 +10,8 @@
     <string name="main_tab_bbs">论坛</string>
     <string name="main_tab_more">更多</string>
 
+
+    <string name="home_you_left">优选理财</string>
+    <string name="home_you_right">收益</string>
+
 </resources>
