@@ -58,7 +58,16 @@
                     android:scaleType="centerCrop"
                     android:src="@drawable/bg_you" />
 
+                <TextView
+                    android:id="@+id/tvHomeYouLeft"
+                    style="@style/textHomeLeft"
+                    android:text="@string/home_you_left" />
 
+                <TextView
+                    style="@style/textHomeRight"
+                    android:layout_alignBottom="@+id/tvHomeYouLeft"
+                    android:layout_toRightOf="@+id/tvHomeYouLeft"
+                    android:text="@string/home_you_right" />
 
             </RelativeLayout>
 
@@ -74,6 +83,18 @@
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
                     android:src="@drawable/bg_ya" />
+
+                <TextView
+                    android:id="@+id/tvHomeYaLeft"
+                    style="@style/textHomeLeft"
+                    android:text="@string/home_ya_left" />
+
+                <TextView
+                    style="@style/textHomeRight"
+                    android:layout_alignBottom="@+id/tvHomeYaLeft"
+                    android:layout_marginStart="30dp"
+                    android:layout_toRightOf="@+id/tvHomeYaLeft"
+                    android:text="@string/home_ya_right" />
 
             </RelativeLayout>
 
@@ -99,6 +120,18 @@
                     android:scaleType="centerCrop"
                     android:src="@drawable/bg_sign_in" />
 
+                <TextView
+                    android:id="@+id/tvHomeSignInLeft"
+                    style="@style/textHomeLeft"
+                    android:text="@string/home_sign_in_left" />
+
+                <TextView
+                    style="@style/textHomeRight"
+                    android:layout_alignBottom="@+id/tvHomeSignInLeft"
+                    android:layout_marginStart="30dp"
+                    android:layout_toRightOf="@+id/tvHomeSignInLeft"
+                    android:text="@string/home_sign_in_right" />
+
             </RelativeLayout>
 
             <RelativeLayout
@@ -112,6 +145,18 @@
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
                     android:src="@drawable/bg_my_account" />
+
+                <TextView
+                    android:id="@+id/tvHomeMyAccountLeft"
+                    style="@style/textHomeLeft"
+                    android:text="@string/home_my_account_left" />
+
+                <TextView
+                    style="@style/textHomeRight"
+                    android:layout_alignBottom="@+id/tvHomeMyAccountLeft"
+                    android:layout_marginStart="30dp"
+                    android:layout_toRightOf="@+id/tvHomeMyAccountLeft"
+                    android:text="@string/home_my_account_right" />
 
             </RelativeLayout>
 
@@ -137,6 +182,11 @@
                     android:scaleType="centerCrop"
                     android:src="@drawable/bg_information" />
 
+                <TextView
+                    style="@style/textHomeLeft"
+                    android:text="@string/home_information" />
+
+
             </RelativeLayout>
 
             <RelativeLayout
@@ -150,6 +200,10 @@
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
                     android:src="@drawable/bg_notice" />
+
+                <TextView
+                    style="@style/textHomeLeft"
+                    android:text="@string/home_notice" />
 
             </RelativeLayout>
 
