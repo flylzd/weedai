@@ -31,7 +31,6 @@ public class BaseActivity extends ActionBarActivity {
     protected void initActionBar() {
 
         mActionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        mActionBar.setDisplayShowCustomEnabled(true);
         View view = mInflater.inflate(R.layout.actionbar_custom, null);
 
         mTvActionBarTitle = (TextView) view.findViewById(R.id.tvActionbarTitle);
@@ -42,6 +41,24 @@ public class BaseActivity extends ActionBarActivity {
         int titleRes = getActionBarTitle();
         if (titleRes != 0) {
             mTvActionBarTitle.setText(titleRes);
+        }
+
+        View back = view.findViewById(R.id.imgBack);
+        if (back == null) {
+            throw new IllegalArgumentException(
+                    "can not find R.id.imgBack in customView");
+        }
+        back.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+        if (hasBackButton()) {
+            back.setVisibility(View.VISIBLE);
+        } else {
+            back.setVisibility(View.GONE);
         }
 
         ActionBar.LayoutParams params = new ActionBar.LayoutParams(
@@ -66,6 +83,10 @@ public class BaseActivity extends ActionBarActivity {
             mTvActionBarTitle.setText(title);
         }
         mActionBar.setTitle(title);
+    }
+
+    protected boolean hasBackButton() {
+        return false;
     }
 
     @Override

@@ -9,6 +9,7 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
@@ -17,15 +18,16 @@ import com.weedai.p2p.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements View.OnClickListener {
 
 
     private ViewPager viewPager;
     private ViewPagerAdapter viewPagerAdapter;
 
-
     private static final int INDICATOR_COUNT = 4;
     private ImageView[] indicatorImgs = new ImageView[INDICATOR_COUNT];//存放引到图片数组
+
+    private ImageView imgYou;
 
 
     public static HomeFragment newInstance() {
@@ -51,8 +53,6 @@ public class HomeFragment extends Fragment {
     }
 
     private void init(View view) {
-
-
         List<View> views = new ArrayList<View>();
         ImageView imageView1 = new ImageView(getActivity());
         imageView1.setBackgroundResource(R.drawable.home_view1);
@@ -75,6 +75,9 @@ public class HomeFragment extends Fragment {
         viewPager.setCurrentItem(0);
 
         initIndicator(view);
+
+        imgYou = (ImageView) view.findViewById(R.id.imgYou);
+        imgYou.setOnClickListener(this);
     }
 
 
@@ -104,6 +107,16 @@ public class HomeFragment extends Fragment {
         }
     }
 
+    @Override
+    public void onClick(View v) {
+
+        switch (v.getId()) {
+            case R.id.imgYou:
+
+                System.out.println("test OnClick");
+                break;
+        }
+    }
 
     private class ViewPagerAdapter extends PagerAdapter {
 

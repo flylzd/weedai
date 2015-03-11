@@ -10,4 +10,12 @@
     <color name="actionbar_item_background_normal">@color/transparent</color>
     <color name="actionbar_item_background_pressed">#3b351e</color>
 
+    <color name="background_pressed">#aeaeae</color>
+    <color name="bg_horizontal_line">#d7d7d7</color>
+    <color name="bg_more_intereset">#df0322</color>
+    <color name="bg_more_net_loan">#ff5601</color>
+    <color name="text_more">#4e4e4e</color>
+    <color name="text_more_right">#ff5601</color>
+
+
 </resources>

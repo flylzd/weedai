@@ -21,4 +21,17 @@
     <string name="home_information">微贷资讯</string>
     <string name="home_notice">微贷公告</string>
 
+    <string name="more_interest">利息计算器</string>
+    <string name="more_net_loan">网贷计算器</string>
+    <string name="more_version">版本号</string>
+    <string name="more_check_update">检查更新</string>
+    <string name="more_feedback">意见反馈</string>
+    <string name="more_website">官方网站</string>
+    <string name="more_qq">官方QQ群</string>
+    <string name="more_telephone">客服电话</string>
+    <string name="more_website_value">www.weedai.com</string>
+    <string name="more_qq_value">324991669</string>
+    <string name="more_telephone_value">400-0881-609</string>
+
+
 </resources>

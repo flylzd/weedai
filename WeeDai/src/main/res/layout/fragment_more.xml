@@ -1,14 +1,172 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-    <LinearLayout
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/layoutTop"
+            android:layout_width="match_parent"
+            android:layout_height="125dp"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/selector_bg_more_interest"
+                android:clickable="true"
+                android:padding="10dp">
+
+                <ImageView
+                    android:id="@+id/imgInterest"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_calculator_interest" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:text="@string/more_interest"
+                    android:textColor="@color/white" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/selector_bg_more_net_loan"
+                android:clickable="true"
+                android:padding="10dp">
 
 
-    </LinearLayout>
+                <ImageView
+                    android:id="@+id/imgNetLoan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_calculator_net_loan" />
 
-</LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:text="@string/more_net_loan"
+                    android:textColor="@color/white" />
+
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/layoutTop"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+
+            <include layout="@layout/view_horizontal_line" />
+
+            <RelativeLayout style="@style/layoutMore">
+
+                <TextView
+                    style="@style/textMoreLeft"
+                    android:text="@string/more_version" />
+
+                <TextView
+                    style="@style/textMoreRight"
+                    android:text="E 1.0" />
+
+            </RelativeLayout>
+
+            <include layout="@layout/view_horizontal_line" />
+
+            <RelativeLayout style="@style/layoutMore">
+
+                <TextView
+                    style="@style/textMoreLeft"
+                    android:text="@string/more_check_update" />
+
+                <ImageView
+                    style="@style/textMoreRight"
+                    android:src="@drawable/ic_arrow_right" />
+
+            </RelativeLayout>
+
+            <include layout="@layout/view_horizontal_line" />
+
+            <RelativeLayout style="@style/layoutMore">
+
+                <TextView
+                    style="@style/textMoreLeft"
+                    android:text="@string/more_feedback" />
+
+                <ImageView
+                    style="@style/textMoreRight"
+                    android:src="@drawable/ic_arrow_right" />
+
+            </RelativeLayout>
+
+            <include layout="@layout/view_horizontal_line" />
+
+            <RelativeLayout style="@style/layoutMore">
+
+                <TextView
+                    style="@style/textMoreLeft"
+                    android:text="@string/more_website" />
+
+                <TextView
+                    style="@style/textMoreRight"
+                    android:text="@string/more_website_value" />
+
+            </RelativeLayout>
+
+            <include layout="@layout/view_horizontal_line" />
+
+            <RelativeLayout style="@style/layoutMore">
+
+                <TextView
+                    style="@style/textMoreLeft"
+                    android:text="@string/more_qq" />
+
+                <TextView
+                    style="@style/textMoreRight"
+                    android:text="@string/more_qq_value"
+                    android:textColor="@color/text_more_right" />
+
+            </RelativeLayout>
+
+            <include layout="@layout/view_horizontal_line" />
+
+            <RelativeLayout style="@style/layoutMore">
+
+                <TextView
+                    style="@style/textMoreLeft"
+                    android:text="@string/more_telephone" />
+
+                <TextView
+                    style="@style/textMoreRight"
+                    android:text="@string/more_telephone_value"
+                    android:textColor="@color/text_more_right" />
+
+            </RelativeLayout>
+
+            <include layout="@layout/view_horizontal_line" />
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+</ScrollView>
