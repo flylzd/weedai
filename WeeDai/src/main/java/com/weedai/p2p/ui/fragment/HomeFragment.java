@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.weedai.p2p.R;
+import com.weedai.p2p.utils.UIHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -112,8 +113,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
         switch (v.getId()) {
             case R.id.imgYou:
-
-                System.out.println("test OnClick");
+                UIHelper.showOptimizingFinancial(getActivity());
                 break;
         }
     }

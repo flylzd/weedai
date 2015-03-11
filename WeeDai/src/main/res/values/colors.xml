@@ -17,5 +17,7 @@
     <color name="text_more">#4e4e4e</color>
     <color name="text_more_right">#ff5601</color>
 
+    <color name="bg_conditions_normal">#f0f0f0</color>
+
 
 </resources>

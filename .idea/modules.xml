@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/WeeDai/WeeDai.iml" filepath="$PROJECT_DIR$/WeeDai/WeeDai.iml" />
+      <module fileurl="file://$PROJECT_DIR$/WeeDai/WeeDai-WeeDai.iml" filepath="$PROJECT_DIR$/WeeDai/WeeDai-WeeDai.iml" />
       <module fileurl="file://$PROJECT_DIR$/weedai.iml" filepath="$PROJECT_DIR$/weedai.iml" />
     </modules>
   </component>

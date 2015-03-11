@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rbConditionsAll"
+            style="@style/radioConditionsStyle"
+            android:checked="true"
+            android:text="@string/conditions_all" />
+
+        <RadioButton
+            android:id="@+id/rbConditionsBorrowing"
+            style="@style/radioConditionsStyle"
+            android:text="@string/conditions_borrowing" />
+
+        <RadioButton
+            android:id="@+id/rbConditionsReimbursing"
+            style="@style/radioConditionsStyle"
+            android:text="@string/conditions_reimbursing" />
+
+        <RadioButton
+            android:id="@+id/rbConditionsCompleteReimbursement"
+            style="@style/radioConditionsStyle"
+            android:text="@string/conditions_complete_reimbursement" />
+
+    </RadioGroup>
+
+
+</LinearLayout>

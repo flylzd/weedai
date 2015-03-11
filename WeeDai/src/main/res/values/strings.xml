@@ -33,5 +33,11 @@
     <string name="more_qq_value">324991669</string>
     <string name="more_telephone_value">400-0881-609</string>
 
+    <string name="conditions_all">全部</string>
+    <string name="conditions_borrowing">正在借款</string>
+    <string name="conditions_reimbursing">正在还款</string>
+    <string name="conditions_complete_reimbursement">已还完款</string>
+
+
 
 </resources>
