@@ -38,6 +38,31 @@
     <string name="conditions_reimbursing">正在还款</string>
     <string name="conditions_complete_reimbursement">已还完款</string>
 
+    <!--<string name="financial_annual_rate">年化率：<![CDATA[ <b><font color="#ff5601">%s</font></b> ]]></string>-->
+    <!--<string name="financial_deadline">期限: %s</string>-->
+    <!--<string name="financial_amount">金额: %s</string>-->
+    <!--<string name="financial_reward">奖励: %s</string>-->
+
+    <string name="financial_annual_rate">年化率：16.8%</string>
+    <string name="financial_deadline">期限: 1个月</string>
+    <string name="financial_amount">金额: 100,000 元</string>
+    <string name="financial_reward">奖励: 暂无</string>
+
+    <string name="financial_detail_hint">为保障资金安全,投资前需完成安全认证</string>
+    <string name="financial_detail_btn">立即投资</string>
+    <!--<string name="financial_detail_amount">理财金额 %s</string>-->
+    <!--<string name="financial_detail_annual_rate">年化利率 %s</string>-->
+    <!--<string name="financial_detail_reward">奖励 %s</string>-->
+    <!--<string name="financial_detail_lock_period">锁定期限 %s</string>-->
+    <string name="financial_detail_amount">理财金额 1000 元</string>
+    <string name="financial_detail_annual_rate">年化利率 22.8%</string>
+    <string name="financial_detail_reward">奖励 1.5%</string>
+    <string name="financial_detail_lock_period">锁定期限 12个月</string>
+
+    <string name="financial_detail_about_distance_selling_title">距离发售</string>
+    <string name="financial_detail_about_progress_title">进度&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</string>
+    <string name="financial_detail_about_audit_title">距离审核</string>
+    <string name="financial_detail_about_review_time_title">复审时间</string>
 
 
 </resources>

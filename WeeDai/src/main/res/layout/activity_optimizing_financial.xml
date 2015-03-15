@@ -35,5 +35,27 @@
 
     </RadioGroup>
 
+    <com.lemon.aklib.widget.PMSwipeRefreshLayout
+        android:id="@+id/pullRefreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.lemon.aklib.widget.EndOfListView
+            android:id="@+id/listView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:cacheColorHint="@android:color/transparent"
+            android:divider="@null"
+            android:dividerHeight="10dp"
+            android:listSelector="@android:color/transparent"
+            android:paddingBottom="15dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp">
+
+            </com.lemon.aklib.widget.EndOfListView>
+
+
+    </com.lemon.aklib.widget.PMSwipeRefreshLayout>
+
 
 </LinearLayout>

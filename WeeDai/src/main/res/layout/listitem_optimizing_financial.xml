@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical|right">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/tvAnnualRate"
+                android:layout_marginEnd="10dp"
+                android:layout_toStartOf="@+id/tvAnnualRate"
+                android:background="@drawable/ic_break_even"
+                android:gravity="center"
+                android:padding="3dp"
+                android:text="保"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/tvAnnualRate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:textColor="#272727"
+                android:text="@string/financial_annual_rate" />
+
+            <TextView
+                android:paddingTop="4dp"
+                android:id="@+id/tvDeadline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#9c9c9c"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/tvAnnualRate"
+                android:text="@string/financial_deadline" />
+
+            <TextView
+                android:id="@+id/tvAmount"
+                android:paddingTop="4dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#9c9c9c"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/tvDeadline"
+                android:text="@string/financial_amount" />
+
+            <TextView
+                android:id="@+id/tvReward"
+                android:layout_width="wrap_content"
+                android:paddingTop="4dp"
+                android:textColor="#272727"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/tvAmount"
+                android:text="@string/financial_reward" />
+
+            <TextView
+                android:id="@+id/tvState"
+                android:layout_width="wrap_content"
+                android:textColor="#9c9c9c"
+                android:paddingTop="4dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/tvReward"
+                android:text="1月07日10:00开始竞标" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_alignLeft="@+id/tvTitle"
+                android:background="#e0e0e0"></View>
+
+            <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="18dp"
+                android:text="优选理财计划1个月"
+                android:textColor="#272727"
+                android:textSize="20sp" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_horizontal">
+
+            <Button
+                android:id="@+id/btnState"
+                android:layout_width="100dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/btn_bg"
+                android:paddingBottom="4dp"
+                android:paddingTop="4dp"
+                android:text="立即加入" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -3,6 +3,11 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
+    <dimen name="financial_detail_title_margin_start">8dp</dimen>
+    <dimen name="financial_detail_layout_padding_right">16dp</dimen>
+    <dimen name="financial_detail_layout_padding_left">16dp</dimen>
+    <dimen name="financial_detail_about_title_padding_end">16dp</dimen>
+
 
     <dimen name="space_30">30.0dip</dimen>
     <dimen name="space_29">29.0dip</dimen>

@@ -3,6 +3,7 @@
 
     <color name="white">#ffffff</color>
     <color name="transparent">#00000000</color>
+    <color name="windowBackground">#f0f0f0</color>
 
     <color name="main_tab_background">#f0f0f0</color>
 
@@ -18,6 +19,12 @@
     <color name="text_more_right">#ff5601</color>
 
     <color name="bg_conditions_normal">#f0f0f0</color>
+
+    <color name="btn_bg_pressed">#00912c</color>
+    <color name="btn_bg_normal">#01a533</color>
+
+    <color name="financial_main_text_black">#272727</color>
+    <color name="financial_main_text">#9c9c9c</color>
 
 
 </resources>
