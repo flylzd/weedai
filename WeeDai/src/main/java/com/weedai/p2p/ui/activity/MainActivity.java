@@ -29,7 +29,6 @@ public class MainActivity extends BaseActivity {
         initRadioGroup();
     }
 
-
     private void initFragmentSwitcher() {
         fragmentSwitcher = (FragmentSwitcher) findViewById(R.id.fragment_container);
         fragmentAdapter = new FragmentStateArrayPagerAdapter(getSupportFragmentManager());

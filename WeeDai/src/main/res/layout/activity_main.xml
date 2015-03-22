@@ -1,13 +1,16 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:orientation="vertical"
     android:layout_height="match_parent">
 
     <com.lemon.aklib.widget.fragmentswitcher.FragmentSwitcher
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_weight="1"
         android:layout_above="@+id/rgMainTab"></com.lemon.aklib.widget.fragmentswitcher.FragmentSwitcher>
 
+    <include layout="@layout/view_horizontal_line" />
 
     <RadioGroup
         android:id="@+id/rgMainTab"
@@ -46,4 +49,4 @@
     </RadioGroup>
 
 
-</RelativeLayout>
+</LinearLayout>

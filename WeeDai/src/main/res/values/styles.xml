@@ -8,7 +8,6 @@
         <item name="actionBarStyle">@style/ActionBarBaseStyle</item>
 
         <item name="android:windowBackground">@color/windowBackground</item>
-        <item name="windowBackground">@color/windowBackground</item>
 
     </style>
 
@@ -67,6 +66,15 @@
     </style>
 
 
+    <style name="layoutUser">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/selector_bg_layout</item>
+        <item name="android:padding">14dp</item>
+        <item name="android:clickable">true</item>
+    </style>
+
+
     <style name="layoutMore">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
@@ -90,6 +98,33 @@
         <item name="android:textColor">@color/text_more</item>
         <item name="android:layout_alignParentRight">true</item>
         <item name="android:layout_centerVertical">true</item>
+    </style>
+
+
+    <style name="layoutRegister">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@color/white</item>
+        <item name="android:padding">10dp</item>
+    </style>
+
+    <style name="textRegisterTitle">
+        <item name="android:layout_width">100dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/main_text_black</item>
+        <item name="android:gravity">center_vertical|right</item>
+    </style>
+
+    <style name="textRegister">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/main_text</item>
+        <item name="android:gravity">center_vertical|left</item>
+        <item name="android:layout_marginStart">8dp</item>
+        <item name="android:background">@null</item>
     </style>
 
 </resources>

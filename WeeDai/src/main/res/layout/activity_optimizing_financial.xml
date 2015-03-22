@@ -3,12 +3,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:paddingTop="@dimen/main_content_padding_top">
 
     <RadioGroup
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         android:gravity="center"
         android:orientation="horizontal">
 
@@ -52,7 +52,7 @@
             android:paddingLeft="15dp"
             android:paddingRight="15dp">
 
-            </com.lemon.aklib.widget.EndOfListView>
+        </com.lemon.aklib.widget.EndOfListView>
 
 
     </com.lemon.aklib.widget.PMSwipeRefreshLayout>
