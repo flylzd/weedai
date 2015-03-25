@@ -1,9 +1,9 @@
-package com.weedai.p2p.ui.activity;
+package com.weedai.ptp.ui.activity;
 
 
 import android.os.Bundle;
 
-import com.weedai.p2p.R;
+import com.weedai.ptp.R;
 
 public class OptimizingFinancialActivity extends BaseActivity {
 

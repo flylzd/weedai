@@ -1,15 +1,15 @@
-package com.weedai.p2p.ui.activity;
+package com.weedai.ptp.ui.activity;
 
 import android.os.Bundle;
 import android.widget.RadioGroup;
 
 import com.lemon.aklib.widget.fragmentswitcher.FragmentStateArrayPagerAdapter;
 import com.lemon.aklib.widget.fragmentswitcher.FragmentSwitcher;
-import com.weedai.p2p.R;
-import com.weedai.p2p.ui.fragment.BbsFragment;
-import com.weedai.p2p.ui.fragment.HomeFragment;
-import com.weedai.p2p.ui.fragment.MoreFragment;
-import com.weedai.p2p.ui.fragment.MyFragment;
+import com.weedai.ptp.R;
+import com.weedai.ptp.ui.fragment.BbsFragment;
+import com.weedai.ptp.ui.fragment.HomeFragment;
+import com.weedai.ptp.ui.fragment.MoreFragment;
+import com.weedai.ptp.ui.fragment.MyFragment;
 
 
 public class MainActivity extends BaseActivity {

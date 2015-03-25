@@ -1,10 +1,10 @@
-package com.weedai.p2p.app;
+package com.weedai.ptp.app;
 
 
 import android.app.Application;
 import android.content.Context;
 
-import com.weedai.p2p.volley.VolleySingleton;
+import com.weedai.ptp.volley.VolleySingleton;
 
 
 public class AppContext extends Application {

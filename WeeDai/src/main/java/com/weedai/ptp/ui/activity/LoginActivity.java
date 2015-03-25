@@ -1,17 +1,16 @@
-package com.weedai.p2p.ui.activity;
+package com.weedai.ptp.ui.activity;
 
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.weedai.p2p.R;
-import com.weedai.p2p.utils.UIHelper;
+import com.weedai.ptp.R;
+import com.weedai.ptp.utils.UIHelper;
 
 public class LoginActivity extends Activity implements View.OnClickListener {
 
@@ -32,6 +31,10 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         setContentView(R.layout.activity_login);
 
         initView();
+
+
+
+
     }
 
     private void initView() {

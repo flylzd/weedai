@@ -1,4 +1,4 @@
-package com.weedai.p2p.ui.fragment;
+package com.weedai.ptp.ui.fragment;
 
 
 import android.os.Bundle;
@@ -9,12 +9,11 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import com.weedai.p2p.R;
-import com.weedai.p2p.utils.UIHelper;
+import com.weedai.ptp.R;
+import com.weedai.ptp.utils.UIHelper;
 
 import java.util.ArrayList;
 import java.util.List;

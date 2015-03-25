@@ -1,4 +1,4 @@
-package com.weedai.p2p.ui.activity;
+package com.weedai.ptp.ui.activity;
 
 
 import android.os.Bundle;
@@ -9,7 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-import com.weedai.p2p.R;
+import com.weedai.ptp.R;
 
 public class BaseActivity extends ActionBarActivity {
 

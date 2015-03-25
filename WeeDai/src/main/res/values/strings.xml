@@ -55,6 +55,9 @@
     <string name="user_account_security">账户安全</string>
     <string name="user_available_balance">可用余额%s元</string>
 
+    <string name="user_my_wealth_recharge">充值</string>
+    <string name="user_my_wealth_withdrawal">提现</string>
+
     <string name="more_interest">利息计算器</string>
     <string name="more_net_loan">网贷计算器</string>
     <string name="more_version">版本号</string>

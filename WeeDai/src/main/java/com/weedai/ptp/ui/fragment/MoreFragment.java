@@ -1,4 +1,4 @@
-package com.weedai.p2p.ui.fragment;
+package com.weedai.ptp.ui.fragment;
 
 
 import android.os.Bundle;
@@ -8,12 +8,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.weedai.p2p.R;
+import com.weedai.ptp.R;
 
-public class MyFragment extends Fragment {
+public class MoreFragment extends Fragment {
 
-    public static MyFragment newInstance() {
-        MyFragment fragment = new MyFragment();
+    public static MoreFragment newInstance() {
+        MoreFragment fragment = new MoreFragment();
         return fragment;
     }
 
@@ -22,7 +22,7 @@ public class MyFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_my, container, false);
+        View view = inflater.inflate(R.layout.fragment_more, container, false);
         return view;
     }
 
@@ -35,6 +35,6 @@ public class MyFragment extends Fragment {
     }
 
     private void init(View view) {
-
+        
     }
 }

@@ -1,12 +1,12 @@
-package com.weedai.p2p.utils;
+package com.weedai.ptp.utils;
 
 
 import android.content.Context;
 import android.content.Intent;
 
-import com.weedai.p2p.ui.activity.MainActivity;
-import com.weedai.p2p.ui.activity.OptimizingFinancialActivity;
-import com.weedai.p2p.ui.activity.RegisterActivity;
+import com.weedai.ptp.ui.activity.MainActivity;
+import com.weedai.ptp.ui.activity.OptimizingFinancialActivity;
+import com.weedai.ptp.ui.activity.RegisterActivity;
 
 public class UIHelper {
 

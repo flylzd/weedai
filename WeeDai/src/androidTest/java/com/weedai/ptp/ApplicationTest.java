@@ -1,4 +1,4 @@
-package com.weedai.p2p;
+package com.weedai.ptp;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

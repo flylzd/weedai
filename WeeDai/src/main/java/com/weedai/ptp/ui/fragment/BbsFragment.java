@@ -1,4 +1,4 @@
-package com.weedai.p2p.ui.fragment;
+package com.weedai.ptp.ui.fragment;
 
 
 import android.os.Bundle;
@@ -8,7 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.weedai.p2p.R;
+import com.weedai.ptp.R;
 
 public class BbsFragment extends Fragment {
 
