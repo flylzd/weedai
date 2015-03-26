@@ -112,7 +112,10 @@
         android:layout_marginTop="@dimen/main_content_margin_top"
         android:orientation="vertical">
 
-        <RelativeLayout style="@style/layoutUser">
+        <RelativeLayout
+            android:id="@+id/layoutMyWealth"
+            style="@style/layoutUser"
+            android:clickable="true">
 
             <TextView
                 android:id="@+id/tvMyWealth"
@@ -136,6 +139,7 @@
         <include layout="@layout/view_horizontal_line" />
 
         <TextView
+            android:id="@+id/tvFinancialManagement"
             style="@style/layoutUser"
             android:drawableRight="@drawable/ic_arrow_right"
             android:text="@string/user_financial_management" />
@@ -143,6 +147,7 @@
         <include layout="@layout/view_horizontal_line" />
 
         <TextView
+            android:id="@+id/tvBankCard"
             style="@style/layoutUser"
             android:drawableRight="@drawable/ic_arrow_right"
             android:text="@string/user_bank_card" />
@@ -150,6 +155,7 @@
         <include layout="@layout/view_horizontal_line" />
 
         <TextView
+            android:id="@+id/tvStandInsideLetter"
             style="@style/layoutUser"
             android:drawableRight="@drawable/ic_arrow_right"
             android:text="@string/user_stand_inside_letter" />

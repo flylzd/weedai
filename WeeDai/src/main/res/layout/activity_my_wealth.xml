@@ -1,16 +1,258 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:paddingTop="@dimen/main_content_padding_top">
-
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="0dp"
+        android:layout_alignParentTop="true"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="@color/white"
+            android:paddingBottom="10dp"
+            android:paddingLeft="40dp"
+            android:paddingTop="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/user_my_wealth_total_amount"
+                android:textColor="@color/main_text"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/tvTotalAmount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:paddingTop="25dp"
+                android:text="994,885.00"
+                android:textColor="@color/main_text_orange"
+                android:textSize="28sp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:layout_marginTop="@dimen/main_content_padding_top"
+            android:background="@color/white"
+            android:paddingBottom="10dp"
+            android:paddingLeft="40dp"
+            android:paddingRight="40dp"
+            android:paddingTop="20dp">
+
+            <TextView
+                android:id="@+id/tvAvailableBalanceTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/user_my_wealth_available_balance"
+                android:textColor="@color/main_text"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/tvAvailableBalance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvAvailableBalanceTitle"
+                android:layout_marginTop="2dp"
+                android:text="994,885.00"
+                android:textColor="@color/main_text_black"
+                android:textSize="28sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvAvailableBalance"
+                android:orientation="horizontal"
+                android:paddingTop="5dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/user_my_wealth_collecting_money"
+                        android:textColor="@color/main_text"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/tvCollectingMoney"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="4,000.00"
+                        android:textColor="@color/main_text"
+                        android:textSize="16sp" />
+
+                </LinearLayout>
+
+                <include layout="@layout/view_vertical_line" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:paddingLeft="40dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/user_my_wealth_freeze_funds"
+                        android:textColor="@color/main_text"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/tvFreezeFunds"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="4,000.00"
+                        android:textColor="@color/main_text"
+                        android:textSize="16sp" />
+
+                </LinearLayout>
+            </LinearLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:layout_marginTop="@dimen/main_content_padding_top"
+            android:background="@color/white"
+            android:paddingLeft="40dp"
+            android:paddingRight="40dp"
+            android:paddingTop="20dp">
+
+            <TextView
+                android:id="@+id/tvMyMicroCurrencyTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/user_my_wealth_my_micro_currency"
+                android:textColor="@color/main_text"
+                android:textSize="24sp" />
+
+            <LinearLayout
+                android:id="@+id/layoutMyMicroCurrency"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvMyMicroCurrencyTitle"
+                android:orientation="horizontal"
+                android:paddingTop="10dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/user_my_wealth_available_micro_currency"
+                            android:textColor="@color/main_text"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/tvAvailableMicroCurrency"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="200"
+                            android:textColor="@color/main_text_orange"
+                            android:textSize="16sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:text="转换"
+                            android:textColor="@color/main_text"
+                            android:textSize="16sp" />
+
+                        <ImageView
+                            android:layout_width="19dp"
+                            android:layout_height="19dp"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="4dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_currency_conversion" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <include layout="@layout/view_vertical_line" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:paddingLeft="40dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/user_my_wealth_total_micro_currency"
+                        android:textColor="@color/main_text"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/tvTotalMicroCurrency"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="8000"
+                        android:textColor="@color/main_text"
+                        android:textSize="16sp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/layoutMyMicroCurrency"
+                android:layout_marginTop="8dp"
+                android:drawablePadding="10dp"
+                android:drawableRight="@drawable/ic_arrow_right"
+                android:text="@string/user_my_wealth_check_micro_currency_history"
+                android:textColor="@color/main_text"
+                android:textSize="17sp" />
+        </RelativeLayout>
 
 
-        </LinearLayout>
+    </LinearLayout>
 
 
     <LinearLayout
@@ -20,18 +262,20 @@
         android:orientation="horizontal">
 
         <RelativeLayout
+            android:id="@+id/layoutRecharge"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@drawable/selector_bg_my_wealth_recharge">
+            android:background="@drawable/selector_bg_my_wealth_recharge"
+            android:clickable="true">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
                 android:paddingBottom="8dp"
                 android:paddingTop="8dp"
-                android:layout_centerVertical="true"
                 android:text="@string/user_my_wealth_recharge"
                 android:textColor="@color/white"
                 android:textSize="18sp" />
@@ -39,10 +283,12 @@
         </RelativeLayout>
 
         <RelativeLayout
+            android:id="@+id/layoutWithdrawal"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@drawable/selector_bg_my_wealth_withdrawal">
+            android:background="@drawable/selector_bg_my_wealth_withdrawal"
+            android:clickable="true">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -61,4 +307,4 @@
     </LinearLayout>
 
 
-</RelativeLayout>
+</LinearLayout>

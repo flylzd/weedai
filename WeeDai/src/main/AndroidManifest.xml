@@ -30,6 +30,10 @@
             android:name="com.weedai.ptp.ui.activity.OptimizingFinancialActivity"
             android:configChanges="keyboard|orientation|screenSize"
             android:screenOrientation="portrait" />
+        <activity
+            android:name="com.weedai.ptp.ui.activity.MyWealthActivity"
+            android:configChanges="keyboard|orientation|screenSize"
+            android:screenOrientation="portrait" />
 
     </application>
 

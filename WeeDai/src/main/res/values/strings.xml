@@ -55,6 +55,14 @@
     <string name="user_account_security">账户安全</string>
     <string name="user_available_balance">可用余额%s元</string>
 
+    <string name="user_my_wealth_total_amount">账户资金总额(元)</string>
+    <string name="user_my_wealth_available_balance">账户可用余额(元)</string>
+    <string name="user_my_wealth_collecting_money">代收资金(元)</string>
+    <string name="user_my_wealth_freeze_funds">冻结资金(元)</string>
+    <string name="user_my_wealth_my_micro_currency">我的微币(个)</string>
+    <string name="user_my_wealth_available_micro_currency">可用微币</string>
+    <string name="user_my_wealth_total_micro_currency">共获微币</string>
+    <string name="user_my_wealth_check_micro_currency_history">查看微币记录</string>
     <string name="user_my_wealth_recharge">充值</string>
     <string name="user_my_wealth_withdrawal">提现</string>
 
