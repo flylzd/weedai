@@ -66,6 +66,12 @@
     <string name="user_my_wealth_recharge">充值</string>
     <string name="user_my_wealth_withdrawal">提现</string>
 
+    <string name="user_my_bank_real_name">真实姓名:</string>
+    <string name="user_my_bank_account">账&#160;&#160;&#160;&#160;号:</string>
+    <string name="user_my_bank_bank">开户银行:</string>
+    <string name="user_my_bank_branch_name">支行名称:</string>
+    <string name="user_my_bank_bank_card_code">银行卡号:</string>
+
     <string name="more_interest">利息计算器</string>
     <string name="more_net_loan">网贷计算器</string>
     <string name="more_version">版本号</string>
