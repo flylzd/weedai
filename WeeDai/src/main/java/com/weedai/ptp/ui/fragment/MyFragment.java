@@ -15,9 +15,9 @@ import com.weedai.ptp.utils.UIHelper;
 public class MyFragment extends Fragment implements View.OnClickListener {
 
     private View layoutMyWealth;
-    private TextView tvFinancialManagement;
-    private TextView tvBankCard;
-    private TextView tvStandInsideLetter;
+    private TextView tvMyFinancialManagement;
+    private TextView tvMyBankCard;
+    private TextView tvMyStandInsideLetter;
 
 
     public static MyFragment newInstance() {
@@ -45,8 +45,13 @@ public class MyFragment extends Fragment implements View.OnClickListener {
     private void init(View view) {
 
         layoutMyWealth = view.findViewById(R.id.layoutMyWealth);
+        tvMyFinancialManagement = (TextView) view.findViewById(R.id.tvMyFinancialManagement);
+        tvMyBankCard = (TextView) view.findViewById(R.id.tvMyBankCard);
+        tvMyStandInsideLetter = (TextView) view.findViewById(R.id.tvMyStandInsideLetter);
         layoutMyWealth.setOnClickListener(this);
-
+        tvMyFinancialManagement.setOnClickListener(this);
+        tvMyBankCard.setOnClickListener(this);
+        tvMyStandInsideLetter.setOnClickListener(this);
     }
 
     @Override
@@ -56,7 +61,15 @@ public class MyFragment extends Fragment implements View.OnClickListener {
             case R.id.layoutMyWealth:
                 UIHelper.showMyWealth(getActivity());
                 break;
+            case R.id.tvMyFinancialManagement:
+//                UIHelper.showMyWealth(getActivity());
+                break;
+            case R.id.tvMyBankCard:
+                UIHelper.showMyBankCard(getActivity());
+                break;
+            case R.id.tvMyStandInsideLetter:
+//                UIHelper.showMyWealth(getActivity());
+                break;
         }
-
     }
 }
