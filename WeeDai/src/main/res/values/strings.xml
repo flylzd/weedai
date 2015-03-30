@@ -73,6 +73,13 @@
     <string name="user_my_bank_bank_card_code">银行卡号:</string>
     <string name="user_my_bank_modify_bank_card">修改银行卡</string>
 
+    <string name="user_my_bank_recharge_name">持卡人姓名:</string>
+    <string name="user_my_bank_recharge_id_card">身份证号:</string>
+    <string name="user_my_bank_recharge_phone">手机号:</string>
+    <string name="user_my_bank_recharge_input_validation">输入验证码:</string>
+    <string name="user_my_bank_recharge_amount">充值金额:</string>
+    <string name="user_my_bank_recharge_quick_payment">开通快捷支付:</string>
+
     <string name="more_interest">利息计算器</string>
     <string name="more_net_loan">网贷计算器</string>
     <string name="more_version">版本号</string>

@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingTop="@dimen/main_content_padding_top">
+
+    <LinearLayout style="@style/layoutMyBankRecharge">
+
+        <TextView
+            style="@style/editMyBankRechargeTitle"
+            android:text="@string/user_my_bank_bank" />
+
+        <RelativeLayout style="@style/textMyBank">
+
+            <ImageView
+                android:id="@+id/imgBankIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_launcher" />
+
+            <TextView
+                android:id="@+id/tvBankName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_toRightOf="@+id/imgBankIcon"
+                android:text="中国银行"
+                android:textColor="@color/main_text"
+                android:textSize="22sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvBankName"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="4dp"
+                android:layout_toRightOf="@+id/imgBankIcon"
+                android:text="尾号6215储蓄卡"
+                android:textColor="@color/main_text"
+                android:textSize="16sp" />
+
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout style="@style/layoutMyBankRecharge">
+
+        <TextView
+            style="@style/editMyBankRechargeTitle"
+            android:text="@string/user_my_bank_recharge_name" />
+
+        <EditText
+            style="@style/editMyBankRecharge"
+            android:text="微E贷" />
+
+    </LinearLayout>
+
+    <LinearLayout style="@style/layoutMyBankRecharge">
+
+        <TextView
+            style="@style/editMyBankRechargeTitle"
+            android:text="@string/user_my_bank_recharge_id_card" />
+
+        <EditText
+            style="@style/editMyBankRecharge"
+            android:text="微E贷" />
+
+    </LinearLayout>
+
+    <LinearLayout style="@style/layoutMyBankRecharge">
+
+        <TextView
+            style="@style/editMyBankRechargeTitle"
+            android:text="@string/user_my_bank_recharge_phone" />
+
+        <EditText
+            style="@style/editMyBankRecharge"
+            android:text="微E贷" />
+
+    </LinearLayout>
+
+    <LinearLayout style="@style/layoutMyBankRecharge">
+
+        <TextView
+            style="@style/editMyBankRechargeTitle"
+            android:text="@string/user_my_bank_recharge_input_validation" />
+
+        <EditText
+            style="@style/editMyBankRecharge"
+            android:text="微E贷" />
+
+    </LinearLayout>
+
+    <LinearLayout style="@style/layoutMyBankRecharge">
+
+        <TextView
+            style="@style/editMyBankRechargeTitle"
+            android:text="@string/user_my_bank_recharge_amount" />
+
+        <EditText
+            style="@style/editMyBankRecharge"
+            android:text="微E贷" />
+
+    </LinearLayout>
+
+    <LinearLayout style="@style/layoutMyBankRecharge">
+
+        <TextView
+            style="@style/editMyBankRechargeTitle"
+            android:text="@string/user_my_bank_recharge_quick_payment" />
+
+        <EditText
+            style="@style/editMyBankRecharge"
+            android:text="微E贷" />
+
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/btnModifyBankCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/selector_btn_bg"
+        android:text="下一步"
+        android:textColor="@color/white" />
+
+</LinearLayout>

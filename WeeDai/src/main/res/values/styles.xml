@@ -153,4 +153,32 @@
     </style>
 
 
+    <style name="layoutMyBankRecharge">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@color/white</item>
+        <item name="android:paddingBottom">18dp</item>
+        <item name="android:paddingTop">18dp</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <style name="editMyBankRechargeTitle">
+        <item name="android:layout_width">120dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center_vertical|right</item>
+        <item name="android:textSize">22sp</item>
+    </style>
+
+    <style name="editMyBankRecharge">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/main_text</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:background">@null</item>
+    </style>
+
+
 </resources>

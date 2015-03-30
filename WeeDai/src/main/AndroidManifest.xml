@@ -38,6 +38,10 @@
             android:name="com.weedai.ptp.ui.activity.MyBankCardActivity"
             android:configChanges="keyboard|orientation|screenSize"
             android:screenOrientation="portrait" />
+        <activity
+            android:name="com.weedai.ptp.ui.activity.MyRechargeActivity"
+            android:configChanges="keyboard|orientation|screenSize"
+            android:screenOrientation="portrait" />
 
     </application>
 
