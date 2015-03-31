@@ -5,31 +5,6 @@
     android:orientation="vertical"
     android:paddingTop="@dimen/main_content_padding_top">
 
-    <LinearLayout style="@style/layoutMyBank">
-
-        <TextView
-            style="@style/textMyBankTitle"
-            android:text="@string/user_my_bank_real_name" />
-
-        <TextView
-            style="@style/textMyBank"
-            android:text="微E贷" />
-    </LinearLayout>
-
-    <include layout="@layout/view_horizontal_line" />
-
-    <LinearLayout style="@style/layoutMyBank">
-
-        <TextView
-            style="@style/textMyBankTitle"
-            android:text="@string/user_my_bank_account" />
-
-        <TextView
-            style="@style/textMyBank"
-            android:text="微E贷" />
-    </LinearLayout>
-
-    <include layout="@layout/view_horizontal_line" />
 
     <LinearLayout style="@style/layoutMyBank">
 
@@ -51,22 +26,13 @@
                 android:id="@+id/tvBankName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
                 android:layout_marginStart="12dp"
                 android:layout_toRightOf="@+id/imgBankIcon"
                 android:text="中国银行"
                 android:textColor="@color/main_text"
                 android:textSize="22sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/tvBankName"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="4dp"
-                android:layout_toRightOf="@+id/imgBankIcon"
-                android:text="尾号6215储蓄卡"
-                android:textColor="@color/main_text"
-                android:textSize="16sp" />
 
         </RelativeLayout>
 
@@ -98,6 +64,19 @@
             android:text="微E贷" />
     </LinearLayout>
 
+
+    <LinearLayout style="@style/layoutMyBank">
+
+        <TextView
+            style="@style/textMyBankTitle"
+            android:text="@string/user_my_bank_recharge_input_validation" />
+
+        <EditText
+            style="@style/textMyBank"
+            android:text="微E贷" />
+
+    </LinearLayout>
+
     <Button
         android:id="@+id/btnModifyBankCard"
         android:layout_width="match_parent"
@@ -106,7 +85,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/selector_btn_bg"
-        android:text="@string/user_my_bank_modify_bank_card"
+        android:text="确认提交"
         android:textColor="@color/white" />
 
 

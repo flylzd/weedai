@@ -45,6 +45,8 @@
         </RelativeLayout>
     </LinearLayout>
 
+    <include layout="@layout/view_horizontal_line" />
+
     <LinearLayout style="@style/layoutMyBankRecharge">
 
         <TextView
@@ -56,6 +58,8 @@
             android:text="微E贷" />
 
     </LinearLayout>
+
+    <include layout="@layout/view_horizontal_line" />
 
     <LinearLayout style="@style/layoutMyBankRecharge">
 
@@ -69,6 +73,8 @@
 
     </LinearLayout>
 
+    <include layout="@layout/view_horizontal_line" />
+
     <LinearLayout style="@style/layoutMyBankRecharge">
 
         <TextView
@@ -80,6 +86,8 @@
             android:text="微E贷" />
 
     </LinearLayout>
+
+    <include layout="@layout/view_horizontal_line" />
 
     <LinearLayout style="@style/layoutMyBankRecharge">
 
@@ -93,6 +101,8 @@
 
     </LinearLayout>
 
+    <include layout="@layout/view_horizontal_line" />
+
     <LinearLayout style="@style/layoutMyBankRecharge">
 
         <TextView
@@ -104,6 +114,8 @@
             android:text="微E贷" />
 
     </LinearLayout>
+
+    <include layout="@layout/view_horizontal_line" />
 
     <LinearLayout style="@style/layoutMyBankRecharge">
 

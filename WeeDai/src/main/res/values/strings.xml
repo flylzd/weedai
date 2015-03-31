@@ -66,6 +66,9 @@
     <string name="user_my_wealth_recharge">充值</string>
     <string name="user_my_wealth_withdrawal">提现</string>
 
+    <string name="user_my_available_micro_currency">可用微币(个)</string>
+    <string name="user_my_total_micro_currency">共获微币(个)</string>
+
     <string name="user_my_bank_real_name">真实姓名:</string>
     <string name="user_my_bank_account">账&#160;&#160;&#160;&#160;号:</string>
     <string name="user_my_bank_bank">开户银行:</string>
@@ -76,9 +79,20 @@
     <string name="user_my_bank_recharge_name">持卡人姓名:</string>
     <string name="user_my_bank_recharge_id_card">身份证号:</string>
     <string name="user_my_bank_recharge_phone">手机号:</string>
-    <string name="user_my_bank_recharge_input_validation">输入验证码:</string>
+    <string name="user_my_bank_recharge_input_validation">验证码:</string>
     <string name="user_my_bank_recharge_amount">充值金额:</string>
     <string name="user_my_bank_recharge_quick_payment">开通快捷支付:</string>
+
+    <string name="user_my_financial_management_conditions_borrowing">已成功投资的借款</string>
+    <string name="user_my_financial_management_conditions_collection">未收款明细帐</string>
+    <string name="user_my_financial_management_borrowers">借款者: %s</string>
+    <string name="user_my_financial_management_amount">金额(元): ￥ %s</string>
+    <string name="user_my_financial_management_time_limit">期限: %s 个月</string>
+    <string name="user_my_financial_management_loan_amount">借出金额: ￥ %s </string>
+    <string name="user_my_financial_management_borrowers_integral">借款者积分: %s </string>
+    <string name="user_my_financial_management_annual_interest_rate">年利率: %s </string>
+    <string name="user_my_financial_management_bid_time">投标时间: %s </string>
+    <string name="user_my_financial_management_receivable_interest">应收本息: %s </string>
 
     <string name="more_interest">利息计算器</string>
     <string name="more_net_loan">网贷计算器</string>
