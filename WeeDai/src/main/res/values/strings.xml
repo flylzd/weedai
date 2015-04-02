@@ -83,6 +83,13 @@
     <string name="user_my_bank_recharge_amount">充值金额:</string>
     <string name="user_my_bank_recharge_quick_payment">开通快捷支付:</string>
 
+    <string name="user_my_withdrawal_account_balance">账号余额:</string>
+    <string name="user_my_withdrawal_available_balance">可用余额:</string>
+    <string name="user_my_withdrawal_freeze_balance">冻结余额:</string>
+    <string name="user_my_withdrawal_withdrawal_bank">提现银行:</string>
+    <string name="user_my_withdrawal_trade_password">交易密码:</string>
+    <string name="user_my_withdrawal_withdrawal_amount">提现金额:</string>
+
     <string name="user_my_financial_management_conditions_borrowing">已成功投资的借款</string>
     <string name="user_my_financial_management_conditions_collection">未收款明细帐</string>
     <string name="user_my_financial_management_borrowers">借款者: %s</string>

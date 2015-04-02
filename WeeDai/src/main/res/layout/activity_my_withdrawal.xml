@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingTop="@dimen/main_content_padding_top">
+
+
+    <LinearLayout style="@style/layoutMyBank">
+
+        <TextView
+            style="@style/textMyBankTitle"
+            android:text="@string/user_my_bank_real_name" />
+
+        <TextView
+            style="@style/textMyBank"
+            android:text="微E贷" />
+    </LinearLayout>
+
+    <include layout="@layout/view_horizontal_line" />
+
+    <LinearLayout style="@style/layoutMyBank">
+
+        <TextView
+            style="@style/textMyBankTitle"
+            android:text="@string/user_my_withdrawal_account_balance" />
+
+        <TextView
+            style="@style/textMyBank"
+            android:text="微E贷" />
+    </LinearLayout>
+
+    <include layout="@layout/view_horizontal_line" />
+
+    <LinearLayout style="@style/layoutMyBank">
+
+        <TextView
+            style="@style/textMyBankTitle"
+            android:text="@string/user_my_withdrawal_available_balance" />
+
+        <TextView
+            style="@style/textMyBank"
+            android:text="微E贷" />
+    </LinearLayout>
+
+    <include layout="@layout/view_horizontal_line" />
+
+    <LinearLayout style="@style/layoutMyBank">
+
+        <TextView
+            style="@style/textMyBankTitle"
+            android:text="@string/user_my_withdrawal_freeze_balance" />
+
+        <TextView
+            style="@style/textMyBank"
+            android:text="微E贷" />
+    </LinearLayout>
+
+    <include layout="@layout/view_horizontal_line" />
+
+    <LinearLayout style="@style/layoutMyBank">
+
+        <TextView
+            style="@style/textMyBankTitle"
+            android:text="@string/user_my_withdrawal_withdrawal_bank" />
+
+        <RelativeLayout style="@style/textMyBank">
+
+            <ImageView
+                android:id="@+id/imgBankIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_launcher" />
+
+            <TextView
+                android:id="@+id/tvBankName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_toRightOf="@+id/imgBankIcon"
+                android:text="中国银行"
+                android:textColor="@color/main_text"
+                android:textSize="22sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvBankName"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="4dp"
+                android:layout_toRightOf="@+id/imgBankIcon"
+                android:text="尾号6215储蓄卡"
+                android:textColor="@color/main_text"
+                android:textSize="16sp" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <include layout="@layout/view_horizontal_line" />
+
+    <LinearLayout style="@style/layoutMyBank">
+
+        <TextView
+            style="@style/textMyBankTitle"
+            android:text="@string/user_my_withdrawal_trade_password" />
+
+        <TextView
+            style="@style/textMyBank"
+            android:text="微E贷" />
+    </LinearLayout>
+
+    <include layout="@layout/view_horizontal_line" />
+
+    <LinearLayout style="@style/layoutMyBank">
+
+        <TextView
+            style="@style/textMyBankTitle"
+            android:text="@string/user_my_withdrawal_withdrawal_amount" />
+
+        <TextView
+            style="@style/textMyBank"
+            android:text="微E贷" />
+    </LinearLayout>
+
+
+</LinearLayout>
