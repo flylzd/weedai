@@ -8,6 +8,7 @@ import com.android.volley.error.AuthFailureError;
 import com.android.volley.error.VolleyError;
 import com.weedai.ptp.constant.Urls;
 import com.weedai.ptp.model.BaseModel;
+import com.weedai.ptp.utils.AppUtil;
 import com.weedai.ptp.utils.Logger;
 import com.weedai.ptp.volley.GsonPostRequest;
 import com.weedai.ptp.volley.ResponseListener;
@@ -24,24 +25,60 @@ public class ApiClient {
 
     public static final RequestQueue requestQueue = VolleySingleton.getRequestQueue();
 
-    private static final String TIMESTAMP =  "timestamp";
-    private static final String SIGNATURE =  "signature";
+    private static final String TIMESTAMP = "timestamp";
+    private static final String SIGNATURE = "signature";
 
     /**
      * 接口验证
      */
-    public static void verifyInterface(String tag, String timestamp, String signature, ResponseListener listener) {
+    public static void verifyInterface(String tag, ResponseListener listener) {
 
         listener.onStarted();
 
-        Map<String, String> requestParams = new HashMap<String,String>();
-        requestParams.put(TIMESTAMP,timestamp);
-        requestParams.put(SIGNATURE,signature);
+        Map<String, String> requestParams = getSignatureMap();
 
         String url = Urls.ACTION_INDEX;
         GsonPostRequest request = createGsonPostRequest(url, requestParams, BaseModel.class, listener);
         request.setTag(tag);
         requestQueue.add(request);
+    }
+
+    /**
+     * 投资信息获取
+     *
+     * @param tag
+     * @param page
+     * @param type
+     * @param timelimit
+     * @param listener
+     */
+    public static void getInvestList(String tag, int page, int type, int timelimit, ResponseListener listener) {
+
+        listener.onStarted();
+
+        Map<String, String> requestParams = getSignatureMap();
+        requestParams.put("page", String.valueOf(page));
+        requestParams.put("type", String.valueOf(type));
+        requestParams.put("timelimit", String.valueOf(timelimit));
+        requestParams.put(Urls.ACTION, "invest/list");
+
+        String url = Urls.ACTION_INDEX;
+        GsonPostRequest request = createGsonPostRequest(url, requestParams, BaseModel.class, listener);
+        request.setTag(tag);
+        requestQueue.add(request);
+    }
+
+    private static Map<String, String> getSignatureMap() {
+
+        long time = System.currentTimeMillis();
+        String timestamp = String.valueOf(time);
+        String signature = AppUtil.getSignature(timestamp);
+
+        Map<String, String> requestParams = new HashMap<String, String>();
+        requestParams.put(TIMESTAMP, timestamp);
+        requestParams.put(SIGNATURE, signature);
+
+        return requestParams;
     }
 
     private static <T> GsonPostRequest createGsonPostRequest(String url, Map<String, String> requestParamsMap, Class<T> clazz, final ResponseListener listener) {
