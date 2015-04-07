@@ -68,6 +68,24 @@ public class ApiClient {
         requestQueue.add(request);
     }
 
+
+    public static void getArticleList(String tag, ResponseListener listener) {
+
+        listener.onStarted();
+
+        Map<String, String> requestParams = getSignatureMap();
+        requestParams.put("site_id", "59");
+        requestParams.put("status", "1");
+        requestParams.put("limit", "50");
+        requestParams.put(Urls.ACTION, "article/list");
+
+        String url = Urls.ACTION_INDEX;
+        GsonPostRequest request = createGsonPostRequest(url, requestParams, BaseModel.class, listener);
+        request.setTag(tag);
+        requestQueue.add(request);
+
+    }
+
     private static Map<String, String> getSignatureMap() {
 
         long time = System.currentTimeMillis();

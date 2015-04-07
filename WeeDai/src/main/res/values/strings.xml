@@ -144,5 +144,8 @@
     <string name="financial_detail_about_audit_title">距离审核</string>
     <string name="financial_detail_about_review_time_title">复审时间</string>
 
+    <string name="article_information_title">资讯</string>
+    <string name="article_notice_title">公告</string>
+
 
 </resources>

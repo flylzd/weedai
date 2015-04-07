@@ -4,6 +4,7 @@ package com.weedai.ptp.utils;
 import android.content.Context;
 import android.content.Intent;
 
+import com.weedai.ptp.ui.activity.ArticleActivity;
 import com.weedai.ptp.ui.activity.MainActivity;
 import com.weedai.ptp.ui.activity.MyBankCardActivity;
 import com.weedai.ptp.ui.activity.MyRechargeActivity;
@@ -40,6 +41,11 @@ public class UIHelper {
 
     public static void showOptimizingFinancial(Context context) {
         Intent intent = new Intent(context, OptimizingFinancialActivity.class);
+        context.startActivity(intent);
+    }
+
+    public static void showArticle(Context context) {
+        Intent intent = new Intent(context, ArticleActivity.class);
         context.startActivity(intent);
     }
 }
