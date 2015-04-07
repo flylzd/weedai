@@ -37,7 +37,7 @@ public class GsonPostRequest<T> extends GsonRequest<T> {
 
 
     public GsonPostRequest(String url, Class<T> clazz, Map<String, String> headers, Map<String, String> params, Listener<T> listener, ErrorListener errorListener) {
-        super(Method.POST, url, clazz, headers, params, listener, errorListener);
+        super(Method.GET, url, clazz, headers, params, listener, errorListener);
         this.mListener = listener;
     }
 
@@ -45,27 +45,27 @@ public class GsonPostRequest<T> extends GsonRequest<T> {
     @Override
     public Map<String, String> getHeaders() throws AuthFailureError {
 
-        if (mCookie != null) {
-            Map<String, String> map = new HashMap<String, String>();
-            map.put("Cookie", mCookie);
-            return map;
-        }
+//        if (mCookie != null) {
+//            Map<String, String> map = new HashMap<String, String>();
+//            map.put("Cookie", mCookie);
+//            return map;
+//        }
         return super.getHeaders();
     }
 
     @Override
     protected Response<T> parseNetworkResponse(NetworkResponse response) {
 
-        if (mCookie == null) {
-            for (String s : response.headers.keySet()) {
-                if (s.contains("Set-Cookie")) {
-                    mCookie = response.headers.get(s);
-                    break;
-                }
-            }
-        }
-        response.headers.put(HTTP.CONTENT_TYPE, PROTOCOL_CONTENT_TYPE);
-        Log.d(TAG, response.headers.toString());
+//        if (mCookie == null) {
+//            for (String s : response.headers.keySet()) {
+//                if (s.contains("Set-Cookie")) {
+//                    mCookie = response.headers.get(s);
+//                    break;
+//                }
+//            }
+//        }
+//        response.headers.put(HTTP.CONTENT_TYPE, PROTOCOL_CONTENT_TYPE);
+//        Log.d(TAG, response.headers.toString());
         Log.d(TAG, new String(response.data));
         return super.parseNetworkResponse(response);
     }

@@ -28,6 +28,8 @@ public class ApiClient {
     private static final String TIMESTAMP = "timestamp";
     private static final String SIGNATURE = "signature";
 
+    private static final int PAGE_LIMIT = 30;
+
     /**
      * 接口验证
      */
@@ -69,14 +71,15 @@ public class ApiClient {
     }
 
 
-    public static void getArticleList(String tag, ResponseListener listener) {
+    public static void getArticleList(String tag,int page,  ResponseListener listener) {
 
         listener.onStarted();
 
         Map<String, String> requestParams = getSignatureMap();
-        requestParams.put("site_id", "59");
-        requestParams.put("status", "1");
-        requestParams.put("limit", "50");
+//        requestParams.put("site_id", "59");
+//        requestParams.put("status", "1");
+//        requestParams.put("page", String.valueOf(page));
+//        requestParams.put("limit", String.valueOf(PAGE_LIMIT));
         requestParams.put(Urls.ACTION, "article/list");
 
         String url = Urls.ACTION_INDEX;

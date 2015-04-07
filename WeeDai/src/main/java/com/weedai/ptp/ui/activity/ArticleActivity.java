@@ -12,6 +12,8 @@ public class ArticleActivity extends BaseActivity {
 
     private final static String TAG = "ArticleActivity";
 
+    private int page = 1;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +35,7 @@ public class ArticleActivity extends BaseActivity {
 
     private void getArticleList() {
 
-        ApiClient.getArticleList(TAG, new ResponseListener() {
+        ApiClient.getArticleList(TAG, page, new ResponseListener() {
             @Override
             public void onStarted() {
 

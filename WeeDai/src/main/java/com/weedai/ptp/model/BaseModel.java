@@ -1,7 +1,9 @@
 package com.weedai.ptp.model;
 
 
-public class BaseModel {
+import java.io.Serializable;
+
+public class BaseModel implements Serializable {
 
     public int code;
     public String message;
