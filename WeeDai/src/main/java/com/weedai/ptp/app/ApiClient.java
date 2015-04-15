@@ -7,6 +7,7 @@ import com.android.volley.Response;
 import com.android.volley.error.AuthFailureError;
 import com.android.volley.error.VolleyError;
 import com.weedai.ptp.constant.Urls;
+import com.weedai.ptp.model.Article;
 import com.weedai.ptp.model.BaseModel;
 import com.weedai.ptp.utils.AppUtil;
 import com.weedai.ptp.utils.Logger;
@@ -84,7 +85,7 @@ public class ApiClient {
         requestParams.put(Urls.ACTION, "article/list");
 
         String url = Urls.ACTION_INDEX;
-        GsonGetRequest request = createGsonGetRequest(url, requestParams, BaseModel.class, listener);
+        GsonGetRequest request = createGsonGetRequest(url, requestParams, Article.class, listener);
         request.setTag(tag);
         requestQueue.add(request);
 

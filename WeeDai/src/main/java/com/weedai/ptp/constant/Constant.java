@@ -10,4 +10,9 @@ public class Constant {
         public final static int TYPE_YX = 4;   //4.优选理财
     }
 
+    public final static class CodeResult {
+        public final static int SUCCESS = 200;
+        public final static int FAILURE = 400;
+    }
+
 }

@@ -25,4 +25,20 @@
     </RadioGroup>
 
 
+    <com.lemon.aklib.widget.PMSwipeRefreshLayout
+        android:id="@+id/pullRefreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="15dp">
+
+        <com.lemon.aklib.widget.EndOfListView
+            android:id="@+id/listView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:cacheColorHint="@android:color/transparent" />
+
+
+    </com.lemon.aklib.widget.PMSwipeRefreshLayout>
+
+
 </LinearLayout>
