@@ -18,8 +18,14 @@ public class GsonGetRequest<T> extends GsonRequest<T> {
 
     private static final String TAG = "GsonGetRequest";
 
-//    private static final String DEFAULT_PARAMS_ENCODING = "GBK";
-private static final String DEFAULT_PARAMS_ENCODING = HTTP.ISO_8859_1;
+    //    private static final String DEFAULT_PARAMS_ENCODING = "GBK";
+    private static final String DEFAULT_PARAMS_ENCODING = HTTP.ISO_8859_1;
+
+    /**
+     * Content type for request.
+     */
+    private static final String PROTOCOL_CONTENT_TYPE =
+            String.format("application/json; charset=%s", HTTP.UTF_8);
 
     public GsonGetRequest(String url, Class<T> clazz, Map<String, String> params, Response.Listener<T> listener, Response.ErrorListener errorListener) {
         super(Method.GET, url, clazz, null, params, listener, errorListener);
@@ -27,6 +33,7 @@ private static final String DEFAULT_PARAMS_ENCODING = HTTP.ISO_8859_1;
 
     @Override
     protected Response<T> parseNetworkResponse(NetworkResponse response) {
+        response.headers.put(HTTP.CONTENT_TYPE, PROTOCOL_CONTENT_TYPE);
         Log.d(TAG, new String(response.data));
         return super.parseNetworkResponse(response);
     }
@@ -70,4 +77,5 @@ private static final String DEFAULT_PARAMS_ENCODING = HTTP.ISO_8859_1;
 //            throw new RuntimeException("Encoding not supported: " + paramsEncoding, uee);
 //        }
     }
+
 }

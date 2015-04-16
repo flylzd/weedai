@@ -15,4 +15,10 @@ public class Constant {
         public final static int FAILURE = 400;
     }
 
+    public final static class ArticleType {
+        public final static int NOTICE = 22;   //资讯
+        public final static int INFORMATION = 59;   //网站公告
+        public final static int AD = 133;  //投资英雄榜公告
+    }
+
 }

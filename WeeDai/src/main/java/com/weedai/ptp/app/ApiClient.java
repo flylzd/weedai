@@ -73,15 +73,15 @@ public class ApiClient {
     }
 
 
-    public static void getArticleList(String tag,int page,  ResponseListener listener) {
+    public static void getArticleList(String tag, int page, int type, ResponseListener listener) {
 
         listener.onStarted();
 
         Map<String, String> requestParams = getSignatureMap();
-        requestParams.put("site_id", "59");
+        requestParams.put("site_id", String.valueOf(type));
         requestParams.put("status", "1");
         requestParams.put("page", String.valueOf(page));
-        requestParams.put("limit", String.valueOf(PAGE_LIMIT));
+//        requestParams.put("limit", String.valueOf(PAGE_LIMIT));
         requestParams.put(Urls.ACTION, "article/list");
 
         String url = Urls.ACTION_INDEX;
@@ -131,7 +131,6 @@ public class ApiClient {
 
         return request;
     }
-
 
 
     private static <T> GsonGetRequest createGsonGetRequest(String url, Map<String, String> requestParamsMap, Class<T> clazz, final ResponseListener listener) {

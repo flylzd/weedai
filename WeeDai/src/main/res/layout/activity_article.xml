@@ -6,6 +6,7 @@
     android:paddingTop="@dimen/main_content_padding_top">
 
     <RadioGroup
+        android:id="@+id/radioGroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -29,7 +30,7 @@
         android:id="@+id/pullRefreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="15dp">
+        android:paddingBottom="10dp">
 
         <com.lemon.aklib.widget.EndOfListView
             android:id="@+id/listView"
