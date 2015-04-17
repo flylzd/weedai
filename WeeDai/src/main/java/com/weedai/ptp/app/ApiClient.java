@@ -73,6 +73,14 @@ public class ApiClient {
     }
 
 
+    /**
+     * 文章列表
+     *
+     * @param tag
+     * @param page
+     * @param type     文章类型
+     * @param listener
+     */
     public static void getArticleList(String tag, int page, int type, ResponseListener listener) {
 
         listener.onStarted();
@@ -88,7 +96,26 @@ public class ApiClient {
         GsonGetRequest request = createGsonGetRequest(url, requestParams, Article.class, listener);
         request.setTag(tag);
         requestQueue.add(request);
+    }
 
+    /**
+     * 文章详情
+     *
+     * @param tag
+     * @param aid
+     * @param listener
+     */
+    public static void getArticleDetail(String tag, String aid, ResponseListener listener) {
+
+        listener.onStarted();
+
+        Map<String, String> requestParams = getSignatureMap();
+        requestParams.put("aid", aid);
+        requestParams.put(Urls.ACTION, "article/content");
+
+        String url = Urls.ACTION_INDEX;
+        GsonGetRequest request = createGsonGetRequest(url, requestParams, Article.class, listener);
+        request.setTag(tag);
     }
 
     private static Map<String, String> getSignatureMap() {
