@@ -28,6 +28,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     private ImageView[] indicatorImgs = new ImageView[INDICATOR_COUNT];//存放引到图片数组
 
     private ImageView imgYou;
+    private ImageView imgMyAccount;
     private ImageView imgInformation;
     private ImageView imgNotice;
 
@@ -79,12 +80,13 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         initIndicator(view);
 
         imgYou = (ImageView) view.findViewById(R.id.imgYou);
-        imgYou.setOnClickListener(this);
-
+        imgMyAccount = (ImageView) view.findViewById(R.id.imgMyAccount);
         imgInformation = (ImageView) view.findViewById(R.id.imgInformation);
-        imgInformation.setOnClickListener(this);
-
         imgNotice = (ImageView) view.findViewById(R.id.imgNotice);
+
+        imgYou.setOnClickListener(this);
+        imgMyAccount.setOnClickListener(this);
+        imgInformation.setOnClickListener(this);
         imgNotice.setOnClickListener(this);
     }
 
@@ -123,6 +125,10 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 UIHelper.showOptimizingFinancial(getActivity());
                 break;
 
+            case R.id.imgMyAccount:
+                UIHelper.showHero(getActivity());
+                break;
+
             case R.id.imgInformation:
                 UIHelper.showArticle(getActivity());
                 break;
@@ -130,6 +136,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             case R.id.imgNotice:
                 UIHelper.showArticle(getActivity());
                 break;
+
         }
     }
 

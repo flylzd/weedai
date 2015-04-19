@@ -29,6 +29,12 @@
             android:name="com.weedai.ptp.ui.activity.MainActivity"
             android:configChanges="keyboard|orientation|screenSize"
             android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.weedai.ptp.ui.activity.HeroActivity"
+            android:configChanges="keyboard|orientation|screenSize"
+            android:screenOrientation="portrait" />
+
         <activity
             android:name="com.weedai.ptp.ui.activity.OptimizingFinancialActivity"
             android:configChanges="keyboard|orientation|screenSize"
@@ -60,6 +66,11 @@
 
         <activity
             android:name="com.weedai.ptp.ui.activity.ArticleActivity"
+            android:configChanges="keyboard|orientation|screenSize"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.weedai.ptp.ui.activity.ArticleDetailActivity"
             android:configChanges="keyboard|orientation|screenSize"
             android:screenOrientation="portrait" />
 

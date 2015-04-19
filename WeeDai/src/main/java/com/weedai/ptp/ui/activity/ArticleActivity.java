@@ -3,6 +3,8 @@ package com.weedai.ptp.ui.activity;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.TextUtils;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -20,6 +22,7 @@ import com.weedai.ptp.model.Article;
 import com.weedai.ptp.model.ArticleData;
 import com.weedai.ptp.model.ArticleList;
 import com.weedai.ptp.utils.DataUtil;
+import com.weedai.ptp.utils.UIHelper;
 import com.weedai.ptp.volley.ResponseListener;
 
 import java.io.UnsupportedEncodingException;
@@ -146,6 +149,19 @@ public class ArticleActivity extends BaseActivity implements SwipeRefreshLayout.
             }
         };
         listView.setAdapter(adapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                String aid;
+                if (articleType == Constant.ArticleType.INFORMATION) {
+                    aid = informationList.get(position).id;
+                } else {
+                    aid = noticeList.get(position).id;
+                }
+                UIHelper.showArticleDetail(ArticleActivity.this, aid);
+            }
+        });
     }
 
     private void loadData() {

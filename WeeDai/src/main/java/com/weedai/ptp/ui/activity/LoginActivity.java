@@ -2,17 +2,25 @@ package com.weedai.ptp.ui.activity;
 
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.error.VolleyError;
 import com.weedai.ptp.R;
+import com.weedai.ptp.app.ApiClient;
 import com.weedai.ptp.utils.UIHelper;
+import com.weedai.ptp.volley.ResponseListener;
 
 public class LoginActivity extends Activity implements View.OnClickListener {
+
+    private final static String TAG = "LoginActivity";
 
     private EditText etUsername;
     private EditText etPassword;
@@ -20,6 +28,8 @@ public class LoginActivity extends Activity implements View.OnClickListener {
 
     private TextView tvLoginRegister;
     private TextView tvLoginForgetPassword;
+
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,9 +41,6 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         setContentView(R.layout.activity_login);
 
         initView();
-
-
-
 
     }
 
@@ -49,6 +56,44 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         tvLoginRegister.setOnClickListener(this);
         tvLoginForgetPassword.setOnClickListener(this);
     }
+
+    private void login() {
+
+
+        String username = etUsername.getText().toString();
+        String password = etPassword.getText().toString();
+
+        if (TextUtils.isEmpty(username)) {
+            Toast.makeText(LoginActivity.this, getString(R.string.login_user_empty), Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (TextUtils.isEmpty(password)) {
+            Toast.makeText(LoginActivity.this, getString(R.string.login_password_empty), Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        ApiClient.login(TAG, username, password, new ResponseListener() {
+            @Override
+            public void onStarted() {
+                progressDialog = ProgressDialog.show(LoginActivity.this, null, getString(R.string.login_waiting));
+            }
+
+            @Override
+            public void onResponse(Object response) {
+                progressDialog.dismiss();
+
+
+
+            }
+
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                progressDialog.dismiss();
+            }
+        });
+    }
+
 
     @Override
     public void onClick(View v) {

@@ -9,6 +9,7 @@ import com.android.volley.error.VolleyError;
 import com.weedai.ptp.constant.Urls;
 import com.weedai.ptp.model.Article;
 import com.weedai.ptp.model.BaseModel;
+import com.weedai.ptp.model.Invest;
 import com.weedai.ptp.utils.AppUtil;
 import com.weedai.ptp.utils.Logger;
 import com.weedai.ptp.volley.GsonGetRequest;
@@ -35,14 +36,33 @@ public class ApiClient {
     /**
      * 接口验证
      */
-    public static void verifyInterface(String tag, ResponseListener listener) {
+//    public static void verifyInterface(String tag, ResponseListener listener) {
+//
+//        listener.onStarted();
+//
+//        Map<String, String> requestParams = getSignatureMap();
+//
+//        String url = Urls.ACTION_INDEX;
+//        GsonPostRequest request = createGsonPostRequest(url, requestParams, BaseModel.class, listener);
+//        request.setTag(tag);
+//        requestQueue.add(request);
+//    }
+
+
+    /**
+     * 接口验证
+     */
+    public static void login(String tag, String username, String passwrod, ResponseListener listener) {
 
         listener.onStarted();
 
         Map<String, String> requestParams = getSignatureMap();
+        requestParams.put("keywords", username);
+        requestParams.put("password", passwrod);
+        requestParams.put(Urls.ACTION, "actions=users&q=action/login");
 
         String url = Urls.ACTION_INDEX;
-        GsonPostRequest request = createGsonPostRequest(url, requestParams, BaseModel.class, listener);
+        GsonGetRequest request = createGsonGetRequest(url, requestParams, Invest.class, listener);
         request.setTag(tag);
         requestQueue.add(request);
     }
@@ -56,18 +76,54 @@ public class ApiClient {
      * @param timelimit
      * @param listener
      */
-    public static void getInvestList(String tag, int page, int type, int timelimit, ResponseListener listener) {
+    public static void getInvestList(String tag, int page, int type, String timelimit, ResponseListener listener) {
 
         listener.onStarted();
 
         Map<String, String> requestParams = getSignatureMap();
         requestParams.put("page", String.valueOf(page));
         requestParams.put("type", String.valueOf(type));
-        requestParams.put("timelimit", String.valueOf(timelimit));
+        requestParams.put("timelimit", timelimit);
         requestParams.put(Urls.ACTION, "invest/list");
 
         String url = Urls.ACTION_INDEX;
-        GsonPostRequest request = createGsonPostRequest(url, requestParams, BaseModel.class, listener);
+        GsonGetRequest request = createGsonGetRequest(url, requestParams, Invest.class, listener);
+        request.setTag(tag);
+        requestQueue.add(request);
+    }
+
+    public static void getInvestList(String tag, int page, int type, ResponseListener listener) {
+
+        listener.onStarted();
+
+        Map<String, String> requestParams = getSignatureMap();
+        requestParams.put("page", String.valueOf(page));
+        requestParams.put("type", String.valueOf(type));
+        requestParams.put("timelimit", null);
+        requestParams.put(Urls.ACTION, "invest/list");
+
+        String url = Urls.ACTION_INDEX;
+        GsonGetRequest request = createGsonGetRequest(url, requestParams, Invest.class, listener);
+        request.setTag(tag);
+        requestQueue.add(request);
+    }
+
+
+    /**
+     * 获取英雄榜信息
+     *
+     * @param listener
+     */
+    public static void getHeroList(String tag, int dact, ResponseListener listener) {
+
+        listener.onStarted();
+
+        Map<String, String> requestParams = getSignatureMap();
+        requestParams.put("dact", String.valueOf(1));
+        requestParams.put(Urls.ACTION, "heroact/list");
+
+        String url = Urls.ACTION_INDEX;
+        GsonGetRequest request = createGsonGetRequest(url, requestParams, Article.class, listener);
         request.setTag(tag);
         requestQueue.add(request);
     }
@@ -116,6 +172,7 @@ public class ApiClient {
         String url = Urls.ACTION_INDEX;
         GsonGetRequest request = createGsonGetRequest(url, requestParams, Article.class, listener);
         request.setTag(tag);
+        requestQueue.add(request);
     }
 
     private static Map<String, String> getSignatureMap() {
@@ -131,33 +188,33 @@ public class ApiClient {
         return requestParams;
     }
 
-    private static <T> GsonPostRequest createGsonPostRequest(String url, Map<String, String> requestParamsMap, Class<T> clazz, final ResponseListener listener) {
-
-        GsonPostRequest request = new GsonPostRequest(url, clazz, requestParamsMap, new Response.Listener<T>() {
-            @Override
-            public void onResponse(T response) {
-                Log.d(TAG, "onResponse = " + response.toString());
-                listener.onResponse(response);
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError volleyError) {
-                Log.d(TAG, "volleyError = " + volleyError.toString());
-                listener.onErrorResponse(volleyError);
-            }
-        });
-
-        try {
-            Log.d(TAG, "request Headers = " + request.getHeaders().toString());
-        } catch (AuthFailureError authFailureError) {
-            authFailureError.printStackTrace();
-        }
-        String params = requestParamsMap.toString().substring(1, requestParamsMap.toString().length() - 1);
-//        Log.d(TAG, "request Url-Params = " + request.getUrl() + "?" + params);
-        Log.d(TAG, "request Url-Params = " + request.getUrl());
-
-        return request;
-    }
+//    private static <T> GsonPostRequest createGsonPostRequest(String url, Map<String, String> requestParamsMap, Class<T> clazz, final ResponseListener listener) {
+//
+//        GsonPostRequest request = new GsonPostRequest(url, clazz, requestParamsMap, new Response.Listener<T>() {
+//            @Override
+//            public void onResponse(T response) {
+//                Log.d(TAG, "onResponse = " + response.toString());
+//                listener.onResponse(response);
+//            }
+//        }, new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError volleyError) {
+//                Log.d(TAG, "volleyError = " + volleyError.toString());
+//                listener.onErrorResponse(volleyError);
+//            }
+//        });
+//
+//        try {
+//            Log.d(TAG, "request Headers = " + request.getHeaders().toString());
+//        } catch (AuthFailureError authFailureError) {
+//            authFailureError.printStackTrace();
+//        }
+//        String params = requestParamsMap.toString().substring(1, requestParamsMap.toString().length() - 1);
+////        Log.d(TAG, "request Url-Params = " + request.getUrl() + "?" + params);
+//        Log.d(TAG, "request Url-Params = " + request.getUrl());
+//
+//        return request;
+//    }
 
 
     private static <T> GsonGetRequest createGsonGetRequest(String url, Map<String, String> requestParamsMap, Class<T> clazz, final ResponseListener listener) {

@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.weedai.ptp.ui.activity.ArticleActivity;
+import com.weedai.ptp.ui.activity.ArticleDetailActivity;
+import com.weedai.ptp.ui.activity.HeroActivity;
 import com.weedai.ptp.ui.activity.MainActivity;
 import com.weedai.ptp.ui.activity.MyBankCardActivity;
 import com.weedai.ptp.ui.activity.MyRechargeActivity;
@@ -46,6 +48,18 @@ public class UIHelper {
 
     public static void showArticle(Context context) {
         Intent intent = new Intent(context, ArticleActivity.class);
+        context.startActivity(intent);
+    }
+
+    public static void showArticleDetail(Context context, String aid) {
+        Intent intent = new Intent(context, ArticleDetailActivity.class);
+        intent.putExtra("aid", aid);
+        context.startActivity(intent);
+    }
+
+
+    public static void showHero(Context context) {
+        Intent intent = new Intent(context, HeroActivity.class);
         context.startActivity(intent);
     }
 }

@@ -16,6 +16,10 @@
     <string name="login_register">注册</string>
     <string name="login_forget_password">忘记密码</string>
 
+    <string name="login_waiting">正在登陆中.....</string>
+    <string name="login_user_empty">账号不能为空</string>
+    <string name="login_password_empty">密码不能为空</string>
+
     <string name="register_title">注册</string>
     <string name="register_email">用户邮箱: </string>
     <string name="register_username">用&#160;&#160;户&#160;&#160;名: </string>
@@ -118,15 +122,15 @@
     <string name="conditions_reimbursing">正在还款</string>
     <string name="conditions_complete_reimbursement">已还完款</string>
 
-    <!--<string name="financial_annual_rate">年化率：<![CDATA[ <b><font color="#ff5601">%s</font></b> ]]></string>-->
-    <!--<string name="financial_deadline">期限: %s</string>-->
-    <!--<string name="financial_amount">金额: %s</string>-->
-    <!--<string name="financial_reward">奖励: %s</string>-->
+    <string name="financial_annual_rate">年化率：<![CDATA[ <b><font color="#ff5601">%s</font></b> ]]></string>
+    <string name="financial_deadline">期限: %s 个月</string>
+    <string name="financial_amount">金额: %s 元</string>
+    <string name="financial_reward">奖励: %s</string>
 
-    <string name="financial_annual_rate">年化率：16.8%</string>
-    <string name="financial_deadline">期限: 1个月</string>
-    <string name="financial_amount">金额: 100,000 元</string>
-    <string name="financial_reward">奖励: 暂无</string>
+    <!--<string name="financial_annual_rate">年化率：16.8%</string>-->
+    <!--<string name="financial_deadline">期限: 1个月</string>-->
+    <!--<string name="financial_amount">金额: 100,000 元</string>-->
+    <!--<string name="financial_reward">奖励: 暂无</string>-->
 
     <string name="financial_detail_hint">为保障资金安全,投资前需完成安全认证</string>
     <string name="financial_detail_btn">立即投资</string>
@@ -147,5 +151,8 @@
     <string name="article_information_title">资讯</string>
     <string name="article_notice_title">公告</string>
 
+    <string name="hero_one">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;2014年9月30日，结束时间2015年2月28日</string>
+    <string name="hero_two">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;在每一个英雄榜里，我们按照投资人当期的投资积分排名，投资积分越多，排名越靠前。按投资积分从第一名到第十名。</string>
+    <string name="hero_hint">获得积分公式：投资积分=当期内投资额*标期月份</string>
 
 </resources>
