@@ -12,6 +12,7 @@
 
     <string name="login_user_hint">手机号/邮箱/用户名</string>
     <string name="login_password_hint">请输入密码</string>
+    <string name="login_valicode_hint">输入验证码</string>
     <string name="login_btn">登录</string>
     <string name="login_register">注册</string>
     <string name="login_forget_password">忘记密码</string>

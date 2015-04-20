@@ -10,6 +10,7 @@ import com.weedai.ptp.constant.Urls;
 import com.weedai.ptp.model.Article;
 import com.weedai.ptp.model.BaseModel;
 import com.weedai.ptp.model.Invest;
+import com.weedai.ptp.model.Valicode;
 import com.weedai.ptp.utils.AppUtil;
 import com.weedai.ptp.utils.Logger;
 import com.weedai.ptp.volley.GsonGetRequest;
@@ -48,9 +49,27 @@ public class ApiClient {
 //        requestQueue.add(request);
 //    }
 
+    /**
+     * 验证码获取
+     *
+     * @param tag
+     * @param listener
+     */
+    public static void getImgcode(String tag,ResponseListener listener) {
+
+        listener.onStarted();
+
+        Map<String, String> requestParams = getSignatureMap();
+        requestParams.put("q", "imgcode");
+
+        String url = Urls.ACTION_INDEX_PLUGINS;
+        GsonGetRequest request = createGsonGetRequest(url, requestParams, Valicode.class, listener);
+        request.setTag(tag);
+        requestQueue.add(request);
+    }
 
     /**
-     * 接口验证
+     * 登陆
      */
     public static void login(String tag, String username, String passwrod, ResponseListener listener) {
 

@@ -7,7 +7,9 @@ public class Urls {
     private static String PROJECT_NAME = "/appptp";
     private static String SERVER_URL = "http://" + SERVER_IP + PROJECT_NAME;
 
-    public static String ACTION_INDEX = SERVER_URL + "/index.php";  //接口验证
+    public static String ACTION_INDEX = SERVER_URL + "/index.php";
+
+    public static String ACTION_INDEX_PLUGINS  = SERVER_URL + "/plugins/index.php";
 
     public static String ACTION = "actions";
 }

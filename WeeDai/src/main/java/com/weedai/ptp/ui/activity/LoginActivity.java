@@ -15,8 +15,14 @@ import android.widget.Toast;
 import com.android.volley.error.VolleyError;
 import com.weedai.ptp.R;
 import com.weedai.ptp.app.ApiClient;
+import com.weedai.ptp.constant.Constant;
+import com.weedai.ptp.model.Valicode;
 import com.weedai.ptp.utils.UIHelper;
+import com.weedai.ptp.view.SimpleValidateCodeView;
+import com.weedai.ptp.view.ValidateCodeView;
 import com.weedai.ptp.volley.ResponseListener;
+
+import java.util.Arrays;
 
 public class LoginActivity extends Activity implements View.OnClickListener {
 
@@ -24,6 +30,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
 
     private EditText etUsername;
     private EditText etPassword;
+    private SimpleValidateCodeView viewValicode;
     private Button btnLogin;
 
     private TextView tvLoginRegister;
@@ -55,10 +62,15 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         btnLogin.setOnClickListener(this);
         tvLoginRegister.setOnClickListener(this);
         tvLoginForgetPassword.setOnClickListener(this);
+
+        viewValicode = (SimpleValidateCodeView) findViewById(R.id.viewValicode);
+//        viewValicode.getValidataAndSetImage(new String[]{"4","7","0","2"});
+        viewValicode.setOnClickListener(this);
+
+        getImgcode();  //获取验证码
     }
 
     private void login() {
-
 
         String username = etUsername.getText().toString();
         String password = etPassword.getText().toString();
@@ -82,14 +94,41 @@ public class LoginActivity extends Activity implements View.OnClickListener {
             @Override
             public void onResponse(Object response) {
                 progressDialog.dismiss();
-
-
-
             }
 
             @Override
             public void onErrorResponse(VolleyError volleyError) {
                 progressDialog.dismiss();
+            }
+        });
+    }
+
+    private void getImgcode() {
+
+        ApiClient.getImgcode(TAG, new ResponseListener() {
+            @Override
+            public void onStarted() {
+            }
+
+            @Override
+            public void onResponse(Object response) {
+
+                Valicode result = (Valicode) response;
+                if (result.code != Constant.CodeResult.SUCCESS) {
+                    Toast.makeText(LoginActivity.this, result.message, Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                String code = result.data.code;
+                int length = code.length();
+                String[] codes = new String[length];
+                for (int i =0 ; i<length;i++) {
+                    codes[i] =  String.valueOf(code.charAt(i)) ;
+                }
+                viewValicode.getValidataAndSetImage(codes);
+            }
+
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
             }
         });
     }
@@ -106,6 +145,10 @@ public class LoginActivity extends Activity implements View.OnClickListener {
                 UIHelper.showRegister(LoginActivity.this);
                 break;
             case R.id.tvLoginForgetPassword:
+                break;
+            case R.id.viewValicode:
+//                viewValicode.getValidataAndSetImage(new String[]{"2", "7", "1", "9"});
+                getImgcode();
                 break;
         }
     }

@@ -50,7 +50,6 @@
 
     <include layout="@layout/view_horizontal_line" />
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -58,7 +57,6 @@
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:padding="10dp">
-
 
         <ImageView
             android:layout_width="wrap_content"
@@ -77,6 +75,42 @@
             android:gravity="center_vertical"
             android:hint="@string/login_password_hint"
             android:textSize="18sp" />
+
+    </LinearLayout>
+
+    <include layout="@layout/view_horizontal_line" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="40dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_login_password" />
+
+        <EditText
+            android:id="@+id/etValicode"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:maxLength="4"
+            android:gravity="center_vertical"
+            android:hint="@string/login_valicode_hint"
+            android:textSize="18sp" />
+
+        <com.weedai.ptp.view.SimpleValidateCodeView
+            android:gravity="center_vertical"
+            android:id="@+id/viewValicode"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
 
     </LinearLayout>
 
