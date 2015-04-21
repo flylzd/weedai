@@ -30,8 +30,11 @@ public class LoginActivity extends Activity implements View.OnClickListener {
 
     private EditText etUsername;
     private EditText etPassword;
+    private EditText etValicode;
     private SimpleValidateCodeView viewValicode;
     private Button btnLogin;
+
+    private String valicode;
 
     private TextView tvLoginRegister;
     private TextView tvLoginForgetPassword;
@@ -55,6 +58,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
 
         etUsername = (EditText) findViewById(R.id.etUsername);
         etPassword = (EditText) findViewById(R.id.etPassword);
+        etValicode = (EditText) findViewById(R.id.etValicode);
         btnLogin = (Button) findViewById(R.id.btnLogin);
         tvLoginRegister = (TextView) findViewById(R.id.tvLoginRegister);
         tvLoginForgetPassword = (TextView) findViewById(R.id.tvLoginForgetPassword);
@@ -74,6 +78,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
 
         String username = etUsername.getText().toString();
         String password = etPassword.getText().toString();
+        String code = etValicode.getText().toString();
 
         if (TextUtils.isEmpty(username)) {
             Toast.makeText(LoginActivity.this, getString(R.string.login_user_empty), Toast.LENGTH_SHORT).show();
@@ -85,7 +90,17 @@ public class LoginActivity extends Activity implements View.OnClickListener {
             return;
         }
 
-        ApiClient.login(TAG, username, password, new ResponseListener() {
+        if (TextUtils.isEmpty(code)) {
+            Toast.makeText(LoginActivity.this, getString(R.string.login_valicode_empty), Toast.LENGTH_SHORT).show();
+            return;
+        } else {
+            if (!valicode.equals(code)) {
+                Toast.makeText(LoginActivity.this, getString(R.string.login_valicode_not_match), Toast.LENGTH_SHORT).show();
+                return;
+            }
+        }
+
+        ApiClient.login(TAG, username, password, code, new ResponseListener() {
             @Override
             public void onStarted() {
                 progressDialog = ProgressDialog.show(LoginActivity.this, null, getString(R.string.login_waiting));
@@ -94,6 +109,8 @@ public class LoginActivity extends Activity implements View.OnClickListener {
             @Override
             public void onResponse(Object response) {
                 progressDialog.dismiss();
+
+                //                UIHelper.showMain(LoginActivity.this);
             }
 
             @Override
@@ -118,11 +135,13 @@ public class LoginActivity extends Activity implements View.OnClickListener {
                     Toast.makeText(LoginActivity.this, result.message, Toast.LENGTH_SHORT).show();
                     return;
                 }
+                valicode = result.data.code;
+                System.out.println("valicode : " + valicode);
                 String code = result.data.code;
                 int length = code.length();
                 String[] codes = new String[length];
-                for (int i =0 ; i<length;i++) {
-                    codes[i] =  String.valueOf(code.charAt(i)) ;
+                for (int i = 0; i < length; i++) {
+                    codes[i] = String.valueOf(code.charAt(i));
                 }
                 viewValicode.getValidataAndSetImage(codes);
             }
@@ -139,7 +158,8 @@ public class LoginActivity extends Activity implements View.OnClickListener {
 
         switch (v.getId()) {
             case R.id.btnLogin:
-                UIHelper.showMain(LoginActivity.this);
+//                UIHelper.showMain(LoginActivity.this);
+                login();
                 break;
             case R.id.tvLoginRegister:
                 UIHelper.showRegister(LoginActivity.this);

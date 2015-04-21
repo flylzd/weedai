@@ -27,49 +27,47 @@ public class GsonPostRequest<T> extends GsonRequest<T> {
     private static final String PROTOCOL_CONTENT_TYPE =
             String.format("application/json; charset=%s", HTTP.UTF_8);
 
+    private static final String DEFAULT_PARAMS_ENCODING = HTTP.ISO_8859_1;
+
     private static String mCookie;
     private Listener<T> mListener;
-
 
     public GsonPostRequest(String url, Class<T> clazz, Map<String, String> params, Listener<T> listener, ErrorListener errorListener) {
         this(url, clazz, null, params, listener, errorListener);
     }
 
-
     public GsonPostRequest(String url, Class<T> clazz, Map<String, String> headers, Map<String, String> params, Listener<T> listener, ErrorListener errorListener) {
-        super(Method.GET, url, clazz, headers, params, listener, errorListener);
+        super(Method.POST, url, clazz, headers, params, listener, errorListener);
         this.mListener = listener;
     }
 
-
     @Override
     public Map<String, String> getHeaders() throws AuthFailureError {
-
-//        if (mCookie != null) {
-//            Map<String, String> map = new HashMap<String, String>();
-//            map.put("Cookie", mCookie);
-//            return map;
-//        }
+        if (mCookie != null) {
+            Map<String, String> map = new HashMap<String, String>();
+            map.put("Cookie", mCookie);
+            return map;
+        }
         return super.getHeaders();
+    }
+
+    protected String getParamsEncoding() {
+        return DEFAULT_PARAMS_ENCODING;
     }
 
     @Override
     protected Response<T> parseNetworkResponse(NetworkResponse response) {
-
-//        if (mCookie == null) {
-//            for (String s : response.headers.keySet()) {
-//                if (s.contains("Set-Cookie")) {
-//                    mCookie = response.headers.get(s);
-//                    break;
-//                }
-//            }
-//        }
-//        response.headers.put(HTTP.CONTENT_TYPE, PROTOCOL_CONTENT_TYPE);
-//        Log.d(TAG, response.headers.toString());
+        if (mCookie == null) {
+            for (String s : response.headers.keySet()) {
+                if (s.contains("Set-Cookie")) {
+                    mCookie = response.headers.get(s);
+                    break;
+                }
+            }
+        }
         Log.d(TAG, new String(response.data));
         return super.parseNetworkResponse(response);
     }
-
 
     @Override
     protected void deliverResponse(T response) {
@@ -77,6 +75,5 @@ public class GsonPostRequest<T> extends GsonRequest<T> {
             mListener.onResponse(response);
         }
     }
-
 
 }

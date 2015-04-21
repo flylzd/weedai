@@ -14,12 +14,15 @@
     <string name="login_password_hint">请输入密码</string>
     <string name="login_valicode_hint">输入验证码</string>
     <string name="login_btn">登录</string>
+    <string name="login_remember_user">记住用户</string>
     <string name="login_register">注册</string>
-    <string name="login_forget_password">忘记密码</string>
+    <string name="login_forget_password">找回密码</string>
 
     <string name="login_waiting">正在登陆中.....</string>
     <string name="login_user_empty">账号不能为空</string>
     <string name="login_password_empty">密码不能为空</string>
+    <string name="login_valicode_empty">验证码不能为空</string>
+    <string name="login_valicode_not_match">输入的验证码不匹配</string>
 
     <string name="register_title">注册</string>
     <string name="register_email">用户邮箱: </string>
@@ -155,5 +158,8 @@
     <string name="hero_one">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;2014年9月30日，结束时间2015年2月28日</string>
     <string name="hero_two">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;在每一个英雄榜里，我们按照投资人当期的投资积分排名，投资积分越多，排名越靠前。按投资积分从第一名到第十名。</string>
     <string name="hero_hint">获得积分公式：投资积分=当期内投资额*标期月份</string>
+
+
+    <string name="message_waiting">正在加载数据.....</string>
 
 </resources>

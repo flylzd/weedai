@@ -42,7 +42,6 @@ public class GsonGetRequest<T> extends GsonRequest<T> {
         return DEFAULT_PARAMS_ENCODING;
     }
 
-
     public String getEncodedUrlParams() throws AuthFailureError {
 
         StringBuilder encodedParams = new StringBuilder();

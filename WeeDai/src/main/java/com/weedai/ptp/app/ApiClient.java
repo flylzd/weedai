@@ -8,6 +8,7 @@ import com.android.volley.error.AuthFailureError;
 import com.android.volley.error.VolleyError;
 import com.weedai.ptp.constant.Urls;
 import com.weedai.ptp.model.Article;
+import com.weedai.ptp.model.ArticleDetail;
 import com.weedai.ptp.model.BaseModel;
 import com.weedai.ptp.model.Invest;
 import com.weedai.ptp.model.Valicode;
@@ -55,7 +56,7 @@ public class ApiClient {
      * @param tag
      * @param listener
      */
-    public static void getImgcode(String tag,ResponseListener listener) {
+    public static void getImgcode(String tag, ResponseListener listener) {
 
         listener.onStarted();
 
@@ -71,17 +72,19 @@ public class ApiClient {
     /**
      * 登陆
      */
-    public static void login(String tag, String username, String passwrod, ResponseListener listener) {
+    public static void login(String tag, String username, String passwrod, String valicode, ResponseListener listener) {
 
         listener.onStarted();
 
         Map<String, String> requestParams = getSignatureMap();
         requestParams.put("keywords", username);
         requestParams.put("password", passwrod);
-        requestParams.put(Urls.ACTION, "actions=users&q=action/login");
+        requestParams.put("valicode", valicode);
+        requestParams.put("q", "action/login");
+        requestParams.put(Urls.ACTION, "users");
 
         String url = Urls.ACTION_INDEX;
-        GsonGetRequest request = createGsonGetRequest(url, requestParams, Invest.class, listener);
+        GsonPostRequest request = createGsonPostRequest(url, requestParams, Invest.class, listener);
         request.setTag(tag);
         requestQueue.add(request);
     }
@@ -189,7 +192,7 @@ public class ApiClient {
         requestParams.put(Urls.ACTION, "article/content");
 
         String url = Urls.ACTION_INDEX;
-        GsonGetRequest request = createGsonGetRequest(url, requestParams, Article.class, listener);
+        GsonGetRequest request = createGsonGetRequest(url, requestParams, ArticleDetail.class, listener);
         request.setTag(tag);
         requestQueue.add(request);
     }
@@ -207,34 +210,33 @@ public class ApiClient {
         return requestParams;
     }
 
-//    private static <T> GsonPostRequest createGsonPostRequest(String url, Map<String, String> requestParamsMap, Class<T> clazz, final ResponseListener listener) {
-//
-//        GsonPostRequest request = new GsonPostRequest(url, clazz, requestParamsMap, new Response.Listener<T>() {
-//            @Override
-//            public void onResponse(T response) {
-//                Log.d(TAG, "onResponse = " + response.toString());
-//                listener.onResponse(response);
-//            }
-//        }, new Response.ErrorListener() {
-//            @Override
-//            public void onErrorResponse(VolleyError volleyError) {
-//                Log.d(TAG, "volleyError = " + volleyError.toString());
-//                listener.onErrorResponse(volleyError);
-//            }
-//        });
-//
-//        try {
-//            Log.d(TAG, "request Headers = " + request.getHeaders().toString());
-//        } catch (AuthFailureError authFailureError) {
-//            authFailureError.printStackTrace();
-//        }
-//        String params = requestParamsMap.toString().substring(1, requestParamsMap.toString().length() - 1);
-////        Log.d(TAG, "request Url-Params = " + request.getUrl() + "?" + params);
-//        Log.d(TAG, "request Url-Params = " + request.getUrl());
-//
-//        return request;
-//    }
+    private static <T> GsonPostRequest createGsonPostRequest(String url, Map<String, String> requestParamsMap, Class<T> clazz, final ResponseListener listener) {
 
+        GsonPostRequest request = new GsonPostRequest(url, clazz, requestParamsMap, new Response.Listener<T>() {
+            @Override
+            public void onResponse(T response) {
+                Log.d(TAG, "onResponse = " + response.toString());
+                listener.onResponse(response);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                Log.d(TAG, "volleyError = " + volleyError.toString());
+                listener.onErrorResponse(volleyError);
+            }
+        });
+
+        try {
+            Log.d(TAG, "request Headers = " + request.getHeaders().toString());
+        } catch (AuthFailureError authFailureError) {
+            authFailureError.printStackTrace();
+        }
+        String params = requestParamsMap.toString().substring(1, requestParamsMap.toString().length() - 1);
+        Log.d(TAG, "request Url-Params = " + request.getUrl() + "?" + params);
+//        Log.d(TAG, "request Url-Params = " + request.getUrl());
+
+        return request;
+    }
 
     private static <T> GsonGetRequest createGsonGetRequest(String url, Map<String, String> requestParamsMap, Class<T> clazz, final ResponseListener listener) {
 
