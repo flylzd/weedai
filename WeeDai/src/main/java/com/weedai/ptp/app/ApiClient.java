@@ -21,6 +21,7 @@ import com.weedai.ptp.volley.VolleySingleton;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 
 public class ApiClient {
@@ -61,10 +62,11 @@ public class ApiClient {
         listener.onStarted();
 
         Map<String, String> requestParams = getSignatureMap();
+        requestParams.put("t", String.valueOf((int) Math.random() * 10 + 1));
         requestParams.put("q", "imgcode");
 
         String url = Urls.ACTION_INDEX_PLUGINS;
-        GsonGetRequest request = createGsonGetRequest(url, requestParams, Valicode.class, listener);
+        GsonPostRequest request = createGsonPostRequest(url, requestParams, Valicode.class, listener);
         request.setTag(tag);
         requestQueue.add(request);
     }
@@ -190,6 +192,23 @@ public class ApiClient {
         Map<String, String> requestParams = getSignatureMap();
         requestParams.put("aid", aid);
         requestParams.put(Urls.ACTION, "article/content");
+
+        String url = Urls.ACTION_INDEX;
+        GsonGetRequest request = createGsonGetRequest(url, requestParams, ArticleDetail.class, listener);
+        request.setTag(tag);
+        requestQueue.add(request);
+    }
+
+
+    /**
+     * 用户中心
+     */
+    public static void getUser(String tag, ResponseListener listener) {
+
+        listener.onStarted();
+
+        Map<String, String> requestParams = getSignatureMap();
+        requestParams.put(Urls.ACTION, "users");
 
         String url = Urls.ACTION_INDEX;
         GsonGetRequest request = createGsonGetRequest(url, requestParams, ArticleDetail.class, listener);
