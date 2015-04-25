@@ -4,6 +4,7 @@ package com.weedai.ptp.ui.activity;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.Html;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.android.volley.error.VolleyError;
@@ -16,10 +17,13 @@ import com.weedai.ptp.app.ApiClient;
 import com.weedai.ptp.constant.Constant;
 import com.weedai.ptp.model.Invest;
 import com.weedai.ptp.model.InvestList;
+import com.weedai.ptp.view.NumberCircleProgressBar;
 import com.weedai.ptp.volley.ResponseListener;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class OptimizingFinancialActivity extends BaseActivity implements SwipeRefreshLayout.OnRefreshListener, EndOfListView.OnEndOfListListener {
 
@@ -88,24 +92,44 @@ public class OptimizingFinancialActivity extends BaseActivity implements SwipeRe
 
 //            String apr = item.apr;
 //                String apr = getString(R.string.financial_annual_rate)
-                String apr = String.format(getString(R.string.financial_annual_rate), item.apr);
-                String timeLimit = String.format(getString(R.string.financial_deadline), item.time_limit);
-                String amount = String.format(getString(R.string.financial_amount), item.account);
-                helper.setText(R.id.tvAnnualRate, Html.fromHtml(apr).toString());
-                helper.setText(R.id.tvDeadline, timeLimit);
-                helper.setText(R.id.tvAmount, amount);
 
-
-//                helper.setText(R.id.tvArticleTitle, DataUtil.urlDecode(item.name));
-//                helper.setText(R.id.tvArticleSubTitle, DataUtil.urlDecode(item.summary));
-//                helper.setText(R.id.tvArticleDate, item.publish);
-//                helper.setText(R.id.tvComments, item.comment);
+//                String apr = String.format(getString(R.string.financial_annual_rate), item.apr);
+//                String timeLimit = String.format(getString(R.string.financial_deadline), item.time_limit);
+//                String amount = String.format(getString(R.string.financial_amount), item.account);
+//                String reward = String.format(getString(R.string.financial_reward), item.award);
+//                helper.setText(R.id.tvAnnualRate, Html.fromHtml(apr).toString());
+//                helper.setText(R.id.tvDeadline, timeLimit);
+//                helper.setText(R.id.tvAmount, amount);
+//                helper.setText(R.id.tvReward, reward);
 //
-//                ImageView imageView = helper.getView(R.id.imgArticle);
-//                String url = item.litpic;
-//                if (!TextUtils.isEmpty(url)) {
-//                    ImageLoader.getInstance().displayImage(url, imageView);
+//                Button btnStatus = helper.getView(R.id.btnState);
+//
+//                int status = item.status;
+                final float scale = item.scale;
+//                if (status == 1) {
+//                    if (scale == 100) {
+//                        btnStatus.setText(getString(R.string.financial_btn_have_full));
+//                    } else {
+//                        btnStatus.setText(getString(R.string.financial_btn_join));
+//                    }
+//                } else {
+//                    if (item.repayment_account == item.repayment_yesaccount) {
+//                        btnStatus.setText(getString(R.string.financial_btn_completed));
+//                    } else {
+//                        btnStatus.setText(getString(R.string.financial_btn_payment));
+//                    }
 //                }
+
+                final NumberCircleProgressBar numberCircleProgressBar = helper.getView(R.id.numberCircleProgress);
+                numberCircleProgressBar.setProgress((int) scale);
+//                numberCircleProgressBar.incrementProgressBy((int) scale);
+//                runOnUiThread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        numberCircleProgressBar.setProgress((int) scale);
+//                        numberCircleProgressBar.postInvalidate();
+//                    }
+//                });
             }
         };
         listView.setAdapter(adapter);
@@ -118,7 +142,7 @@ public class OptimizingFinancialActivity extends BaseActivity implements SwipeRe
 
     private void getInvestList() {
 
-        ApiClient.getInvestList(TAG, page, Constant.Invest.TYPE_YX, new RefreshResponseListener() {
+        ApiClient.getInvestList(TAG, page, Constant.InvestType.TYPE_YX, new RefreshResponseListener() {
             @Override
             public void onResponse(Object response) {
                 super.onResponse(response);

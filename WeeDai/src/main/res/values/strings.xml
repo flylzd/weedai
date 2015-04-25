@@ -131,6 +131,11 @@
     <string name="financial_amount">金额: %s 元</string>
     <string name="financial_reward">奖励: %s</string>
 
+    <string name="financial_btn_join">立即加入</string>
+    <string name="financial_btn_have_full">已满额</string>
+    <string name="financial_btn_completed">已完成</string>
+    <string name="financial_btn_payment">还款中</string>
+
     <!--<string name="financial_annual_rate">年化率：16.8%</string>-->
     <!--<string name="financial_deadline">期限: 1个月</string>-->
     <!--<string name="financial_amount">金额: 100,000 元</string>-->

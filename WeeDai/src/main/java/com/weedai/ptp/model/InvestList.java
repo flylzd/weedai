@@ -17,4 +17,8 @@ public class InvestList implements Serializable {
     public String is_transfer;
     public String account_yes;
     public String success_time;
+    public String award;
+    public int status;
+    public float repayment_yesaccount;
+    public float repayment_account;
 }
