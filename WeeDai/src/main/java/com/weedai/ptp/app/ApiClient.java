@@ -132,6 +132,23 @@ public class ApiClient {
         requestQueue.add(request);
     }
 
+    /**
+     * 投资详情
+     */
+    public static void getFinancialDetail(String tag, String id, ResponseListener listener) {
+
+        listener.onStarted();
+
+        Map<String, String> requestParams = getSignatureMap();
+        requestParams.put("bid", id);
+        requestParams.put(Urls.ACTION, "invest/content");
+
+        String url = Urls.ACTION_INDEX;
+        GsonGetRequest request = createGsonGetRequest(url, requestParams, Invest.class, listener);
+        request.setTag(tag);
+        requestQueue.add(request);
+    }
+
 
     /**
      * 获取英雄榜信息

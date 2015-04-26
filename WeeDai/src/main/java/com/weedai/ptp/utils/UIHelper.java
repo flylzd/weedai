@@ -4,14 +4,16 @@ package com.weedai.ptp.utils;
 import android.content.Context;
 import android.content.Intent;
 
+import com.weedai.ptp.ui.activity.AboutActivity;
 import com.weedai.ptp.ui.activity.ArticleActivity;
 import com.weedai.ptp.ui.activity.ArticleDetailActivity;
+import com.weedai.ptp.ui.activity.FinancialActivity;
+import com.weedai.ptp.ui.activity.FinancialDetailActivity;
 import com.weedai.ptp.ui.activity.HeroActivity;
 import com.weedai.ptp.ui.activity.MainActivity;
 import com.weedai.ptp.ui.activity.MyBankCardActivity;
 import com.weedai.ptp.ui.activity.MyRechargeActivity;
 import com.weedai.ptp.ui.activity.MyWealthActivity;
-import com.weedai.ptp.ui.activity.OptimizingFinancialActivity;
 import com.weedai.ptp.ui.activity.RegisterActivity;
 
 public class UIHelper {
@@ -42,7 +44,13 @@ public class UIHelper {
     }
 
     public static void showOptimizingFinancial(Context context) {
-        Intent intent = new Intent(context, OptimizingFinancialActivity.class);
+        Intent intent = new Intent(context, FinancialActivity.class);
+        context.startActivity(intent);
+    }
+
+    public static void showFinancialDetail(Context context, String bid) {
+        Intent intent = new Intent(context, FinancialDetailActivity.class);
+        intent.putExtra("id", bid);
         context.startActivity(intent);
     }
 
@@ -60,6 +68,11 @@ public class UIHelper {
 
     public static void showHero(Context context) {
         Intent intent = new Intent(context, HeroActivity.class);
+        context.startActivity(intent);
+    }
+
+    public static void showAbout(Context context) {
+        Intent intent = new Intent(context, AboutActivity.class);
         context.startActivity(intent);
     }
 }

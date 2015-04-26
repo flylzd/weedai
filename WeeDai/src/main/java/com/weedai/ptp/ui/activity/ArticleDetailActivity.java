@@ -11,7 +11,6 @@ import com.android.volley.error.VolleyError;
 import com.weedai.ptp.R;
 import com.weedai.ptp.app.ApiClient;
 import com.weedai.ptp.constant.Constant;
-import com.weedai.ptp.model.Article;
 import com.weedai.ptp.model.ArticleDetail;
 import com.weedai.ptp.utils.DataUtil;
 import com.weedai.ptp.volley.ResponseListener;

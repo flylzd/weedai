@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:custom="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="180dp"
+    android:layout_height="wrap_content"
+    android:background="@drawable/selector_listitem_bg_layout"
+    android:descendantFocusability="blocksDescendants"
     android:orientation="vertical"
     android:paddingBottom="16dp"
     android:paddingTop="8dp">
@@ -12,15 +13,13 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="2"
-        android:orientation="horizontal"
-        android:visibility="gone">
+        android:orientation="horizontal">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="center_vertical|right"
-            android:visibility="gone">
+            android:gravity="center_vertical|right">
 
             <TextView
                 android:id="@+id/textView"
@@ -41,7 +40,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:text="@string/financial_annual_rate"
-                android:textColor="#272727" />
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/tvDeadline"
@@ -51,7 +50,8 @@
                 android:layout_below="@+id/tvAnnualRate"
                 android:paddingTop="4dp"
                 android:text="@string/financial_deadline"
-                android:textColor="#9c9c9c" />
+                android:textColor="#9c9c9c"
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/tvAmount"
@@ -61,7 +61,8 @@
                 android:layout_below="@+id/tvDeadline"
                 android:paddingTop="4dp"
                 android:text="@string/financial_amount"
-                android:textColor="#9c9c9c" />
+                android:textColor="#9c9c9c"
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/tvReward"
@@ -71,7 +72,8 @@
                 android:layout_below="@+id/tvAmount"
                 android:paddingTop="4dp"
                 android:text="@string/financial_reward"
-                android:textColor="#272727" />
+                android:textColor="#272727"
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/tvState"
@@ -81,32 +83,48 @@
                 android:layout_below="@+id/tvReward"
                 android:paddingTop="4dp"
                 android:text="1月07日10:00开始竞标"
-                android:textColor="#9c9c9c" />
+                android:textColor="#9c9c9c"
+                android:textSize="18sp" />
 
         </RelativeLayout>
 
-        <RelativeLayout
+
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1">
 
-            <com.weedai.ptp.view.NumberCircleProgressBar
-                android:id="@+id/numberCircleProgress22"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:padding="10dp"
-                custom:max="100"
-                custom:progress="0"
-                custom:progress_circle_radius="30dp"
-                custom:progress_reached_color="#3498DB"
-                custom:progress_text_color="@android:color/black"
-                custom:progress_text_size="15sp"
-                custom:progress_text_visibility="visible"
-                custom:progress_unreached_color="#CCCCCC" />
+            <com.weedai.ptp.view.SimpleWaveView
+                android:id="@+id/simpleWaveView"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp" />
 
-        </RelativeLayout>
+            <TextView
+                android:id="@+id/tvScale"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
+                android:gravity="center"
+                android:text="18.8%"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/btnState"
+                android:layout_width="100dp"
+                android:layout_height="30dp"
+                android:layout_gravity="bottom|center_horizontal"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/btn_bg"
+                android:gravity="center"
+                android:paddingBottom="4dp"
+                android:paddingTop="4dp"
+                android:text="立即加入" />
+
+        </FrameLayout>
+
 
     </LinearLayout>
 
@@ -115,51 +133,49 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:visibility="gone">
+        android:orientation="horizontal">
 
         <RelativeLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1">
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_alignLeft="@+id/tvTitle"
-                android:layout_marginTop="4dp"
-                android:background="#e0e0e0"></View>
+            <!--<View-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="1dp"-->
+            <!--android:layout_alignLeft="@+id/tvTitle"-->
+            <!--android:layout_marginTop="4dp"-->
+            <!--android:background="#e0e0e0"></View>-->
 
             <TextView
                 android:id="@+id/tvTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
+                android:layout_marginLeft="10dp"
                 android:layout_marginTop="18dp"
                 android:text="优选理财计划1个月"
                 android:textColor="#272727"
-                android:textSize="20sp" />
+                android:textSize="18sp" />
         </RelativeLayout>
 
-        <LinearLayout
+        <!--<LinearLayout-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="1"-->
+        <!--android:gravity="center_horizontal">-->
 
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center_horizontal">
+        <!--<Button-->
+        <!--android:id="@+id/btnState"-->
+        <!--android:layout_width="100dp"-->
+        <!--android:layout_height="30dp"-->
+        <!--android:layout_marginTop="12dp"-->
+        <!--android:background="@drawable/btn_bg"-->
+        <!--android:gravity="center"-->
+        <!--android:paddingBottom="4dp"-->
+        <!--android:paddingTop="4dp"-->
+        <!--android:text="立即加入" />-->
 
-            <Button
-                android:id="@+id/btnState"
-                android:layout_width="100dp"
-                android:layout_height="30dp"
-                android:layout_marginTop="12dp"
-                android:background="@drawable/btn_bg"
-                android:gravity="center"
-                android:paddingBottom="4dp"
-                android:paddingTop="4dp"
-                android:text="立即加入" />
-
-        </LinearLayout>
+        <!--</LinearLayout>-->
 
 
     </LinearLayout>

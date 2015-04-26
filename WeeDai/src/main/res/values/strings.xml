@@ -10,6 +10,10 @@
     <string name="main_tab_bbs">论坛</string>
     <string name="main_tab_more">更多</string>
 
+    <string name="title_financial">优选理财</string>
+    <string name="title_financial_detail">理财详情</string>
+    <string name="title_about">关于我们</string>
+
     <string name="login_user_hint">手机号/邮箱/用户名</string>
     <string name="login_password_hint">请输入密码</string>
     <string name="login_valicode_hint">输入验证码</string>
@@ -115,6 +119,8 @@
     <string name="more_check_update">检查更新</string>
     <string name="more_feedback">意见反馈</string>
     <string name="more_website">官方网站</string>
+    <string name="more_about">关于我们</string>
+    <string name="more_about_weedai">了解微E贷</string>
     <string name="more_qq">官方QQ群</string>
     <string name="more_telephone">客服电话</string>
     <string name="more_website_value">www.weedai.com</string>
@@ -126,10 +132,11 @@
     <string name="conditions_reimbursing">正在还款</string>
     <string name="conditions_complete_reimbursement">已还完款</string>
 
-    <string name="financial_annual_rate">年化率：<![CDATA[ <b><font color="#ff5601">%s</font></b> ]]></string>
+    <string name="financial_annual_rate">年化率：<![CDATA[ <b><font color="#ff5601">%s %%</font></b> ]]></string>
     <string name="financial_deadline">期限: %s 个月</string>
     <string name="financial_amount">金额: %s 元</string>
-    <string name="financial_reward">奖励: %s</string>
+    <string name="financial_reward">奖励: %s %%</string>
+    <string name="financial_reward_empty">奖励: 暂无</string>
 
     <string name="financial_btn_join">立即加入</string>
     <string name="financial_btn_have_full">已满额</string>

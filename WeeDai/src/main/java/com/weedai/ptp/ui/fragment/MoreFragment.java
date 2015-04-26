@@ -12,11 +12,16 @@ import com.weedai.ptp.R;
 
 public class MoreFragment extends Fragment {
 
+
+
+
+
+
+
     public static MoreFragment newInstance() {
         MoreFragment fragment = new MoreFragment();
         return fragment;
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,

@@ -20,6 +20,7 @@ public class MainActivity extends BaseActivity {
     private FragmentStateArrayPagerAdapter fragmentAdapter;
     private RadioGroup radioGroup;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +28,11 @@ public class MainActivity extends BaseActivity {
 
         initFragmentSwitcher();
         initRadioGroup();
+    }
+
+    @Override
+    protected int getActionBarTitle() {
+        return R.string.main_tab_home;
     }
 
     private void initFragmentSwitcher() {
@@ -74,8 +80,5 @@ public class MainActivity extends BaseActivity {
         });
     }
 
-    protected int getActionBarTitle() {
-        return R.string.main_tab_home;
-    }
 
 }

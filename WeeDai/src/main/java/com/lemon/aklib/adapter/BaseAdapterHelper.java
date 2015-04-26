@@ -121,6 +121,12 @@ public class BaseAdapterHelper {
         return this;
     }
 
+    public BaseAdapterHelper setText(int viewId, CharSequence value) {
+        TextView view = retrieveView(viewId);
+        view.setText(value);
+        return this;
+    }
+
     /**
      * Will set the image of an ImageView from a resource id.
      * @param viewId     The view id.

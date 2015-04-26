@@ -36,7 +36,11 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.weedai.ptp.ui.activity.OptimizingFinancialActivity"
+            android:name=".ui.activity.FinancialActivity"
+            android:configChanges="keyboard|orientation|screenSize"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.FinancialDetailActivity"
             android:configChanges="keyboard|orientation|screenSize"
             android:screenOrientation="portrait" />
         <activity
@@ -71,6 +75,11 @@
 
         <activity
             android:name="com.weedai.ptp.ui.activity.ArticleDetailActivity"
+            android:configChanges="keyboard|orientation|screenSize"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.weedai.ptp.ui.activity.AboutActivity"
             android:configChanges="keyboard|orientation|screenSize"
             android:screenOrientation="portrait" />
 
