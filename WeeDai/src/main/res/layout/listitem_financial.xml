@@ -84,7 +84,7 @@
                 android:paddingTop="4dp"
                 android:text="1月07日10:00开始竞标"
                 android:textColor="#9c9c9c"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
 
         </RelativeLayout>
 
@@ -94,22 +94,55 @@
             android:layout_height="match_parent"
             android:layout_weight="1">
 
-            <com.weedai.ptp.view.SimpleWaveView
-                android:id="@+id/simpleWaveView"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_gravity="center"
-                android:layout_marginBottom="10dp" />
-
-            <TextView
-                android:id="@+id/tvScale"
+            <FrameLayout
+                android:id="@+id/layoutProgress"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/bg_border" />
+
+                <com.weedai.ptp.view.SimpleWaveView
+                    android:id="@+id/simpleWaveView"
+                    android:layout_width="74dp"
+                    android:layout_height="74dp"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="10dp" />
+
+                <TextView
+                    android:id="@+id/tvScale"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="10dp"
+                    android:gravity="center"
+                    android:text="18.8%"
+                    android:textSize="18sp" />
+            </FrameLayout>
+
+            <ImageView
+                android:id="@+id/imgCompleted"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
                 android:layout_gravity="center"
                 android:layout_marginBottom="10dp"
-                android:gravity="center"
-                android:text="18.8%"
-                android:textSize="18sp" />
+                android:background="@drawable/bg_completed"
+                android:visibility="gone" />
+
+            <ImageView
+                android:id="@+id/imgPayment"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/bg_payment"
+                android:visibility="gone" />
+
 
             <Button
                 android:id="@+id/btnState"

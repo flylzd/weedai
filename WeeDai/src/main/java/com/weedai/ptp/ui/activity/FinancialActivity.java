@@ -7,6 +7,7 @@ import android.text.Html;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.error.VolleyError;
@@ -24,7 +25,9 @@ import com.weedai.ptp.utils.UIHelper;
 import com.weedai.ptp.view.SimpleWaveView;
 import com.weedai.ptp.volley.ResponseListener;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class FinancialActivity extends BaseActivity implements SwipeRefreshLayout.OnRefreshListener, EndOfListView.OnEndOfListListener {
@@ -113,23 +116,50 @@ public class FinancialActivity extends BaseActivity implements SwipeRefreshLayou
                 helper.setText(R.id.tvReward, reward);
                 helper.setText(R.id.tvTitle, DataUtil.urlDecode(item.name));
 
-                Button btnStatus = helper.getView(R.id.btnState);
 
+                long addTime = item.addtime;
+                SimpleDateFormat sdf = new SimpleDateFormat("MM月dd日 hh:mm");
+                String stateTime = sdf.format(new Date(addTime));
+
+                System.out.println("stateTime " + stateTime);
+
+                View layoutProgress = helper.getView(R.id.layoutProgress);
+                View imgCompleted = helper.getView(R.id.imgCompleted);
+                View imgPayment = helper.getView(R.id.imgPayment);
+                layoutProgress.setVisibility(View.GONE);
+                imgCompleted.setVisibility(View.GONE);
+                imgPayment.setVisibility(View.GONE);
+
+                Button btnStatus = helper.getView(R.id.btnState);
+                TextView tvState = helper.getView(R.id.tvState);
+
+                String statusStr;
+                String statusHint;
                 int status = item.status;
                 final float scale = item.scale;
                 if (status == 1) {
                     if (scale == 100) {
-                        btnStatus.setText(getString(R.string.financial_btn_have_full));
+                        statusStr = getString(R.string.financial_btn_have_full);
+                        statusHint = stateTime + "已满额";
+                        layoutProgress.setVisibility(View.VISIBLE);
                     } else {
-                        btnStatus.setText(getString(R.string.financial_btn_join));
+                        statusStr = getString(R.string.financial_btn_join);
+                        statusHint = stateTime + "开始竞标";
+                        layoutProgress.setVisibility(View.VISIBLE);
                     }
                 } else {
                     if (item.repayment_account == item.repayment_yesaccount) {
-                        btnStatus.setText(getString(R.string.financial_btn_completed));
+                        statusStr = getString(R.string.financial_btn_completed);
+                        statusHint = stateTime + "已完成";
+                        imgCompleted.setVisibility(View.VISIBLE);
                     } else {
-                        btnStatus.setText(getString(R.string.financial_btn_payment));
+                        statusStr = getString(R.string.financial_btn_payment);
+                        statusHint = stateTime + "复审成功";
+                        imgPayment.setVisibility(View.VISIBLE);
                     }
                 }
+                btnStatus.setText(statusStr);
+                tvState.setText(statusHint);
 
                 helper.setText(R.id.tvScale, scale + "%");
 
@@ -143,7 +173,8 @@ public class FinancialActivity extends BaseActivity implements SwipeRefreshLayou
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                UIHelper.showFinancialDetail(FinancialActivity.this, adapter.getItem(position).id);
+//                UIHelper.showFinancialDetail(FinancialActivity.this, adapter.getItem(position).id);
+                UIHelper.showFinancialDetail(FinancialActivity.this, adapter.getItem(position));
             }
         });
     }

@@ -4,6 +4,7 @@ package com.weedai.ptp.utils;
 import android.content.Context;
 import android.content.Intent;
 
+import com.weedai.ptp.model.InvestList;
 import com.weedai.ptp.ui.activity.AboutActivity;
 import com.weedai.ptp.ui.activity.ArticleActivity;
 import com.weedai.ptp.ui.activity.ArticleDetailActivity;
@@ -48,9 +49,10 @@ public class UIHelper {
         context.startActivity(intent);
     }
 
-    public static void showFinancialDetail(Context context, String bid) {
+    public static void showFinancialDetail(Context context, InvestList data) {
         Intent intent = new Intent(context, FinancialDetailActivity.class);
-        intent.putExtra("id", bid);
+//        intent.putExtra("id", bid);
+        intent.putExtra("data", data);
         context.startActivity(intent);
     }
 

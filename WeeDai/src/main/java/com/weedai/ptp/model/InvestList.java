@@ -12,7 +12,7 @@ public class InvestList implements Serializable {
     public String time_limit;
     public String style;
     public float scale;
-    public String addtime;
+    public long addtime;
     public String is_fast;
     public String is_transfer;
     public String account_yes;

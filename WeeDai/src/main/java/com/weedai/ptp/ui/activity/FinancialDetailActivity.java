@@ -6,7 +6,7 @@ import android.os.Bundle;
 
 import com.android.volley.error.VolleyError;
 import com.weedai.ptp.R;
-import com.weedai.ptp.app.ApiClient;
+import com.weedai.ptp.model.InvestList;
 import com.weedai.ptp.volley.ResponseListener;
 
 public class FinancialDetailActivity extends BaseActivity {
@@ -15,15 +15,16 @@ public class FinancialDetailActivity extends BaseActivity {
 
     private ProgressDialog progressDialog;
 
-    private String id;
+    //    private String id;
+    private InvestList data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_financial_detail);
 
-        if (getIntent().hasExtra("id")) {
-            id = getIntent().getStringExtra("id");
+        if (getIntent().hasExtra("data")) {
+            data = (InvestList) getIntent().getSerializableExtra("data");
         }
 
         initView();
@@ -51,12 +52,12 @@ public class FinancialDetailActivity extends BaseActivity {
 
     private void getFinancialDetail() {
 
-        ApiClient.getFinancialDetail(TAG, id, new RefreshResponseListener() {
-            @Override
-            public void onResponse(Object response) {
-                super.onResponse(response);
-            }
-        });
+//        ApiClient.getFinancialDetail(TAG, id, new RefreshResponseListener() {
+//            @Override
+//            public void onResponse(Object response) {
+//                super.onResponse(response);
+//            }
+//        });
     }
 
 

@@ -6,9 +6,71 @@
 
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="120dp"
-        android:background="@drawable/bg_login_logo"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_about"
         android:scaleType="centerInside" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:paddingBottom="20dp"
+        android:paddingLeft="18dp"
+        android:paddingTop="18dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="2dp"
+            android:paddingTop="2dp"
+            android:text="深圳市微贷投资有限公司"
+            android:textSize="20sp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="2dp"
+            android:paddingTop="2dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="电话:"
+                android:textColor="@color/main_text"
+                android:textSize="20sp" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="400-088-1609"
+                android:textColor="@color/main_text_black"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="400-088-1609"
+                android:textColor="@color/main_text_black"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="2dp"
+            android:paddingTop="2dp"
+            android:text="地址: 深圳罗湖区深南东路5045号深业中心"
+            android:textColor="@color/main_text"
+            android:textSize="18sp" />
+
+    </LinearLayout>
 
 
     <LinearLayout
@@ -18,21 +80,57 @@
         android:background="@color/white"
         android:orientation="vertical"
         android:paddingBottom="20dp"
-        android:paddingLeft="20dp"
-        android:paddingTop="20dp">
-
+        android:paddingLeft="18dp"
+        android:paddingTop="18dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingBottom="2dp"
+            android:paddingTop="2dp"
             android:text="深圳市微贷投资有限公司"
             android:textSize="20sp" />
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="2dp"
+            android:paddingTop="2dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="电话:"
+                android:textColor="@color/main_text"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="400-088-1609"
+                android:textColor="@color/main_text"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="400-088-1609"
+                android:textColor="@color/main_text"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingBottom="2dp"
+            android:paddingTop="2dp"
             android:text="地址: 深圳罗湖区深南东路5045号深业中心"
-            android:textSize="20sp" />
+            android:textColor="@color/main_text"
+            android:textSize="18sp" />
 
     </LinearLayout>
 

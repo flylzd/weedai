@@ -7,15 +7,15 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 
 import com.weedai.ptp.R;
+import com.weedai.ptp.utils.UIHelper;
 
-public class MoreFragment extends Fragment {
-
-
-
+public class MoreFragment extends Fragment implements View.OnClickListener {
 
 
+    private RelativeLayout layoutAbout;
 
 
     public static MoreFragment newInstance() {
@@ -40,6 +40,18 @@ public class MoreFragment extends Fragment {
     }
 
     private void init(View view) {
-        
+
+        layoutAbout = (RelativeLayout) view.findViewById(R.id.layoutAbout);
+        layoutAbout.setOnClickListener(this);
+
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.layoutAbout:
+                UIHelper.showAbout(getActivity());
+                break;
+        }
     }
 }

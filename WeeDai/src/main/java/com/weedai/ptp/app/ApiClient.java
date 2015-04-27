@@ -122,7 +122,7 @@ public class ApiClient {
 
         Map<String, String> requestParams = getSignatureMap();
         requestParams.put("page", String.valueOf(page));
-        requestParams.put("type", String.valueOf(type));
+//        requestParams.put("type", String.valueOf(type));
         requestParams.put("timelimit", null);
         requestParams.put(Urls.ACTION, "invest/list");
 
