@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.android.volley.error.VolleyError;
 import com.weedai.ptp.R;
 import com.weedai.ptp.app.ApiClient;
+import com.weedai.ptp.constant.Config;
 import com.weedai.ptp.constant.Constant;
 import com.weedai.ptp.model.Valicode;
 import com.weedai.ptp.utils.UIHelper;
@@ -110,7 +111,9 @@ public class LoginActivity extends Activity implements View.OnClickListener {
             public void onResponse(Object response) {
                 progressDialog.dismiss();
 
-                //                UIHelper.showMain(LoginActivity.this);
+                UIHelper.showMain(LoginActivity.this);
+                MainActivity.lastSelect = 1;
+                Config.isLogin = true;
             }
 
             @Override

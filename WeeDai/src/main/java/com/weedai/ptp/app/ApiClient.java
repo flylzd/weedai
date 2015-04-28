@@ -11,6 +11,7 @@ import com.weedai.ptp.model.Article;
 import com.weedai.ptp.model.ArticleDetail;
 import com.weedai.ptp.model.BaseModel;
 import com.weedai.ptp.model.Invest;
+import com.weedai.ptp.model.User;
 import com.weedai.ptp.model.Valicode;
 import com.weedai.ptp.utils.AppUtil;
 import com.weedai.ptp.utils.Logger;
@@ -228,7 +229,7 @@ public class ApiClient {
         requestParams.put(Urls.ACTION, "users");
 
         String url = Urls.ACTION_INDEX;
-        GsonGetRequest request = createGsonGetRequest(url, requestParams, ArticleDetail.class, listener);
+        GsonPostRequest request = createGsonPostRequest(url, requestParams, User.class, listener);
         request.setTag(tag);
         requestQueue.add(request);
     }

@@ -116,12 +116,9 @@ public class FinancialActivity extends BaseActivity implements SwipeRefreshLayou
                 helper.setText(R.id.tvReward, reward);
                 helper.setText(R.id.tvTitle, DataUtil.urlDecode(item.name));
 
-
                 long addTime = item.addtime;
                 SimpleDateFormat sdf = new SimpleDateFormat("MM月dd日 hh:mm");
                 String stateTime = sdf.format(new Date(addTime));
-
-                System.out.println("stateTime " + stateTime);
 
                 View layoutProgress = helper.getView(R.id.layoutProgress);
                 View imgCompleted = helper.getView(R.id.imgCompleted);
@@ -167,6 +164,8 @@ public class FinancialActivity extends BaseActivity implements SwipeRefreshLayou
                 SimpleWaveView simpleWaveView = helper.getView(R.id.simpleWaveView);
                 simpleWaveView.setColor(getResources().getColor(R.color.main_text_orange));
                 simpleWaveView.setPercentage(percentage);
+
+                System.out.println("verify_time : " + item.verify_time);
             }
         };
         listView.setAdapter(adapter);

@@ -29,8 +29,8 @@
                     android:layout_marginTop="10dp">
 
                     <ImageView
-                        android:layout_width="38dp"
-                        android:layout_height="38dp"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
                         android:scaleType="centerCrop"
                         android:src="@drawable/ic_circle_orange" />
 
@@ -41,7 +41,7 @@
                         android:layout_centerVertical="true"
                         android:text="优"
                         android:textColor="@color/white"
-                        android:textSize="16dp" />
+                        android:textSize="18dp" />
                 </RelativeLayout>
 
                 <TextView
@@ -51,14 +51,15 @@
                     android:layout_alignTop="@+id/layoutFinancialYou"
                     android:layout_marginStart="@dimen/financial_detail_title_margin_start"
                     android:layout_toEndOf="@+id/layoutFinancialYou"
+                    android:gravity="center_vertical"
                     android:text="优选理财计划12月1-15-4"
                     android:textColor="@color/financial_main_text_black"
                     android:textSize="13sp" />
 
                 <TextView
-                    android:id="@+id/tvBreakEven"
-                    android:layout_width="12dp"
-                    android:layout_height="12dp"
+                    android:id="@+id/tvBreakEvenIcon"
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
                     android:layout_alignBaseline="@+id/tvTitle"
                     android:layout_marginStart="4dp"
                     android:layout_toEndOf="@+id/tvTitle"
@@ -69,12 +70,12 @@
                     android:textSize="9sp" />
 
                 <TextView
-                    android:id="@+id/tvReward"
-                    android:layout_width="12dp"
-                    android:layout_height="12dp"
+                    android:id="@+id/tvRewardIcon"
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
                     android:layout_alignBaseline="@+id/tvTitle"
                     android:layout_marginStart="4dp"
-                    android:layout_toEndOf="@+id/tvBreakEven"
+                    android:layout_toEndOf="@+id/tvBreakEvenIcon"
                     android:background="@drawable/ic_rewar_bg"
                     android:gravity="center"
                     android:text="奖"
@@ -99,6 +100,7 @@
                     android:layout_below="@+id/viewHorizontalLine"
                     android:layout_marginStart="@dimen/financial_detail_title_margin_start"
                     android:layout_toEndOf="@+id/layoutFinancialYou"
+                    android:padding="2dp"
                     android:text="@string/financial_detail_amount" />
 
                 <TextView
@@ -108,14 +110,17 @@
                     android:layout_below="@+id/tvFinancialAmount"
                     android:layout_marginStart="@dimen/financial_detail_title_margin_start"
                     android:layout_toEndOf="@+id/layoutFinancialYou"
+                    android:padding="2dp"
                     android:text="@string/financial_detail_annual_rate" />
 
                 <TextView
+                    android:id="@+id/tvReward"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignBaseline="@+id/tvFinancialAnnualRate"
                     android:layout_marginStart="18dp"
                     android:layout_toEndOf="@+id/tvFinancialAnnualRate"
+                    android:padding="2dp"
                     android:text="@string/financial_detail_reward" />
 
                 <TextView
@@ -125,6 +130,7 @@
                     android:layout_below="@+id/tvFinancialAnnualRate"
                     android:layout_marginStart="@dimen/financial_detail_title_margin_start"
                     android:layout_toEndOf="@+id/layoutFinancialYou"
+                    android:padding="2dp"
                     android:text="@string/financial_detail_lock_period" />
 
             </RelativeLayout>
@@ -276,11 +282,13 @@
                     android:textColor="@color/financial_main_text" />
 
                 <TextView
-                    android:id="@+id/tvEarnings1"
+                    android:id="@+id/tvReimbursement"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/tvEarningsTitle"
                     android:layout_marginStart="50dp"
+                    android:drawableLeft="@drawable/icon_hook"
+                    android:drawablePadding="4dp"
                     android:text="按月付息，到期还本"
                     android:textColor="@color/financial_main_text_black" />
 
@@ -288,8 +296,10 @@
                     android:id="@+id/tvEarnings2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/tvEarnings1"
+                    android:layout_below="@+id/tvReimbursement"
                     android:layout_marginStart="50dp"
+                    android:drawableLeft="@drawable/icon_hook"
+                    android:drawablePadding="4dp"
                     android:text="投资微币奖励"
                     android:textColor="@color/financial_main_text_black" />
 
@@ -299,6 +309,8 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/tvEarnings2"
                     android:layout_marginStart="50dp"
+                    android:drawableLeft="@drawable/icon_hook"
+                    android:drawablePadding="4dp"
                     android:text="抽奖活动资格"
                     android:textColor="@color/financial_main_text_black" />
 
@@ -308,6 +320,8 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/tvEarnings3"
                     android:layout_marginStart="50dp"
+                    android:drawableLeft="@drawable/icon_hook"
+                    android:drawablePadding="4dp"
                     android:text="到期转入微E贷账户，随时提现"
                     android:textColor="@color/financial_main_text_black" />
 
@@ -377,6 +391,45 @@
                     android:layout_below="@+id/tvRate2"
                     android:layout_marginStart="50dp"
                     android:text="退出费率 0.00%"
+                    android:textColor="@color/financial_main_text_black" />
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:background="@color/white"
+                android:paddingBottom="8dp"
+                android:paddingLeft="@dimen/financial_detail_layout_padding_left"
+                android:paddingRight="@dimen/financial_detail_layout_padding_right">
+
+
+                <LinearLayout
+                    android:id="@+id/layoutPlanAbout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingBottom="8dp"
+                    android:paddingTop="8dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="4dp"
+                        android:text="计划介绍" />
+
+                    <include layout="@layout/view_horizontal_line" />
+                </LinearLayout>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/layoutPlanAbout"
+                    android:paddingEnd="@dimen/financial_detail_about_title_padding_end"
+                    android:text="@string/financial_detail_plan_about"
                     android:textColor="@color/financial_main_text_black" />
 
             </RelativeLayout>

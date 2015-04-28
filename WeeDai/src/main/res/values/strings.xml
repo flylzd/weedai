@@ -61,11 +61,13 @@
     <string name="user_money_record">资金记录</string>
     <string name="user_money_return_search">回款查询</string>
     <string name="user_my_wealth">我的财富</string>
+    <string name="user_my_micro_currency">我的微币</string>
     <string name="user_financial_management">理财管理</string>
     <string name="user_bank_card">银行卡</string>
     <string name="user_stand_inside_letter">站内信</string>
     <string name="user_account_security">账户安全</string>
     <string name="user_available_balance">可用余额%s元</string>
+    <string name="user_available_micro_currency">可用微币 % (个)</string>
 
     <string name="user_my_wealth_total_amount">账户资金总额(元)</string>
     <string name="user_my_wealth_available_balance">账户可用余额(元)</string>
@@ -150,14 +152,20 @@
 
     <string name="financial_detail_hint">为保障资金安全,投资前需完成安全认证</string>
     <string name="financial_detail_btn">立即投资</string>
-    <!--<string name="financial_detail_amount">理财金额 %s</string>-->
-    <!--<string name="financial_detail_annual_rate">年化利率 %s</string>-->
-    <!--<string name="financial_detail_reward">奖励 %s</string>-->
-    <!--<string name="financial_detail_lock_period">锁定期限 %s</string>-->
-    <string name="financial_detail_amount">理财金额 1000 元</string>
-    <string name="financial_detail_annual_rate">年化利率 22.8%</string>
-    <string name="financial_detail_reward">奖励 1.5%</string>
-    <string name="financial_detail_lock_period">锁定期限 12个月</string>
+    <string name="financial_detail_amount">理财金额 %s 元</string>
+    <string name="financial_detail_annual_rate">年化利率 %s %%</string>
+    <string name="financial_detail_reward">奖励 <![CDATA[ <b><font color="#ff5601">%s %%</font></b> ]]></string>
+    <string name="financial_detail_reward_empty">奖励 <![CDATA[ <b><font color="#ff5601">暂无</font></b> ]]></string>
+    <string name="financial_detail_lock_period">锁定期限 %s 个月  <![CDATA[ <b><font color="#ff5601" size="13">(持有30日即可转让)</font></b> ]]></string>
+
+    <string name="financial_detail_reimbursement_one">按月分期还款</string>
+    <string name="financial_detail_reimbursement_two">按月付息，到期环本</string>
+    <string name="financial_detail_plan_about">&#160;&#160;&#160;&#160;微贷优选理财计划是由微贷网近期推出的一站式投资服务，投资人通过微贷理财计划，将资金出借给微E贷网贷平台的房产抵押标，采用智能投标，优先投向珠三角抵押标，提高资金的流动率和利用率，从而增加实际收益，微贷优选理财计划利率稳定，安全，便捷，一键式服务让投资人获得高回报的同时，帮助小微企业，解决资金难题，实现共赢。</string>
+
+    <!--<string name="financial_detail_amount">理财金额 1000 元</string>-->
+    <!--<string name="financial_detail_annual_rate">年化利率 22.8%</string>-->
+    <!--<string name="financial_detail_reward">奖励 1.5%</string>-->
+    <!--<string name="financial_detail_lock_period">锁定期限 12个月</string>-->
 
     <string name="financial_detail_about_distance_selling_title">距离发售</string>
     <string name="financial_detail_about_progress_title">进度&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</string>

@@ -11,6 +11,7 @@ import com.weedai.ptp.ui.activity.ArticleDetailActivity;
 import com.weedai.ptp.ui.activity.FinancialActivity;
 import com.weedai.ptp.ui.activity.FinancialDetailActivity;
 import com.weedai.ptp.ui.activity.HeroActivity;
+import com.weedai.ptp.ui.activity.LoginActivity;
 import com.weedai.ptp.ui.activity.MainActivity;
 import com.weedai.ptp.ui.activity.MyBankCardActivity;
 import com.weedai.ptp.ui.activity.MyRechargeActivity;
@@ -19,8 +20,14 @@ import com.weedai.ptp.ui.activity.RegisterActivity;
 
 public class UIHelper {
 
+
     public static void showMain(Context context) {
         Intent intent = new Intent(context, MainActivity.class);
+        context.startActivity(intent);
+    }
+
+    public static void showLogin(Context context) {
+        Intent intent = new Intent(context, LoginActivity.class);
         context.startActivity(intent);
     }
 
