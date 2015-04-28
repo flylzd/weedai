@@ -49,15 +49,15 @@
                 android:layout_marginLeft="10dp"
                 android:text="400-088-1609"
                 android:textColor="@color/main_text_black"
-                android:textSize="20sp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:text="400-088-1609"
+                android:text="0755-82552909"
                 android:textColor="@color/main_text_black"
-                android:textSize="20sp" />
+                android:textSize="16sp" />
 
         </LinearLayout>
 
@@ -66,9 +66,9 @@
             android:layout_height="wrap_content"
             android:paddingBottom="2dp"
             android:paddingTop="2dp"
-            android:text="地址: 深圳罗湖区深南东路5045号深业中心"
+            android:text="地址:深圳罗湖区深南东路5045号深业中心3108"
             android:textColor="@color/main_text"
-            android:textSize="18sp" />
+            android:textSize="15sp" />
 
     </LinearLayout>
 
@@ -88,7 +88,7 @@
             android:layout_height="wrap_content"
             android:paddingBottom="2dp"
             android:paddingTop="2dp"
-            android:text="深圳市微贷投资有限公司"
+            android:text="深圳市微贷投资有限公司(佛山分公司)"
             android:textSize="20sp" />
 
         <LinearLayout
@@ -109,17 +109,25 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:text="400-088-1609"
-                android:textColor="@color/main_text"
-                android:textSize="20sp" />
+                android:text="0757-28789201"
+                android:textColor="@color/main_text_black"
+                android:textSize="16sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:text="400-088-1609"
-                android:textColor="@color/main_text"
-                android:textSize="20sp" />
+                android:layout_marginLeft="4dp"
+                android:text="28789207"
+                android:textColor="@color/main_text_black"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:text="28782012"
+                android:textColor="@color/main_text_black"
+                android:textSize="16sp" />
 
         </LinearLayout>
 
@@ -128,9 +136,9 @@
             android:layout_height="wrap_content"
             android:paddingBottom="2dp"
             android:paddingTop="2dp"
-            android:text="地址: 深圳罗湖区深南东路5045号深业中心"
+            android:text="地址:佛山市顺德区乐从大道西12号物联天下B座109"
             android:textColor="@color/main_text"
-            android:textSize="18sp" />
+            android:textSize="15sp" />
 
     </LinearLayout>
 
