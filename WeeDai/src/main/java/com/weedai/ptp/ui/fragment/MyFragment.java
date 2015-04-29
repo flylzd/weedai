@@ -5,13 +5,17 @@ import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.error.VolleyError;
+import com.nostra13.universalimageloader.core.ImageLoader;
 import com.weedai.ptp.R;
 import com.weedai.ptp.app.ApiClient;
 import com.weedai.ptp.constant.Constant;
@@ -20,6 +24,8 @@ import com.weedai.ptp.model.User;
 import com.weedai.ptp.model.UserData;
 import com.weedai.ptp.utils.UIHelper;
 import com.weedai.ptp.volley.ResponseListener;
+
+import org.w3c.dom.Text;
 
 public class MyFragment extends Fragment implements View.OnClickListener {
 
@@ -30,8 +36,19 @@ public class MyFragment extends Fragment implements View.OnClickListener {
     private TextView tvMyBankCard;
     private TextView tvMyStandInsideLetter;
 
+    private ImageView imgAvatar;
     private TextView tvUsername;
     private TextView tvEmail;
+    private ImageView imgUser;
+    private ImageView imgPhone;
+    private ImageView imgEmail;
+    private ImageView imgVip;
+
+    private Button btnMoneyRecord;
+    private Button btnReturnSearch;
+
+    private TextView tvAvailableBalance;
+    private TextView tvAvailableMicroCurrency;
 
     private ProgressDialog progressDialog;
 
@@ -60,8 +77,20 @@ public class MyFragment extends Fragment implements View.OnClickListener {
 
     private void init(View view) {
 
+        imgAvatar = (ImageView) view.findViewById(R.id.imgAvatar);
         tvUsername = (TextView) view.findViewById(R.id.tvUsername);
         tvEmail = (TextView) view.findViewById(R.id.tvEmail);
+        imgUser = (ImageView) view.findViewById(R.id.imgUser);
+        imgPhone = (ImageView) view.findViewById(R.id.imgPhone);
+        imgEmail = (ImageView) view.findViewById(R.id.imgEmail);
+        imgVip = (ImageView) view.findViewById(R.id.imgVip);
+        tvAvailableBalance = (TextView) view.findViewById(R.id.tvAvailableBalance);
+        tvAvailableMicroCurrency = (TextView) view.findViewById(R.id.tvAvailableMicroCurrency);
+
+        btnMoneyRecord = (Button) view.findViewById(R.id.btnMoneyRecord);
+        btnReturnSearch = (Button) view.findViewById(R.id.btnReturnSearch);
+        btnMoneyRecord.setOnClickListener(this);
+        btnReturnSearch.setOnClickListener(this);
 
         layoutMyWealth = view.findViewById(R.id.layoutMyWealth);
         tvMyFinancialManagement = (TextView) view.findViewById(R.id.tvMyFinancialManagement);
@@ -98,6 +127,51 @@ public class MyFragment extends Fragment implements View.OnClickListener {
         if (data != null) {
             tvUsername.setText(data.username);
             tvEmail.setText(data.email);
+
+            if (data.avatar_status == 1) {
+                imgUser.setImageResource(R.drawable.icon_user_on);
+            } else {
+                imgUser.setImageResource(R.drawable.icon_user);
+            }
+
+            if (data.vip_status == 1) {
+                imgVip.setImageResource(R.drawable.icon_vip_on);
+            } else {
+                imgVip.setImageResource(R.drawable.icon_vip);
+            }
+
+            if (data.phone_status) {
+                imgPhone.setImageResource(R.drawable.icon_phone_on);
+            } else {
+                imgPhone.setImageResource(R.drawable.icon_phone);
+            }
+
+            if (data.email_status) {
+                imgEmail.setImageResource(R.drawable.icon_email_on);
+            } else {
+                imgEmail.setImageResource(R.drawable.icon_email);
+            }
+
+            System.out.println("data.avatar_status " + data.avatar_status);
+            System.out.println("data.vip_status " + data.vip_status);
+            System.out.println("data.phone_status " + data.phone_status);
+            System.out.println("data.email_status " + data.email_status);
+
+            String userMoney;
+            if (TextUtils.isEmpty(data.use_money)) {
+                userMoney = String.format(getActivity().getString(R.string.user_available_balance_empty));
+            } else {
+                userMoney = String.format(getActivity().getString(R.string.user_available_balance), data.use_money);
+            }
+            String wb = String.format(getActivity().getString(R.string.user_available_micro_currency), data.wb);
+            tvAvailableBalance.setText(userMoney);
+            tvAvailableMicroCurrency.setText(wb);
+
+            String url = data.touxiang;
+            if (!TextUtils.isEmpty(url)) {
+//                ImageLoader.getInstance().displayImage();
+            }
+
         }
     }
 
@@ -105,6 +179,12 @@ public class MyFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
 
         switch (v.getId()) {
+            case R.id.btnMoneyRecord:
+//                UIHelper.showMyWealth(getActivity());
+                break;
+            case R.id.btnReturnSearch:
+                UIHelper.showMyReceivableSearch(getActivity());
+                break;
             case R.id.layoutMyWealth:
                 UIHelper.showMyWealth(getActivity());
                 break;

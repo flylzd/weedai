@@ -11,6 +11,7 @@ import com.weedai.ptp.model.Article;
 import com.weedai.ptp.model.ArticleDetail;
 import com.weedai.ptp.model.BaseModel;
 import com.weedai.ptp.model.Invest;
+import com.weedai.ptp.model.ReceivableSearch;
 import com.weedai.ptp.model.User;
 import com.weedai.ptp.model.Valicode;
 import com.weedai.ptp.utils.AppUtil;
@@ -146,6 +147,23 @@ public class ApiClient {
 
         String url = Urls.ACTION_INDEX;
         GsonGetRequest request = createGsonGetRequest(url, requestParams, Invest.class, listener);
+        request.setTag(tag);
+        requestQueue.add(request);
+    }
+
+
+    /**
+     * 回款查询
+     */
+    public static void searchReceiable(String tag, ResponseListener listener) {
+        listener.onStarted();
+
+        Map<String, String> requestParams = getSignatureMap();
+        requestParams.put("q", "action/checkhuikuan");
+        requestParams.put(Urls.ACTION, "users");
+
+        String url = Urls.ACTION_INDEX;
+        GsonPostRequest request = createGsonPostRequest(url, requestParams, ReceivableSearch.class, listener);
         request.setTag(tag);
         requestQueue.add(request);
     }

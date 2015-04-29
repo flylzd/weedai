@@ -12,6 +12,7 @@
 
     <string name="title_financial">优选理财</string>
     <string name="title_financial_detail">理财详情</string>
+    <string name="title_receivable_searcht">回款查询</string>
     <string name="title_about">关于我们</string>
 
     <string name="login_user_hint">手机号/邮箱/用户名</string>
@@ -67,7 +68,11 @@
     <string name="user_stand_inside_letter">站内信</string>
     <string name="user_account_security">账户安全</string>
     <string name="user_available_balance">可用余额%s元</string>
-    <string name="user_available_micro_currency">可用微币 % (个)</string>
+    <string name="user_available_balance_empty">暂无可用余额</string>
+    <string name="user_available_micro_currency">可用微币 %s (个)</string>
+
+    <string name="user_receivable"> <![CDATA[ <b><font color="#ff5601">%s </font></b> ]]> 元</string>
+    <string name="user_receivable_micro_currency"> <![CDATA[ <b><font color="#ff5601">%s </font></b> ]]> 微币</string>
 
     <string name="user_my_wealth_total_amount">账户资金总额(元)</string>
     <string name="user_my_wealth_available_balance">账户可用余额(元)</string>

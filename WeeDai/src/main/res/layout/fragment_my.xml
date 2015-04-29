@@ -1,210 +1,252 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:paddingTop="@dimen/main_content_padding_top">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/selector_bg_layout"
-        android:padding="8dp">
-
-
-        <ImageView
-            android:id="@+id/imgAvatar"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginLeft="20dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/ic_launcher" />
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@id/imgAvatar"
-            android:layout_alignTop="@+id/imgAvatar"
-            android:layout_toEndOf="@+id/imgAvatar"
-            android:orientation="vertical"
-            android:padding="4dp">
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/selector_bg_layout"
+                android:padding="8dp">
+
+                <ImageView
+                    android:id="@+id/imgAvatar"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_marginLeft="20dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_launcher" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/imgAvatar"
+                    android:layout_alignTop="@+id/imgAvatar"
+                    android:layout_toEndOf="@+id/imgAvatar"
+                    android:orientation="vertical"
+                    android:padding="4dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/tvUsername"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="叱咤风云"
+                            android:textColor="@color/main_text_black"
+                            android:textSize="16sp" />
+
+                        <ImageView
+                            android:id="@+id/imgUser"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="4dp"
+                            android:src="@drawable/icon_user" />
+
+                        <ImageView
+                            android:id="@+id/imgPhone"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="4dp"
+                            android:src="@drawable/icon_phone" />
+
+                        <ImageView
+                            android:id="@+id/imgEmail"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="4dp"
+                            android:src="@drawable/icon_email" />
+
+                        <ImageView
+                            android:id="@+id/imgVip"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="4dp"
+                            android:src="@drawable/icon_vip" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tvEmail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="2dp"
+                        android:paddingTop="2dp"
+                        android:text="叱咤风云"
+                        android:textColor="@color/main_text"
+                        android:textSize="15sp" />
+
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="信用等级:"
+                            android:textColor="@color/main_text"
+                            android:textSize="10sp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_arrow_right" />
+
+            </RelativeLayout>
+
+            <include layout="@layout/view_horizontal_line" />
+
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <TextView
-                    android:id="@+id/tvUsername"
-                    android:layout_width="wrap_content"
+                <Button
+                    android:id="@+id/btnMoneyRecord"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="叱咤风云"
-                    android:textColor="@color/main_text_black"
-                    android:textSize="14sp" />
+                    android:layout_weight="1"
+                    android:background="@drawable/selector_bg_layout"
+                    android:text="@string/user_money_record"
+                    android:textColor="@color/main_text_black" />
+
+                <include layout="@layout/view_vertical_line" />
+
+                <Button
+                    android:id="@+id/btnReturnSearch"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/selector_bg_layout"
+                    android:text="@string/user_money_return_search"
+                    android:textColor="@color/main_text_black" />
+
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/tvEmail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingBottom="2dp"
-                android:paddingTop="2dp"
-                android:text="叱咤风云"
-                android:textColor="@color/main_text"
-                android:textSize="14sp" />
-
+            <include layout="@layout/view_horizontal_line" />
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="3dp">
+                android:layout_marginTop="@dimen/main_content_margin_top"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:id="@+id/layoutMyWealth"
+                    style="@style/layoutUser"
+                    android:clickable="true">
+
+                    <TextView
+                        android:id="@+id/tvMyWealth"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:text="@string/user_my_wealth" />
+
+                    <TextView
+                        android:id="@+id/tvAvailableBalance"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:drawablePadding="10dp"
+                        android:drawableRight="@drawable/ic_arrow_right"
+                        android:text="@string/user_available_balance"
+                        android:textColor="@color/main_text" />
+
+                </RelativeLayout>
+
+                <include layout="@layout/view_horizontal_line" />
+
+                <RelativeLayout
+                    android:id="@+id/layoutMyMicroCurrency"
+                    style="@style/layoutUser"
+                    android:clickable="true">
+
+                    <TextView
+                        android:id="@+id/tvMyMicroCurrency"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:text="@string/user_my_micro_currency" />
+
+                    <TextView
+                        android:id="@+id/tvAvailableMicroCurrency"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:drawablePadding="10dp"
+                        android:drawableRight="@drawable/ic_arrow_right"
+                        android:text="@string/user_available_micro_currency"
+                        android:textColor="@color/main_text" />
+
+                </RelativeLayout>
+
+                <include layout="@layout/view_horizontal_line" />
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="信用等级:"
-                    android:textColor="@color/main_text"
-                    android:textSize="10sp" />
+                    android:id="@+id/tvMyFinancialManagement"
+                    style="@style/layoutUser"
+                    android:drawableRight="@drawable/ic_arrow_right"
+                    android:text="@string/user_financial_management" />
+
+                <include layout="@layout/view_horizontal_line" />
+
+                <TextView
+                    android:id="@+id/tvMyBankCard"
+                    style="@style/layoutUser"
+                    android:clickable="true"
+                    android:drawableRight="@drawable/ic_arrow_right"
+                    android:text="@string/user_bank_card" />
+
+                <include layout="@layout/view_horizontal_line" />
+
+                <TextView
+                    android:id="@+id/tvMyStandInsideLetter"
+                    style="@style/layoutUser"
+                    android:clickable="true"
+                    android:drawableRight="@drawable/ic_arrow_right"
+                    android:text="@string/user_stand_inside_letter" />
+
+                <include layout="@layout/view_horizontal_line" />
 
             </LinearLayout>
-
         </LinearLayout>
 
+    </ScrollView>
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:src="@drawable/ic_arrow_right" />
-
-    </RelativeLayout>
-
-    <include layout="@layout/view_horizontal_line" />
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/selector_bg_layout"
-            android:text="@string/user_money_record"
-            android:textColor="@color/main_text_black" />
-
-        <include layout="@layout/view_vertical_line" />
-
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/selector_bg_layout"
-            android:text="@string/user_money_return_search"
-            android:textColor="@color/main_text_black" />
-
-    </LinearLayout>
-
-    <include layout="@layout/view_horizontal_line" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/main_content_margin_top"
-        android:orientation="vertical">
-
-        <RelativeLayout
-            android:id="@+id/layoutMyWealth"
-            style="@style/layoutUser"
-            android:clickable="true">
-
-            <TextView
-                android:id="@+id/tvMyWealth"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:text="@string/user_my_wealth" />
-
-            <TextView
-                android:id="@+id/tvAvailableBalance"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:drawablePadding="10dp"
-                android:drawableRight="@drawable/ic_arrow_right"
-                android:text="@string/user_available_balance"
-                android:textColor="@color/main_text" />
-
-        </RelativeLayout>
-
-        <include layout="@layout/view_horizontal_line" />
-
-        <RelativeLayout
-            android:id="@+id/layoutMyMicroCurrency"
-            style="@style/layoutUser"
-            android:clickable="true">
-
-            <TextView
-                android:id="@+id/tvMyMicroCurrency"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:text="@string/user_my_micro_currency" />
-
-            <TextView
-                android:id="@+id/tvAvailableMicroCurrency"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:drawablePadding="10dp"
-                android:drawableRight="@drawable/ic_arrow_right"
-                android:text="@string/user_available_micro_currency"
-                android:textColor="@color/main_text" />
-
-        </RelativeLayout>
-
-        <include layout="@layout/view_horizontal_line" />
-
-        <TextView
-            android:id="@+id/tvMyFinancialManagement"
-            style="@style/layoutUser"
-            android:drawableRight="@drawable/ic_arrow_right"
-            android:text="@string/user_financial_management" />
-
-        <include layout="@layout/view_horizontal_line" />
-
-        <TextView
-            android:id="@+id/tvMyBankCard"
-            style="@style/layoutUser"
-            android:clickable="true"
-            android:drawableRight="@drawable/ic_arrow_right"
-            android:text="@string/user_bank_card" />
-
-        <include layout="@layout/view_horizontal_line" />
-
-        <TextView
-            android:id="@+id/tvMyStandInsideLetter"
-            style="@style/layoutUser"
-            android:clickable="true"
-            android:drawableRight="@drawable/ic_arrow_right"
-            android:text="@string/user_stand_inside_letter" />
-
-        <include layout="@layout/view_horizontal_line" />
-
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="bottom"
         android:orientation="vertical">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
             android:background="#fddad4">
 
             <ImageView
@@ -267,6 +309,5 @@
         </RelativeLayout>
 
     </LinearLayout>
-
 
 </LinearLayout>

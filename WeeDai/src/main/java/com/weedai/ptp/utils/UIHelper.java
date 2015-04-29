@@ -16,6 +16,7 @@ import com.weedai.ptp.ui.activity.MainActivity;
 import com.weedai.ptp.ui.activity.MyBankCardActivity;
 import com.weedai.ptp.ui.activity.MyRechargeActivity;
 import com.weedai.ptp.ui.activity.MyWealthActivity;
+import com.weedai.ptp.ui.activity.ReceivableSearchActivity;
 import com.weedai.ptp.ui.activity.RegisterActivity;
 
 public class UIHelper {
@@ -48,6 +49,14 @@ public class UIHelper {
 
     public static void showMyRecharge(Context context) {
         Intent intent = new Intent(context, MyRechargeActivity.class);
+        context.startActivity(intent);
+    }
+
+    /**
+     * 回款查询
+     */
+    public static void showMyReceivableSearch(Context context) {
+        Intent intent = new Intent(context, ReceivableSearchActivity.class);
         context.startActivity(intent);
     }
 
