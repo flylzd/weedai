@@ -126,7 +126,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 break;
 
             case R.id.imgMyAccount:
-                UIHelper.showHero(getActivity());
+                UIHelper.showAccount(getActivity());
                 break;
 
             case R.id.imgInformation:

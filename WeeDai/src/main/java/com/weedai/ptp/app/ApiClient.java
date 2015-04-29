@@ -170,6 +170,23 @@ public class ApiClient {
 
 
     /**
+     * 资金记录
+     */
+    public static void getMoneyRecord(String tag, int page, ResponseListener listener) {
+        listener.onStarted();
+
+        Map<String, String> requestParams = getSignatureMap();
+        requestParams.put("q", "code/account/log");
+        requestParams.put("page", String.valueOf(page));
+        requestParams.put(Urls.ACTION, "users");
+
+        String url = Urls.ACTION_INDEX;
+        GsonPostRequest request = createGsonPostRequest(url, requestParams, ReceivableSearch.class, listener);
+        request.setTag(tag);
+        requestQueue.add(request);
+    }
+
+    /**
      * 获取英雄榜信息
      *
      * @param listener

@@ -21,7 +21,6 @@
             android:id="@+id/tvReceivable"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:text="@string/user_receivable"
             android:textSize="22sp" />
 
     </LinearLayout>
@@ -44,7 +43,6 @@
             android:id="@+id/tvReceivableMicroCurrency"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:text="@string/user_receivable_micro_currency"
             android:textSize="22sp" />
 
     </LinearLayout>

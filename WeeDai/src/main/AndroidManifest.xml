@@ -71,7 +71,14 @@
             android:name="com.weedai.ptp.ui.activity.ReceivableSearchActivity"
             android:configChanges="keyboard|orientation|screenSize"
             android:screenOrientation="portrait" />
-
+        <activity
+            android:name="com.weedai.ptp.ui.activity.MoneyRecordActivity"
+            android:configChanges="keyboard|orientation|screenSize"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.weedai.ptp.ui.activity.AccountActivity"
+            android:configChanges="keyboard|orientation|screenSize"
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.weedai.ptp.ui.activity.ArticleActivity"
             android:configChanges="keyboard|orientation|screenSize"

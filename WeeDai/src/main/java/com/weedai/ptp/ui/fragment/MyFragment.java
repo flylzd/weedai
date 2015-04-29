@@ -52,7 +52,7 @@ public class MyFragment extends Fragment implements View.OnClickListener {
 
     private ProgressDialog progressDialog;
 
-    private UserData data;
+    private static UserData data;
 
     public static MyFragment newInstance() {
         MyFragment fragment = new MyFragment();
@@ -72,7 +72,12 @@ public class MyFragment extends Fragment implements View.OnClickListener {
         super.onViewCreated(view, savedInstanceState);
 
         init(view);
-        loadData();
+        if (data == null) {
+            loadData();
+        } else {
+            setUserInfo();
+        }
+
     }
 
     private void init(View view) {
@@ -180,7 +185,7 @@ public class MyFragment extends Fragment implements View.OnClickListener {
 
         switch (v.getId()) {
             case R.id.btnMoneyRecord:
-//                UIHelper.showMyWealth(getActivity());
+                UIHelper.showMyMoneyRecord(getActivity());
                 break;
             case R.id.btnReturnSearch:
                 UIHelper.showMyReceivableSearch(getActivity());

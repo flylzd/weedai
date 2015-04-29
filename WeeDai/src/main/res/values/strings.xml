@@ -12,8 +12,10 @@
 
     <string name="title_financial">优选理财</string>
     <string name="title_financial_detail">理财详情</string>
+    <string name="title_account">我的账号</string>
     <string name="title_receivable_searcht">回款查询</string>
     <string name="title_about">关于我们</string>
+    <string name="title_money_record">资金记录</string>
 
     <string name="login_user_hint">手机号/邮箱/用户名</string>
     <string name="login_password_hint">请输入密码</string>
@@ -58,6 +60,16 @@
     <string name="home_my_account_right">(未登陆)</string>
     <string name="home_information">微贷资讯</string>
     <string name="home_notice">微贷公告</string>
+
+    <string name="account_real_name">真实姓名</string>
+    <string name="account_sex">性别</string>
+    <string name="account_date_birth">出生日期</string>
+    <string name="account_phone">手机号码</string>
+    <string name="account_email">注册邮箱</string>
+    <string name="account_modify_login_password">修改登录密码</string>
+    <string name="account_password_protection">密码保护</string>
+    <string name="account_password_management_gestures">管理密码手势</string>
+    <string name="account_not_set">未设置</string>
 
     <string name="user_money_record">资金记录</string>
     <string name="user_money_return_search">回款查询</string>
