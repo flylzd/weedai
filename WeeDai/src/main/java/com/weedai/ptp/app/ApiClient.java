@@ -181,7 +181,7 @@ public class ApiClient {
         requestParams.put(Urls.ACTION, "users");
 
         String url = Urls.ACTION_INDEX;
-        GsonPostRequest request = createGsonPostRequest(url, requestParams, ReceivableSearch.class, listener);
+        GsonGetRequest request = createGsonGetRequest(url, requestParams, ReceivableSearch.class, listener);
         request.setTag(tag);
         requestQueue.add(request);
     }
