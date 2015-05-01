@@ -16,6 +16,7 @@ import com.weedai.ptp.ui.activity.LoginActivity;
 import com.weedai.ptp.ui.activity.MainActivity;
 import com.weedai.ptp.ui.activity.MoneyRecordActivity;
 import com.weedai.ptp.ui.activity.MyBankCardActivity;
+import com.weedai.ptp.ui.activity.MyFinancialManagementActivity;
 import com.weedai.ptp.ui.activity.MyRechargeActivity;
 import com.weedai.ptp.ui.activity.MyWealthActivity;
 import com.weedai.ptp.ui.activity.ReceivableSearchActivity;
@@ -67,6 +68,14 @@ public class UIHelper {
      */
     public static void showMyMoneyRecord(Context context) {
         Intent intent = new Intent(context, MoneyRecordActivity.class);
+        context.startActivity(intent);
+    }
+
+    /**
+     * 理财管理
+     */
+    public static void showMyFinancialManagemen(Context context) {
+        Intent intent = new Intent(context, MyFinancialManagementActivity.class);
         context.startActivity(intent);
     }
 

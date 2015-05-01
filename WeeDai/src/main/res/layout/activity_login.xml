@@ -44,7 +44,7 @@
             android:background="@null"
             android:gravity="center_vertical"
             android:hint="@string/login_user_hint"
-            android:text="panda"
+            android:text="xiuwen3"
             android:textSize="18sp" />
 
     </LinearLayout>
@@ -76,7 +76,7 @@
             android:background="@null"
             android:gravity="center_vertical"
             android:hint="@string/login_password_hint"
-            android:text="222222"
+            android:text="777777"
             android:textSize="18sp" />
 
     </LinearLayout>

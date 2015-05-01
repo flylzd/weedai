@@ -114,6 +114,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
                 UIHelper.showMain(LoginActivity.this);
                 MainActivity.lastSelect = 1;
                 Config.isLogin = true;
+                finish();
             }
 
             @Override

@@ -9,6 +9,7 @@ import com.android.volley.Response.ErrorListener;
 import com.android.volley.Response.Listener;
 import com.android.volley.error.AuthFailureError;
 import com.android.volley.request.GsonRequest;
+import com.weedai.ptp.constant.Config;
 
 import org.apache.http.protocol.HTTP;
 
@@ -29,7 +30,7 @@ public class GsonPostRequest<T> extends GsonRequest<T> {
 
     private static final String DEFAULT_PARAMS_ENCODING = HTTP.ISO_8859_1;
 
-    private static String mCookie;
+//    private static String mCookie;
     private Listener<T> mListener;
 
     public GsonPostRequest(String url, Class<T> clazz, Map<String, String> params, Listener<T> listener, ErrorListener errorListener) {
@@ -43,9 +44,9 @@ public class GsonPostRequest<T> extends GsonRequest<T> {
 
     @Override
     public Map<String, String> getHeaders() throws AuthFailureError {
-        if (mCookie != null) {
+        if (Config.cookie != null) {
             Map<String, String> map = new HashMap<String, String>();
-            map.put("Cookie", mCookie);
+            map.put("Cookie", Config.cookie );
             return map;
         }
         return super.getHeaders();
@@ -57,10 +58,10 @@ public class GsonPostRequest<T> extends GsonRequest<T> {
 
     @Override
     protected Response<T> parseNetworkResponse(NetworkResponse response) {
-        if (mCookie == null) {
+        if (Config.cookie  == null) {
             for (String s : response.headers.keySet()) {
                 if (s.contains("Set-Cookie")) {
-                    mCookie = response.headers.get(s);
+                    Config.cookie  = response.headers.get(s);
                     break;
                 }
             }

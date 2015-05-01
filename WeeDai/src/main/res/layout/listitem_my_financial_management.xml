@@ -4,10 +4,11 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:paddingBottom="8dp"
-    android:paddingLeft="20dp"
+    android:paddingLeft="2dp"
     android:paddingTop="8dp">
 
     <TextView
+        android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="微贷优选理财计划"
@@ -25,18 +26,22 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/tvBorrowUsername"
                 style="@style/textItemFinancialManagement"
                 android:text="@string/user_my_financial_management_borrowers" />
 
             <TextView
+                android:id="@+id/tvBorrowAccount"
                 style="@style/textItemFinancialManagement"
                 android:text="@string/user_my_financial_management_amount" />
 
             <TextView
+                android:id="@+id/tvBorrowTimeLimit"
                 style="@style/textItemFinancialManagement"
                 android:text="@string/user_my_financial_management_time_limit" />
 
             <TextView
+                android:id="@+id/tvBorrowAnum"
                 style="@style/textItemFinancialManagement"
                 android:text="@string/user_my_financial_management_loan_amount" />
 
@@ -49,24 +54,39 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/tvBorrowCredit"
                 style="@style/textItemFinancialManagement"
                 android:text="@string/user_my_financial_management_borrowers_integral" />
 
             <TextView
+                android:id="@+id/tvBorrowApr"
                 style="@style/textItemFinancialManagement"
                 android:text="@string/user_my_financial_management_annual_interest_rate" />
 
-            <TextView
+            <LinearLayout
                 style="@style/textItemFinancialManagement"
-                android:text="@string/user_my_financial_management_bid_time" />
+                android:orientation="horizontal"
+                android:padding="0dp">
+
+                <TextView
+
+                    style="@style/textItemFinancialManagement"
+                    android:text="@string/user_my_financial_management_bid_time" />
+
+                <TextView
+                    android:id="@+id/tvBorrowTenderTime"
+                    style="@style/textItemFinancialManagement"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+
 
             <TextView
+                android:id="@+id/tvBorrowRepaymentAccount"
                 style="@style/textItemFinancialManagement"
                 android:text="@string/user_my_financial_management_receivable_interest" />
 
         </LinearLayout>
-
-
     </LinearLayout>
 
 

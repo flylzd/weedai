@@ -2,10 +2,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:paddingTop="@dimen/main_content_padding_top">
+    android:background="@color/white"
+    android:orientation="vertical">
 
     <RadioGroup
+        android:id="@+id/radioGroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -23,5 +24,23 @@
             android:text="@string/user_my_financial_management_conditions_collection" />
 
     </RadioGroup>
+
+
+    <com.lemon.aklib.widget.EndOfListView
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:cacheColorHint="@android:color/transparent"
+        android:dividerHeight="1dp" />
+
+
+    <com.lemon.aklib.widget.EndOfListView
+        android:visibility="gone"
+        android:id="@+id/listView2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:cacheColorHint="@android:color/transparent"
+        android:dividerHeight="1dp" />
+
 
 </LinearLayout>

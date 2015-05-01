@@ -7,11 +7,13 @@ import com.android.volley.NetworkResponse;
 import com.android.volley.Response;
 import com.android.volley.error.AuthFailureError;
 import com.android.volley.request.GsonRequest;
+import com.weedai.ptp.constant.Config;
 
 import org.apache.http.protocol.HTTP;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.HashMap;
 import java.util.Map;
 
 public class GsonGetRequest<T> extends GsonRequest<T> {
@@ -29,6 +31,16 @@ public class GsonGetRequest<T> extends GsonRequest<T> {
 
     public GsonGetRequest(String url, Class<T> clazz, Map<String, String> params, Response.Listener<T> listener, Response.ErrorListener errorListener) {
         super(Method.GET, url, clazz, null, params, listener, errorListener);
+    }
+
+    @Override
+    public Map<String, String> getHeaders() throws AuthFailureError {
+        if (Config.cookie != null) {
+            Map<String, String> map = new HashMap<String, String>();
+            map.put("Cookie", Config.cookie);
+            return map;
+        }
+        return super.getHeaders();
     }
 
     @Override

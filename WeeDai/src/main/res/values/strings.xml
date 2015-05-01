@@ -13,9 +13,10 @@
     <string name="title_financial">优选理财</string>
     <string name="title_financial_detail">理财详情</string>
     <string name="title_account">我的账号</string>
-    <string name="title_receivable_searcht">回款查询</string>
     <string name="title_about">关于我们</string>
+    <string name="title_receivable_searcht">回款查询</string>
     <string name="title_money_record">资金记录</string>
+    <string name="title_financial_management">理财管理</string>
 
     <string name="login_user_hint">手机号/邮箱/用户名</string>
     <string name="login_password_hint">请输入密码</string>
@@ -126,11 +127,22 @@
     <string name="user_my_financial_management_borrowers">借款者: %s</string>
     <string name="user_my_financial_management_amount">金额(元): ￥ %s</string>
     <string name="user_my_financial_management_time_limit">期限: %s 个月</string>
-    <string name="user_my_financial_management_loan_amount">借出金额: ￥ %s </string>
-    <string name="user_my_financial_management_borrowers_integral">借款者积分: %s </string>
-    <string name="user_my_financial_management_annual_interest_rate">年利率: %s </string>
-    <string name="user_my_financial_management_bid_time">投标时间: %s </string>
-    <string name="user_my_financial_management_receivable_interest">应收本息: %s </string>
+    <string name="user_my_financial_management_loan_amount">借出金额: ￥%s </string>
+    <string name="user_my_financial_management_borrowers_integral">借款者积分: %s 分</string>
+    <string name="user_my_financial_management_annual_interest_rate">年利率: %s %% </string>
+    <string name="user_my_financial_management_bid_time">投标时间:</string>
+    <string name="user_my_financial_management_receivable_interest">应收本息:<![CDATA[ <b><font color="#ff5601">￥%s</font></b> ]]> </string>
+
+    <string name="user_my_financial_borrowers_receivable_date">应收日期: %s</string>
+    <string name="user_my_financial_borrowers_borrower_name">借款者: %s</string>
+    <string name="user_my_financial_borrowers_installment">第几期/总期数: %s</string>
+    <string name="user_my_financial_borrowers_total_payment">收款总额: ￥%s</string>
+    <string name="user_my_financial_borrowers_capital">应收本金: ￥%s</string>
+    <string name="user_my_financial_borrowers_interest">应收利息: ￥%s</string>
+    <string name="user_my_financial_borrowers_late_interest">逾期利息: ￥%s</string>
+    <string name="user_my_financial_borrowers_late_days">逾期天数: %s</string>
+    <string name="user_my_financial_borrowers_status">状态: %s</string>
+
 
     <string name="more_interest">利息计算器</string>
     <string name="more_net_loan">网贷计算器</string>

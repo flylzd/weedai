@@ -194,7 +194,7 @@ public class MyFragment extends Fragment implements View.OnClickListener {
                 UIHelper.showMyWealth(getActivity());
                 break;
             case R.id.tvMyFinancialManagement:
-//                UIHelper.showMyWealth(getActivity());
+                UIHelper.showMyFinancialManagemen(getActivity());
                 break;
             case R.id.tvMyBankCard:
                 UIHelper.showMyBankCard(getActivity());

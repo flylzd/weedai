@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import com.weedai.ptp.R;
 import com.weedai.ptp.utils.UIHelper;
@@ -31,6 +32,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     private ImageView imgMyAccount;
     private ImageView imgInformation;
     private ImageView imgNotice;
+
+    private RelativeLayout layoutInformation;
 
 
     public static HomeFragment newInstance() {
@@ -88,6 +91,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         imgMyAccount.setOnClickListener(this);
         imgInformation.setOnClickListener(this);
         imgNotice.setOnClickListener(this);
+
+        layoutInformation = (RelativeLayout) view.findViewById(R.id.layoutInformation);
+        layoutInformation.setOnClickListener(this);
     }
 
 
@@ -137,6 +143,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 UIHelper.showArticle(getActivity());
                 break;
 
+            case R.id.layoutInformation:
+                UIHelper.showArticle(getActivity());
+                break;
         }
     }
 

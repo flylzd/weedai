@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="8dp"
+    android:paddingLeft="8dp"
+    android:paddingTop="8dp">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="微贷优选理财计划"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/btnTransfer"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/selector_btn_bg"
+            android:text="转让"
+            android:textColor="@color/white" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvBorrowReceivableDate"
+                style="@style/textItemFinancialManagement"
+                android:text="@string/user_my_financial_borrowers_receivable_date" />
+
+            <TextView
+                android:id="@+id/tvBorrowInstallment"
+                style="@style/textItemFinancialManagement"
+                android:text="@string/user_my_financial_borrowers_installment" />
+
+            <TextView
+                android:id="@+id/tvBorrowCapital"
+                style="@style/textItemFinancialManagement"
+                android:text="@string/user_my_financial_borrowers_capital" />
+
+            <TextView
+                android:id="@+id/tvBorrowLateInterest"
+                style="@style/textItemFinancialManagement"
+                android:text="@string/user_my_financial_borrowers_late_interest" />
+
+            <TextView
+                android:id="@+id/tvBorrowStatus"
+                style="@style/textItemFinancialManagement"
+                android:text="@string/user_my_financial_borrowers_status" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvBorrowUsername"
+                style="@style/textItemFinancialManagement"
+                android:text="@string/user_my_financial_borrowers_borrower_name" />
+
+            <TextView
+                android:id="@+id/tvBorrowTotalPayment"
+                style="@style/textItemFinancialManagement"
+                android:text="@string/user_my_financial_borrowers_total_payment" />
+
+            <TextView
+                android:id="@+id/tvBorrowInterest"
+                style="@style/textItemFinancialManagement"
+                android:text="@string/user_my_financial_borrowers_interest" />
+
+
+            <TextView
+                android:id="@+id/tvBorrowLateDays"
+                style="@style/textItemFinancialManagement"
+                android:text="@string/user_my_financial_borrowers_late_days" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+</LinearLayout>
