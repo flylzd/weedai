@@ -2,8 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:paddingTop="@dimen/main_content_padding_top">
+    android:orientation="vertical">
 
     <LinearLayout
         android:id="@+id/layoutMyMicroCurrency"
@@ -29,12 +28,13 @@
                 android:textSize="16sp" />
 
             <TextView
+                android:id="@+id/tvAvailableMicroCurrency"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:text="8000"
+                android:layout_marginTop="8dp"
+                android:text="0"
                 android:textColor="@color/main_text_orange"
-                android:textSize="16sp" />
+                android:textSize="18sp" />
 
         </LinearLayout>
 
@@ -58,14 +58,19 @@
                 android:id="@+id/tvTotalMicroCurrency"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:text="8000"
-                android:textColor="@color/main_text"
-                android:textSize="16sp" />
+                android:layout_marginTop="8dp"
+                android:text="0"
+                android:textColor="@color/main_text_orange"
+                android:textSize="18sp" />
 
         </LinearLayout>
-
     </LinearLayout>
 
+    <com.lemon.aklib.widget.EndOfListView
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:cacheColorHint="@android:color/transparent"
+        android:dividerHeight="1dp" />
 
 </LinearLayout>

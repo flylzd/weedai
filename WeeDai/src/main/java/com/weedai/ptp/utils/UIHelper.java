@@ -17,6 +17,7 @@ import com.weedai.ptp.ui.activity.MainActivity;
 import com.weedai.ptp.ui.activity.MoneyRecordActivity;
 import com.weedai.ptp.ui.activity.MyBankCardActivity;
 import com.weedai.ptp.ui.activity.MyFinancialManagementActivity;
+import com.weedai.ptp.ui.activity.MyMicroCurrencyHistoryActivity;
 import com.weedai.ptp.ui.activity.MyRechargeActivity;
 import com.weedai.ptp.ui.activity.MyWealthActivity;
 import com.weedai.ptp.ui.activity.ReceivableSearchActivity;
@@ -42,6 +43,12 @@ public class UIHelper {
 
     public static void showMyWealth(Context context) {
         Intent intent = new Intent(context, MyWealthActivity.class);
+        context.startActivity(intent);
+    }
+
+    public static void showMyMicroCurrencyHistory(Context context,String wb) {
+        Intent intent = new Intent(context, MyMicroCurrencyHistoryActivity.class);
+        intent.putExtra("wb", wb);
         context.startActivity(intent);
     }
 

@@ -13,10 +13,12 @@
     <string name="title_financial">优选理财</string>
     <string name="title_financial_detail">理财详情</string>
     <string name="title_account">我的账号</string>
+    <string name="title_micro_history">微币记录</string>
     <string name="title_about">关于我们</string>
     <string name="title_receivable_searcht">回款查询</string>
     <string name="title_money_record">资金记录</string>
     <string name="title_financial_management">理财管理</string>
+    <string name="title_my_wealth">我的财富</string>
 
     <string name="login_user_hint">手机号/邮箱/用户名</string>
     <string name="login_password_hint">请输入密码</string>

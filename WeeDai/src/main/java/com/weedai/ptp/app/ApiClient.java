@@ -12,6 +12,7 @@ import com.weedai.ptp.model.ArticleDetail;
 import com.weedai.ptp.model.BaseModel;
 import com.weedai.ptp.model.FinancialManager;
 import com.weedai.ptp.model.Invest;
+import com.weedai.ptp.model.Micro;
 import com.weedai.ptp.model.ReceivableSearch;
 import com.weedai.ptp.model.User;
 import com.weedai.ptp.model.Valicode;
@@ -218,6 +219,24 @@ public class ApiClient {
 
         String url = Urls.ACTION_INDEX;
         GsonGetRequest request = createGsonGetRequest(url, requestParams, FinancialManager.class, listener);
+        request.setTag(tag);
+        requestQueue.add(request);
+    }
+
+
+    /**
+     * 微币记录
+     */
+    public static void getMicroHistory(String tag, int page, ResponseListener listener) {
+        listener.onStarted();
+
+        Map<String, String> requestParams = getSignatureMap();
+        requestParams.put("q", "code/account/wblog");
+        requestParams.put("page", String.valueOf(page));
+        requestParams.put(Urls.ACTION, "users");
+
+        String url = Urls.ACTION_INDEX;
+        GsonGetRequest request = createGsonGetRequest(url, requestParams, Micro.class, listener);
         request.setTag(tag);
         requestQueue.add(request);
     }

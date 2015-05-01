@@ -32,6 +32,7 @@ public class MyFragment extends Fragment implements View.OnClickListener {
     private final static String TAG = "MyFragment";
 
     private View layoutMyWealth;
+    private View layoutMyMicroCurrency;
     private TextView tvMyFinancialManagement;
     private TextView tvMyBankCard;
     private TextView tvMyStandInsideLetter;
@@ -98,10 +99,12 @@ public class MyFragment extends Fragment implements View.OnClickListener {
         btnReturnSearch.setOnClickListener(this);
 
         layoutMyWealth = view.findViewById(R.id.layoutMyWealth);
+        layoutMyMicroCurrency = view.findViewById(R.id.layoutMyMicroCurrency);
         tvMyFinancialManagement = (TextView) view.findViewById(R.id.tvMyFinancialManagement);
         tvMyBankCard = (TextView) view.findViewById(R.id.tvMyBankCard);
         tvMyStandInsideLetter = (TextView) view.findViewById(R.id.tvMyStandInsideLetter);
         layoutMyWealth.setOnClickListener(this);
+        layoutMyMicroCurrency.setOnClickListener(this);
         tvMyFinancialManagement.setOnClickListener(this);
         tvMyBankCard.setOnClickListener(this);
         tvMyStandInsideLetter.setOnClickListener(this);
@@ -192,6 +195,9 @@ public class MyFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.layoutMyWealth:
                 UIHelper.showMyWealth(getActivity());
+                break;
+            case R.id.layoutMyMicroCurrency:
+                UIHelper.showMyMicroCurrencyHistory(getActivity(), data.wb);
                 break;
             case R.id.tvMyFinancialManagement:
                 UIHelper.showMyFinancialManagemen(getActivity());

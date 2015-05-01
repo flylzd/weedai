@@ -12,23 +12,31 @@ public class MyWealthActivity extends BaseActivity implements View.OnClickListen
 
     private View layoutRecharge;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_wealth);
 
-        init();
+        initView();
     }
 
-    private void init() {
 
+    @Override
+    protected int getActionBarTitle() {
+        return R.string.title_my_wealth;
+    }
+
+    @Override
+    protected boolean hasBackButton() {
+        return true;
+    }
+
+    private void initView() {
         layoutRecharge = findViewById(R.id.layoutRecharge);
         layoutRecharge.setOnClickListener(this);
     }
 
-    protected boolean hasBackButton() {
-        return true;
-    }
 
     @Override
     public void onClick(View v) {

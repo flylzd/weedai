@@ -2,19 +2,43 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center_vertical"
     android:orientation="horizontal"
     android:paddingBottom="8dp"
     android:paddingLeft="20dp"
     android:paddingTop="8dp">
 
     <ImageView
+        android:id="@+id/imgType"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:scaleType="centerCrop"
-        android:src="@drawable/ic_launcher" />
+        android:scaleType="centerCrop" />
 
     <TextView
+        android:id="@+id/tvMicroType"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:text="签到"
+        android:textColor="@color/main_text_black"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/tvMicroTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:text="2015-04-30 08:33:22"
+        android:textColor="@color/main_text_black"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/tvMicroNum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:text="3"
+        android:textColor="@color/main_text_black"
+        android:textSize="18sp" />
 
 </LinearLayout>
