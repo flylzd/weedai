@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tvSecurityLevelTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/main_text"
+        android:gravity="center"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:textSize="20sp" />
+
+
+    <RelativeLayout
+        android:id="@+id/layoutSecurityName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/selector_bg_layout"
+        android:clickable="true"
+        android:padding="10dp">
+
+        <ImageView
+            android:id="@+id/imgSecurityName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp"
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/icon_security_not_set" />
+
+        <TextView
+            android:id="@+id/tvSecurityNameTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/imgSecurityName"
+            android:text="实名认证"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tvSecurityName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvSecurityNameTitle"
+            android:layout_marginTop="8dp"
+            android:layout_toRightOf="@+id/imgSecurityName"
+            android:text="暂未认证"
+            android:textSize="16sp" />
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp"
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_arrow_right" />
+
+    </RelativeLayout>
+
+    <include layout="@layout/view_horizontal_line" />
+
+    <RelativeLayout
+        android:id="@+id/layoutSecurityPhone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/selector_bg_layout"
+        android:clickable="true"
+        android:padding="10dp">
+
+        <ImageView
+            android:id="@+id/imgSecurityPhone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp"
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/icon_security_not_set" />
+
+        <TextView
+            android:id="@+id/tvSecurityPhoneTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/imgSecurityPhone"
+            android:text="绑定手机"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tvSecurityPhone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvSecurityPhoneTitle"
+            android:layout_marginTop="8dp"
+            android:layout_toRightOf="@+id/imgSecurityPhone"
+            android:text="未设置，点击设置"
+            android:textSize="16sp" />
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp"
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_arrow_right" />
+
+    </RelativeLayout>
+
+    <include layout="@layout/view_horizontal_line" />
+
+    <RelativeLayout
+        android:id="@+id/layoutSecurityPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/selector_bg_layout"
+        android:clickable="true"
+        android:padding="10dp">
+
+        <ImageView
+            android:id="@+id/imgSecurityPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp"
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/icon_security_not_set" />
+
+        <TextView
+            android:id="@+id/tvSecurityPasswordTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/imgSecurityPassword"
+            android:text="提现密码"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tvSecurityPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvSecurityPasswordTitle"
+            android:layout_marginTop="8dp"
+            android:layout_toRightOf="@+id/imgSecurityPassword"
+            android:text="未设置，点击设置"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp"
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_arrow_right" />
+
+    </RelativeLayout>
+
+
+</LinearLayout>

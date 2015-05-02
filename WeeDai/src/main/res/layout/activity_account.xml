@@ -9,11 +9,46 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+
+        <RelativeLayout
+            android:id="@+id/layoutAccount"
+            style="@style/layoutAccount"
+            android:clickable="true">
+
+            <ImageView
+                android:id="@+id/imgAvatar"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_launcher" />
+
+            <TextView
+                android:id="@+id/tvRealName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/imgAvatar"
+                android:layout_marginTop="8dp"
+                android:text="真实姓名:" />
+
+            <TextView
+                android:id="@+id/tvSex"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/imgAvatar"
+                android:layout_marginStart="60dp"
+                android:layout_marginTop="8dp"
+                android:layout_toRightOf="@+id/tvRealName"
+                android:text="性别: 女" />
+
+
+        </RelativeLayout>
+
+
         <include layout="@layout/view_horizontal_line" />
 
         <RelativeLayout
             android:id="@+id/layoutAccountDateBirth"
-            style="@style/layoutUser"
+            style="@style/layoutAccount"
             android:clickable="true">
 
             <TextView
@@ -37,7 +72,7 @@
 
         <RelativeLayout
             android:id="@+id/layoutAccountPhone"
-            style="@style/layoutUser"
+            style="@style/layoutAccount"
             android:clickable="true">
 
             <TextView
@@ -61,7 +96,7 @@
 
         <RelativeLayout
             android:id="@+id/layoutAccountEmail"
-            style="@style/layoutUser"
+            style="@style/layoutAccount"
             android:clickable="true">
 
             <TextView
@@ -83,9 +118,9 @@
 
 
         <RelativeLayout
-            android:layout_marginTop="20dp"
             android:id="@+id/layoutAccountModifyLoginPassword"
-            style="@style/layoutUser"
+            style="@style/layoutAccount"
+            android:layout_marginTop="20dp"
             android:clickable="true">
 
             <TextView
@@ -108,7 +143,7 @@
 
         <RelativeLayout
             android:id="@+id/layoutAccountPasswordProtection"
-            style="@style/layoutUser"
+            style="@style/layoutAccount"
             android:clickable="true">
 
             <TextView
@@ -133,7 +168,7 @@
 
         <RelativeLayout
             android:id="@+id/layoutAccountPasswordManagementGestures"
-            style="@style/layoutUser"
+            style="@style/layoutAccount"
             android:clickable="true">
 
             <TextView

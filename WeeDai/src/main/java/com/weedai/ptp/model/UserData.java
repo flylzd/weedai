@@ -12,10 +12,14 @@ public class UserData implements Serializable {
     public String use_money;
     public String phone;
     public int avatar_status;
-    public boolean phone_status;
+//    public boolean phone_status;
     public boolean email_status;
     public int vip_status;
     public int credit;
     public String touxiang;
+
+    public String paypassword; // null为没设置 其他为已设置
+    public boolean phone_status; //  1为已经手机认证
+    public boolean real_status;  //1为已经实名认证
 
 }

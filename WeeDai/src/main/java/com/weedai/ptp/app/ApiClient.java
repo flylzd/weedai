@@ -13,7 +13,12 @@ import com.weedai.ptp.model.BaseModel;
 import com.weedai.ptp.model.FinancialManager;
 import com.weedai.ptp.model.Invest;
 import com.weedai.ptp.model.Micro;
+import com.weedai.ptp.model.Money;
+import com.weedai.ptp.model.MyWeallth;
 import com.weedai.ptp.model.ReceivableSearch;
+import com.weedai.ptp.model.SecurityLevel;
+import com.weedai.ptp.model.SecurityPhone;
+import com.weedai.ptp.model.SignIn;
 import com.weedai.ptp.model.User;
 import com.weedai.ptp.model.Valicode;
 import com.weedai.ptp.utils.AppUtil;
@@ -90,10 +95,30 @@ public class ApiClient {
         requestParams.put(Urls.ACTION, "users");
 
         String url = Urls.ACTION_INDEX;
-        GsonPostRequest request = createGsonPostRequest(url, requestParams, Invest.class, listener);
+        GsonPostRequest request = createGsonPostRequest(url, requestParams, BaseModel.class, listener);
         request.setTag(tag);
         requestQueue.add(request);
     }
+
+
+    /**
+     * 每天签到
+     */
+    public static void signIn(String tag, ResponseListener listener) {
+
+        listener.onStarted();
+
+        Map<String, String> requestParams = getSignatureMap();
+        requestParams.put("t", String.valueOf((int) Math.random() * 10 + 1));
+        requestParams.put("act", "ajaxbaidu");
+        requestParams.put(Urls.ACTION, "dayqiandao");
+
+        String url = Urls.ACTION_INDEX;
+        GsonPostRequest request = createGsonPostRequest(url, requestParams, SignIn.class, listener);
+        request.setTag(tag);
+        requestQueue.add(request);
+    }
+
 
     /**
      * 投资信息获取
@@ -183,10 +208,27 @@ public class ApiClient {
         requestParams.put(Urls.ACTION, "users");
 
         String url = Urls.ACTION_INDEX;
-        GsonGetRequest request = createGsonGetRequest(url, requestParams, ReceivableSearch.class, listener);
+        GsonGetRequest request = createGsonGetRequest(url, requestParams, Money.class, listener);
         request.setTag(tag);
         requestQueue.add(request);
     }
+
+    /**
+     * 我的财富
+     */
+    public static void getMyWealth(String tag, ResponseListener listener) {
+        listener.onStarted();
+
+        Map<String, String> requestParams = getSignatureMap();
+        requestParams.put("q", "action/checkcaifu");
+        requestParams.put(Urls.ACTION, "users");
+
+        String url = Urls.ACTION_INDEX;
+        GsonGetRequest request = createGsonGetRequest(url, requestParams, MyWeallth.class, listener);
+        request.setTag(tag);
+        requestQueue.add(request);
+    }
+
 
     /**
      * 理财管理-成功投资的借款
@@ -240,6 +282,58 @@ public class ApiClient {
         request.setTag(tag);
         requestQueue.add(request);
     }
+
+
+    /**
+     * 账户安全
+     */
+    public static void getSecurityLevel(String tag, ResponseListener listener) {
+        listener.onStarted();
+
+        Map<String, String> requestParams = getSignatureMap();
+        requestParams.put(Urls.ACTION, "users");
+
+        String url = Urls.ACTION_INDEX;
+        GsonGetRequest request = createGsonGetRequest(url, requestParams, User.class, listener);
+        request.setTag(tag);
+        requestQueue.add(request);
+    }
+
+
+    /**
+     * 获取手机验证码
+     */
+    public static void getPhoneVerificationCode(String tag, String phonenum, ResponseListener listener) {
+        listener.onStarted();
+
+        Map<String, String> requestParams = getSignatureMap();
+        requestParams.put("phonenum", phonenum);
+        requestParams.put(Urls.ACTION, "ajaxphonecheck");
+
+        String url = Urls.ACTION_INDEX;
+        GsonGetRequest request = createGsonGetRequest(url, requestParams, SecurityPhone.class, listener);
+        request.setTag(tag);
+        requestQueue.add(request);
+    }
+
+    /**
+     * 绑定手机验证
+     */
+    public static void bindingPhone(String tag, String phone, String valicodes, ResponseListener listener) {
+        listener.onStarted();
+
+        Map<String, String> requestParams = getSignatureMap();
+        requestParams.put("phone", phone);
+        requestParams.put("valicodes", valicodes);
+        requestParams.put("q", "code/user/phone_status");
+        requestParams.put(Urls.ACTION, "users");
+
+        String url = Urls.ACTION_INDEX;
+        GsonPostRequest request = createGsonPostRequest(url, requestParams, SecurityPhone.class, listener);
+        request.setTag(tag);
+        requestQueue.add(request);
+    }
+
 
     /**
      * 获取英雄榜信息

@@ -1,6 +1,8 @@
 package com.weedai.ptp.ui.fragment;
 
 
+import android.app.ProgressDialog;
+import android.nfc.Tag;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -12,15 +14,27 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.error.VolleyError;
 import com.weedai.ptp.R;
+import com.weedai.ptp.app.ApiClient;
+import com.weedai.ptp.constant.Config;
+import com.weedai.ptp.constant.Constant;
+import com.weedai.ptp.model.Invest;
+import com.weedai.ptp.model.SignIn;
 import com.weedai.ptp.utils.UIHelper;
+import com.weedai.ptp.volley.ResponseListener;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class HomeFragment extends Fragment implements View.OnClickListener {
 
+    private final static String TAG = "HomeFragment";
+
+    public static boolean isLoginFromHome;
 
     private ViewPager viewPager;
     private ViewPagerAdapter viewPagerAdapter;
@@ -29,24 +43,28 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     private ImageView[] indicatorImgs = new ImageView[INDICATOR_COUNT];//存放引到图片数组
 
     private ImageView imgYou;
+    private ImageView imgSign;
     private ImageView imgMyAccount;
     private ImageView imgInformation;
     private ImageView imgNotice;
 
     private RelativeLayout layoutInformation;
 
+    private TextView tvSign;
+    private TextView tvMyAccount;
+
+    private ProgressDialog progressDialog;
 
     public static HomeFragment newInstance() {
         HomeFragment fragment = new HomeFragment();
         return fragment;
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-
         View view = inflater.inflate(R.layout.fragment_home, container, false);
+        System.out.println("111111111111111111111111111111111");
         return view;
     }
 
@@ -54,8 +72,28 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        System.out.println("HomeFragment onViewCreated");
         init(view);
 //        loadData();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        System.out.println("HomeFragment onResume");
+
+        if (Config.isLogin) {
+            tvMyAccount.setText("已登录");
+            if (Config.isSignIn) {
+                tvSign.setText("今日已签");
+            } else {
+                tvSign.setText("今日未签");
+            }
+        } else {
+            tvMyAccount.setText(getActivity().getString(R.string.home_my_account_right));
+            tvSign.setText(getActivity().getString(R.string.home_my_account_right));
+        }
     }
 
     private void init(View view) {
@@ -83,17 +121,34 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         initIndicator(view);
 
         imgYou = (ImageView) view.findViewById(R.id.imgYou);
+        imgSign = (ImageView) view.findViewById(R.id.imgSign);
         imgMyAccount = (ImageView) view.findViewById(R.id.imgMyAccount);
         imgInformation = (ImageView) view.findViewById(R.id.imgInformation);
         imgNotice = (ImageView) view.findViewById(R.id.imgNotice);
 
         imgYou.setOnClickListener(this);
+        imgSign.setOnClickListener(this);
         imgMyAccount.setOnClickListener(this);
         imgInformation.setOnClickListener(this);
         imgNotice.setOnClickListener(this);
 
         layoutInformation = (RelativeLayout) view.findViewById(R.id.layoutInformation);
         layoutInformation.setOnClickListener(this);
+
+        tvSign = (TextView) view.findViewById(R.id.tvSign);
+        tvMyAccount = (TextView) view.findViewById(R.id.tvMyAccount);
+//        if (Config.isLogin) {
+//            tvMyAccount.setText("已登录");
+//            if (Config.isSignIn) {
+//                tvSign.setText("今日已签");
+//            } else {
+//                tvSign.setText("今日未签");
+//            }
+//        } else {
+//            tvMyAccount.setText(getActivity().getString(R.string.home_my_account_right));
+//            tvSign.setText(getActivity().getString(R.string.home_my_account_right));
+//        }
+        System.out.println("22222222222222222222222222222222");
     }
 
 
@@ -131,8 +186,27 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 UIHelper.showOptimizingFinancial(getActivity());
                 break;
 
+            case R.id.imgSign:
+
+                if (Config.isLogin) {
+                    if (Config.isSignIn) {  //成功签到
+                        return;
+                    }
+                    signIn();  //签到
+
+                } else {  // 未登录
+                    HomeFragment.isLoginFromHome = true;
+                    UIHelper.showLogin(getActivity());
+                }
+                break;
+
             case R.id.imgMyAccount:
-                UIHelper.showAccount(getActivity());
+                if (Config.isLogin) {
+                    UIHelper.showAccount(getActivity());
+                } else {
+                    HomeFragment.isLoginFromHome = true;
+                    UIHelper.showLogin(getActivity());
+                }
                 break;
 
             case R.id.imgInformation:
@@ -147,6 +221,40 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 UIHelper.showArticle(getActivity());
                 break;
         }
+    }
+
+    private void signIn() {
+        ApiClient.signIn(TAG, new ResponseListener() {
+            @Override
+            public void onStarted() {
+                progressDialog = ProgressDialog.show(getActivity(), null, "正在签到...");
+            }
+
+            @Override
+            public void onResponse(Object response) {
+                progressDialog.dismiss();
+
+                SignIn result = (SignIn) response;
+                if (result.code != Constant.CodeResult.SUCCESS) {
+                    Toast.makeText(getActivity(), result.message, Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (result.message.equals("success")) {
+                    Config.isSignIn = true;
+                    tvSign.setText("今日已签");
+                    Toast.makeText(getActivity(), "今日签到获得奖励", Toast.LENGTH_SHORT).show();
+                } else if (result.message.equals("signuped")) {
+                    Config.isSignIn = true;
+                    tvSign.setText("今日已签");
+                }
+            }
+
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                progressDialog.dismiss();
+            }
+        });
     }
 
     private class ViewPagerAdapter extends PagerAdapter {

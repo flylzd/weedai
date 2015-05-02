@@ -19,9 +19,12 @@ import com.weedai.ptp.ui.activity.MyBankCardActivity;
 import com.weedai.ptp.ui.activity.MyFinancialManagementActivity;
 import com.weedai.ptp.ui.activity.MyMicroCurrencyHistoryActivity;
 import com.weedai.ptp.ui.activity.MyRechargeActivity;
+import com.weedai.ptp.ui.activity.MyStandInsideLetterActivity;
 import com.weedai.ptp.ui.activity.MyWealthActivity;
 import com.weedai.ptp.ui.activity.ReceivableSearchActivity;
 import com.weedai.ptp.ui.activity.RegisterActivity;
+import com.weedai.ptp.ui.activity.SecurityLevelActivity;
+import com.weedai.ptp.ui.activity.SecurityPhoneActivity;
 
 public class UIHelper {
 
@@ -41,12 +44,14 @@ public class UIHelper {
         context.startActivity(intent);
     }
 
-    public static void showMyWealth(Context context) {
+    public static void showMyWealth(Context context, String amount, String wb) {
         Intent intent = new Intent(context, MyWealthActivity.class);
+        intent.putExtra("amount", amount);
+        intent.putExtra("wb", wb);
         context.startActivity(intent);
     }
 
-    public static void showMyMicroCurrencyHistory(Context context,String wb) {
+    public static void showMyMicroCurrencyHistory(Context context, String wb) {
         Intent intent = new Intent(context, MyMicroCurrencyHistoryActivity.class);
         intent.putExtra("wb", wb);
         context.startActivity(intent);
@@ -83,6 +88,30 @@ public class UIHelper {
      */
     public static void showMyFinancialManagemen(Context context) {
         Intent intent = new Intent(context, MyFinancialManagementActivity.class);
+        context.startActivity(intent);
+    }
+
+    /**
+     * 站内信
+     */
+    public static void showMyStandInsideLetter(Context context) {
+        Intent intent = new Intent(context, MyStandInsideLetterActivity.class);
+        context.startActivity(intent);
+    }
+
+    /**
+     * 账户安全
+     */
+    public static void showSecurityLevel(Context context) {
+        Intent intent = new Intent(context, SecurityLevelActivity.class);
+        context.startActivity(intent);
+    }
+
+    /**
+     * 绑定手机
+     */
+    public static void showSecurityPhone(Context context) {
+        Intent intent = new Intent(context, SecurityPhoneActivity.class);
         context.startActivity(intent);
     }
 

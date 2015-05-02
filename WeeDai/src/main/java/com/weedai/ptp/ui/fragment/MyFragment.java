@@ -36,6 +36,8 @@ public class MyFragment extends Fragment implements View.OnClickListener {
     private TextView tvMyFinancialManagement;
     private TextView tvMyBankCard;
     private TextView tvMyStandInsideLetter;
+    private TextView tvMyLuckyDraw;
+    private View layoutSecurityLevel;
 
     private ImageView imgAvatar;
     private TextView tvUsername;
@@ -103,11 +105,15 @@ public class MyFragment extends Fragment implements View.OnClickListener {
         tvMyFinancialManagement = (TextView) view.findViewById(R.id.tvMyFinancialManagement);
         tvMyBankCard = (TextView) view.findViewById(R.id.tvMyBankCard);
         tvMyStandInsideLetter = (TextView) view.findViewById(R.id.tvMyStandInsideLetter);
+        tvMyLuckyDraw = (TextView) view.findViewById(R.id.tvMyLuckyDraw);
+        layoutSecurityLevel = view.findViewById(R.id.layoutSecurityLevel);
         layoutMyWealth.setOnClickListener(this);
         layoutMyMicroCurrency.setOnClickListener(this);
         tvMyFinancialManagement.setOnClickListener(this);
         tvMyBankCard.setOnClickListener(this);
         tvMyStandInsideLetter.setOnClickListener(this);
+        tvMyLuckyDraw.setOnClickListener(this);
+        layoutSecurityLevel.setOnClickListener(this);
     }
 
     private void loadData() {
@@ -125,7 +131,8 @@ public class MyFragment extends Fragment implements View.OnClickListener {
                     Toast.makeText(getActivity(), result.message, Toast.LENGTH_SHORT).show();
                     return;
                 }
-                data = result.data;
+                User.userInfo = result.data;
+                data = User.userInfo;
                 setUserInfo();
             }
         });
@@ -194,7 +201,7 @@ public class MyFragment extends Fragment implements View.OnClickListener {
                 UIHelper.showMyReceivableSearch(getActivity());
                 break;
             case R.id.layoutMyWealth:
-                UIHelper.showMyWealth(getActivity());
+                UIHelper.showMyWealth(getActivity(), data.use_money, data.wb);
                 break;
             case R.id.layoutMyMicroCurrency:
                 UIHelper.showMyMicroCurrencyHistory(getActivity(), data.wb);
@@ -206,7 +213,13 @@ public class MyFragment extends Fragment implements View.OnClickListener {
                 UIHelper.showMyBankCard(getActivity());
                 break;
             case R.id.tvMyStandInsideLetter:
+                UIHelper.showMyStandInsideLetter(getActivity());
+                break;
+            case R.id.tvMyLuckyDraw:
 //                UIHelper.showMyWealth(getActivity());
+                break;
+            case R.id.layoutSecurityLevel:
+                UIHelper.showSecurityLevel(getActivity());
                 break;
         }
     }

@@ -123,7 +123,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="40dp">
 
                 <Button
                     android:id="@+id/btnMoneyRecord"
@@ -233,6 +233,15 @@
 
                 <include layout="@layout/view_horizontal_line" />
 
+                <TextView
+                    android:id="@+id/tvMyLuckyDraw"
+                    style="@style/layoutUser"
+                    android:clickable="true"
+                    android:drawableRight="@drawable/ic_arrow_right"
+                    android:text="@string/user_lucky_draw" />
+
+                <include layout="@layout/view_horizontal_line" />
+
             </LinearLayout>
         </LinearLayout>
 
@@ -272,38 +281,51 @@
         </RelativeLayout>
 
         <RelativeLayout
+            android:id="@+id/layoutSecurityLevel"
             style="@style/layoutUser"
             android:background="@drawable/selector_btn_bg"
+            android:clickable="true"
             android:gravity="center_vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:paddingBottom="2dp"
+                android:paddingTop="2dp"
                 android:text="@string/user_account_security"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textSize="18sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
                 android:layout_marginEnd="40dp"
                 android:layout_toStartOf="@+id/tvSecurityLevel"
+                android:paddingBottom="2dp"
+                android:paddingTop="2dp"
                 android:text="安全等级"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/tvSecurityLevel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
                 android:layout_marginEnd="30dp"
                 android:text="低"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:visibility="invisible" />
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
                 android:src="@drawable/ic_arrow_right" />
 
         </RelativeLayout>

@@ -2,22 +2,21 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:paddingTop="@dimen/main_content_padding_top">
+    android:orientation="vertical">
 
     <LinearLayout
-        android:background="@color/main_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/main_text"
         android:orientation="horizontal">
 
         <TextView
-            android:paddingTop="4dp"
-            android:paddingBottom="4dp"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp"
             android:text="类型" />
 
         <View

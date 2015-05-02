@@ -115,6 +115,7 @@
                 android:layout_weight="1">
 
                 <ImageView
+                    android:id="@+id/imgSign"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
@@ -126,6 +127,7 @@
                     android:text="@string/home_sign_in_left" />
 
                 <TextView
+                    android:id="@+id/tvSign"
                     style="@style/textHomeRight"
                     android:layout_alignBottom="@+id/tvHomeSignInLeft"
                     android:layout_marginStart="30dp"
@@ -153,6 +155,7 @@
                     android:text="@string/home_my_account_left" />
 
                 <TextView
+                    android:id="@+id/tvMyAccount"
                     style="@style/textHomeRight"
                     android:layout_alignBottom="@+id/tvHomeMyAccountLeft"
                     android:layout_marginStart="30dp"
@@ -165,11 +168,11 @@
 
         <RelativeLayout
             android:id="@+id/layoutInformation"
-            android:clickable="true"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:background="@drawable/selector_btn_bg"
+            android:clickable="true"
             android:orientation="horizontal"
             android:paddingBottom="5dp"
             android:paddingLeft="10dp"
@@ -185,11 +188,11 @@
                 android:textSize="18sp" />
 
             <ImageView
-                android:layout_marginRight="4dp"
                 android:id="@+id/imgTitle"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tvTitle"
+                android:layout_marginRight="4dp"
                 android:layout_marginTop="4dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/bg_information" />
@@ -205,10 +208,10 @@
                 android:textSize="15sp" />
 
             <TextView
-                android:layout_marginTop="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tvTitle2"
+                android:layout_marginTop="5dp"
                 android:layout_toRightOf="@+id/imgTitle"
                 android:text="加强领导，狠抓落实"
                 android:textColor="@color/white"

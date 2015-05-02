@@ -17,7 +17,10 @@ import com.weedai.ptp.R;
 import com.weedai.ptp.app.ApiClient;
 import com.weedai.ptp.constant.Config;
 import com.weedai.ptp.constant.Constant;
+import com.weedai.ptp.model.BaseModel;
+import com.weedai.ptp.model.Invest;
 import com.weedai.ptp.model.Valicode;
+import com.weedai.ptp.ui.fragment.HomeFragment;
 import com.weedai.ptp.utils.UIHelper;
 import com.weedai.ptp.view.SimpleValidateCodeView;
 import com.weedai.ptp.view.ValidateCodeView;
@@ -53,6 +56,13 @@ public class LoginActivity extends Activity implements View.OnClickListener {
 
         initView();
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        HomeFragment.isLoginFromHome = false;
+        MainActivity.isLoginFromMain = false;
+        finish();
     }
 
     private void initView() {
@@ -111,10 +121,25 @@ public class LoginActivity extends Activity implements View.OnClickListener {
             public void onResponse(Object response) {
                 progressDialog.dismiss();
 
-                UIHelper.showMain(LoginActivity.this);
-                MainActivity.lastSelect = 1;
-                Config.isLogin = true;
-                finish();
+                BaseModel result = (BaseModel) response;
+                if (result.code != Constant.CodeResult.SUCCESS) {
+                    Toast.makeText(LoginActivity.this, result.message, Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (HomeFragment.isLoginFromHome) {
+                    Config.isLogin = true;
+                    finish();
+                    return;
+                }
+
+                if (MainActivity.isLoginFromMain) {
+//                UIHelper.showMain(LoginActivity.this);
+                    MainActivity.lastSelect = 1;
+                    Config.isLogin = true;
+                    finish();
+                    return;
+                }
             }
 
             @Override

@@ -24,6 +24,7 @@ public class MainActivity extends BaseActivity {
     private RadioGroup radioGroup;
 
     public static int lastSelect = 0;
+    public static boolean isLoginFromMain;
 
 
     @Override
@@ -38,6 +39,8 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
+
+        System.out.println("MainActivity onResume");
 
         switch (lastSelect) {
             case 0:
@@ -108,6 +111,7 @@ public class MainActivity extends BaseActivity {
                             setActionBarTitle(R.string.main_tab_my);
                             lastSelect = 1;
                         } else {
+                            MainActivity.isLoginFromMain = true;
                             UIHelper.showLogin(MainActivity.this);
                         }
                         break;

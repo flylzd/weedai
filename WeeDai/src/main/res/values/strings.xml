@@ -14,11 +14,14 @@
     <string name="title_financial_detail">理财详情</string>
     <string name="title_account">我的账号</string>
     <string name="title_micro_history">微币记录</string>
-    <string name="title_about">关于我们</string>
     <string name="title_receivable_searcht">回款查询</string>
     <string name="title_money_record">资金记录</string>
-    <string name="title_financial_management">理财管理</string>
     <string name="title_my_wealth">我的财富</string>
+    <string name="title_financial_management">理财管理</string>
+    <string name="title_my_stand_inside_letter">站内信</string>
+    <string name="title_security_level">账户安全</string>
+    <string name="title_security_phone">绑定手机</string>
+    <string name="title_about">关于我们</string>
 
     <string name="login_user_hint">手机号/邮箱/用户名</string>
     <string name="login_password_hint">请输入密码</string>
@@ -54,11 +57,11 @@
     <string name="sex_female">女</string>
 
     <string name="home_you_left">优选理财</string>
-    <string name="home_you_right">收益16.8%以上</string>
+    <string name="home_you_right">收益16.9%以上</string>
     <string name="home_ya_left">项目推荐</string>
     <string name="home_ya_right">本息保障</string>
     <string name="home_sign_in_left">每日签到</string>
-    <string name="home_sign_in_right">(今日未签)</string>
+    <string name="home_sign_in_right">(未登陆)</string>
     <string name="home_my_account_left">我的账号</string>
     <string name="home_my_account_right">(未登陆)</string>
     <string name="home_information">微贷资讯</string>
@@ -81,6 +84,7 @@
     <string name="user_financial_management">理财管理</string>
     <string name="user_bank_card">银行卡</string>
     <string name="user_stand_inside_letter">站内信</string>
+    <string name="user_lucky_draw">抽奖活动</string>
     <string name="user_account_security">账户安全</string>
     <string name="user_available_balance">可用余额%s元</string>
     <string name="user_available_balance_empty">暂无可用余额</string>
@@ -91,7 +95,7 @@
 
     <string name="user_my_wealth_total_amount">账户资金总额(元)</string>
     <string name="user_my_wealth_available_balance">账户可用余额(元)</string>
-    <string name="user_my_wealth_collecting_money">代收资金(元)</string>
+    <string name="user_my_wealth_collecting_money">待收资金(元)</string>
     <string name="user_my_wealth_freeze_funds">冻结资金(元)</string>
     <string name="user_my_wealth_my_micro_currency">我的微币(个)</string>
     <string name="user_my_wealth_available_micro_currency">可用微币</string>
@@ -144,6 +148,8 @@
     <string name="user_my_financial_borrowers_late_interest">逾期利息: ￥%s</string>
     <string name="user_my_financial_borrowers_late_days">逾期天数: %s</string>
     <string name="user_my_financial_borrowers_status">状态: %s</string>
+
+    <string name="user_security_level"> 你的账户安全等级为<![CDATA[ <b><font color="#ff5601">%s </font></b> ]]>,请完成设置</string>
 
 
     <string name="more_interest">利息计算器</string>

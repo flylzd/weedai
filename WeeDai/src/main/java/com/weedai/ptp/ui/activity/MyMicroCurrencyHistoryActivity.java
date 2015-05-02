@@ -45,7 +45,6 @@ public class MyMicroCurrencyHistoryActivity extends BaseActivity implements EndO
         if (getIntent().hasExtra("wb")) {
             wb = getIntent().getStringExtra("wb");
         }
-
         initView();
     }
 
