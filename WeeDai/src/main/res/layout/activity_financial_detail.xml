@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/windowBackground"
@@ -25,28 +26,28 @@
                     android:id="@+id/layoutFinancialYou"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
+                    android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp">
 
                     <ImageView
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/ic_circle_orange" />
+                        android:src="@drawable/icon_you" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
-                        android:layout_centerVertical="true"
-                        android:text="优"
-                        android:textColor="@color/white"
-                        android:textSize="18dp" />
+                    <!--<TextView-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_centerHorizontal="true"-->
+                        <!--android:layout_centerVertical="true"-->
+                        <!--android:text="优"-->
+                        <!--android:textColor="@color/white"-->
+                        <!--android:textSize="18dp" />-->
                 </RelativeLayout>
 
                 <TextView
                     android:id="@+id/tvTitle"
-                    android:layout_width="wrap_content"
+                    android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:layout_alignTop="@+id/layoutFinancialYou"
                     android:layout_marginStart="@dimen/financial_detail_title_margin_start"
@@ -54,7 +55,7 @@
                     android:gravity="center_vertical"
                     android:text="优选理财计划12月1-15-4"
                     android:textColor="@color/financial_main_text_black"
-                    android:textSize="13sp" />
+                    android:textSize="15sp" />
 
                 <TextView
                     android:id="@+id/tvBreakEvenIcon"
@@ -155,7 +156,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="4dp"
-                        android:text="介绍" />
+                        android:text="介绍"
+                        android:textSize="16sp" />
 
                     <include layout="@layout/view_horizontal_line" />
 
@@ -166,8 +168,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/layoutFinancialAbout"
+                    android:paddingBottom="3dp"
                     android:paddingEnd="@dimen/financial_detail_about_title_padding_end"
-                    android:text="@string/financial_detail_about_distance_selling_title" />
+                    android:paddingTop="3dp"
+                    android:text="@string/financial_detail_about_distance_selling_title"
+                    android:textColor="@color/main_text" />
 
                 <TextView
                     android:id="@+id/tvAboutDistanceSelling"
@@ -175,31 +180,62 @@
                     android:layout_height="wrap_content"
                     android:layout_alignBaseline="@+id/tvAboutDistanceSellingTitle"
                     android:layout_toEndOf="@+id/tvAboutDistanceSellingTitle"
-                    android:text="正在进行中..." />
+                    android:text="正在进行中..."
+                    android:textColor="@color/main_text_black"
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/tvAboutProgressTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/tvAboutDistanceSellingTitle"
+                    android:paddingBottom="3dp"
                     android:paddingEnd="@dimen/financial_detail_about_title_padding_end"
-                    android:text="@string/financial_detail_about_progress_title" />
+                    android:paddingTop="3dp"
+                    android:text="@string/financial_detail_about_progress_title"
+                    android:textColor="@color/main_text" />
 
-                <TextView
-                    android:id="@+id/tvAboutProgress"
-                    android:layout_width="wrap_content"
+                <com.weedai.ptp.view.NumberProgressBar
+                    android:id="@+id/numberProgressBar"
+                    android:layout_width="200dp"
                     android:layout_height="wrap_content"
-                    android:layout_alignBaseline="@+id/tvAboutProgressTitle"
+                    android:layout_alignTop="@+id/tvAboutProgressTitle"
                     android:layout_toEndOf="@+id/tvAboutProgressTitle"
-                    android:text="正在进行中..." />
+                    android:gravity="center_vertical"
+                    android:paddingTop="10dp"
+
+                    custom:max="100.0"
+                    custom:progress="20"
+
+                    custom:progress_reached_bar_height="6dp"
+                    custom:progress_reached_color="#3498DB"
+                    custom:progress_text_color="#ff5601"
+                    custom:progress_text_offset="1dp"
+
+                    custom:progress_text_size="13sp"
+                    custom:progress_text_visibility="visible"
+                    custom:progress_unreached_bar_height="4dp"
+                    custom:progress_unreached_color="#CCCCCC" />
+
+                <!--<LinearLayout-->
+                <!--android:layout_alignBaseline="@+id/tvAboutProgressTitle"-->
+                <!--android:layout_toEndOf="@+id/tvAboutProgressTitle"-->
+                <!--android:gravity="center_vertical"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content">-->
+
+                <!--</LinearLayout>-->
 
                 <TextView
                     android:id="@+id/tvAboutAuditTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/tvAboutProgressTitle"
+                    android:paddingBottom="3dp"
                     android:paddingEnd="@dimen/financial_detail_about_title_padding_end"
-                    android:text="@string/financial_detail_about_audit_title" />
+                    android:paddingTop="3dp"
+                    android:text="@string/financial_detail_about_audit_title"
+                    android:textColor="@color/main_text" />
 
                 <TextView
                     android:id="@+id/tvAboutAudit"
@@ -207,15 +243,19 @@
                     android:layout_height="wrap_content"
                     android:layout_alignBaseline="@+id/tvAboutAuditTitle"
                     android:layout_toEndOf="@+id/tvAboutAuditTitle"
-                    android:text="1天17小时38分钟" />
+                    android:text="1天17小时38分钟"
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/tvAboutReviewTimeTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/tvAboutAuditTitle"
+                    android:paddingBottom="3dp"
                     android:paddingEnd="@dimen/financial_detail_about_title_padding_end"
-                    android:text="@string/financial_detail_about_review_time_title" />
+                    android:paddingTop="3dp"
+                    android:text="@string/financial_detail_about_review_time_title"
+                    android:textColor="@color/main_text" />
 
                 <TextView
                     android:id="@+id/tvAboutReviewTime"
@@ -223,7 +263,8 @@
                     android:layout_height="wrap_content"
                     android:layout_alignBaseline="@+id/tvAboutReviewTimeTitle"
                     android:layout_toEndOf="@+id/tvAboutReviewTimeTitle"
-                    android:text="2015-01-07 10:00" />
+                    android:text="2015-01-07 10:00"
+                    android:textSize="18sp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -243,6 +284,7 @@
                         android:text="本息保障计划协议"
                         android:textColor="#f14728" />
                 </LinearLayout>
+
 
             </RelativeLayout>
 
@@ -267,7 +309,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="4dp"
-                        android:text="收益处理" />
+                        android:text="收益处理"
+                        android:textSize="16sp" />
 
                     <include layout="@layout/view_horizontal_line" />
                 </LinearLayout>
@@ -289,6 +332,8 @@
                     android:layout_marginStart="50dp"
                     android:drawableLeft="@drawable/icon_hook"
                     android:drawablePadding="4dp"
+                    android:paddingBottom="3dp"
+                    android:paddingTop="6dp"
                     android:text="按月付息，到期还本"
                     android:textColor="@color/financial_main_text_black" />
 
@@ -300,6 +345,8 @@
                     android:layout_marginStart="50dp"
                     android:drawableLeft="@drawable/icon_hook"
                     android:drawablePadding="4dp"
+                    android:paddingBottom="3dp"
+                    android:paddingTop="3dp"
                     android:text="投资微币奖励"
                     android:textColor="@color/financial_main_text_black" />
 
@@ -311,6 +358,8 @@
                     android:layout_marginStart="50dp"
                     android:drawableLeft="@drawable/icon_hook"
                     android:drawablePadding="4dp"
+                    android:paddingBottom="3dp"
+                    android:paddingTop="3dp"
                     android:text="抽奖活动资格"
                     android:textColor="@color/financial_main_text_black" />
 
@@ -322,6 +371,8 @@
                     android:layout_marginStart="50dp"
                     android:drawableLeft="@drawable/icon_hook"
                     android:drawablePadding="4dp"
+                    android:paddingBottom="3dp"
+                    android:paddingTop="3dp"
                     android:text="到期转入微E贷账户，随时提现"
                     android:textColor="@color/financial_main_text_black" />
 
@@ -349,7 +400,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="4dp"
-                        android:text="费率说明" />
+                        android:text="费率说明"
+                        android:textSize="16sp" />
 
                     <include layout="@layout/view_horizontal_line" />
 
@@ -372,6 +424,8 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/tvRateTitle"
                     android:layout_marginStart="50dp"
+                    android:paddingBottom="3dp"
+                    android:paddingTop="3dp"
                     android:text="加入费率 0.00%"
                     android:textColor="@color/financial_main_text_black" />
 
@@ -381,6 +435,8 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/tvRate1"
                     android:layout_marginStart="50dp"
+                    android:paddingBottom="3dp"
+                    android:paddingTop="3dp"
                     android:text="服务费率 0.00%"
                     android:textColor="@color/financial_main_text_black" />
 
@@ -390,6 +446,8 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/tvRate2"
                     android:layout_marginStart="50dp"
+                    android:paddingBottom="3dp"
+                    android:paddingTop="3dp"
                     android:text="退出费率 0.00%"
                     android:textColor="@color/financial_main_text_black" />
 
@@ -418,7 +476,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="4dp"
-                        android:text="计划介绍" />
+                        android:text="计划介绍"
+                        android:textSize="16sp" />
 
                     <include layout="@layout/view_horizontal_line" />
                 </LinearLayout>
@@ -427,6 +486,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textSize="16sp"
                     android:layout_below="@+id/layoutPlanAbout"
                     android:paddingEnd="@dimen/financial_detail_about_title_padding_end"
                     android:text="@string/financial_detail_plan_about"
@@ -448,7 +508,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
+
             android:background="#fddad4">
 
             <ImageView

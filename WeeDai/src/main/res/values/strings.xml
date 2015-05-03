@@ -12,6 +12,7 @@
 
     <string name="title_financial">优选理财</string>
     <string name="title_financial_detail">理财详情</string>
+    <string name="title_finance_investment">投资理财</string>
     <string name="title_account">我的账号</string>
     <string name="title_micro_history">微币记录</string>
     <string name="title_receivable_searcht">回款查询</string>
@@ -21,7 +22,10 @@
     <string name="title_my_stand_inside_letter">站内信</string>
     <string name="title_security_level">账户安全</string>
     <string name="title_security_phone">绑定手机</string>
+    <string name="title_change_login_password">修改登录密码</string>
     <string name="title_about">关于我们</string>
+    <string name="title_information">资讯</string>
+    <string name="title_lucky_draw">抽奖</string>
 
     <string name="login_user_hint">手机号/邮箱/用户名</string>
     <string name="login_password_hint">请输入密码</string>
@@ -55,6 +59,12 @@
 
     <string name="sex_male">男</string>
     <string name="sex_female">女</string>
+
+    <string name="change_password_old_password">旧&#160;&#160;密&#160;&#160;码：</string>
+    <string name="change_password_new_password">新&#160;&#160;密&#160;&#160;码：</string>
+    <string name="change_password_confirm_password">确认密码：</string>
+    <string name="change_password_verification_code">验&#160;&#160;证&#160;&#160;码：</string>
+
 
     <string name="home_you_left">优选理财</string>
     <string name="home_you_right">收益16.9%以上</string>
@@ -216,7 +226,12 @@
     <string name="hero_two">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;在每一个英雄榜里，我们按照投资人当期的投资积分排名，投资积分越多，排名越靠前。按投资积分从第一名到第十名。</string>
     <string name="hero_hint">获得积分公式：投资积分=当期内投资额*标期月份</string>
 
+    <string name="award_number_hint">您还有<![CDATA[ <b><font color="#ff5601">%s</font></b>]]>次抽奖机会</string>
+    <string name="award_hint">1. 活动时间: 2014年12月30日零点开始到2015年3月15日\n
+                              2. 在微E贷投资任意借款或优选理财，超过5000元，便有一次抽奖机会。(如投资10000元，即可获得两次抽奖机会)\n
+                              3. 每抽奖一次，抽奖次数减少一个，所获得奖品客服将为您及时处理</string>
 
     <string name="message_waiting">正在加载数据.....</string>
+    <string name="message_submit">正在提交数据.....</string>
 
 </resources>

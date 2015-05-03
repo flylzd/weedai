@@ -1,6 +1,8 @@
 package com.weedai.ptp.ui.fragment;
 
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -16,6 +18,8 @@ public class MoreFragment extends Fragment implements View.OnClickListener {
 
 
     private RelativeLayout layoutAbout;
+    private RelativeLayout layoutWebsite;
+    private RelativeLayout layoutPhone;
 
 
     public static MoreFragment newInstance() {
@@ -42,7 +46,11 @@ public class MoreFragment extends Fragment implements View.OnClickListener {
     private void init(View view) {
 
         layoutAbout = (RelativeLayout) view.findViewById(R.id.layoutAbout);
+        layoutWebsite = (RelativeLayout) view.findViewById(R.id.layoutWebsite);
+        layoutPhone = (RelativeLayout) view.findViewById(R.id.layoutPhone);
         layoutAbout.setOnClickListener(this);
+        layoutWebsite.setOnClickListener(this);
+        layoutPhone.setOnClickListener(this);
 
     }
 
@@ -52,6 +60,19 @@ public class MoreFragment extends Fragment implements View.OnClickListener {
             case R.id.layoutAbout:
                 UIHelper.showAbout(getActivity());
                 break;
+            case R.id.layoutWebsite: {
+                String url = "http://www.weedai.com"; // web address
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse(url));
+                startActivity(intent);
+            }
+            break;
+            case R.id.layoutPhone: {
+                Intent intent = new Intent(Intent.ACTION_DIAL,Uri.parse("tel:4000881609"));
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+            }
+            break;
         }
     }
 }

@@ -38,6 +38,12 @@ public class ArticleDetailActivity extends BaseActivity {
         loadData();
     }
 
+    @Override
+    protected int getActionBarTitle() {
+        return R.string.title_information;
+    }
+
+    @Override
     protected boolean hasBackButton() {
         return true;
     }
@@ -72,7 +78,7 @@ public class ArticleDetailActivity extends BaseActivity {
                 System.out.println("content " + DataUtil.urlDecode(result.data.content));
                 // 载入这个html页面
 //                webView.loadData(htmlString, "text/html", "utf-8");
-                webView.loadDataWithBaseURL(null,htmlString, "text/html",  "utf-8", null);
+                webView.loadDataWithBaseURL(null, htmlString, "text/html", "utf-8", null);
             }
         });
     }

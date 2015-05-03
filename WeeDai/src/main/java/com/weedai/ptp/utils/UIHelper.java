@@ -9,10 +9,12 @@ import com.weedai.ptp.ui.activity.AboutActivity;
 import com.weedai.ptp.ui.activity.AccountActivity;
 import com.weedai.ptp.ui.activity.ArticleActivity;
 import com.weedai.ptp.ui.activity.ArticleDetailActivity;
+import com.weedai.ptp.ui.activity.ChangePasswordActivity;
 import com.weedai.ptp.ui.activity.FinancialActivity;
 import com.weedai.ptp.ui.activity.FinancialDetailActivity;
 import com.weedai.ptp.ui.activity.HeroActivity;
 import com.weedai.ptp.ui.activity.LoginActivity;
+import com.weedai.ptp.ui.activity.LuckyDrawActivity;
 import com.weedai.ptp.ui.activity.MainActivity;
 import com.weedai.ptp.ui.activity.MoneyRecordActivity;
 import com.weedai.ptp.ui.activity.MyBankCardActivity;
@@ -120,6 +122,22 @@ public class UIHelper {
      */
     public static void showAccount(Context context) {
         Intent intent = new Intent(context, AccountActivity.class);
+        context.startActivity(intent);
+    }
+
+    /**
+     * 修改登录密码
+     */
+    public static void showChangePassword(Context context) {
+        Intent intent = new Intent(context, ChangePasswordActivity.class);
+        context.startActivity(intent);
+    }
+
+    /**
+     * 抽奖
+     */
+    public static void showLuckyDraw(Context context) {
+        Intent intent = new Intent(context, LuckyDrawActivity.class);
         context.startActivity(intent);
     }
 

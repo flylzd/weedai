@@ -64,7 +64,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
-        System.out.println("111111111111111111111111111111111");
         return view;
     }
 
@@ -72,7 +71,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        System.out.println("HomeFragment onViewCreated");
         init(view);
 //        loadData();
     }
@@ -80,9 +78,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onResume() {
         super.onResume();
-
-        System.out.println("HomeFragment onResume");
-
         if (Config.isLogin) {
             tvMyAccount.setText("已登录");
             if (Config.isSignIn) {
@@ -106,6 +101,30 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         imageView3.setBackgroundResource(R.drawable.home_view3);
         ImageView imageView4 = new ImageView(getActivity());
         imageView4.setBackgroundResource(R.drawable.home_view4);
+        imageView1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                UIHelper.showLuckyDraw(getActivity());
+            }
+        });
+        imageView2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                UIHelper.showLuckyDraw(getActivity());
+            }
+        });
+        imageView3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                UIHelper.showLuckyDraw(getActivity());
+            }
+        });
+        imageView4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                UIHelper.showLuckyDraw(getActivity());
+            }
+        });
         views.add(imageView1);
         views.add(imageView2);
         views.add(imageView3);
@@ -117,6 +136,12 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         viewPager.setOnPageChangeListener(new ViewPageChangeListener());
         viewPager.setOffscreenPageLimit(INDICATOR_COUNT);
         viewPager.setCurrentItem(0);
+        viewPager.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                UIHelper.showLogin(getActivity());
+            }
+        });
 
         initIndicator(view);
 
@@ -148,7 +173,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 //            tvMyAccount.setText(getActivity().getString(R.string.home_my_account_right));
 //            tvSign.setText(getActivity().getString(R.string.home_my_account_right));
 //        }
-        System.out.println("22222222222222222222222222222222");
     }
 
 
@@ -185,7 +209,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             case R.id.imgYou:
                 UIHelper.showOptimizingFinancial(getActivity());
                 break;
-
             case R.id.imgSign:
 
                 if (Config.isLogin) {
@@ -199,7 +222,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                     UIHelper.showLogin(getActivity());
                 }
                 break;
-
             case R.id.imgMyAccount:
                 if (Config.isLogin) {
                     UIHelper.showAccount(getActivity());
@@ -208,7 +230,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                     UIHelper.showLogin(getActivity());
                 }
                 break;
-
             case R.id.imgInformation:
                 UIHelper.showArticle(getActivity());
                 break;
@@ -216,7 +237,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             case R.id.imgNotice:
                 UIHelper.showArticle(getActivity());
                 break;
-
             case R.id.layoutInformation:
                 UIHelper.showArticle(getActivity());
                 break;

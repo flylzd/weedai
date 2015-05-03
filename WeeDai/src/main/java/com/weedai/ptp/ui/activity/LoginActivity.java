@@ -140,6 +140,9 @@ public class LoginActivity extends Activity implements View.OnClickListener {
                     finish();
                     return;
                 }
+
+                Config.isLogin = true;
+                finish();
             }
 
             @Override

@@ -116,9 +116,9 @@ public class SecurityLevelActivity extends BaseActivity implements View.OnClickL
                 imgSecurityPassword.setImageResource(R.drawable.icon_security_not_set);
             }
             if (level == 0) {
-                securityLevel = "底";
+                securityLevel = "低";
             } else if (level == 1) {
-                securityLevel = "底";
+                securityLevel = "低";
             } else if (level == 2) {
                 securityLevel = "中";
             } else if (level == 3) {

@@ -178,7 +178,12 @@ public class MyFragment extends Fragment implements View.OnClickListener {
             } else {
                 userMoney = String.format(getActivity().getString(R.string.user_available_balance), data.use_money);
             }
-            String wb = String.format(getActivity().getString(R.string.user_available_micro_currency), data.wb);
+            String wb;
+            if (TextUtils.isEmpty(data.wb)) {
+                wb = String.format(getActivity().getString(R.string.user_available_micro_currency), 0);
+            } else {
+                wb = String.format(getActivity().getString(R.string.user_available_micro_currency), data.wb);
+            }
             tvAvailableBalance.setText(userMoney);
             tvAvailableMicroCurrency.setText(wb);
 
@@ -216,7 +221,7 @@ public class MyFragment extends Fragment implements View.OnClickListener {
                 UIHelper.showMyStandInsideLetter(getActivity());
                 break;
             case R.id.tvMyLuckyDraw:
-//                UIHelper.showMyWealth(getActivity());
+                UIHelper.showLuckyDraw(getActivity());
                 break;
             case R.id.layoutSecurityLevel:
                 UIHelper.showSecurityLevel(getActivity());

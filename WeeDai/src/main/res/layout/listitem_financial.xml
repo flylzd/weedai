@@ -89,30 +89,31 @@
         </RelativeLayout>
 
 
-        <FrameLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:orientation="vertical">
 
             <FrameLayout
                 android:id="@+id/layoutProgress"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center">
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
 
                 <ImageView
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
                     android:layout_gravity="center"
-                    android:layout_marginBottom="10dp"
-                    android:background="@drawable/bg_border" />
+
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/bg_border" />
 
                 <com.weedai.ptp.view.SimpleWaveView
                     android:id="@+id/simpleWaveView"
-                    android:layout_width="74dp"
-                    android:layout_height="74dp"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="10dp" />
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:layout_gravity="center" />
 
                 <TextView
                     android:id="@+id/tvScale"
@@ -143,7 +144,6 @@
                 android:background="@drawable/bg_payment"
                 android:visibility="gone" />
 
-
             <Button
                 android:id="@+id/btnState"
                 android:layout_width="100dp"
@@ -156,7 +156,7 @@
                 android:paddingTop="4dp"
                 android:text="立即加入" />
 
-        </FrameLayout>
+        </LinearLayout>
 
 
     </LinearLayout>

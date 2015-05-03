@@ -9,6 +9,7 @@ import com.android.volley.error.VolleyError;
 import com.weedai.ptp.constant.Urls;
 import com.weedai.ptp.model.Article;
 import com.weedai.ptp.model.ArticleDetail;
+import com.weedai.ptp.model.Award;
 import com.weedai.ptp.model.BaseModel;
 import com.weedai.ptp.model.FinancialManager;
 import com.weedai.ptp.model.Invest;
@@ -92,6 +93,63 @@ public class ApiClient {
         requestParams.put("password", passwrod);
         requestParams.put("valicode", valicode);
         requestParams.put("q", "action/login");
+        requestParams.put(Urls.ACTION, "users");
+
+        String url = Urls.ACTION_INDEX;
+        GsonPostRequest request = createGsonPostRequest(url, requestParams, BaseModel.class, listener);
+        request.setTag(tag);
+        requestQueue.add(request);
+    }
+
+    /**
+     * 安全退出
+     */
+    public static void logout(String tag, ResponseListener listener) {
+
+        listener.onStarted();
+
+        Map<String, String> requestParams = getSignatureMap();
+        requestParams.put("q", "action/logout");
+        requestParams.put(Urls.ACTION, "users");
+
+        String url = Urls.ACTION_INDEX;
+        GsonPostRequest request = createGsonPostRequest(url, requestParams, BaseModel.class, listener);
+        request.setTag(tag);
+        requestQueue.add(request);
+    }
+
+    /**
+     * 验证用户名是否存在
+     */
+    public static void checkUsername(String tag, String username, ResponseListener listener) {
+
+        listener.onStarted();
+
+        Map<String, String> requestParams = getSignatureMap();
+        requestParams.put("username", username);
+        requestParams.put("q", "action/check_username");
+        requestParams.put(Urls.ACTION, "users");
+
+        String url = Urls.ACTION_INDEX;
+        GsonPostRequest request = createGsonPostRequest(url, requestParams, BaseModel.class, listener);
+        request.setTag(tag);
+        requestQueue.add(request);
+    }
+
+    /**
+     * 注册
+     */
+    public static void register(String tag, String email, String username, String password, String realname, int sex, ResponseListener listener) {
+
+        listener.onStarted();
+
+        Map<String, String> requestParams = getSignatureMap();
+        requestParams.put("email", email);
+        requestParams.put("username", username);
+        requestParams.put("password", password);
+        requestParams.put("realname", realname);
+        requestParams.put("sex", String.valueOf(sex));
+        requestParams.put("q", "action/reg");
         requestParams.put(Urls.ACTION, "users");
 
         String url = Urls.ACTION_INDEX;
@@ -334,6 +392,24 @@ public class ApiClient {
         requestQueue.add(request);
     }
 
+    /**
+     * 修改密码
+     */
+    public static void changePassword(String tag, String oldpassword, String newpassword, ResponseListener listener) {
+        listener.onStarted();
+
+        Map<String, String> requestParams = getSignatureMap();
+        requestParams.put("oldpassword", oldpassword);
+        requestParams.put("newpassword", newpassword);
+        requestParams.put("q", "code/user/userpwd");
+        requestParams.put(Urls.ACTION, "users");
+
+        String url = Urls.ACTION_INDEX;
+        GsonPostRequest request = createGsonPostRequest(url, requestParams, SecurityPhone.class, listener);
+        request.setTag(tag);
+        requestQueue.add(request);
+    }
+
 
     /**
      * 获取英雄榜信息
@@ -417,6 +493,41 @@ public class ApiClient {
         request.setTag(tag);
         requestQueue.add(request);
     }
+
+    /**
+     * 获得抽奖次数
+     */
+    public static void getAwardNumber(String tag, ResponseListener listener) {
+
+        listener.onStarted();
+
+        Map<String, String> requestParams = getSignatureMap();
+        requestParams.put("checkt", "1");
+        requestParams.put(Urls.ACTION, "priceget");
+
+        String url = Urls.ACTION_INDEX;
+        GsonPostRequest request = createGsonPostRequest(url, requestParams, Award.class, listener);
+        request.setTag(tag);
+        requestQueue.add(request);
+    }
+
+    /**
+     * 抽奖
+     */
+    public static void award(String tag, ResponseListener listener) {
+
+        listener.onStarted();
+
+        Map<String, String> requestParams = getSignatureMap();
+        requestParams.put("checkt", "0");
+        requestParams.put(Urls.ACTION, "priceget");
+
+        String url = Urls.ACTION_INDEX;
+        GsonPostRequest request = createGsonPostRequest(url, requestParams, Award.class, listener);
+        request.setTag(tag);
+        requestQueue.add(request);
+    }
+
 
     private static Map<String, String> getSignatureMap() {
 

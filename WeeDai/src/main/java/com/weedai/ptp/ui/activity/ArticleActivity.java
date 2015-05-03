@@ -59,6 +59,12 @@ public class ArticleActivity extends BaseActivity implements SwipeRefreshLayout.
         loadData();
     }
 
+    @Override
+    protected int getActionBarTitle() {
+        return R.string.title_information;
+    }
+
+    @Override
     protected boolean hasBackButton() {
         return true;
     }

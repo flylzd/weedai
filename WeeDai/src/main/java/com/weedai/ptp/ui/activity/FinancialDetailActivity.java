@@ -11,6 +11,7 @@ import com.android.volley.error.VolleyError;
 import com.weedai.ptp.R;
 import com.weedai.ptp.model.InvestList;
 import com.weedai.ptp.utils.DataUtil;
+import com.weedai.ptp.view.NumberProgressBar;
 import com.weedai.ptp.volley.ResponseListener;
 
 import java.text.SimpleDateFormat;
@@ -29,6 +30,7 @@ public class FinancialDetailActivity extends BaseActivity {
     private TextView tvFinancialLockPeriod;
 
     private TextView tvAboutDistanceSelling;  //距离发售
+    private NumberProgressBar numberProgressBar;  //进度
     private TextView tvAboutAudit;  //距离审核
     private TextView tvAboutReviewTime;  //复审时间R
 
@@ -95,6 +97,7 @@ public class FinancialDetailActivity extends BaseActivity {
 
 
         tvAboutDistanceSelling = (TextView) findViewById(R.id.tvAboutDistanceSelling);
+        numberProgressBar = (NumberProgressBar) findViewById(R.id.numberProgressBar);
         tvAboutAudit = (TextView) findViewById(R.id.tvAboutAudit);
         tvAboutReviewTime = (TextView) findViewById(R.id.tvAboutReviewTime);
 
@@ -124,6 +127,7 @@ public class FinancialDetailActivity extends BaseActivity {
             String succTime = sdf.format(new Date(successTime));
             tvAboutReviewTime.setText(succTime);
         }
+        numberProgressBar.setProgress(scale);
 
         tvReimbursement = (TextView) findViewById(R.id.tvReimbursement);
         int style = data.style;

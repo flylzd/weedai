@@ -140,7 +140,10 @@
 
             <include layout="@layout/view_horizontal_line" />
 
-            <RelativeLayout style="@style/layoutMore">
+            <RelativeLayout
+                android:id="@+id/layoutWebsite"
+                style="@style/layoutMore"
+                android:clickable="true">
 
                 <TextView
                     style="@style/textMoreLeft"
@@ -169,7 +172,10 @@
 
             <include layout="@layout/view_horizontal_line" />
 
-            <RelativeLayout style="@style/layoutMore">
+            <RelativeLayout
+                android:id="@+id/layoutPhone"
+                style="@style/layoutMore"
+                android:clickable="true">
 
                 <TextView
                     style="@style/textMoreLeft"

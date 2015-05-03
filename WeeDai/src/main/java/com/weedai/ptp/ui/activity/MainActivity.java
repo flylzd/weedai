@@ -1,8 +1,13 @@
 package com.weedai.ptp.ui.activity;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import com.lemon.aklib.widget.fragmentswitcher.FragmentStateArrayPagerAdapter;
 import com.lemon.aklib.widget.fragmentswitcher.FragmentSwitcher;
@@ -128,6 +133,41 @@ public class MainActivity extends BaseActivity {
                 }
             }
         });
+    }
+
+
+    // 定义一个变量，来标识是否退出
+    private static boolean isExit = false;
+    private static Handler mHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            isExit = false;
+        }
+    };
+
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            exit();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    private void exit() {
+        if (!isExit) {
+            isExit = true;
+            Toast.makeText(getApplicationContext(), "再按一次后退键退出程序",
+                    Toast.LENGTH_SHORT).show();
+            // 利用handler延迟发送更改状态信息
+            mHandler.sendEmptyMessageDelayed(0, 2000);
+        } else {
+            Log.e(TAG, "exit application");
+//            this.finish();
+            System.exit(0);
+        }
     }
 
 
