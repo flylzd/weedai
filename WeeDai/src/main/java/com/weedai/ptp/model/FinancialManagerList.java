@@ -8,7 +8,7 @@ public class FinancialManagerList implements Serializable {
 
     public String repayment_yesaccount;
     public String repayment_account;
-    public long tender_time;
+    public String tender_time;
     public String anum;
     public String inter;
     public String borrow_name;
@@ -21,7 +21,7 @@ public class FinancialManagerList implements Serializable {
 
 
     public int status;
-    public long repay_time;
+    public String repay_time;
     public String order;
     public String repay_account;
     public String capital;

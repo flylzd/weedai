@@ -99,7 +99,7 @@ public class FinancialActivity extends BaseActivity implements SwipeRefreshLayou
 
         adapter = new QuickAdapter<InvestList>(FinancialActivity.this, R.layout.listitem_financial) {
             @Override
-            protected void convert(BaseAdapterHelper helper, InvestList item) {
+            protected void convert(BaseAdapterHelper helper, final InvestList item) {
 
                 String apr = String.format(getString(R.string.financial_annual_rate), item.apr);
                 String timeLimit = String.format(getString(R.string.financial_deadline), item.time_limit);
@@ -116,9 +116,9 @@ public class FinancialActivity extends BaseActivity implements SwipeRefreshLayou
                 helper.setText(R.id.tvReward, reward);
                 helper.setText(R.id.tvTitle, DataUtil.urlDecode(item.name));
 
-                long addTime = item.addtime;
+                String addTime = item.addtime + "000";
                 SimpleDateFormat sdf = new SimpleDateFormat("MM月dd日 hh:mm");
-                String stateTime = sdf.format(new Date(addTime));
+                String stateTime = sdf.format(Long.parseLong(addTime));
 
                 View layoutProgress = helper.getView(R.id.layoutProgress);
                 View imgCompleted = helper.getView(R.id.imgCompleted);
@@ -165,7 +165,15 @@ public class FinancialActivity extends BaseActivity implements SwipeRefreshLayou
                 simpleWaveView.setColor(getResources().getColor(R.color.main_text_orange));
                 simpleWaveView.setPercentage(percentage);
 
-                System.out.println("verify_time : " + item.verify_time);
+                final Button btnState = helper.getView(R.id.btnState);
+                helper.setOnClickListener(R.id.btnState, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (btnState.getText().toString().equals(getString(R.string.financial_btn_join))) {
+                            UIHelper.showFinanceInvestment(FinancialActivity.this, item);
+                        }
+                    }
+                });
             }
         };
         listView.setAdapter(adapter);

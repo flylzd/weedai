@@ -23,6 +23,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class MyFinancialManagementActivity extends BaseActivity implements EndOfListView.OnEndOfListListener {
 
@@ -98,11 +99,11 @@ public class MyFinancialManagementActivity extends BaseActivity implements EndOf
                 String repaymentAccount = String.format(getString(R.string.user_my_financial_management_receivable_interest), item.repayment_account);
 
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-                String time = sdf.format(new Date(item.tender_time));
+                String time = sdf.format(Long.parseLong(item.tender_time + "000"));
                 String tenderTime = time;
 
-                helper.setText(R.id.tvTitle, "标题: " + item.borrow_name);
-                helper.setText(R.id.tvBorrowUsername, userNmae);
+                helper.setText(R.id.tvTitle, DataUtil.urlDecode(item.borrow_name));
+                helper.setText(R.id.tvBorrowUsername, DataUtil.urlDecode(userNmae));
                 helper.setText(R.id.tvBorrowAccount, borrowAccount);
                 helper.setText(R.id.tvBorrowTimeLimit, timeLimit);
                 helper.setText(R.id.tvBorrowAnum, anum);
@@ -127,7 +128,7 @@ public class MyFinancialManagementActivity extends BaseActivity implements EndOf
                 }
 
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-                String repay_time = sdf.format(new Date(item.repay_time));
+                String repay_time = sdf.format(Long.parseLong(item.repay_time + "000"));
 
                 String receivableDate = String.format(getString(R.string.user_my_financial_borrowers_receivable_date), repay_time);
                 String order = item.order + "/" + item.time_limit;
@@ -148,7 +149,7 @@ public class MyFinancialManagementActivity extends BaseActivity implements EndOf
                 helper.setText(R.id.tvBorrowLateInterest, lateInterest);
                 helper.setText(R.id.tvBorrowStatus, status);
 
-                helper.setText(R.id.tvBorrowUsername, username);
+                helper.setText(R.id.tvBorrowUsername, DataUtil.urlDecode(username));
                 helper.setText(R.id.tvBorrowTotalPayment, repayAccount);
                 helper.setText(R.id.tvBorrowInterest, interest);
                 helper.setText(R.id.tvBorrowLateDays, lateDays);

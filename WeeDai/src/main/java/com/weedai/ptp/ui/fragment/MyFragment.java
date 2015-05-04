@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,6 +47,7 @@ public class MyFragment extends Fragment implements View.OnClickListener {
     private ImageView imgPhone;
     private ImageView imgEmail;
     private ImageView imgVip;
+    private LinearLayout layoutCredit;
 
     private Button btnMoneyRecord;
     private Button btnReturnSearch;
@@ -94,6 +96,7 @@ public class MyFragment extends Fragment implements View.OnClickListener {
         imgVip = (ImageView) view.findViewById(R.id.imgVip);
         tvAvailableBalance = (TextView) view.findViewById(R.id.tvAvailableBalance);
         tvAvailableMicroCurrency = (TextView) view.findViewById(R.id.tvAvailableMicroCurrency);
+        layoutCredit = (LinearLayout) view.findViewById(R.id.layoutCredit);
 
         btnMoneyRecord = (Button) view.findViewById(R.id.btnMoneyRecord);
         btnReturnSearch = (Button) view.findViewById(R.id.btnReturnSearch);
@@ -189,8 +192,20 @@ public class MyFragment extends Fragment implements View.OnClickListener {
 
             String url = data.touxiang;
             if (!TextUtils.isEmpty(url)) {
-//                ImageLoader.getInstance().displayImage();
+                ImageLoader.getInstance().displayImage(url, imgAvatar);
             }
+
+            int credit = data.credit;
+            System.out.println("credit : " + credit);
+            int crownNum = credit / 1000; // 皇冠的数量
+            int starsNum = (credit - crownNum * 1000) / 200;  //星星的数量
+
+            for (int i = 0; i < crownNum; i++) {
+                ImageView imageView = new ImageView(getActivity());
+                imageView.setImageResource(R.drawable.icon_crown);
+//                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(getActivity());
+            }
+
 
         }
     }

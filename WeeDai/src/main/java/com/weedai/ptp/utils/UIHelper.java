@@ -10,6 +10,7 @@ import com.weedai.ptp.ui.activity.AccountActivity;
 import com.weedai.ptp.ui.activity.ArticleActivity;
 import com.weedai.ptp.ui.activity.ArticleDetailActivity;
 import com.weedai.ptp.ui.activity.ChangePasswordActivity;
+import com.weedai.ptp.ui.activity.FinanceInvestmentActivity;
 import com.weedai.ptp.ui.activity.FinancialActivity;
 import com.weedai.ptp.ui.activity.FinancialDetailActivity;
 import com.weedai.ptp.ui.activity.HeroActivity;
@@ -148,6 +149,16 @@ public class UIHelper {
 
     public static void showFinancialDetail(Context context, InvestList data) {
         Intent intent = new Intent(context, FinancialDetailActivity.class);
+//        intent.putExtra("id", bid);
+        intent.putExtra("data", data);
+        context.startActivity(intent);
+    }
+
+    /**
+     * 投资理财
+     */
+    public static void showFinanceInvestment(Context context, InvestList data) {
+        Intent intent = new Intent(context, FinanceInvestmentActivity.class);
 //        intent.putExtra("id", bid);
         intent.putExtra("data", data);
         context.startActivity(intent);

@@ -159,7 +159,13 @@ public class SecurityPhoneActivity extends BaseActivity {
                     return;
                 }
                 SecurityPhoneData data = result.data;
-
+                if (result.message.equals("success")) {
+                    Toast.makeText(SecurityPhoneActivity.this, "手机绑定成功", Toast.LENGTH_SHORT).show();
+                    User.userInfo.phone_status = true;
+                    finish();
+                } else {
+                    Toast.makeText(SecurityPhoneActivity.this, "手机绑定失败", Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override

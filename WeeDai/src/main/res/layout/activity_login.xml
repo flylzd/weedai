@@ -76,7 +76,7 @@
             android:background="@null"
             android:gravity="center_vertical"
             android:hint="@string/login_password_hint"
-            android:text="777777"
+            android:text="888888"
             android:textSize="18sp" />
 
     </LinearLayout>

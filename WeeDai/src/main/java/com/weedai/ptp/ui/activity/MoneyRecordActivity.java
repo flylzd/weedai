@@ -86,7 +86,7 @@ public class MoneyRecordActivity extends BaseActivity implements EndOfListView.O
                 helper.setText(R.id.tvMoneyUsername, DataUtil.urlDecode(username));
 
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-                String time = sdf.format(item.addtime);
+                String time = sdf.format(Long.parseLong(item.addtime + "000"));
                 helper.setText(R.id.tvMoneyTime, time);
             }
         };

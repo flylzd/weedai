@@ -11,7 +11,7 @@ public class InvestList implements Serializable {
     public String account;
     public String time_limit;
     public float scale;
-    public long addtime;
+    public String addtime;
     public String is_fast;
     public String is_transfer;
     public String account_yes;
@@ -20,7 +20,7 @@ public class InvestList implements Serializable {
     public float repayment_yesaccount;
     public float repayment_account;
     public long verify_time;     //距离审核时间
-    public long success_time;    //复审时间
+    public String success_time;    //复审时间
 
     public int style;  //0：按月分期还款； 3：按月付息，到期环本
 

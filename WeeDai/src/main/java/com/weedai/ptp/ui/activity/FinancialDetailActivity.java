@@ -4,13 +4,16 @@ package com.weedai.ptp.ui.activity;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.text.Html;
+import android.text.TextUtils;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.android.volley.error.VolleyError;
 import com.weedai.ptp.R;
 import com.weedai.ptp.model.InvestList;
 import com.weedai.ptp.utils.DataUtil;
+import com.weedai.ptp.utils.UIHelper;
 import com.weedai.ptp.view.NumberProgressBar;
 import com.weedai.ptp.volley.ResponseListener;
 
@@ -35,6 +38,7 @@ public class FinancialDetailActivity extends BaseActivity {
     private TextView tvAboutReviewTime;  //复审时间R
 
     private TextView tvReimbursement;
+    private Button btnInvestment;
 
 
     private ProgressDialog progressDialog;
@@ -74,6 +78,13 @@ public class FinancialDetailActivity extends BaseActivity {
         tvFinancialAnnualRate = (TextView) findViewById(R.id.tvFinancialAnnualRate);
         tvReward = (TextView) findViewById(R.id.tvReward);
         tvFinancialLockPeriod = (TextView) findViewById(R.id.tvFinancialLockPeriod);
+        btnInvestment = (Button) findViewById(R.id.btnInvestment);
+        btnInvestment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                UIHelper.showFinanceInvestment(FinancialDetailActivity.this, data);
+            }
+        });
 
 
         tvTitle.setText(DataUtil.urlDecode(data.name));
@@ -119,12 +130,12 @@ public class FinancialDetailActivity extends BaseActivity {
         }
         tvAboutDistanceSelling.setText(statusStr);
         tvAboutAudit.setText("审核结束");
-        long successTime = data.success_time;
-        if (successTime == 0) {
+        String successTime = data.success_time;
+        if (TextUtils.isEmpty(successTime)) {
             tvAboutReviewTime.setText("无");
         } else {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm");
-            String succTime = sdf.format(new Date(successTime));
+            String succTime = sdf.format(Long.parseLong(successTime + "000"));
             tvAboutReviewTime.setText(succTime);
         }
         numberProgressBar.setProgress(scale);

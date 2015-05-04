@@ -2,6 +2,7 @@ package com.weedai.ptp.ui.activity;
 
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -114,12 +115,10 @@ public class MyMicroCurrencyHistoryActivity extends BaseActivity implements EndO
                         break;
                 }
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
-                String time = sdf.format(item.addTime);
-
-                System.out.println("time " + time);
-                System.out.println("today Time  " + sdf.format(new Date()));
-
+                String time = "";
+                if (!TextUtils.isEmpty(item.addtime)) {
+                    time = sdf.format(Long.parseLong(item.addtime + "000"));
+                }
                 helper.setImageResource(R.id.imgType, resId);
                 helper.setText(R.id.tvMicroType, typeName);
                 helper.setText(R.id.tvMicroTime, time);

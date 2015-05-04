@@ -6,5 +6,5 @@ import java.io.Serializable;
 public class AwardData implements Serializable {
 
     public int cishu;
-    public String prizeid;
+    public int prizeid;
 }
