@@ -18,6 +18,8 @@
     <string name="title_receivable_searcht">回款查询</string>
     <string name="title_money_record">资金记录</string>
     <string name="title_my_wealth">我的财富</string>
+    <string name="title_withdrawal_record">提现记录</string>
+    <string name="title_withdrawal">提现</string>
     <string name="title_financial_management">理财管理</string>
     <string name="title_my_stand_inside_letter">站内信</string>
     <string name="title_security_level">账户安全</string>
@@ -90,6 +92,7 @@
     <string name="user_money_record">资金记录</string>
     <string name="user_money_return_search">回款查询</string>
     <string name="user_my_wealth">我的财富</string>
+    <string name="user_withdrawal_record">提现记录</string>
     <string name="user_my_micro_currency">我的微币</string>
     <string name="user_financial_management">理财管理</string>
     <string name="user_bank_card">银行卡</string>

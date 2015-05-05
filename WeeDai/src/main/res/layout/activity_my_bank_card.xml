@@ -8,10 +8,12 @@
     <LinearLayout style="@style/layoutMyBank">
 
         <TextView
+
             style="@style/textMyBankTitle"
             android:text="@string/user_my_bank_real_name" />
 
         <TextView
+            android:id="@+id/tvRealName"
             style="@style/textMyBank"
             android:text="微E贷" />
     </LinearLayout>
@@ -25,6 +27,7 @@
             android:text="@string/user_my_bank_account" />
 
         <TextView
+            android:id="@+id/tvRealEmail"
             style="@style/textMyBank"
             android:text="微E贷" />
     </LinearLayout>
@@ -81,6 +84,7 @@
             android:text="@string/user_my_bank_branch_name" />
 
         <TextView
+            android:id="@+id/tvBankBranch"
             style="@style/textMyBank"
             android:text="微E贷" />
     </LinearLayout>
@@ -94,6 +98,7 @@
             android:text="@string/user_my_bank_bank_card_code" />
 
         <TextView
+            android:id="@+id/tvBankCode"
             style="@style/textMyBank"
             android:text="微E贷" />
     </LinearLayout>

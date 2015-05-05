@@ -109,6 +109,7 @@
                             android:id="@+id/layoutCredit"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
                             android:orientation="horizontal">
 
                         </LinearLayout>
@@ -187,6 +188,14 @@
                         android:textColor="@color/main_text" />
 
                 </RelativeLayout>
+
+                <include layout="@layout/view_horizontal_line" />
+
+                <TextView
+                    android:id="@+id/tvMyWithdrawalRecord"
+                    style="@style/layoutUser"
+                    android:drawableRight="@drawable/ic_arrow_right"
+                    android:text="@string/user_withdrawal_record" />
 
                 <include layout="@layout/view_horizontal_line" />
 

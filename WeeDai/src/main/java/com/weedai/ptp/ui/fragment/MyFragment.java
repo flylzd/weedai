@@ -20,13 +20,11 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.weedai.ptp.R;
 import com.weedai.ptp.app.ApiClient;
 import com.weedai.ptp.constant.Constant;
-import com.weedai.ptp.model.ArticleDetail;
+import com.weedai.ptp.constant.Urls;
 import com.weedai.ptp.model.User;
 import com.weedai.ptp.model.UserData;
 import com.weedai.ptp.utils.UIHelper;
 import com.weedai.ptp.volley.ResponseListener;
-
-import org.w3c.dom.Text;
 
 public class MyFragment extends Fragment implements View.OnClickListener {
 
@@ -34,6 +32,7 @@ public class MyFragment extends Fragment implements View.OnClickListener {
 
     private View layoutMyWealth;
     private View layoutMyMicroCurrency;
+    private TextView tvMyWithdrawalRecord;
     private TextView tvMyFinancialManagement;
     private TextView tvMyBankCard;
     private TextView tvMyStandInsideLetter;
@@ -104,6 +103,7 @@ public class MyFragment extends Fragment implements View.OnClickListener {
         btnReturnSearch.setOnClickListener(this);
 
         layoutMyWealth = view.findViewById(R.id.layoutMyWealth);
+        tvMyWithdrawalRecord = (TextView) view.findViewById(R.id.tvMyWithdrawalRecord);
         layoutMyMicroCurrency = view.findViewById(R.id.layoutMyMicroCurrency);
         tvMyFinancialManagement = (TextView) view.findViewById(R.id.tvMyFinancialManagement);
         tvMyBankCard = (TextView) view.findViewById(R.id.tvMyBankCard);
@@ -111,6 +111,7 @@ public class MyFragment extends Fragment implements View.OnClickListener {
         tvMyLuckyDraw = (TextView) view.findViewById(R.id.tvMyLuckyDraw);
         layoutSecurityLevel = view.findViewById(R.id.layoutSecurityLevel);
         layoutMyWealth.setOnClickListener(this);
+        tvMyWithdrawalRecord.setOnClickListener(this);
         layoutMyMicroCurrency.setOnClickListener(this);
         tvMyFinancialManagement.setOnClickListener(this);
         tvMyBankCard.setOnClickListener(this);
@@ -158,13 +159,13 @@ public class MyFragment extends Fragment implements View.OnClickListener {
                 imgVip.setImageResource(R.drawable.icon_vip);
             }
 
-            if (data.phone_status) {
+            if (data.phone_status == 1) {
                 imgPhone.setImageResource(R.drawable.icon_phone_on);
             } else {
                 imgPhone.setImageResource(R.drawable.icon_phone);
             }
 
-            if (data.email_status) {
+            if (data.email_status == 1) {
                 imgEmail.setImageResource(R.drawable.icon_email_on);
             } else {
                 imgEmail.setImageResource(R.drawable.icon_email);
@@ -192,6 +193,7 @@ public class MyFragment extends Fragment implements View.OnClickListener {
 
             String url = data.touxiang;
             if (!TextUtils.isEmpty(url)) {
+                url = Urls.SERVER_URL + url;
                 ImageLoader.getInstance().displayImage(url, imgAvatar);
             }
 
@@ -203,9 +205,20 @@ public class MyFragment extends Fragment implements View.OnClickListener {
             for (int i = 0; i < crownNum; i++) {
                 ImageView imageView = new ImageView(getActivity());
                 imageView.setImageResource(R.drawable.icon_crown);
-//                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(getActivity());
+                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(30, 30);
+                params.setMargins(4, 0, 0, 0);
+//                imageView.setLayoutParams(params);
+                layoutCredit.addView(imageView, params);
             }
 
+            for (int i = 0; i < starsNum; i++) {
+                ImageView imageView = new ImageView(getActivity());
+                imageView.setImageResource(R.drawable.icon_star);
+                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(30, 30);
+                params.setMargins(4, 0, 0, 0);
+                imageView.setLayoutParams(params);
+                layoutCredit.addView(imageView);
+            }
 
         }
     }
@@ -222,6 +235,9 @@ public class MyFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.layoutMyWealth:
                 UIHelper.showMyWealth(getActivity(), data.use_money, data.wb);
+                break;
+            case R.id.tvMyWithdrawalRecord:
+                UIHelper.showMyWithdrawalRecord(getActivity());
                 break;
             case R.id.layoutMyMicroCurrency:
                 UIHelper.showMyMicroCurrencyHistory(getActivity(), data.wb);

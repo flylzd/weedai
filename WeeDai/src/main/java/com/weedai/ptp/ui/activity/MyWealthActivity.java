@@ -22,6 +22,7 @@ public class MyWealthActivity extends BaseActivity implements View.OnClickListen
     private final static String TAG = "MyWealthActivity";
 
     private View layoutRecharge;
+    private View layoutWithdrawal;
 
     private TextView tvTotalAmount;
     private TextView tvAvailableBalance;
@@ -74,7 +75,9 @@ public class MyWealthActivity extends BaseActivity implements View.OnClickListen
         tvTotalMicroCurrency = (TextView) findViewById(R.id.tvTotalMicroCurrency);
 
         layoutRecharge = findViewById(R.id.layoutRecharge);
+        layoutWithdrawal = findViewById(R.id.layoutWithdrawal);
         layoutRecharge.setOnClickListener(this);
+        layoutWithdrawal.setOnClickListener(this);
     }
 
     private void setInfo() {
@@ -122,6 +125,9 @@ public class MyWealthActivity extends BaseActivity implements View.OnClickListen
         switch (v.getId()) {
             case R.id.layoutRecharge:
                 UIHelper.showMyRecharge(MyWealthActivity.this);
+                break;
+            case R.id.layoutWithdrawal:
+                UIHelper.showMyWithdrawal(MyWealthActivity.this);
                 break;
         }
     }

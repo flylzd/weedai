@@ -95,23 +95,26 @@ public class SecurityLevelActivity extends BaseActivity implements View.OnClickL
         data = User.userInfo;
         if (data != null) {
             level = 0;
-            if (data.real_status) {
+            if (data.real_status == 1) {
                 imgSecurityName.setImageResource(R.drawable.icon_security_set);
                 level++;
             } else {
                 imgSecurityName.setImageResource(R.drawable.icon_security_not_set);
             }
 
-            if (data.phone_status) {
+            if (data.phone_status == 1) {
                 imgSecurityPhone.setImageResource(R.drawable.icon_security_set);
                 level++;
+                tvSecurityPhone.setText(data.phone);
             } else {
                 imgSecurityPhone.setImageResource(R.drawable.icon_security_not_set);
+                tvSecurityPhone.setText(data.phone);
             }
 
             if (!TextUtils.isEmpty(data.paypassword)) {
                 imgSecurityPassword.setImageResource(R.drawable.icon_security_set);
                 level++;
+                tvSecurityPassword.setText("已经设置，点击修改");
             } else {
                 imgSecurityPassword.setImageResource(R.drawable.icon_security_not_set);
             }

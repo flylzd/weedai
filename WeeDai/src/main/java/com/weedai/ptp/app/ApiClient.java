@@ -10,6 +10,7 @@ import com.weedai.ptp.constant.Urls;
 import com.weedai.ptp.model.Article;
 import com.weedai.ptp.model.ArticleDetail;
 import com.weedai.ptp.model.Award;
+import com.weedai.ptp.model.Bank;
 import com.weedai.ptp.model.BaseModel;
 import com.weedai.ptp.model.FinancialManager;
 import com.weedai.ptp.model.Invest;
@@ -22,6 +23,7 @@ import com.weedai.ptp.model.SecurityPhone;
 import com.weedai.ptp.model.SignIn;
 import com.weedai.ptp.model.User;
 import com.weedai.ptp.model.Valicode;
+import com.weedai.ptp.model.WithdrawalRecord;
 import com.weedai.ptp.utils.AppUtil;
 import com.weedai.ptp.utils.Logger;
 import com.weedai.ptp.volley.GsonGetRequest;
@@ -287,6 +289,23 @@ public class ApiClient {
         requestQueue.add(request);
     }
 
+    /**
+     * 提现记录
+     */
+    public static void getWithdrawalRecord(String tag, int page, ResponseListener listener) {
+        listener.onStarted();
+
+        Map<String, String> requestParams = getSignatureMap();
+        requestParams.put("q", "code/account/cash");
+        requestParams.put("page", String.valueOf(page));
+        requestParams.put(Urls.ACTION, "users");
+
+        String url = Urls.ACTION_INDEX;
+        GsonGetRequest request = createGsonGetRequest(url, requestParams, WithdrawalRecord.class, listener);
+        request.setTag(tag);
+        requestQueue.add(request);
+    }
+
 
     /**
      * 理财管理-成功投资的借款
@@ -353,6 +372,22 @@ public class ApiClient {
 
         String url = Urls.ACTION_INDEX;
         GsonGetRequest request = createGsonGetRequest(url, requestParams, User.class, listener);
+        request.setTag(tag);
+        requestQueue.add(request);
+    }
+
+    /**
+     * 获得银行卡信息
+     */
+    public static void getBank(String tag, ResponseListener listener) {
+        listener.onStarted();
+
+        Map<String, String> requestParams = getSignatureMap();
+        requestParams.put("q", "code/account/bank");
+        requestParams.put(Urls.ACTION, "users");
+
+        String url = Urls.ACTION_INDEX;
+        GsonPostRequest request = createGsonPostRequest(url, requestParams, Bank.class, listener);
         request.setTag(tag);
         requestQueue.add(request);
     }
