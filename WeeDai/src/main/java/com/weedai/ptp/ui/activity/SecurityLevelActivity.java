@@ -149,8 +149,6 @@ public class SecurityLevelActivity extends BaseActivity implements View.OnClickL
                     Toast.makeText(SecurityLevelActivity.this, result.message, Toast.LENGTH_SHORT).show();
                     return;
                 }
-
-
             }
 
             @Override
@@ -169,6 +167,7 @@ public class SecurityLevelActivity extends BaseActivity implements View.OnClickL
                 UIHelper.showSecurityPhone(SecurityLevelActivity.this);
                 break;
             case R.id.layoutSecurityPassword:
+                UIHelper.showChangePaymentPassword(SecurityLevelActivity.this);
                 break;
         }
     }

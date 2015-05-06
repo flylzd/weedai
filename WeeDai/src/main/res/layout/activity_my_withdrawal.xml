@@ -12,8 +12,8 @@
             android:text="@string/user_my_bank_real_name" />
 
         <TextView
-            style="@style/textMyBank"
-            android:text="微E贷" />
+            android:id="@+id/tvRealName"
+            style="@style/textMyBank" />
     </LinearLayout>
 
     <include layout="@layout/view_horizontal_line" />
@@ -25,8 +25,8 @@
             android:text="@string/user_my_withdrawal_account_balance" />
 
         <TextView
-            style="@style/textMyBank"
-            android:text="微E贷" />
+            android:id="@+id/tvAccountBalance"
+            style="@style/textMyBank" />
     </LinearLayout>
 
     <include layout="@layout/view_horizontal_line" />
@@ -38,8 +38,8 @@
             android:text="@string/user_my_withdrawal_available_balance" />
 
         <TextView
-            style="@style/textMyBank"
-            android:text="微E贷" />
+            android:id="@+id/tvAvailableBalance"
+            style="@style/textMyBank" />
     </LinearLayout>
 
     <include layout="@layout/view_horizontal_line" />
@@ -51,6 +51,7 @@
             android:text="@string/user_my_withdrawal_freeze_balance" />
 
         <TextView
+            android:id="@+id/tvFreezeBalance"
             style="@style/textMyBank"
             android:text="微E贷" />
     </LinearLayout>
@@ -84,6 +85,7 @@
                 android:textSize="20sp" />
 
             <TextView
+                android:id="@+id/tvBankNum"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tvBankName"
@@ -107,8 +109,9 @@
             android:text="@string/user_my_withdrawal_trade_password" />
 
         <TextView
+            android:id="@+id/tvTradePassword"
             style="@style/textMyBank"
-            android:text="微E贷" />
+            android:inputType="textPassword" />
     </LinearLayout>
 
     <include layout="@layout/view_horizontal_line" />
@@ -120,8 +123,8 @@
             android:text="@string/user_my_withdrawal_withdrawal_amount" />
 
         <TextView
-            style="@style/textMyBank"
-            android:text="微E贷" />
+            android:id="@+id/tvWithdrawalAmount"
+            style="@style/textMyBank" />
     </LinearLayout>
 
     <Button

@@ -428,7 +428,7 @@ public class ApiClient {
     }
 
     /**
-     * 修改密码
+     * 修改登录密码
      */
     public static void changePassword(String tag, String oldpassword, String newpassword, ResponseListener listener) {
         listener.onStarted();
@@ -437,6 +437,25 @@ public class ApiClient {
         requestParams.put("oldpassword", oldpassword);
         requestParams.put("newpassword", newpassword);
         requestParams.put("q", "code/user/userpwd");
+        requestParams.put(Urls.ACTION, "users");
+
+        String url = Urls.ACTION_INDEX;
+        GsonPostRequest request = createGsonPostRequest(url, requestParams, SecurityPhone.class, listener);
+        request.setTag(tag);
+        requestQueue.add(request);
+    }
+
+    /**
+     * 修改支付密码
+     */
+    public static void changeaymentPassword(String tag, String oldpassword, String newpassword, String valicode, ResponseListener listener) {
+        listener.onStarted();
+
+        Map<String, String> requestParams = getSignatureMap();
+        requestParams.put("oldpassword", oldpassword);
+        requestParams.put("newpassword", newpassword);
+        requestParams.put("valicode", valicode);
+        requestParams.put("q", "code/user/paypwd");
         requestParams.put(Urls.ACTION, "users");
 
         String url = Urls.ACTION_INDEX;

@@ -10,6 +10,7 @@ import com.weedai.ptp.ui.activity.AccountActivity;
 import com.weedai.ptp.ui.activity.ArticleActivity;
 import com.weedai.ptp.ui.activity.ArticleDetailActivity;
 import com.weedai.ptp.ui.activity.ChangePasswordActivity;
+import com.weedai.ptp.ui.activity.ChangePaymentPasswordActivity;
 import com.weedai.ptp.ui.activity.FinanceInvestmentActivity;
 import com.weedai.ptp.ui.activity.FinancialActivity;
 import com.weedai.ptp.ui.activity.FinancialDetailActivity;
@@ -149,6 +150,14 @@ public class UIHelper {
      */
     public static void showChangePassword(Context context) {
         Intent intent = new Intent(context, ChangePasswordActivity.class);
+        context.startActivity(intent);
+    }
+
+    /**
+     * 修改提现密码
+     */
+    public static void showChangePaymentPassword(Context context) {
+        Intent intent = new Intent(context, ChangePaymentPasswordActivity.class);
         context.startActivity(intent);
     }
 

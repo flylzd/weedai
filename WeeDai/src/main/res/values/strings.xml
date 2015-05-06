@@ -25,6 +25,7 @@
     <string name="title_security_level">账户安全</string>
     <string name="title_security_phone">绑定手机</string>
     <string name="title_change_login_password">修改登录密码</string>
+    <string name="title_change_payment_password">修改支付密码</string>
     <string name="title_about">关于我们</string>
     <string name="title_information">资讯</string>
     <string name="title_lucky_draw">抽奖</string>
