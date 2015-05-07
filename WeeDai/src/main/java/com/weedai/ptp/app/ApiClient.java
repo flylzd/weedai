@@ -601,6 +601,7 @@ public class ApiClient {
         multiPartRequest.setTag(tag);
         multiPartRequest.addMultipartParam(TIMESTAMP, "text/plain", timestamp);
         multiPartRequest.addMultipartParam(SIGNATURE, "text/plain", signature);
+        multiPartRequest.addMultipartParam(Urls.ACTION, "text/plain", "upavatars");
         multiPartRequest.addFile("avatarpic", filePath);
 
         requestQueue.add(multiPartRequest);

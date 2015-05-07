@@ -78,7 +78,7 @@ public class MultiPartGsonPostRequest<T> extends MultiPartRequest<T> {
         }
         response.headers.put(HTTP.CONTENT_TYPE, PROTOCOL_CONTENT_TYPE);
         Log.d(TAG, response.headers.toString());
-        Log.d(TAG, new String(response.data));
+        Log.d(TAG, "data" + new String(response.data));
         try {
             String json = new String(
                     response.data, HttpHeaderParser.parseCharset(response.headers));

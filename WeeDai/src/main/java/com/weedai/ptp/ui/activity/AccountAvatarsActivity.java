@@ -46,11 +46,11 @@ public class AccountAvatarsActivity extends BaseActivity {
     private boolean isTakePhoto;
     public static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
     public static final int CAPTURE_VIDEO_ACTIVITY_REQUEST_CODE = 200;
-    private static final int SCALE_CAMERA = 12; // 缩放比例
-    private static final int SCALE_PHOTO = 6; // 缩放比例
+    private static final int SCALE_CAMERA = 8; // 缩放比例
+    private static final int SCALE_PHOTO = 2; // 缩放比例
 
     private static final String IMG_SCALE_NAME = "/img_scale_name.jpg";
-    private static final String IMG_NAME = "img_name.jpg";
+    private static final String IMG_NAME = "/img_name.jpg";
 
     private AlertDialog cameraDialog;
     private String filePath;
@@ -95,6 +95,12 @@ public class AccountAvatarsActivity extends BaseActivity {
         btnAvatar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
+
+                System.out.println("filePath " + filePath);
+
+                openCameraDialog();
 
                 if (TextUtils.isEmpty(filePath)) {
                     Toast.makeText(AccountAvatarsActivity.this, "请选择头像", Toast.LENGTH_SHORT).show();
@@ -176,7 +182,7 @@ public class AccountAvatarsActivity extends BaseActivity {
         Intent cameraIntent = new Intent(
                 android.provider.MediaStore.ACTION_IMAGE_CAPTURE);// 调用系统相机
         Uri imageUri = Uri.fromFile(new File(Environment
-                .getExternalStorageDirectory(), "Goods.jpg"));
+                .getExternalStorageDirectory(), IMG_NAME));
         // 指定照片保存路径（SD卡），image.jpg为一个临时文件，每次拍照后这个图片都会被替换
         cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
         startActivityForResult(cameraIntent,
