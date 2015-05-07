@@ -7,6 +7,7 @@ import android.content.Intent;
 import com.weedai.ptp.model.InvestList;
 import com.weedai.ptp.ui.activity.AboutActivity;
 import com.weedai.ptp.ui.activity.AccountActivity;
+import com.weedai.ptp.ui.activity.AccountAvatarsActivity;
 import com.weedai.ptp.ui.activity.ArticleActivity;
 import com.weedai.ptp.ui.activity.ArticleDetailActivity;
 import com.weedai.ptp.ui.activity.ChangePasswordActivity;
@@ -142,6 +143,14 @@ public class UIHelper {
      */
     public static void showAccount(Context context) {
         Intent intent = new Intent(context, AccountActivity.class);
+        context.startActivity(intent);
+    }
+
+    /**
+     * 账户信息
+     */
+    public static void showAccountAvatars(Context context) {
+        Intent intent = new Intent(context, AccountAvatarsActivity.class);
         context.startActivity(intent);
     }
 

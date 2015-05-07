@@ -1,11 +1,13 @@
 package com.weedai.ptp.app;
 
 import android.util.Log;
+import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.error.AuthFailureError;
 import com.android.volley.error.VolleyError;
+import com.android.volley.error.VolleyErrorHelper;
 import com.weedai.ptp.constant.Urls;
 import com.weedai.ptp.model.Article;
 import com.weedai.ptp.model.ArticleDetail;
@@ -28,6 +30,7 @@ import com.weedai.ptp.utils.AppUtil;
 import com.weedai.ptp.utils.Logger;
 import com.weedai.ptp.volley.GsonGetRequest;
 import com.weedai.ptp.volley.GsonPostRequest;
+import com.weedai.ptp.volley.MultiPartGsonPostRequest;
 import com.weedai.ptp.volley.ResponseListener;
 import com.weedai.ptp.volley.VolleySingleton;
 
@@ -582,6 +585,27 @@ public class ApiClient {
         requestQueue.add(request);
     }
 
+    /**
+     * 上传头像
+     */
+    public static void uploadAvatars(String tag, String filePath, final ResponseListener listener) {
+
+        listener.onStarted();
+
+        long time = System.currentTimeMillis();
+        String timestamp = String.valueOf(time);
+        String signature = AppUtil.getSignature(timestamp);
+
+        String url = Urls.ACTION_INDEX;
+        MultiPartGsonPostRequest multiPartRequest = createMultiPartGsonPostRequest(url, BaseModel.class, listener);
+        multiPartRequest.setTag(tag);
+        multiPartRequest.addMultipartParam(TIMESTAMP, "text/plain", timestamp);
+        multiPartRequest.addMultipartParam(SIGNATURE, "text/plain", signature);
+        multiPartRequest.addFile("avatarpic", filePath);
+
+        requestQueue.add(multiPartRequest);
+    }
+
 
     private static Map<String, String> getSignatureMap() {
 
@@ -594,6 +618,35 @@ public class ApiClient {
         requestParams.put(SIGNATURE, signature);
 
         return requestParams;
+    }
+
+
+    private static <T> MultiPartGsonPostRequest createMultiPartGsonPostRequest(String url, Class<T> clazz, final ResponseListener listener) {
+
+        MultiPartGsonPostRequest request = new MultiPartGsonPostRequest(url, clazz, new Response.Listener<T>() {
+            @Override
+            public void onResponse(T response) {
+                Log.d(TAG, "onResponse = " + response.toString());
+                listener.onResponse(response);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                Log.d(TAG, "volleyError = " + volleyError.toString());
+                Toast.makeText(AppContext.getInstance().getApplicationContext(), VolleyErrorHelper.getMessage(volleyError, AppContext.getInstance()), Toast.LENGTH_SHORT).show();
+                listener.onErrorResponse(volleyError);
+            }
+        });
+
+        try {
+            Log.d(TAG, "request Headers = " + request.getHeaders().toString());
+        } catch (AuthFailureError authFailureError) {
+            authFailureError.printStackTrace();
+        }
+//        String params = requestParamsMap.toString().substring(1, requestParamsMap.toString().length() - 1);
+//        Log.d(TAG, "request Url-Params = " + request.getUrl() + "?" + params);
+
+        return request;
     }
 
     private static <T> GsonPostRequest createGsonPostRequest(String url, Map<String, String> requestParamsMap, Class<T> clazz, final ResponseListener listener) {

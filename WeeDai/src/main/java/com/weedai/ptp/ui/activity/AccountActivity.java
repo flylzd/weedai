@@ -27,6 +27,7 @@ public class AccountActivity extends BaseActivity implements View.OnClickListene
     private TextView tvRealName;
     private TextView tvSex;
 
+    private RelativeLayout layoutAccount;
     private RelativeLayout layoutAccountDateBirth;
     private RelativeLayout layoutAccountPhone;
     private RelativeLayout layoutAccountEmail;
@@ -60,6 +61,7 @@ public class AccountActivity extends BaseActivity implements View.OnClickListene
         tvRealName = (TextView) findViewById(R.id.tvRealName);
         tvSex = (TextView) findViewById(R.id.tvSex);
 
+        layoutAccount = (RelativeLayout) findViewById(R.id.layoutAccount);
         layoutAccountDateBirth = (RelativeLayout) findViewById(R.id.layoutAccountDateBirth);
         layoutAccountPhone = (RelativeLayout) findViewById(R.id.layoutAccountPhone);
         layoutAccountEmail = (RelativeLayout) findViewById(R.id.layoutAccountEmail);
@@ -68,6 +70,7 @@ public class AccountActivity extends BaseActivity implements View.OnClickListene
         layoutAccountPasswordManagementGestures = (RelativeLayout) findViewById(R.id.layoutAccountPasswordManagementGestures);
         btnExit = (Button) findViewById(R.id.btnExit);
         layoutAccountDateBirth.setOnClickListener(this);
+        layoutAccount.setOnClickListener(this);
         layoutAccountPhone.setOnClickListener(this);
         layoutAccountEmail.setOnClickListener(this);
         layoutAccountModifyLoginPassword.setOnClickListener(this);
@@ -79,6 +82,9 @@ public class AccountActivity extends BaseActivity implements View.OnClickListene
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.layoutAccount:
+                UIHelper.showAccountAvatars(AccountActivity.this);
+                break;
             case R.id.layoutAccountDateBirth:
                 break;
             case R.id.layoutAccountPhone:
