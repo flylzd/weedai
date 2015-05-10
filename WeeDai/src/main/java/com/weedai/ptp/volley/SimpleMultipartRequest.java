@@ -1,58 +1,67 @@
 package com.weedai.ptp.volley;
 
+
 import android.util.Log;
 
 import com.android.volley.NetworkResponse;
+import com.android.volley.Request;
 import com.android.volley.Response;
-import com.android.volley.Response.ErrorListener;
-import com.android.volley.Response.Listener;
 import com.android.volley.error.AuthFailureError;
 import com.android.volley.error.ParseError;
-import com.android.volley.request.MultiPartRequest;
 import com.android.volley.toolbox.HttpHeaderParser;
-
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import com.weedai.ptp.constant.Config;
 
 import org.apache.http.protocol.HTTP;
+import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MultiPartGsonPostRequest<T> extends MultiPartRequest<T> {
+public class SimpleMultipartRequest<T> extends Request<T> {
 
-    public static final String TAG = "MultiPartGsonPostRequest";
+    public static final String TAG = "SimpleMultipartRequest";
 
     private final Gson gson = new Gson();
     private final Class<T> clazz;
-    //    private final Map<String, String> headers;
-//    private final Map<String, String> params;params
-    private final Listener<T> listener;
+    private final Response.Listener<T> listener;
 
     private static final String PROTOCOL_CONTENT_TYPE = String.format("application/json; charset=%s", HTTP.UTF_8);
 
-    public MultiPartGsonPostRequest(int method, String url, Class<T> clazz, Listener<T> listener, ErrorListener errorListener) {
-        super(method, url, listener, errorListener);
+    MultipartEntity mMultiPartEntity = new MultipartEntity();
 
-        this.clazz = clazz;
-//        this.params = null;
+    public SimpleMultipartRequest(String url,Class<T> clazz, Response.Listener<T> listener, Response.ErrorListener errorListener) {
+        super(Method.POST, url, errorListener);
         this.listener = listener;
+        this.clazz = clazz;
     }
 
-
-    public MultiPartGsonPostRequest(String url, Class<T> clazz, Listener<T> listener, ErrorListener errorListener) {
-        super(Method.POST, url, listener, errorListener);
-
-        this.clazz = clazz;
-        this.listener = listener;
+    public MultipartEntity getMultiPartEntity() {
+        return mMultiPartEntity;
     }
 
-//    @Override
-//    protected Map<String, String> getParams() throws AuthFailureError {
-//        return params != null ? params : super.getParams();
-//    }
+    @Override
+    public String getBodyContentType() {
+        return mMultiPartEntity.getContentType().getValue();
+    }
+
+    @Override
+    public byte[] getBody() {
+
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        try {
+            // 将mMultiPartEntity中的参数写入到bos中
+            mMultiPartEntity.writeTo(bos);
+        } catch (IOException e) {
+            Log.e("", "IOException writing to ByteArrayOutputStream");
+        }
+        System.out.println("bos " + String.valueOf(bos.toString()));
+        return bos.toByteArray();
+    }
 
     @Override
     public Map<String, String> getHeaders() throws AuthFailureError {
@@ -63,26 +72,17 @@ public class MultiPartGsonPostRequest<T> extends MultiPartRequest<T> {
             return map;
         }
         map.put("Cookie", Config.cookie);
-        map.put(HTTP.CONTENT_TYPE, "image/jpeg,image/png");
         return super.getHeaders();
     }
 
+
     @Override
-    public String getBodyContentType() {
-            return "image/jpeg; charset=" + getParamsEncoding();
+    protected void deliverResponse(T response) {
+        listener.onResponse(response);
     }
 
     @Override
-    protected Response<T> parseNetworkResponse(NetworkResponse response) {
-
-//        if (Config.cookie == null) {
-//            for (String s : response.headers.keySet()) {
-//                if (s.contains("Set-Cookie")) {
-//                    Config.cookie = response.headers.get(s);
-//                    break;
-//                }
-//            }
-//        }
+    protected Response parseNetworkResponse(NetworkResponse response) {
         response.headers.put(HTTP.CONTENT_TYPE, PROTOCOL_CONTENT_TYPE);
         Log.d(TAG, response.headers.toString());
         Log.d(TAG, "data" + new String(response.data));
@@ -95,13 +95,6 @@ public class MultiPartGsonPostRequest<T> extends MultiPartRequest<T> {
             return Response.error(new ParseError(e));
         } catch (JsonSyntaxException e) {
             return Response.error(new ParseError(e));
-        }
-    }
-
-    @Override
-    protected void deliverResponse(T response) {
-        if (null != listener) {
-            listener.onResponse(response);
         }
     }
 }

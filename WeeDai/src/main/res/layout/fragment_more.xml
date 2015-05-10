@@ -15,6 +15,7 @@
             android:padding="10dp">
 
             <RelativeLayout
+                android:id="@+id/layoutCalculatorInterest"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginRight="5dp"
@@ -42,6 +43,7 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/layoutCalculatorNetCredit"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="5dp"

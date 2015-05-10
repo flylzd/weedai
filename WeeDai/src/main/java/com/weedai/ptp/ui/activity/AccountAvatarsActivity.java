@@ -20,10 +20,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.error.VolleyError;
+import com.nostra13.universalimageloader.core.ImageLoader;
 import com.weedai.ptp.R;
 import com.weedai.ptp.app.ApiClient;
 import com.weedai.ptp.constant.Constant;
+import com.weedai.ptp.constant.Urls;
 import com.weedai.ptp.model.BaseModel;
+import com.weedai.ptp.model.User;
+import com.weedai.ptp.model.UserData;
 import com.weedai.ptp.utils.ImageUtil;
 import com.weedai.ptp.volley.ResponseListener;
 
@@ -96,10 +100,7 @@ public class AccountAvatarsActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
 
-
-
                 System.out.println("filePath " + filePath);
-
                 openCameraDialog();
 
                 if (TextUtils.isEmpty(filePath)) {
@@ -137,9 +138,25 @@ public class AccountAvatarsActivity extends BaseActivity {
                         progressDialog.dismiss();
                     }
                 });
-
             }
         });
+        setInfo();
+    }
+
+    private void setInfo() {
+
+        UserData data = User.userInfo;
+        String url = data.touxiang;
+        if (!TextUtils.isEmpty(url)) {
+            url = Urls.SERVER_URL + url;
+            ImageLoader.getInstance().displayImage(url, imgAvatar);
+        }
+
+        String sex = data.sex == 1 ? "男" : "女";
+        tvSex.setText(sex);
+//        tvBirthdate.setText(data.);
+        tvPhone.setText(data.phone);
+        tvEmail.setText(data.email);
     }
 
     private void openCameraDialog() {
@@ -175,7 +192,6 @@ public class AccountAvatarsActivity extends BaseActivity {
         cameraDialog = builder.create();
         cameraDialog.show();
     }
-
 
     private void takeCamera() {
 

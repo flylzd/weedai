@@ -1,5 +1,7 @@
 package com.weedai.ptp.app;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -31,9 +33,13 @@ import com.weedai.ptp.utils.Logger;
 import com.weedai.ptp.volley.GsonGetRequest;
 import com.weedai.ptp.volley.GsonPostRequest;
 import com.weedai.ptp.volley.MultiPartGsonPostRequest;
+import com.weedai.ptp.volley.MultipartEntity;
 import com.weedai.ptp.volley.ResponseListener;
+import com.weedai.ptp.volley.SimpleMultipartRequest;
 import com.weedai.ptp.volley.VolleySingleton;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
@@ -602,11 +608,61 @@ public class ApiClient {
         multiPartRequest.addMultipartParam(TIMESTAMP, "text/plain", timestamp);
         multiPartRequest.addMultipartParam(SIGNATURE, "text/plain", signature);
         multiPartRequest.addMultipartParam(Urls.ACTION, "text/plain", "upavatars");
+//        multiPartRequest.addMultipartParam("avatarpic", "image/jpg", String.valueOf(new File(filePath)));
         multiPartRequest.addFile("avatarpic", filePath);
+
+
+//        SimpleMultipartRequest multiPartRequest = createSimpleMultipartRequest(url, BaseModel.class, listener);
+//        multiPartRequest.setTag(tag);
+
+//        MultipartEntity multipartEntity = multiPartRequest.getMultiPartEntity();
+//        multipartEntity.addStringPart(TIMESTAMP, timestamp);
+//        multipartEntity.addStringPart(SIGNATURE, signature);
+//        multipartEntity.addStringPart(Urls.ACTION, "upavatars");
+//        File file = new File(filePath);
+//        multipartEntity.addFilePart("avatarpic", new File(filePath));
 
         requestQueue.add(multiPartRequest);
     }
 
+    /**
+     * 上传头像
+     */
+    public static void uploadAvatars(String tag, Bitmap bitmap, final ResponseListener listener) {
+
+        listener.onStarted();
+
+        long time = System.currentTimeMillis();
+        String timestamp = String.valueOf(time);
+        String signature = AppUtil.getSignature(timestamp);
+
+        String url = Urls.ACTION_INDEX;
+//        MultiPartGsonPostRequest multiPartRequest = createMultiPartGsonPostRequest(url, BaseModel.class, listener);
+//        multiPartRequest.setTag(tag);
+//        multiPartRequest.addMultipartParam(TIMESTAMP, "text/plain", timestamp);
+//        multiPartRequest.addMultipartParam(SIGNATURE, "text/plain", signature);
+//        multiPartRequest.addMultipartParam(Urls.ACTION, "text/plain", "upavatars");
+//        multiPartRequest.addMultipartParam("avatarpic", "images", String.valueOf(new File(filePath)));
+////        multiPartRequest.addFile("avatarpic", filePath);
+
+        SimpleMultipartRequest multiPartRequest = createSimpleMultipartRequest(url, BaseModel.class, listener);
+        multiPartRequest.setTag(tag);
+
+        MultipartEntity multipartEntity = multiPartRequest.getMultiPartEntity();
+        multipartEntity.addStringPart(TIMESTAMP, timestamp);
+        multipartEntity.addStringPart(SIGNATURE, signature);
+        multipartEntity.addStringPart(Urls.ACTION, "upavatars");
+////        bitmap参数
+        multipartEntity.addBinaryPart("avatarpic", bitmapToBytes(bitmap));
+
+        requestQueue.add(multiPartRequest);
+    }
+
+    private static byte[] bitmapToBytes(Bitmap bm) {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bm.compress(Bitmap.CompressFormat.PNG, 100, baos);
+        return baos.toByteArray();
+    }
 
     private static Map<String, String> getSignatureMap() {
 
@@ -620,7 +676,6 @@ public class ApiClient {
 
         return requestParams;
     }
-
 
     private static <T> MultiPartGsonPostRequest createMultiPartGsonPostRequest(String url, Class<T> clazz, final ResponseListener listener) {
 
@@ -641,12 +696,48 @@ public class ApiClient {
 
         try {
             Log.d(TAG, "request Headers = " + request.getHeaders().toString());
+            //        String params = requestParamsMap.toString().substring(1, requestParamsMap.toString().length() - 1);
+            Log.d(TAG, "request Url-Params = " + request.getUrl());
+            Log.d(TAG, "request getFilesToUpload = " + request.getFilesToUpload().toString());
+            Log.d(TAG, "request getEncodedUrlParams = " + request.getEncodedUrlParams().toString());
+            Log.d(TAG, "request getMultipartParams = " + request.getMultipartParams().toString());
+            Log.d(TAG, "request getBody = " + request.getBody());
+            Log.d(TAG, "request getBodyContentType = " + request.getBodyContentType());
         } catch (AuthFailureError authFailureError) {
             authFailureError.printStackTrace();
         }
-//        String params = requestParamsMap.toString().substring(1, requestParamsMap.toString().length() - 1);
-//        Log.d(TAG, "request Url-Params = " + request.getUrl() + "?" + params);
+        return request;
+    }
 
+    private static <T> SimpleMultipartRequest createSimpleMultipartRequest(String url, Class<T> clazz, final ResponseListener listener) {
+
+        SimpleMultipartRequest request = new SimpleMultipartRequest(url, clazz, new Response.Listener<T>() {
+            @Override
+            public void onResponse(T response) {
+                Log.d(TAG, "onResponse = " + response.toString());
+                listener.onResponse(response);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                Log.d(TAG, "volleyError = " + volleyError.toString());
+                Toast.makeText(AppContext.getInstance().getApplicationContext(), VolleyErrorHelper.getMessage(volleyError, AppContext.getInstance()), Toast.LENGTH_SHORT).show();
+                listener.onErrorResponse(volleyError);
+            }
+        });
+
+        try {
+            Log.d(TAG, "request Headers = " + request.getHeaders().toString());
+            //        String params = requestParamsMap.toString().substring(1, requestParamsMap.toString().length() - 1);
+            Log.d(TAG, "request Url-Params = " + request.getUrl());
+//            Log.d(TAG, "request getFilesToUpload = " + request.getFilesToUpload().toString());
+            Log.d(TAG, "request getEncodedUrlParams = " + request.getEncodedUrlParams().toString());
+//            Log.d(TAG, "request getMultipartParams = " + request.getMultipartParams().toString());
+            Log.d(TAG, "request getBody = " + request.getBody());
+            Log.d(TAG, "request getBodyContentType = " + request.getBodyContentType());
+        } catch (AuthFailureError authFailureError) {
+            authFailureError.printStackTrace();
+        }
         return request;
     }
 

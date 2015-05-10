@@ -10,12 +10,15 @@ import com.weedai.ptp.ui.activity.AccountActivity;
 import com.weedai.ptp.ui.activity.AccountAvatarsActivity;
 import com.weedai.ptp.ui.activity.ArticleActivity;
 import com.weedai.ptp.ui.activity.ArticleDetailActivity;
+import com.weedai.ptp.ui.activity.CalculatorInterestActivity;
+import com.weedai.ptp.ui.activity.CalculatorNetCreditActivity;
 import com.weedai.ptp.ui.activity.ChangePasswordActivity;
 import com.weedai.ptp.ui.activity.ChangePaymentPasswordActivity;
 import com.weedai.ptp.ui.activity.FinanceInvestmentActivity;
 import com.weedai.ptp.ui.activity.FinancialActivity;
 import com.weedai.ptp.ui.activity.FinancialDetailActivity;
 import com.weedai.ptp.ui.activity.HeroActivity;
+import com.weedai.ptp.ui.activity.LiCaiRecommendActivity;
 import com.weedai.ptp.ui.activity.LoginActivity;
 import com.weedai.ptp.ui.activity.LuckyDrawActivity;
 import com.weedai.ptp.ui.activity.MainActivity;
@@ -178,8 +181,19 @@ public class UIHelper {
         context.startActivity(intent);
     }
 
+    /**
+     * 优选理财
+     */
     public static void showOptimizingFinancial(Context context) {
         Intent intent = new Intent(context, FinancialActivity.class);
+        context.startActivity(intent);
+    }
+
+    /**
+     * 项目推荐
+     */
+    public static void showLiCaiRecommend(Context context) {
+        Intent intent = new Intent(context, LiCaiRecommendActivity.class);
         context.startActivity(intent);
     }
 
@@ -219,6 +233,22 @@ public class UIHelper {
 
     public static void showAbout(Context context) {
         Intent intent = new Intent(context, AboutActivity.class);
+        context.startActivity(intent);
+    }
+
+    /**
+     * 利息计算器
+     */
+    public static void showCalculatorInterest(Context context) {
+        Intent intent = new Intent(context, CalculatorInterestActivity.class);
+        context.startActivity(intent);
+    }
+
+    /**
+     * 网贷计算器
+     */
+    public static void showCalculatorNetCredit(Context context) {
+        Intent intent = new Intent(context, CalculatorNetCreditActivity.class);
         context.startActivity(intent);
     }
 }

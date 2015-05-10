@@ -27,12 +27,11 @@ import com.weedai.ptp.volley.ResponseListener;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-public class FinancialActivity extends BaseActivity implements SwipeRefreshLayout.OnRefreshListener, EndOfListView.OnEndOfListListener {
+public class LiCaiRecommendActivity extends BaseActivity implements SwipeRefreshLayout.OnRefreshListener, EndOfListView.OnEndOfListListener {
 
-    private final static String TAG = "OptimizingFinancialActivity";
+    private final static String TAG = "LiCaiRecommendActivity";
 
     private PMSwipeRefreshLayout pullRefreshLayout;
     private EndOfListView listView;
@@ -51,11 +50,12 @@ public class FinancialActivity extends BaseActivity implements SwipeRefreshLayou
 
         initView();
         loadData();
+
     }
 
     @Override
     protected int getActionBarTitle() {
-        return R.string.title_financial;
+        return R.string.title_licai_recommend;
     }
 
     @Override
@@ -96,7 +96,7 @@ public class FinancialActivity extends BaseActivity implements SwipeRefreshLayou
         listView = (EndOfListView) findViewById(R.id.listView);
         listView.setOnEndOfListListener(this);
 
-        adapter = new QuickAdapter<InvestList>(FinancialActivity.this, R.layout.listitem_financial) {
+        adapter = new QuickAdapter<InvestList>(LiCaiRecommendActivity.this, R.layout.listitem_financial) {
             @Override
             protected void convert(BaseAdapterHelper helper, final InvestList item) {
 
@@ -169,7 +169,7 @@ public class FinancialActivity extends BaseActivity implements SwipeRefreshLayou
                     @Override
                     public void onClick(View v) {
                         if (btnState.getText().toString().equals(getString(R.string.financial_btn_join))) {
-                            UIHelper.showFinanceInvestment(FinancialActivity.this, item);
+                            UIHelper.showFinanceInvestment(LiCaiRecommendActivity.this, item);
                         }
                     }
                 });
@@ -180,7 +180,7 @@ public class FinancialActivity extends BaseActivity implements SwipeRefreshLayou
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 //                UIHelper.showFinancialDetail(FinancialActivity.this, adapter.getItem(position).id);
-                UIHelper.showFinancialDetail(FinancialActivity.this, adapter.getItem(position));
+                UIHelper.showFinancialDetail(LiCaiRecommendActivity.this, adapter.getItem(position));
             }
         });
     }
@@ -198,23 +198,23 @@ public class FinancialActivity extends BaseActivity implements SwipeRefreshLayou
 
                 Invest result = (Invest) response;
                 if (result.code != Constant.CodeResult.SUCCESS) {
-                    Toast.makeText(FinancialActivity.this, result.message, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LiCaiRecommendActivity.this, result.message, Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 List<InvestList> investList = result.data.list;
                 if (page == DEFAULT_PAGE) {
 //                    dataList = investList;
-                    for (InvestList item : investList){
-                        if (item.is_you  ==1){
+                    for (InvestList item : investList) {
+                        if (item.is_you != 1) {
                             dataList.add(item);
                         }
                     }
                     adapter.replaceAll(dataList);
                 } else {
 //                    dataList.addAll(investList);
-                    for (InvestList item : investList){
-                        if (item.is_you  == 1){
+                    for (InvestList item : investList) {
+                        if (item.is_you != 1) {
                             dataList.add(item);
                         }
                     }

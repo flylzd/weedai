@@ -11,6 +11,7 @@
     <string name="main_tab_more">更多</string>
 
     <string name="title_financial">优选理财</string>
+    <string name="title_licai_recommend">项目推荐</string>
     <string name="title_financial_detail">理财详情</string>
     <string name="title_finance_investment">投资理财</string>
     <string name="title_account">我的账号</string>
@@ -28,6 +29,8 @@
     <string name="title_change_login_password">修改登录密码</string>
     <string name="title_change_payment_password">修改支付密码</string>
     <string name="title_about">关于我们</string>
+    <string name="title_calculator_interest">利息计算器</string>
+    <string name="title_calculator_net_credit">网贷计算器</string>
     <string name="title_information">资讯</string>
     <string name="title_lucky_draw">抽奖</string>
 

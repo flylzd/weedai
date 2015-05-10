@@ -30,6 +30,7 @@ public class MyFragment extends Fragment implements View.OnClickListener {
 
     private final static String TAG = "MyFragment";
 
+    private View layoutAccount;
     private View layoutMyWealth;
     private View layoutMyMicroCurrency;
     private TextView tvMyWithdrawalRecord;
@@ -102,6 +103,7 @@ public class MyFragment extends Fragment implements View.OnClickListener {
         btnMoneyRecord.setOnClickListener(this);
         btnReturnSearch.setOnClickListener(this);
 
+        layoutAccount = view.findViewById(R.id.layoutAccount);
         layoutMyWealth = view.findViewById(R.id.layoutMyWealth);
         tvMyWithdrawalRecord = (TextView) view.findViewById(R.id.tvMyWithdrawalRecord);
         layoutMyMicroCurrency = view.findViewById(R.id.layoutMyMicroCurrency);
@@ -110,6 +112,7 @@ public class MyFragment extends Fragment implements View.OnClickListener {
         tvMyStandInsideLetter = (TextView) view.findViewById(R.id.tvMyStandInsideLetter);
         tvMyLuckyDraw = (TextView) view.findViewById(R.id.tvMyLuckyDraw);
         layoutSecurityLevel = view.findViewById(R.id.layoutSecurityLevel);
+        layoutAccount.setOnClickListener(this);
         layoutMyWealth.setOnClickListener(this);
         tvMyWithdrawalRecord.setOnClickListener(this);
         layoutMyMicroCurrency.setOnClickListener(this);
@@ -227,6 +230,9 @@ public class MyFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
 
         switch (v.getId()) {
+            case R.id.layoutAccount:
+                UIHelper.showAccountAvatars(getActivity());
+                break;
             case R.id.btnMoneyRecord:
                 UIHelper.showMyMoneyRecord(getActivity());
                 break;

@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:paddingTop="@dimen/main_content_padding_top">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -12,8 +13,8 @@
 
         <ImageView
             android:id="@+id/imgAvatar"
-            android:layout_width="100dp"
-            android:layout_height="100dp" />
+            android:layout_width="140dp"
+            android:layout_height="140dp" />
 
         <Button
             android:id="@+id/btnAvatar"
@@ -22,8 +23,8 @@
             android:layout_gravity="bottom"
             android:layout_marginLeft="30dp"
             android:background="@drawable/selector_btn_bg"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
+            android:paddingLeft="14dp"
+            android:paddingRight="14dp"
             android:text="更换头像"
             android:textColor="@color/white" />
 
@@ -38,7 +39,7 @@
         android:paddingLeft="30dp"
         android:paddingTop="4dp"
         android:text="panda"
-        android:textSize="22sp" />
+        android:textSize="24sp" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -52,14 +53,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="性别:"
-            android:textSize="18sp" />
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/tvSex"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="性别:"
-            android:textSize="18sp" />
+            android:textSize="20sp" />
 
     </LinearLayout>
 
@@ -75,14 +75,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="出生日期:"
-            android:textSize="18sp" />
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/tvBirthdate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="1988-22-22"
-            android:textSize="18sp" />
+            android:textSize="20sp" />
 
     </LinearLayout>
 
@@ -98,14 +97,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="手机号码:"
-            android:textSize="18sp" />
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/tvPhone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="1988-22-22"
-            android:textSize="18sp" />
+            android:textSize="20sp" />
 
     </LinearLayout>
 
@@ -121,14 +119,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="注册邮箱:"
-            android:textSize="18sp" />
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/tvEmail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="1988-22-22"
-            android:textSize="18sp" />
+            android:textSize="20sp" />
 
     </LinearLayout>
 

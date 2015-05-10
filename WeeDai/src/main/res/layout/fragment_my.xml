@@ -17,6 +17,8 @@
             android:orientation="vertical">
 
             <RelativeLayout
+                android:id="@+id/layoutAccount"
+                android:clickable="true"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/selector_bg_layout"
@@ -24,10 +26,11 @@
 
                 <ImageView
                     android:id="@+id/imgAvatar"
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
                     android:layout_marginLeft="20dp"
                     android:scaleType="centerCrop"
+                    android:layout_marginEnd="2dp"
                     android:src="@drawable/icon_male" />
 
                 <LinearLayout
@@ -47,7 +50,6 @@
                             android:id="@+id/tvUsername"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="叱咤风云"
                             android:textColor="@color/main_text_black"
                             android:textSize="16sp" />
 
@@ -87,10 +89,8 @@
                         android:layout_height="wrap_content"
                         android:paddingBottom="2dp"
                         android:paddingTop="2dp"
-                        android:text="叱咤风云"
                         android:textColor="@color/main_text"
-                        android:textSize="15sp" />
-
+                        android:textSize="16sp" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -103,7 +103,7 @@
                             android:layout_height="wrap_content"
                             android:text="信用等级:"
                             android:textColor="@color/main_text"
-                            android:textSize="12sp" />
+                            android:textSize="14sp" />
 
                         <LinearLayout
                             android:id="@+id/layoutCredit"
@@ -113,9 +113,7 @@
                             android:orientation="horizontal">
 
                         </LinearLayout>
-
                     </LinearLayout>
-
                 </LinearLayout>
 
 
@@ -191,14 +189,6 @@
 
                 <include layout="@layout/view_horizontal_line" />
 
-                <TextView
-                    android:id="@+id/tvMyWithdrawalRecord"
-                    style="@style/layoutUser"
-                    android:drawableRight="@drawable/ic_arrow_right"
-                    android:text="@string/user_withdrawal_record" />
-
-                <include layout="@layout/view_horizontal_line" />
-
                 <RelativeLayout
                     android:id="@+id/layoutMyMicroCurrency"
                     style="@style/layoutUser"
@@ -222,6 +212,14 @@
                         android:textColor="@color/main_text" />
 
                 </RelativeLayout>
+
+                <include layout="@layout/view_horizontal_line" />
+
+                <TextView
+                    android:id="@+id/tvMyWithdrawalRecord"
+                    style="@style/layoutUser"
+                    android:drawableRight="@drawable/ic_arrow_right"
+                    android:text="@string/user_withdrawal_record" />
 
                 <include layout="@layout/view_horizontal_line" />
 

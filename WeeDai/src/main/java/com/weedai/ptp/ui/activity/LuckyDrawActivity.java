@@ -72,6 +72,8 @@ public class LuckyDrawActivity extends BaseActivity {
                 if (Config.isLogin) {
                     if (number != 0) {
                         award();
+                    } else  {
+                        Toast.makeText(LuckyDrawActivity.this, "没有抽奖机会，赶紧投标", Toast.LENGTH_SHORT).show();
                     }
                 } else {
                     UIHelper.showLogin(LuckyDrawActivity.this);

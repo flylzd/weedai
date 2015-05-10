@@ -23,5 +23,6 @@ public class InvestList implements Serializable {
     public String success_time;    //复审时间
 
     public int style;  //0：按月分期还款； 3：按月付息，到期环本
+    public int is_you;
 
 }

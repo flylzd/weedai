@@ -45,6 +45,10 @@
             android:configChanges="keyboard|orientation|screenSize"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".ui.activity.LiCaiRecommendActivity"
+            android:configChanges="keyboard|orientation|screenSize"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".ui.activity.FinancialDetailActivity"
             android:configChanges="keyboard|orientation|screenSize"
             android:screenOrientation="portrait" />
@@ -139,7 +143,16 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.weedai.ptp.ui.activity.AboutActivity"
+        android:name="com.weedai.ptp.ui.activity.AboutActivity"
+        android:configChanges="keyboard|orientation|screenSize"
+        android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.weedai.ptp.ui.activity.CalculatorInterestActivity"
+            android:configChanges="keyboard|orientation|screenSize"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.weedai.ptp.ui.activity.CalculatorNetCreditActivity"
             android:configChanges="keyboard|orientation|screenSize"
             android:screenOrientation="portrait" />
 

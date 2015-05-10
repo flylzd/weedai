@@ -20,6 +20,10 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+
+/**
+ * 提现记录
+ */
 public class MyWithdrawalRecordActivity extends BaseActivity implements EndOfListView.OnEndOfListListener {
 
     private final static String TAG = "MoneyRecordActivity";
@@ -30,6 +34,7 @@ public class MyWithdrawalRecordActivity extends BaseActivity implements EndOfLis
 
     private final static int DEFAULT_PAGE = 1;
     private int page = DEFAULT_PAGE;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,12 +72,15 @@ public class MyWithdrawalRecordActivity extends BaseActivity implements EndOfLis
             @Override
             protected void convert(BaseAdapterHelper helper, WithdrawalRecordList item) {
 
-
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
                 String time = sdf.format(Long.parseLong(item.addtime + "000"));
                 helper.setText(R.id.tvRecordTime, time);
 
-                helper.setText(R.id.tvRecordCardNumber, item.account);
+                String account = item.account;
+                int length = account.length();
+                String bankName = Constant.bankMap.get(item.bank);
+                bankName = bankName + "(尾号" + account.substring(length - 4, length) + ")";
+                helper.setText(R.id.tvRecordCardNumber, bankName);
                 helper.setText(R.id.tvRecordTotal, item.total);
                 helper.setText(R.id.tvRecordCredited, item.credited);
 

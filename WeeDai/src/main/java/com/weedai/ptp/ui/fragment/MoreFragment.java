@@ -21,6 +21,9 @@ public class MoreFragment extends Fragment implements View.OnClickListener {
     private RelativeLayout layoutWebsite;
     private RelativeLayout layoutPhone;
 
+    private View layoutCalculatorInterest;
+    private View layoutCalculatorNetCredit;
+
 
     public static MoreFragment newInstance() {
         MoreFragment fragment = new MoreFragment();
@@ -45,9 +48,13 @@ public class MoreFragment extends Fragment implements View.OnClickListener {
 
     private void init(View view) {
 
+        layoutCalculatorInterest = view.findViewById(R.id.layoutCalculatorInterest);
+        layoutCalculatorNetCredit = view.findViewById(R.id.layoutCalculatorNetCredit);
         layoutAbout = (RelativeLayout) view.findViewById(R.id.layoutAbout);
         layoutWebsite = (RelativeLayout) view.findViewById(R.id.layoutWebsite);
         layoutPhone = (RelativeLayout) view.findViewById(R.id.layoutPhone);
+        layoutCalculatorInterest.setOnClickListener(this);
+        layoutCalculatorNetCredit.setOnClickListener(this);
         layoutAbout.setOnClickListener(this);
         layoutWebsite.setOnClickListener(this);
         layoutPhone.setOnClickListener(this);
@@ -57,6 +64,12 @@ public class MoreFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.layoutCalculatorInterest:
+                UIHelper.showCalculatorInterest(getActivity());
+                break;
+            case R.id.layoutCalculatorNetCredit:
+                UIHelper.showCalculatorNetCredit(getActivity());
+                break;
             case R.id.layoutAbout:
                 UIHelper.showAbout(getActivity());
                 break;

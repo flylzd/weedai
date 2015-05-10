@@ -5,6 +5,7 @@ import java.io.Serializable;
 
 public class WithdrawalRecordList implements Serializable {
 
+    public String bank;
     public String account;
     public String total;
     public String credited;
