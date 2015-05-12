@@ -25,6 +25,7 @@ import com.weedai.ptp.model.ReceivableSearch;
 import com.weedai.ptp.model.SecurityLevel;
 import com.weedai.ptp.model.SecurityPhone;
 import com.weedai.ptp.model.SignIn;
+import com.weedai.ptp.model.StandInsideLetter;
 import com.weedai.ptp.model.User;
 import com.weedai.ptp.model.Valicode;
 import com.weedai.ptp.model.WithdrawalRecord;
@@ -365,6 +366,23 @@ public class ApiClient {
 
         String url = Urls.ACTION_INDEX;
         GsonGetRequest request = createGsonGetRequest(url, requestParams, Micro.class, listener);
+        request.setTag(tag);
+        requestQueue.add(request);
+    }
+
+    /**
+     * 站内信
+     */
+    public static void getStandInsideLetter(String tag, int page, ResponseListener listener) {
+        listener.onStarted();
+
+        Map<String, String> requestParams = getSignatureMap();
+        requestParams.put("q", "code/message");
+        requestParams.put("page", String.valueOf(page));
+        requestParams.put(Urls.ACTION, "users");
+
+        String url = Urls.ACTION_INDEX;
+        GsonGetRequest request = createGsonGetRequest(url, requestParams, StandInsideLetter.class, listener);
         request.setTag(tag);
         requestQueue.add(request);
     }

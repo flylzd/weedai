@@ -7,10 +7,14 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
 
 import com.weedai.ptp.R;
 
 public class BbsFragment extends Fragment {
+
+    private WebView webView;
 
     public static BbsFragment newInstance() {
         BbsFragment fragment = new BbsFragment();
@@ -35,6 +39,12 @@ public class BbsFragment extends Fragment {
     }
 
     private void init(View view) {
-        
+
+        webView = (WebView) view.findViewById(R.id.webView);
+
+        WebSettings settings = webView.getSettings();
+        settings.setJavaScriptEnabled(true);
+
+        webView.loadUrl("http://bbs.weedai.com/forum.php");
     }
 }
