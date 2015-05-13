@@ -15,6 +15,7 @@
     <string name="title_financial_detail">理财详情</string>
     <string name="title_finance_investment">投资理财</string>
     <string name="title_account">我的账号</string>
+    <string name="title_account_email">邮箱验证</string>
     <string name="title_account_avatars">账户信息</string>
     <string name="title_micro_history">微币记录</string>
     <string name="title_receivable_searcht">回款查询</string>

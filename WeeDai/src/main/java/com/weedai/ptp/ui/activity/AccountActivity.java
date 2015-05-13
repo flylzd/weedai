@@ -164,6 +164,7 @@ public class AccountActivity extends BaseActivity implements View.OnClickListene
             case R.id.layoutAccountPhone:
                 break;
             case R.id.layoutAccountEmail:
+
                 break;
             case R.id.layoutAccountModifyLoginPassword:
                 UIHelper.showChangePassword(AccountActivity.this);

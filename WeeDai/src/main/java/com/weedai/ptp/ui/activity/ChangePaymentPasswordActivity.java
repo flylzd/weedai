@@ -66,7 +66,6 @@ public class ChangePaymentPasswordActivity extends BaseActivity implements View.
 
         switch (v.getId()) {
             case R.id.viewValicode:
-//                viewValicode.getValidataAndSetImage(new String[]{"2", "7", "1", "9"});
                 getImgcode();
                 break;
         }
