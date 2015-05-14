@@ -57,6 +57,13 @@ public class AccountActivity extends BaseActivity implements View.OnClickListene
         setContentView(R.layout.activity_account);
 
         initView();
+//        loadData();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
         loadData();
     }
 
@@ -127,7 +134,7 @@ public class AccountActivity extends BaseActivity implements View.OnClickListene
             ImageLoader.getInstance().displayImage(url, imgAvatar);
         }
 
-        String sex = User.userInfo.sex == 1 ? "男":"女";
+        String sex = User.userInfo.sex == 1 ? "男" : "女";
         tvSex.setText("性别:  " + sex);
 //        tvAccountPasswordDateBirth
         tvAccountPhone.setText(User.userInfo.phone);
@@ -164,7 +171,7 @@ public class AccountActivity extends BaseActivity implements View.OnClickListene
             case R.id.layoutAccountPhone:
                 break;
             case R.id.layoutAccountEmail:
-
+                UIHelper.showSecurityEmail(AccountActivity.this);
                 break;
             case R.id.layoutAccountModifyLoginPassword:
                 UIHelper.showChangePassword(AccountActivity.this);

@@ -455,6 +455,23 @@ public class ApiClient {
     }
 
     /**
+     * 邮箱验证
+     */
+    public static void bindingEmail(String tag, String email,ResponseListener listener) {
+        listener.onStarted();
+
+        Map<String, String> requestParams = getSignatureMap();
+        requestParams.put("email", email);
+        requestParams.put("q", "code/user/email_status");
+        requestParams.put(Urls.ACTION, "users");
+
+        String url = Urls.ACTION_INDEX;
+        GsonPostRequest request = createGsonPostRequest(url, requestParams, SecurityPhone.class, listener);
+        request.setTag(tag);
+        requestQueue.add(request);
+    }
+
+    /**
      * 修改登录密码
      */
     public static void changePassword(String tag, String oldpassword, String newpassword, ResponseListener listener) {

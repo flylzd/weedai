@@ -8,6 +8,7 @@ import com.weedai.ptp.model.InvestList;
 import com.weedai.ptp.ui.activity.AboutActivity;
 import com.weedai.ptp.ui.activity.AccountActivity;
 import com.weedai.ptp.ui.activity.AccountAvatarsActivity;
+import com.weedai.ptp.ui.activity.AccountEmailActivity;
 import com.weedai.ptp.ui.activity.ArticleActivity;
 import com.weedai.ptp.ui.activity.ArticleDetailActivity;
 import com.weedai.ptp.ui.activity.CalculatorInterestActivity;
@@ -138,6 +139,14 @@ public class UIHelper {
      */
     public static void showSecurityPhone(Context context) {
         Intent intent = new Intent(context, SecurityPhoneActivity.class);
+        context.startActivity(intent);
+    }
+
+    /**
+     * 邮箱验证
+     */
+    public static void showSecurityEmail(Context context) {
+        Intent intent = new Intent(context, AccountEmailActivity.class);
         context.startActivity(intent);
     }
 

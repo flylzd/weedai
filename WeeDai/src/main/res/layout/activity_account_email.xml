@@ -70,7 +70,7 @@
             android:layout_height="wrap_content"
             android:background="@null"
             android:hint="123456789@qq.com"
-            android:inputType="textPassword"
+            android:inputType="textEmailAddress"
             android:textSize="18sp" />
 
     </LinearLayout>
@@ -78,6 +78,7 @@
     <include layout="@layout/view_horizontal_line" />
 
     <LinearLayout
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:background="@color/white"

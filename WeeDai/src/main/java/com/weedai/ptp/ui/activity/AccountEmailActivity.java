@@ -3,6 +3,7 @@ package com.weedai.ptp.ui.activity;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,6 +13,9 @@ import com.android.volley.error.VolleyError;
 import com.weedai.ptp.R;
 import com.weedai.ptp.app.ApiClient;
 import com.weedai.ptp.constant.Constant;
+import com.weedai.ptp.model.SecurityPhone;
+import com.weedai.ptp.model.SecurityPhoneData;
+import com.weedai.ptp.model.User;
 import com.weedai.ptp.model.Valicode;
 import com.weedai.ptp.view.SimpleValidateCodeView;
 import com.weedai.ptp.volley.ResponseListener;
@@ -36,7 +40,7 @@ public class AccountEmailActivity extends BaseActivity {
 
         initView();
 
-        getImgcode();  //获取验证码
+//        getImgcode();  //获取验证码
     }
 
     @Override
@@ -67,9 +71,66 @@ public class AccountEmailActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
 
+                String email = etEmail.getText().toString();
+                String code = etVerificationCode.getText().toString();
+
+                if (TextUtils.isEmpty(email)) {
+                    Toast.makeText(AccountEmailActivity.this, "邮箱不能为空", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+//                if (TextUtils.isEmpty(code)) {
+//                    Toast.makeText(AccountEmailActivity.this, getString(R.string.login_valicode_empty), Toast.LENGTH_SHORT).show();
+//                    return;
+//                } else {
+//                    if (!valicode.equals(code)) {
+//                        Toast.makeText(AccountEmailActivity.this, getString(R.string.login_valicode_not_match), Toast.LENGTH_SHORT).show();
+//                        return;
+//                    }
+//                }
+                bindingEmail(email, code);
+
             }
         });
 
+    }
+
+    private void bindingEmail(String email, String valicodes) {
+        ApiClient.bindingEmail(TAG, email, new ResponseListener() {
+            @Override
+            public void onStarted() {
+                progressDialog = ProgressDialog.show(AccountEmailActivity.this, null, "正在验证邮箱");
+            }
+
+            @Override
+            public void onResponse(Object response) {
+                progressDialog.dismiss();
+
+                SecurityPhone result = (SecurityPhone) response;
+                if (result.code != Constant.CodeResult.SUCCESS) {
+                    Toast.makeText(AccountEmailActivity.this, result.message, Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                SecurityPhoneData data = result.data;
+                String message = result.message;
+                if (message.equals("sendsuccess")) {
+                    Toast.makeText(AccountEmailActivity.this, "邮箱验证成功", Toast.LENGTH_SHORT).show();
+                    User.userInfo.phone_status = 1;
+                    finish();
+                } else if (message.equals("emailexist ")) {
+                    Toast.makeText(AccountEmailActivity.this, "邮箱已经存在", Toast.LENGTH_SHORT).show();
+                } else if (message.equals("aftertwo")) {
+                    Toast.makeText(AccountEmailActivity.this, "请两分钟后再发", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(AccountEmailActivity.this, "邮箱验证失败", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                progressDialog.dismiss();
+            }
+        });
     }
 
 
