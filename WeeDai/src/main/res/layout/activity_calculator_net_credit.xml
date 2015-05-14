@@ -1,6 +1,286 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
 
-</LinearLayout>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="@dimen/main_content_margin_top">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="right|center_vertical"
+                    android:text="年利率:"
+                    android:textColor="@color/main_text_black"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/etApr"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:hint="0.4"
+                    android:inputType="numberDecimal"
+                    android:paddingLeft="4dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:text="%"
+                    android:textColor="@color/main_text_black"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+            <include layout="@layout/view_horizontal_line" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="right|center_vertical"
+                    android:text="期限:"
+                    android:textColor="@color/main_text_black"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/etLimit"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:hint="12"
+                    android:paddingLeft="4dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:text="月"
+                    android:textColor="@color/main_text_black"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+
+            <include layout="@layout/view_horizontal_line" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="right|center_vertical"
+                    android:text="还款方式:"
+                    android:textColor="@color/main_text_black"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/tvType"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="8dp"
+                    android:text="到期还本，按月付息"
+                    android:textColor="@color/main_text"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+            <include layout="@layout/view_horizontal_line" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="right|center_vertical"
+                    android:text="投标金额:"
+                    android:textColor="@color/main_text_black"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/etBidAmount"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:hint="10000"
+                    android:inputType="number"
+
+                    android:paddingLeft="4dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:text="元"
+                    android:textColor="@color/main_text_black"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+            <include layout="@layout/view_horizontal_line" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="right|center_vertical"
+                    android:text="投标日期:"
+                    android:textColor="@color/main_text_black"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/etBidDate"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:focusable="false"
+                    android:hint="10000"
+                    android:paddingLeft="4dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:text="元"
+                    android:textColor="@color/main_text_black"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+            <include layout="@layout/view_horizontal_line" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp">
+
+                <TextView
+
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="right|center_vertical"
+                    android:text="投标奖励:"
+                    android:textColor="@color/main_text_black"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/etBidAward"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:hint="0.4"
+                    android:inputType="numberDecimal"
+                    android:paddingLeft="4dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:text="%"
+                    android:textColor="@color/main_text_black"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+            <include layout="@layout/view_horizontal_line" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="right|center_vertical"
+                    android:text="管理费:"
+                    android:textColor="@color/main_text_black"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/etManager"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:hint="0.4"
+                    android:inputType="numberDecimal"
+                    android:paddingLeft="4dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:text="%"
+                    android:textColor="@color/main_text_black"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="20dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnCalculator"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:background="@drawable/selector_btn_bg"
+                android:text="开始计算"
+                android:layout_marginEnd="20dp"
+                android:textColor="@color/white" />
+
+
+            <Button
+                android:id="@+id/btnReset"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:background="@drawable/selector_btn_bg"
+                android:text="重置数据"
+                android:textColor="@color/white" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</ScrollView>

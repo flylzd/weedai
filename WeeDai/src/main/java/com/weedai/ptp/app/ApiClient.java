@@ -508,6 +508,46 @@ public class ApiClient {
         requestQueue.add(request);
     }
 
+    /**
+     * 利息计算器
+     */
+    public static void calculatorInterest(String tag, String account, String lilv, String times, int type,  ResponseListener listener) {
+        listener.onStarted();
+
+        Map<String, String> requestParams = getSignatureMap();
+        requestParams.put("account", account);
+        requestParams.put("lilv", lilv);
+        requestParams.put("times", times);
+        requestParams.put("type", String.valueOf(type));
+        requestParams.put(Urls.ACTION, "lixitools");
+
+        String url = Urls.ACTION_INDEX;
+        GsonPostRequest request = createGsonPostRequest(url, requestParams, SecurityPhone.class, listener);
+        request.setTag(tag);
+        requestQueue.add(request);
+    }
+
+    /**
+     * 网贷计算器
+     */
+    public static void calculatorNetCredit(String tag, String account, String lilv, String times, int type,  ResponseListener listener) {
+        listener.onStarted();
+
+        Map<String, String> requestParams = getSignatureMap();
+        requestParams.put("nianxi", account);
+        requestParams.put("qixian", lilv);
+        requestParams.put("type", String.valueOf(type));
+        requestParams.put("account", times);
+        requestParams.put("addtime", times);
+        requestParams.put("account", times);
+        requestParams.put(Urls.ACTION, "lixitools");
+
+        String url = Urls.ACTION_INDEX;
+        GsonPostRequest request = createGsonPostRequest(url, requestParams, SecurityPhone.class, listener);
+        request.setTag(tag);
+        requestQueue.add(request);
+    }
+
 
     /**
      * 获取英雄榜信息

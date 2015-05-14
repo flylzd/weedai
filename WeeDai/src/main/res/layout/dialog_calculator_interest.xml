@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tvType3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/selector_bg_layout"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="到期还本，按月付息"
+        android:textColor="@android:color/holo_red_light"
+        android:textSize="18sp" />
+
+    <include layout="@layout/view_horizontal_line" />
+
+    <TextView
+        android:id="@+id/tvType0"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/selector_bg_layout"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="等额本息"
+        android:textColor="@android:color/holo_blue_light"
+        android:textSize="18sp" />
+
+</LinearLayout>
