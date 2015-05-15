@@ -26,6 +26,11 @@ public class CalculatorInterestActivity extends BaseActivity {
     private TextView tvType;
     private Button btnCalculator;
 
+    private TextView tvAprYear;
+    private TextView tvAprMonthly;
+    private TextView tvRepaymentMonthly;
+    private TextView tvRepaymentAccount;
+
     private int type = 3;   //0等额本息
     //3到期还本,按月付息
     private AlertDialog alertDialog;
@@ -59,6 +64,11 @@ public class CalculatorInterestActivity extends BaseActivity {
         tvType = (TextView) findViewById(R.id.tvType);
         btnCalculator = (Button) findViewById(R.id.btnCalculator);
 
+        tvAprYear = (TextView) findViewById(R.id.tvAprYear);
+        tvAprMonthly = (TextView) findViewById(R.id.tvAprMonthly);
+        tvRepaymentMonthly = (TextView) findViewById(R.id.tvRepaymentMonthly);
+        tvRepaymentAccount = (TextView) findViewById(R.id.tvRepaymentAccount);
+
         tvType.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -85,7 +95,7 @@ public class CalculatorInterestActivity extends BaseActivity {
                 });
                 builder.setView(view);
                 builder.create();
-                alertDialog =  builder.show();
+                alertDialog = builder.show();
             }
         });
 
@@ -107,12 +117,15 @@ public class CalculatorInterestActivity extends BaseActivity {
         });
     }
 
-    private void calculator(String account, String lilv, String times, int type) {
+    private void calculator(String account, final String lilv, final String times, int type) {
 
         ApiClient.calculatorInterest(TAG, account, lilv, times, type, new ResponseListener() {
             @Override
             public void onStarted() {
                 progressDialog = ProgressDialog.show(CalculatorInterestActivity.this, null, "正在提交数据");
+
+                tvAprYear.setText(lilv);
+                tvAprMonthly.setText(String.valueOf(Float.parseFloat(lilv) / Float.parseFloat(times)));
             }
 
             @Override

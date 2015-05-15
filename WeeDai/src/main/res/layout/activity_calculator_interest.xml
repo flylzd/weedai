@@ -30,13 +30,12 @@
                     android:textSize="18sp" />
 
                 <EditText
-                   android:id="@+id/etAmount"
+                    android:id="@+id/etAmount"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:background="@null"
                     android:hint="10000"
                     android:inputType="number"
-
                     android:paddingLeft="4dp" />
 
                 <TextView
@@ -68,9 +67,9 @@
                     android:id="@+id/etApr"
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
+                    android:background="@null"
                     android:hint="0.4"
                     android:inputType="numberDecimal"
-                    android:background="@null"
                     android:paddingLeft="4dp" />
 
                 <TextView
@@ -174,6 +173,121 @@
             android:layout_marginTop="20dp"
             android:background="@color/main_text_orange" />
 
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:gravity="right|center_vertical"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:text="年化利率:"
+                android:textColor="@color/main_text"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/tvAprYear"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:gravity="left|center_vertical"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:text="4%"
+                android:textColor="@color/main_text"
+                android:textSize="18sp" />
+
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:gravity="right|center_vertical"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:text="月利率:"
+                android:textColor="@color/main_text"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/tvAprMonthly"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:gravity="left|center_vertical"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:text="4%"
+                android:textColor="@color/main_text"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:gravity="right|center_vertical"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:text="月还款项:"
+                android:textColor="@color/main_text_black"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/tvRepaymentMonthly"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:gravity="left|center_vertical"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:textColor="@color/main_text"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:gravity="right|center_vertical"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:text="还款总额:"
+                android:textColor="@color/main_text_black"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/tvRepaymentAccount"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:gravity="left|center_vertical"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:textColor="@color/main_text"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+
+
     </LinearLayout>
+
 
 </ScrollView>
