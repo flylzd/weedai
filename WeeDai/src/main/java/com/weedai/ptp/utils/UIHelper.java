@@ -6,6 +6,7 @@ import android.content.Intent;
 
 import com.weedai.ptp.model.InvestList;
 import com.weedai.ptp.ui.activity.AboutActivity;
+import com.weedai.ptp.ui.activity.AboutCompanyActivity;
 import com.weedai.ptp.ui.activity.AccountActivity;
 import com.weedai.ptp.ui.activity.AccountAvatarsActivity;
 import com.weedai.ptp.ui.activity.AccountEmailActivity;
@@ -32,6 +33,7 @@ import com.weedai.ptp.ui.activity.MyStandInsideLetterActivity;
 import com.weedai.ptp.ui.activity.MyWealthActivity;
 import com.weedai.ptp.ui.activity.MyWithdrawalActivity;
 import com.weedai.ptp.ui.activity.MyWithdrawalRecordActivity;
+import com.weedai.ptp.ui.activity.PartnerActivity;
 import com.weedai.ptp.ui.activity.ReceivableSearchActivity;
 import com.weedai.ptp.ui.activity.RegisterActivity;
 import com.weedai.ptp.ui.activity.SecurityLevelActivity;
@@ -240,8 +242,27 @@ public class UIHelper {
         context.startActivity(intent);
     }
 
+    /**
+     * 关于我们
+     */
     public static void showAbout(Context context) {
         Intent intent = new Intent(context, AboutActivity.class);
+        context.startActivity(intent);
+    }
+
+    /**
+     * 公司介绍
+     */
+    public static void showAboutCompany(Context context) {
+        Intent intent = new Intent(context, AboutCompanyActivity.class);
+        context.startActivity(intent);
+    }
+
+    /**
+     * 合作伙伴
+     */
+    public static void showPartner(Context context) {
+        Intent intent = new Intent(context, PartnerActivity.class);
         context.startActivity(intent);
     }
 

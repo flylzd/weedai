@@ -2,6 +2,7 @@ package com.weedai.ptp.ui.activity;
 
 
 import android.app.ProgressDialog;
+import android.os.Build;
 import android.os.Bundle;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -54,6 +55,11 @@ public class ArticleDetailActivity extends BaseActivity {
 
         WebSettings settings = webView.getSettings();
         settings.setJavaScriptEnabled(true);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            webView.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.TEXT_AUTOSIZING);
+        } else {
+            webView.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.NORMAL);
+        }
     }
 
     private void loadData() {
@@ -78,9 +84,22 @@ public class ArticleDetailActivity extends BaseActivity {
                 System.out.println("content " + DataUtil.urlDecode(result.data.content));
                 // 载入这个html页面
 //                webView.loadData(htmlString, "text/html", "utf-8");
-                webView.loadDataWithBaseURL(null, htmlString, "text/html", "utf-8", null);
+
+                webView.loadData(getHtmlData(htmlString), "text/html; charset=utf-8", "utf-8");
+
+//                webView.loadData(htmlString, "text/html; charset=utf-8", "utf-8");
+
+//                webView.loadDataWithBaseURL(null, htmlString, "text/html", "utf-8", null);
             }
         });
+    }
+
+    private String getHtmlData(String bodyHTML) {
+        String head = "<head>" +
+                "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, user-scalable=no\"> " +
+                "<style>img{max-width: 100%; width:auto; height:auto;}</style>" +
+                "</head>";
+        return "<html>" + head + "<body>" + bodyHTML + "</body></html>";
     }
 
     private abstract class RefreshResponseListener implements ResponseListener {

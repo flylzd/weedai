@@ -666,6 +666,24 @@ public class ApiClient {
         requestQueue.add(request);
     }
 
+
+    /**
+     * 头像获得
+     */
+    public static void getAvatars(String tag, ResponseListener listener) {
+
+        listener.onStarted();
+
+        Map<String, String> requestParams = getSignatureMap();
+        requestParams.put("t", String.valueOf((int) Math.random() * 10 + 1));
+        requestParams.put(Urls.ACTION, "getavatars");
+
+        String url = Urls.ACTION_INDEX;
+        GsonGetRequest request = createGsonGetRequest(url, requestParams, User.class, listener);
+        request.setTag(tag);
+        requestQueue.add(request);
+    }
+
     /**
      * 上传头像
      */

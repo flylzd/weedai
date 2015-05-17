@@ -36,5 +36,8 @@
     <color name="financial_main_text_black">#272727</color>
     <color name="financial_main_text">#9c9c9c</color>
 
+    <color name="about_company_normal">#6171d1</color>
+    <color name="about_company_pressed">#4054cb</color>
+
 
 </resources>

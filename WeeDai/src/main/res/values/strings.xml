@@ -30,6 +30,8 @@
     <string name="title_change_login_password">修改登录密码</string>
     <string name="title_change_payment_password">修改支付密码</string>
     <string name="title_about">关于我们</string>
+    <string name="title_partner">合作伙伴</string>
+    <string name="title_about_company">公司介绍</string>
     <string name="title_calculator_interest">利息计算器</string>
     <string name="title_calculator_net_credit">网贷计算器</string>
     <string name="title_information">资讯</string>

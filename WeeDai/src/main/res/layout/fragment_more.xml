@@ -95,7 +95,7 @@
 
             <include layout="@layout/view_horizontal_line" />
 
-            <RelativeLayout style="@style/layoutMore">
+            <RelativeLayout style="@style/layoutMore" android:visibility="gone">
 
                 <TextView
                     style="@style/textMoreLeft"
@@ -107,9 +107,9 @@
 
             </RelativeLayout>
 
-            <include layout="@layout/view_horizontal_line" />
+            <include layout="@layout/view_horizontal_line" android:visibility="gone" />
 
-            <RelativeLayout style="@style/layoutMore">
+            <RelativeLayout style="@style/layoutMore" android:visibility="gone">
 
                 <TextView
                     style="@style/textMoreLeft"
@@ -121,7 +121,7 @@
 
             </RelativeLayout>
 
-            <include layout="@layout/view_horizontal_line" />
+            <include layout="@layout/view_horizontal_line" android:visibility="gone" />
 
             <RelativeLayout
                 android:id="@+id/layoutAbout"
