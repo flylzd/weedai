@@ -28,6 +28,7 @@ import com.weedai.ptp.constant.Urls;
 import com.weedai.ptp.model.BaseModel;
 import com.weedai.ptp.model.User;
 import com.weedai.ptp.model.UserData;
+import com.weedai.ptp.utils.DataUtil;
 import com.weedai.ptp.utils.ImageUtil;
 import com.weedai.ptp.volley.ResponseListener;
 
@@ -151,6 +152,8 @@ public class AccountAvatarsActivity extends BaseActivity {
             url = Urls.SERVER_URL + url;
             ImageLoader.getInstance().displayImage(url, imgAvatar);
         }
+
+        tvUsername.setText(DataUtil.urlDecode(data.username));
 
         String sex = data.sex == 1 ? "男" : "女";
         tvSex.setText(sex);

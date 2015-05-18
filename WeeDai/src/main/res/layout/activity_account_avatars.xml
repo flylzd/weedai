@@ -38,7 +38,6 @@
         android:paddingBottom="4dp"
         android:paddingLeft="30dp"
         android:paddingTop="4dp"
-        android:text="panda"
         android:textSize="24sp" />
 
     <LinearLayout
