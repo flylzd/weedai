@@ -24,6 +24,32 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:background="@color/white"
+                    android:orientation="vertical">
+
+                    <ListView
+                        android:id="@+id/listViewComment"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:cacheColorHint="@android:color/transparent" />
+
+                    <include layout="@layout/view_horizontal_line" />
+
+                    <TextView
+                        android:id="@+id/tvComments"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:text="更多评论"
+                        android:textSize="22sp" />
+
+                </LinearLayout>
+
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -61,12 +87,14 @@
         android:orientation="horizontal">
 
         <EditText
+            android:id="@+id/etSendComment"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:focusable="false" />
+            android:layout_weight="1" />
 
         <Button
+            android:id="@+id/btnSend"
+            android:drawableLeft="@drawable/icon_article_comment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="" />

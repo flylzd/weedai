@@ -200,6 +200,7 @@
                             android:textSize="16sp" />
 
                         <ImageView
+                            android:id="@+id/imgCurrencyConversion"
                             android:layout_width="19dp"
                             android:layout_height="19dp"
                             android:layout_gravity="center_horizontal"
@@ -241,16 +242,17 @@
             </LinearLayout>
 
             <TextView
+                android:id="@+id/tvCheckCurrency"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_below="@+id/layoutMyMicroCurrency"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="10dp"
                 android:drawablePadding="10dp"
                 android:drawableRight="@drawable/ic_arrow_right"
                 android:text="@string/user_my_wealth_check_micro_currency_history"
-                android:textColor="@color/main_text"
-                android:textSize="17sp" />
+                android:textColor="@android:color/holo_blue_light"
+                android:textSize="18sp" />
         </RelativeLayout>
 
 

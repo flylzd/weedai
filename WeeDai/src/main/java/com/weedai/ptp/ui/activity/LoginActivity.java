@@ -123,7 +123,11 @@ public class LoginActivity extends Activity implements View.OnClickListener {
 
                 BaseModel result = (BaseModel) response;
                 if (result.code != Constant.CodeResult.SUCCESS) {
-                    Toast.makeText(LoginActivity.this, result.message, Toast.LENGTH_SHORT).show();
+                    String message = result.message;
+                    if (message.equals("login_fail")) {
+                        message = "登录失败,密码不正确";
+                    }
+                    Toast.makeText(LoginActivity.this, message, Toast.LENGTH_SHORT).show();
                     return;
                 }
 

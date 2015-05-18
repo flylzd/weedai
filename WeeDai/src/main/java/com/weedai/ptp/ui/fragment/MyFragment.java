@@ -78,12 +78,17 @@ public class MyFragment extends Fragment implements View.OnClickListener {
         super.onViewCreated(view, savedInstanceState);
 
         init(view);
-        if (data == null) {
-            loadData();
-        } else {
-            setUserInfo();
-        }
+//        if (data == null) {
+//            loadData();
+//        } else {
+//            setUserInfo();
+//        }
+    }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        loadData();
     }
 
     private void init(View view) {

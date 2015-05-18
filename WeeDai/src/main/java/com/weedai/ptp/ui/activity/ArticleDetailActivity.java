@@ -1,6 +1,7 @@
 package com.weedai.ptp.ui.activity;
 
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.os.Build;
 import android.os.Bundle;
@@ -9,27 +10,31 @@ import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.error.VolleyError;
 import com.lemon.aklib.adapter.BaseAdapterHelper;
 import com.lemon.aklib.adapter.QuickAdapter;
-import com.lemon.aklib.widget.EndOfListView;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.weedai.ptp.R;
 import com.weedai.ptp.app.ApiClient;
 import com.weedai.ptp.constant.Constant;
-import com.weedai.ptp.model.Article;
 import com.weedai.ptp.model.ArticleDetail;
 import com.weedai.ptp.model.ArticleList;
 import com.weedai.ptp.model.ArticleRelated;
+import com.weedai.ptp.model.Comment;
+import com.weedai.ptp.model.CommentList;
 import com.weedai.ptp.utils.DataUtil;
 import com.weedai.ptp.utils.ListViewUtil;
 import com.weedai.ptp.utils.UIHelper;
 import com.weedai.ptp.volley.ResponseListener;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,6 +47,17 @@ public class ArticleDetailActivity extends BaseActivity {
     private ListView listView;
     private QuickAdapter<ArticleList> adapter;
     private List<ArticleList> newsList = new ArrayList<ArticleList>();
+
+    private ListView listViewComment;
+    private QuickAdapter<CommentList> adapterComment;
+    private List<CommentList> commentList = new ArrayList<CommentList>();
+    private int page = 0;
+
+    private TextView tvComments;
+
+    private EditText etSendComment;
+    private Button btnSend;
+    private String sendComment;
 
     private ProgressDialog progressDialog;
 
@@ -109,6 +125,44 @@ public class ArticleDetailActivity extends BaseActivity {
             }
         });
 
+
+        adapterComment = new QuickAdapter<CommentList>(ArticleDetailActivity.this, R.layout.listitem_comment) {
+            @Override
+            protected void convert(BaseAdapterHelper helper, CommentList item) {
+
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm");
+                String addtime = sdf.format(Long.parseLong(item.addtime + "000"));
+
+                helper.setText(R.id.tvTime, DataUtil.urlDecode(addtime));
+                helper.setText(R.id.tvUsername, DataUtil.urlDecode(item.username));
+                helper.setText(R.id.tvComments, DataUtil.urlDecode(item.comment));
+            }
+        };
+        listViewComment = (ListView) findViewById(R.id.listViewComment);
+        listViewComment.setAdapter(adapterComment);
+
+        tvComments = (TextView) findViewById(R.id.tvComments);
+
+        etSendComment = (EditText) findViewById(R.id.etSendComment);
+        btnSend = (Button) findViewById(R.id.btnSend);
+        btnSend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                sendComment = etSendComment.getText().toString();
+                if (TextUtils.isEmpty(sendComment)) {
+                    Toast.makeText(ArticleDetailActivity.this, "评论内容不能为空", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(ArticleDetailActivity.this);
+                builder.setTitle("请输入验证码");
+
+
+            }
+        });
+
+        progressDialog = ProgressDialog.show(ArticleDetailActivity.this, null, getString(R.string.message_waiting));
     }
 
     private void loadData() {
@@ -140,6 +194,8 @@ public class ArticleDetailActivity extends BaseActivity {
 
                 siteId = result.data.site_id;
                 getRelatedArticleList();
+
+                getCommentList();
             }
         });
     }
@@ -174,14 +230,41 @@ public class ArticleDetailActivity extends BaseActivity {
         });
     }
 
+    private void getCommentList() {
+
+        ApiClient.getCommentList(TAG, aid, page, new RefreshResponseListener() {
+            @Override
+            public void onResponse(Object response) {
+                super.onResponse(response);
+
+                Comment result = (Comment) response;
+                if (result.code != Constant.CodeResult.SUCCESS) {
+                    Toast.makeText(ArticleDetailActivity.this, result.message, Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                List<CommentList> list = result.data.list;
+                commentList = list;
+                adapterComment.replaceAll(commentList);
+                ListViewUtil.setListViewHeightBasedOnChildren(listViewComment);
+
+                if (list == null || list.size() == 0) {
+                    tvComments.setText("没有评论");
+                } else {
+                    tvComments.setText("查看更多评论");
+                }
+            }
+        });
+    }
+
 
     private abstract class RefreshResponseListener implements ResponseListener {
 
         @Override
         public void onStarted() {
-            progressDialog = ProgressDialog.show(ArticleDetailActivity.this, null, getString(R.string.message_waiting));
-
-
+            if (!progressDialog.isShowing()) {
+                progressDialog.show();
+            }
         }
 
         @Override

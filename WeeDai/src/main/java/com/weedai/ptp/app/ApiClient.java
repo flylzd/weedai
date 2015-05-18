@@ -19,6 +19,7 @@ import com.weedai.ptp.model.Award;
 import com.weedai.ptp.model.Bank;
 import com.weedai.ptp.model.BaseModel;
 import com.weedai.ptp.model.Calculator;
+import com.weedai.ptp.model.Comment;
 import com.weedai.ptp.model.FinancialManager;
 import com.weedai.ptp.model.Invest;
 import com.weedai.ptp.model.Micro;
@@ -618,7 +619,7 @@ public class ApiClient {
     /**
      * 相关文章
      */
-    public static void getRelatedArticleList(String tag,String siteid, ResponseListener listener) {
+    public static void getRelatedArticleList(String tag, String siteid, ResponseListener listener) {
 
         listener.onStarted();
 
@@ -628,6 +629,26 @@ public class ApiClient {
 
         String url = Urls.ACTION_INDEX;
         GsonGetRequest request = createGsonGetRequest(url, requestParams, ArticleRelated.class, listener);
+        request.setTag(tag);
+        requestQueue.add(request);
+    }
+
+    /**
+     * 评论列表
+     */
+    public static void getCommentList(String tag, String id, int page, ResponseListener listener) {
+
+        listener.onStarted();
+
+        Map<String, String> requestParams = getSignatureMap();
+        requestParams.put("id", id);
+        requestParams.put("page", String.valueOf(page));
+        requestParams.put("type", "list");
+        requestParams.put("code", "article");
+        requestParams.put(Urls.ACTION, "comments");
+
+        String url = Urls.ACTION_INDEX;
+        GsonGetRequest request = createGsonGetRequest(url, requestParams, Comment.class, listener);
         request.setTag(tag);
         requestQueue.add(request);
     }
@@ -648,6 +669,23 @@ public class ApiClient {
         request.setTag(tag);
         requestQueue.add(request);
     }
+
+    /**
+     * 微币转换
+     */
+    public static void changeWb(String tag, ResponseListener listener) {
+
+        listener.onStarted();
+
+        Map<String, String> requestParams = getSignatureMap();
+        requestParams.put(Urls.ACTION, "changewbs");
+
+        String url = Urls.ACTION_INDEX;
+        GsonPostRequest request = createGsonPostRequest(url, requestParams, BaseModel.class, listener);
+        request.setTag(tag);
+        requestQueue.add(request);
+    }
+
 
     /**
      * 获得抽奖次数
