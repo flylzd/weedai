@@ -11,4 +11,5 @@ public class BankData implements Serializable {
     public String account;
     public String banksname;
     public String branch;
+    public String bank;
 }

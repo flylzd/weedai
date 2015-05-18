@@ -24,6 +24,8 @@
     <string name="title_withdrawal_record">提现记录</string>
     <string name="title_withdrawal">提现</string>
     <string name="title_financial_management">理财管理</string>
+    <string name="title_my_bank">我的银行卡</string>
+    <string name="title_change_bank">修改银行卡</string>
     <string name="title_my_stand_inside_letter">站内信</string>
     <string name="title_security_level">账户安全</string>
     <string name="title_security_phone">绑定手机</string>

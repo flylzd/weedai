@@ -3,15 +3,31 @@ package com.weedai.ptp.ui.activity;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.error.VolleyError;
 import com.weedai.ptp.R;
 import com.weedai.ptp.app.ApiClient;
+import com.weedai.ptp.constant.Constant;
+import com.weedai.ptp.model.Bank;
+import com.weedai.ptp.model.BankData;
+import com.weedai.ptp.model.Money;
+import com.weedai.ptp.utils.DataUtil;
+import com.weedai.ptp.utils.UIHelper;
 import com.weedai.ptp.volley.ResponseListener;
 
 public class MyBankCardActivity extends BaseActivity {
 
     private final static String TAG = "MyBankCardActivity";
+
+    private TextView tvRealName;
+    private TextView tvRealEmail;
+    private TextView tvBankBranch;
+    private TextView tvBankCode;
+    private Button btnModifyBankCard;
 
     private ProgressDialog progressDialog;
 
@@ -22,12 +38,18 @@ public class MyBankCardActivity extends BaseActivity {
         setContentView(R.layout.activity_my_bank_card);
 
         initView();
+//        loadData();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         loadData();
     }
 
     @Override
     protected int getActionBarTitle() {
-        return R.string.title_about;
+        return R.string.title_my_bank;
     }
 
     @Override
@@ -37,8 +59,32 @@ public class MyBankCardActivity extends BaseActivity {
 
     private void initView() {
 
+        tvRealName = (TextView) findViewById(R.id.tvRealName);
+        tvRealEmail = (TextView) findViewById(R.id.tvRealEmail);
+        tvBankBranch = (TextView) findViewById(R.id.tvBankBranch);
+        tvBankCode = (TextView) findViewById(R.id.tvBankCode);
 
+        btnModifyBankCard = (Button) findViewById(R.id.btnModifyBankCard);
+        btnModifyBankCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                UIHelper.showMyBankCardChange(MyBankCardActivity.this);
+            }
+        });
+    }
 
+    private void setInfo(BankData data) {
+
+        if (data != null){
+
+            tvRealName.setText(DataUtil.urlDecode(data.realname));
+            tvRealEmail.setText(DataUtil.urlDecode(data.email));
+
+            System.out.println("banksname " + DataUtil.urlDecode(data.banksname));
+            System.out.println("branch " + DataUtil.urlDecode(data.branch));
+            System.out.println("account " + DataUtil.urlDecode(data.account));
+            System.out.println("bank " + DataUtil.urlDecode(data.bank));
+        }
     }
 
     private void loadData() {
@@ -56,7 +102,13 @@ public class MyBankCardActivity extends BaseActivity {
             public void onResponse(Object response) {
                 progressDialog.dismiss();
 
+                Bank result = (Bank) response;
+                if (result.code != Constant.CodeResult.SUCCESS) {
+                    Toast.makeText(MyBankCardActivity.this, result.message, Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
+                setInfo(result.data);
             }
 
             @Override

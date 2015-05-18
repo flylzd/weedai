@@ -7,6 +7,7 @@ import android.text.Html;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,6 +42,9 @@ public class FinancialActivity extends BaseActivity implements SwipeRefreshLayou
 
     private final static int DEFAULT_PAGE = 1;
     private int page = DEFAULT_PAGE;
+
+    private RadioGroup radioGroup;
+    private String xmtype;
 
     private boolean isFirstLoadingomplete = false;
 
@@ -183,6 +187,27 @@ public class FinancialActivity extends BaseActivity implements SwipeRefreshLayou
                 UIHelper.showFinancialDetail(FinancialActivity.this, adapter.getItem(position));
             }
         });
+
+        radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch (checkedId){
+                    case R.id.rbConditionsAll:
+                        xmtype = "";
+                        break;
+                    case R.id.rbConditionsBorrowing:
+                        xmtype = Constant.XMTYPE.Borrow;
+                        break;
+                    case R.id.rbConditionsReimbursing:
+                        xmtype = Constant.XMTYPE.Now;
+                        break;
+                    case R.id.rbConditionsCompleteReimbursement:
+                        xmtype = Constant.XMTYPE.Yes;
+                        break;
+                }
+            }
+        });
     }
 
     private void loadData() {
@@ -191,7 +216,7 @@ public class FinancialActivity extends BaseActivity implements SwipeRefreshLayou
 
     private void getInvestList() {
 
-        ApiClient.getInvestList(TAG, page, Constant.InvestType.TYPE_YX, new RefreshResponseListener() {
+        ApiClient.getInvestList(TAG, page, xmtype, new RefreshResponseListener() {
             @Override
             public void onResponse(Object response) {
                 super.onResponse(response);

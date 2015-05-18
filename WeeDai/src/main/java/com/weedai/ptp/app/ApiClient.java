@@ -219,13 +219,13 @@ public class ApiClient {
         requestQueue.add(request);
     }
 
-    public static void getInvestList(String tag, int page, int type, ResponseListener listener) {
+    public static void getInvestList(String tag, int page, String xmtype, ResponseListener listener) {
 
         listener.onStarted();
 
         Map<String, String> requestParams = getSignatureMap();
         requestParams.put("page", String.valueOf(page));
-//        requestParams.put("type", String.valueOf(type));
+        requestParams.put("xmtype", xmtype);
         requestParams.put("timelimit", null);
         requestParams.put(Urls.ACTION, "invest/list");
 
@@ -649,6 +649,27 @@ public class ApiClient {
 
         String url = Urls.ACTION_INDEX;
         GsonGetRequest request = createGsonGetRequest(url, requestParams, Comment.class, listener);
+        request.setTag(tag);
+        requestQueue.add(request);
+    }
+
+    /**
+     * 添加评论
+     */
+    public static void addComment(String tag, String id, String comment,String  valicode, ResponseListener listener) {
+
+        listener.onStarted();
+
+        Map<String, String> requestParams = getSignatureMap();
+        requestParams.put("id", id);
+        requestParams.put("comment", comment);
+        requestParams.put("valicode",valicode);
+        requestParams.put("type", "add");
+        requestParams.put("code", "article");
+        requestParams.put(Urls.ACTION, "comments");
+
+        String url = Urls.ACTION_INDEX;
+        GsonGetRequest request = createGsonGetRequest(url, requestParams, BaseModel.class, listener);
         request.setTag(tag);
         requestQueue.add(request);
     }

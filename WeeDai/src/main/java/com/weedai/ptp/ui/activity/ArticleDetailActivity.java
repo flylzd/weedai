@@ -3,8 +3,10 @@ package com.weedai.ptp.ui.activity;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.DialogPreference;
 import android.text.TextUtils;
 import android.view.View;
 import android.webkit.WebSettings;
@@ -13,6 +15,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,15 +26,19 @@ import com.lemon.aklib.adapter.QuickAdapter;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.weedai.ptp.R;
 import com.weedai.ptp.app.ApiClient;
+import com.weedai.ptp.constant.Config;
 import com.weedai.ptp.constant.Constant;
 import com.weedai.ptp.model.ArticleDetail;
 import com.weedai.ptp.model.ArticleList;
 import com.weedai.ptp.model.ArticleRelated;
+import com.weedai.ptp.model.BaseModel;
 import com.weedai.ptp.model.Comment;
 import com.weedai.ptp.model.CommentList;
+import com.weedai.ptp.model.Valicode;
 import com.weedai.ptp.utils.DataUtil;
 import com.weedai.ptp.utils.ListViewUtil;
 import com.weedai.ptp.utils.UIHelper;
+import com.weedai.ptp.view.SimpleValidateCodeView;
 import com.weedai.ptp.volley.ResponseListener;
 
 import java.text.SimpleDateFormat;
@@ -64,6 +71,12 @@ public class ArticleDetailActivity extends BaseActivity {
     private String aid;
 
     private String siteId;
+
+    private AlertDialog alertDialog;
+
+
+    private SimpleValidateCodeView simpleValidateCodeView;
+    private String valicode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -149,16 +162,50 @@ public class ArticleDetailActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
 
+                if (!Config.isLogin) {
+                    Toast.makeText(ArticleDetailActivity.this,"请先登录，在发表评论...",Toast.LENGTH_SHORT).show();
+                    UIHelper.showLogin(ArticleDetailActivity.this);
+                    return;
+                }
+
                 sendComment = etSendComment.getText().toString();
                 if (TextUtils.isEmpty(sendComment)) {
                     Toast.makeText(ArticleDetailActivity.this, "评论内容不能为空", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
+                View view = getLayoutInflater().inflate(R.layout.dialog_simple_validate_code_view, null);
+                final EditText etValicode = (EditText) view.findViewById(R.id.etValicode);
+                simpleValidateCodeView = (SimpleValidateCodeView) view.findViewById(R.id.viewValicode);
+                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.MATCH_PARENT);
+                view.setLayoutParams(params);
+
                 AlertDialog.Builder builder = new AlertDialog.Builder(ArticleDetailActivity.this);
                 builder.setTitle("请输入验证码");
+                builder.setView(view);
+                builder.setNegativeButton("取消", null);
+                builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
 
+                        String code = etValicode.getText().toString();
+                        if (TextUtils.isEmpty(code)) {
+                            Toast.makeText(ArticleDetailActivity.this, getString(R.string.login_valicode_empty), Toast.LENGTH_SHORT).show();
+//                            return;
+                        } else {
+                            if (!valicode.equals(code)) {
+                                Toast.makeText(ArticleDetailActivity.this, getString(R.string.login_valicode_not_match), Toast.LENGTH_SHORT).show();
+//                                return;
+                            } else {
+                                addComment(aid, sendComment, code);
+                            }
+                        }
+                    }
+                });
+                builder.create();
+                alertDialog = builder.show();
 
+                getImgcode();
             }
         });
 
@@ -199,7 +246,6 @@ public class ArticleDetailActivity extends BaseActivity {
             }
         });
     }
-
 
     private String getHtmlData(String bodyHTML) {
         String head = "<head>" +
@@ -253,6 +299,67 @@ public class ArticleDetailActivity extends BaseActivity {
                 } else {
                     tvComments.setText("查看更多评论");
                 }
+            }
+        });
+    }
+
+    private void addComment(String id, String comment, String valicode) {
+        ApiClient.addComment(TAG, id, comment, valicode, new RefreshResponseListener() {
+            @Override
+            public void onStarted() {
+                super.onStarted();
+                progressDialog.setMessage("正在提交数据...");
+            }
+
+            @Override
+            public void onResponse(Object response) {
+                super.onResponse(response);
+
+                BaseModel result = (BaseModel) response;
+//                if (result.code != Constant.CodeResult.SUCCESS) {
+//                    Toast.makeText(ArticleDetailActivity.this, result.message, Toast.LENGTH_SHORT).show();
+//                    return;
+//                }
+
+                if (result.message.equals("addcomment_success")) {
+                    alertDialog.dismiss();
+                    etSendComment.getText().clear();
+                    getArticleDetail();
+                } else {
+                    Toast.makeText(ArticleDetailActivity.this, "评论失败", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
+    private void getImgcode() {
+
+        ApiClient.getImgcode(TAG, new ResponseListener() {
+            @Override
+            public void onStarted() {
+            }
+
+            @Override
+            public void onResponse(Object response) {
+
+                Valicode result = (Valicode) response;
+                if (result.code != Constant.CodeResult.SUCCESS) {
+                    Toast.makeText(ArticleDetailActivity.this, result.message, Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                valicode = result.data.code;
+                System.out.println("valicode : " + valicode);
+                String code = result.data.code;
+                int length = code.length();
+                String[] codes = new String[length];
+                for (int i = 0; i < length; i++) {
+                    codes[i] = String.valueOf(code.charAt(i));
+                }
+                simpleValidateCodeView.getValidataAndSetImage(codes);
+            }
+
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
             }
         });
     }

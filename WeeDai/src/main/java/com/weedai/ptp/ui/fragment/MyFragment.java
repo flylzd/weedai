@@ -204,10 +204,10 @@ public class MyFragment extends Fragment implements View.OnClickListener {
                 imgEmail.setImageResource(R.drawable.icon_email);
             }
 
-            System.out.println("data.avatar_status " + data.avatar_status);
-            System.out.println("data.vip_status " + data.vip_status);
-            System.out.println("data.phone_status " + data.phone_status);
-            System.out.println("data.email_status " + data.email_status);
+//            System.out.println("data.avatar_status " + data.avatar_status);
+//            System.out.println("data.vip_status " + data.vip_status);
+//            System.out.println("data.phone_status " + data.phone_status);
+//            System.out.println("data.email_status " + data.email_status);
 
             String userMoney;
             if (TextUtils.isEmpty(data.use_money)) {
@@ -235,6 +235,7 @@ public class MyFragment extends Fragment implements View.OnClickListener {
             int crownNum = credit / 1000; // 皇冠的数量
             int starsNum = (credit - crownNum * 1000) / 200;  //星星的数量
 
+            layoutCredit.removeAllViews();
             for (int i = 0; i < crownNum; i++) {
                 ImageView imageView = new ImageView(getActivity());
                 imageView.setImageResource(R.drawable.icon_crown);

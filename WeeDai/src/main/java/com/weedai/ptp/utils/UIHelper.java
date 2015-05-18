@@ -26,6 +26,7 @@ import com.weedai.ptp.ui.activity.LuckyDrawActivity;
 import com.weedai.ptp.ui.activity.MainActivity;
 import com.weedai.ptp.ui.activity.MoneyRecordActivity;
 import com.weedai.ptp.ui.activity.MyBankCardActivity;
+import com.weedai.ptp.ui.activity.MyBankCardChangeActivity;
 import com.weedai.ptp.ui.activity.MyFinancialManagementActivity;
 import com.weedai.ptp.ui.activity.MyMicroCurrencyHistoryActivity;
 import com.weedai.ptp.ui.activity.MyRechargeActivity;
@@ -88,6 +89,11 @@ public class UIHelper {
 
     public static void showMyBankCard(Context context) {
         Intent intent = new Intent(context, MyBankCardActivity.class);
+        context.startActivity(intent);
+    }
+
+    public static void showMyBankCardChange(Context context) {
+        Intent intent = new Intent(context, MyBankCardChangeActivity.class);
         context.startActivity(intent);
     }
 

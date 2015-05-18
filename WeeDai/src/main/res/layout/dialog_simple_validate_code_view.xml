@@ -2,8 +2,26 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:gravity="center"
+    android:paddingLeft="20dp"
+    android:paddingTop="20dp"
+    android:orientation="horizontal">
 
+    <EditText
+        android:id="@+id/etValicode"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:gravity="center_vertical"
+        android:hint="@string/login_valicode_hint"
+        android:maxLength="4"
+        android:textSize="18sp" />
+
+    <com.weedai.ptp.view.SimpleValidateCodeView
+        android:id="@+id/viewValicode"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical" />
 
 
 </LinearLayout>
