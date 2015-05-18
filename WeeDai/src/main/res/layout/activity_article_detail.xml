@@ -10,30 +10,46 @@
         android:layout_weight="1">
 
         <ScrollView
-            android:descendantFocusability="blocksDescendants"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:descendantFocusability="blocksDescendants">
 
             <LinearLayout
-                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
                 <WebView
                     android:id="@+id/webView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
 
-                <!--<TextView-->
-                    <!--android:text="dfsadfsdfdsfdfsdklfk开始的李开复凯撒快递费的首付款 "-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="30dp" />-->
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:background="@color/white"
+                    android:orientation="vertical">
 
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:text="相关新闻"
+                        android:textSize="22sp" />
 
+                    <include layout="@layout/view_horizontal_line" />
 
+                    <ListView
+                        android:id="@+id/listView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:cacheColorHint="@android:color/transparent" />
 
                 </LinearLayout>
+
+            </LinearLayout>
 
         </ScrollView>
 
@@ -45,10 +61,10 @@
         android:orientation="horizontal">
 
         <EditText
-            android:focusable="false"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:focusable="false" />
 
         <Button
             android:layout_width="wrap_content"

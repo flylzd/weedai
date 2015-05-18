@@ -35,7 +35,7 @@
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:background="@null"
-                    android:hint="0.4"
+                    android:hint="16.8"
                     android:inputType="numberDecimal"
                     android:paddingLeft="4dp" />
 
@@ -70,6 +70,7 @@
                     android:layout_height="wrap_content"
                     android:background="@null"
                     android:hint="12"
+                    android:inputType="number"
                     android:paddingLeft="4dp" />
 
                 <TextView
@@ -166,14 +167,14 @@
                     android:layout_height="wrap_content"
                     android:background="@null"
                     android:focusable="false"
-                    android:hint="10000"
+                    android:hint="2015-5-4"
                     android:paddingLeft="4dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/icon_date"
                     android:gravity="center_vertical"
-                    android:text="元"
                     android:textColor="@color/main_text_black"
                     android:textSize="18sp" />
 
@@ -200,7 +201,7 @@
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:background="@null"
-                    android:hint="0.4"
+                    android:hint="0.2"
                     android:inputType="numberDecimal"
                     android:paddingLeft="4dp" />
 
@@ -234,7 +235,7 @@
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:background="@null"
-                    android:hint="0.4"
+                    android:hint="0.0"
                     android:inputType="numberDecimal"
                     android:paddingLeft="4dp" />
 
@@ -254,29 +255,111 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginEnd="20dp"
-            android:layout_marginTop="20dp"
             android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
             android:orientation="horizontal">
 
             <Button
                 android:id="@+id/btnCalculator"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:layout_weight="1"
                 android:background="@drawable/selector_btn_bg"
                 android:text="开始计算"
-                android:layout_marginEnd="20dp"
                 android:textColor="@color/white" />
 
 
             <Button
                 android:id="@+id/btnReset"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:background="@drawable/selector_btn_bg"
+                android:layout_weight="1"
+                android:background="@drawable/selector_btn_calculator_reset_bg"
                 android:text="重置数据"
                 android:textColor="@color/white" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="总收益:"
+                android:textSize="22sp" />
+
+            <TextView
+                android:id="@+id/tvZshouyi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/main_text_orange"
+                android:textSize="22sp" />
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="元"
+                android:textSize="22sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="20dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="("
+                android:textColor="@color/main_text"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/tvAwards"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.7"
+                android:text="含奖励:"
+                android:textColor="@color/main_text"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/tvNianlilv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="年化利率:"
+
+                android:textColor="@color/main_text"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/tvYuelilv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="年月化利率:"
+                android:textColor="@color/main_text"
+                android:textSize="15sp" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=")"
+                android:textColor="@color/main_text"
+                android:textSize="15sp" />
 
         </LinearLayout>
 

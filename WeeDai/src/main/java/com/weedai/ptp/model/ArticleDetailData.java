@@ -6,6 +6,7 @@ import java.io.Serializable;
 public class ArticleDetailData implements Serializable {
 
     public String id;
+    public String site_id;
     public String name;
     public String summary;
     public String order;

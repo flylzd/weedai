@@ -11,11 +11,14 @@ import com.android.volley.error.AuthFailureError;
 import com.android.volley.error.VolleyError;
 import com.android.volley.error.VolleyErrorHelper;
 import com.weedai.ptp.constant.Urls;
+import com.weedai.ptp.model.About;
 import com.weedai.ptp.model.Article;
 import com.weedai.ptp.model.ArticleDetail;
+import com.weedai.ptp.model.ArticleRelated;
 import com.weedai.ptp.model.Award;
 import com.weedai.ptp.model.Bank;
 import com.weedai.ptp.model.BaseModel;
+import com.weedai.ptp.model.Calculator;
 import com.weedai.ptp.model.FinancialManager;
 import com.weedai.ptp.model.Invest;
 import com.weedai.ptp.model.Micro;
@@ -457,7 +460,7 @@ public class ApiClient {
     /**
      * 邮箱验证
      */
-    public static void bindingEmail(String tag, String email,ResponseListener listener) {
+    public static void bindingEmail(String tag, String email, ResponseListener listener) {
         listener.onStarted();
 
         Map<String, String> requestParams = getSignatureMap();
@@ -511,7 +514,7 @@ public class ApiClient {
     /**
      * 利息计算器
      */
-    public static void calculatorInterest(String tag, String account, String lilv, String times, int type,  ResponseListener listener) {
+    public static void calculatorInterest(String tag, String account, String lilv, String times, int type, ResponseListener listener) {
         listener.onStarted();
 
         Map<String, String> requestParams = getSignatureMap();
@@ -522,7 +525,7 @@ public class ApiClient {
         requestParams.put(Urls.ACTION, "lixitools");
 
         String url = Urls.ACTION_INDEX;
-        GsonPostRequest request = createGsonPostRequest(url, requestParams, SecurityPhone.class, listener);
+        GsonPostRequest request = createGsonPostRequest(url, requestParams, Calculator.class, listener);
         request.setTag(tag);
         requestQueue.add(request);
     }
@@ -530,20 +533,21 @@ public class ApiClient {
     /**
      * 网贷计算器
      */
-    public static void calculatorNetCredit(String tag, String account, String lilv, String times, int type,  ResponseListener listener) {
+    public static void calculatorNetCredit(String tag, String nianxi, String times, int type, String account, String addtime, String award, String manage, ResponseListener listener) {
         listener.onStarted();
 
         Map<String, String> requestParams = getSignatureMap();
-        requestParams.put("nianxi", account);
-        requestParams.put("qixian", lilv);
+        requestParams.put("nianxi", nianxi);
+        requestParams.put("qixian", times);
         requestParams.put("type", String.valueOf(type));
-        requestParams.put("account", times);
-        requestParams.put("addtime", times);
-        requestParams.put("account", times);
-        requestParams.put(Urls.ACTION, "lixitools");
+        requestParams.put("account", account);
+        requestParams.put("addtime", addtime);
+        requestParams.put("award", award);
+        requestParams.put("manage", manage);
+        requestParams.put(Urls.ACTION, "ttools");
 
         String url = Urls.ACTION_INDEX;
-        GsonPostRequest request = createGsonPostRequest(url, requestParams, SecurityPhone.class, listener);
+        GsonPostRequest request = createGsonPostRequest(url, requestParams, Calculator.class, listener);
         request.setTag(tag);
         requestQueue.add(request);
     }
@@ -596,10 +600,6 @@ public class ApiClient {
 
     /**
      * 文章详情
-     *
-     * @param tag
-     * @param aid
-     * @param listener
      */
     public static void getArticleDetail(String tag, String aid, ResponseListener listener) {
 
@@ -611,6 +611,23 @@ public class ApiClient {
 
         String url = Urls.ACTION_INDEX;
         GsonGetRequest request = createGsonGetRequest(url, requestParams, ArticleDetail.class, listener);
+        request.setTag(tag);
+        requestQueue.add(request);
+    }
+
+    /**
+     * 相关文章
+     */
+    public static void getRelatedArticleList(String tag,String siteid, ResponseListener listener) {
+
+        listener.onStarted();
+
+        Map<String, String> requestParams = getSignatureMap();
+        requestParams.put("siteid", siteid);
+        requestParams.put(Urls.ACTION, "article/related");
+
+        String url = Urls.ACTION_INDEX;
+        GsonGetRequest request = createGsonGetRequest(url, requestParams, ArticleRelated.class, listener);
         request.setTag(tag);
         requestQueue.add(request);
     }
@@ -666,6 +683,36 @@ public class ApiClient {
         requestQueue.add(request);
     }
 
+    /**
+     * 合作伙伴
+     */
+    public static void getPartner(String tag, ResponseListener listener) {
+        listener.onStarted();
+
+        Map<String, String> requestParams = getSignatureMap();
+        requestParams.put(Urls.ACTION, "friends/list");
+
+        String url = Urls.ACTION_INDEX;
+        GsonPostRequest request = createGsonPostRequest(url, requestParams, About.class, listener);
+        request.setTag(tag);
+        requestQueue.add(request);
+    }
+
+    /**
+     * 公司介绍
+     */
+    public static void getAboutCompany(String tag, ResponseListener listener) {
+        listener.onStarted();
+
+        Map<String, String> requestParams = getSignatureMap();
+        requestParams.put(Urls.ACTION, "companyshow/list");
+
+        String url = Urls.ACTION_INDEX;
+        GsonPostRequest request = createGsonPostRequest(url, requestParams, About.class, listener);
+        request.setTag(tag);
+        requestQueue.add(request);
+    }
+
 
     /**
      * 头像获得
@@ -683,6 +730,7 @@ public class ApiClient {
         request.setTag(tag);
         requestQueue.add(request);
     }
+
 
     /**
      * 上传头像
