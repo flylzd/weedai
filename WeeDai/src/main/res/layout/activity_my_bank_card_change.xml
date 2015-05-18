@@ -55,6 +55,7 @@
             android:text="@string/user_my_bank_branch_name" />
 
         <EditText
+            android:hint="如广东分行勒流支行"
             android:id="@+id/etBankBranch"
             style="@style/textMyBank" />
     </LinearLayout>
@@ -68,6 +69,7 @@
             android:text="@string/user_my_bank_bank_card_code" />
 
         <EditText
+            android:hint="开户人姓名必须为马云"
             android:id="@+id/etBankCode"
             style="@style/textMyBank" />
     </LinearLayout>
