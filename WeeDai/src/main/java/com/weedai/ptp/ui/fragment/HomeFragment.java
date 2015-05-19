@@ -18,13 +18,21 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.error.VolleyError;
+import com.nostra13.universalimageloader.core.ImageLoader;
 import com.weedai.ptp.R;
 import com.weedai.ptp.app.ApiClient;
 import com.weedai.ptp.constant.Config;
 import com.weedai.ptp.constant.Constant;
+import com.weedai.ptp.constant.Urls;
+import com.weedai.ptp.model.Article;
+import com.weedai.ptp.model.ArticleList;
 import com.weedai.ptp.model.Invest;
+import com.weedai.ptp.model.RotationImage;
+import com.weedai.ptp.model.RotationImageList;
 import com.weedai.ptp.model.SignIn;
+import com.weedai.ptp.utils.DataUtil;
 import com.weedai.ptp.utils.UIHelper;
+import com.weedai.ptp.view.AutoScrollViewPager;
 import com.weedai.ptp.volley.ResponseListener;
 
 import java.util.ArrayList;
@@ -36,11 +44,16 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
     public static boolean isLoginFromHome;
 
-    private ViewPager viewPager;
-    private ViewPagerAdapter viewPagerAdapter;
+    private AutoScrollViewPager viewPager;
+    private LinearLayout layoutIndicator;
 
-    private static final int INDICATOR_COUNT = 4;
-    private ImageView[] indicatorImgs = new ImageView[INDICATOR_COUNT];//存放引到图片数组
+    //自定义轮播图的资源
+//    private String[] imageUrls;
+    private List<String> imageUrls = new ArrayList<String>();
+    //放轮播图片的ImageView 的list
+    private List<ImageView> imageViewsList = new ArrayList<ImageView>();
+    //放圆点的View的list
+    private List<View> dotViewsList = new ArrayList<View>();
 
     private ImageView imgYou;
     private ImageView imgYa;
@@ -54,7 +67,14 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     private TextView tvSign;
     private TextView tvMyAccount;
 
+    private TextView tvArticleTitle;
+    private TextView tvArticleTime;
+    private TextView tvArticleComment;
+    private ImageView imgArticleComment;
+
     private ProgressDialog progressDialog;
+
+    private ArticleList item;
 
     public static HomeFragment newInstance() {
         HomeFragment fragment = new HomeFragment();
@@ -73,7 +93,13 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         super.onViewCreated(view, savedInstanceState);
 
         init(view);
-//        loadData();
+
+        if (item != null && imageViewsList.size() != 0){
+            showImageViewPager();
+            setArticle();
+        } else {
+            loadData();
+        }
     }
 
     @Override
@@ -90,61 +116,18 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             tvMyAccount.setText(getActivity().getString(R.string.home_my_account_right));
             tvSign.setText(getActivity().getString(R.string.home_my_account_right));
         }
+        viewPager.startAutoScroll();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        viewPager.stopAutoScroll();
     }
 
     private void init(View view) {
-        List<View> views = new ArrayList<View>();
-        ImageView imageView1 = new ImageView(getActivity());
-        imageView1.setBackgroundResource(R.drawable.home_view1);
-        ImageView imageView2 = new ImageView(getActivity());
-        imageView2.setBackgroundResource(R.drawable.home_view2);
-        ImageView imageView3 = new ImageView(getActivity());
-        imageView3.setBackgroundResource(R.drawable.home_view3);
-        ImageView imageView4 = new ImageView(getActivity());
-        imageView4.setBackgroundResource(R.drawable.home_view4);
-        imageView1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                UIHelper.showLuckyDraw(getActivity());
-            }
-        });
-        imageView2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                UIHelper.showLuckyDraw(getActivity());
-            }
-        });
-        imageView3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                UIHelper.showLuckyDraw(getActivity());
-            }
-        });
-        imageView4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                UIHelper.showLuckyDraw(getActivity());
-            }
-        });
-        views.add(imageView1);
-        views.add(imageView2);
-        views.add(imageView3);
-        views.add(imageView4);
-
-        viewPager = (ViewPager) view.findViewById(R.id.viewPager);
-        viewPagerAdapter = new ViewPagerAdapter(views);
-        viewPager.setAdapter(viewPagerAdapter);
-        viewPager.setOnPageChangeListener(new ViewPageChangeListener());
-        viewPager.setOffscreenPageLimit(INDICATOR_COUNT);
-        viewPager.setCurrentItem(0);
-        viewPager.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                UIHelper.showLogin(getActivity());
-            }
-        });
-
-        initIndicator(view);
+        viewPager = (AutoScrollViewPager) view.findViewById(R.id.viewPager);
+        layoutIndicator = (LinearLayout) view.findViewById(R.id.layoutIndicator);
 
         imgYou = (ImageView) view.findViewById(R.id.imgYou);
         imgYa =(ImageView) view.findViewById(R.id.imgYa);
@@ -176,33 +159,49 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 //            tvMyAccount.setText(getActivity().getString(R.string.home_my_account_right));
 //            tvSign.setText(getActivity().getString(R.string.home_my_account_right));
 //        }
+
+        tvArticleTitle = (TextView) view.findViewById(R.id.tvArticleTitle);
+        tvArticleTime = (TextView) view.findViewById(R.id.tvArticleTime);
+        tvArticleComment = (TextView) view.findViewById(R.id.tvArticleComment);
+        imgArticleComment = (ImageView) view.findViewById(R.id.imgArticleComment);
     }
 
 
-    /**
-     * 初始化引导图标
-     * 动态创建多个小圆点，然后组装到线性布局里
-     */
-    private void initIndicator(View view) {
+    private void loadData() {
+        scrollPic();
+        getArticleList();
+    }
 
-        View v = view.findViewById(R.id.indicator);// 线性水平布局，负责动态调整导航图标
-
-        ImageView imageView;
-        for (int i = 0; i < INDICATOR_COUNT; i++) {
-
-            imageView = new ImageView(getActivity());
-            LinearLayout.LayoutParams linearParams = new LinearLayout.LayoutParams(15, 15);
-            linearParams.setMargins(7, 10, 7, 10);
-            imageView.setLayoutParams(linearParams);
-
-            indicatorImgs[i] = imageView;
-            if (i == 0) {
-                indicatorImgs[i].setBackgroundResource(R.drawable.dot_focused);
-            } else {
-                indicatorImgs[i].setBackgroundResource(R.drawable.dot_normal);
-            }
-            ((ViewGroup) v).addView(indicatorImgs[i]);
+    private void showImageViewPager() {
+        int size = imageUrls.size();
+        if (imageUrls == null || size == 0) {
+            return;
         }
+
+        layoutIndicator.removeAllViews();
+        for (int i = 0; i < size; i++) {
+            ImageView view = new ImageView(getActivity());
+            view.setTag(imageUrls.get(i));
+            view.setScaleType(ImageView.ScaleType.FIT_XY);
+            imageViewsList.add(view);
+
+            ImageView dotView = new ImageView(getActivity());
+            LinearLayout.LayoutParams linearParams = new LinearLayout.LayoutParams(20, 20);
+            linearParams.setMargins(7, 10, 7, 10);
+            dotView.setLayoutParams(linearParams);
+            if (i == 0) {
+                dotView.setBackgroundResource(R.drawable.dot_focused);
+            } else {
+                dotView.setBackgroundResource(R.drawable.dot_normal);
+            }
+            dotViewsList.add(dotView);
+            layoutIndicator.addView(dotView);
+        }
+        viewPager.setFocusable(true);
+        viewPager.setAdapter(new ViewPagerAdapter(imageViewsList));
+        viewPager.setOnPageChangeListener(new ViewPageChangeListener());
+        viewPager.startAutoScroll();
+        viewPager.setInterval(2*1000);
     }
 
     @Override
@@ -283,11 +282,87 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         });
     }
 
+    private void getArticleList() {
+
+        ApiClient.getArticleList(TAG, 1, Constant.ArticleType.INFORMATION, new RefreshResponseListener() {
+
+            @Override
+            public void onResponse(Object response) {
+                super.onResponse(response);
+
+                Article result = (Article) response;
+                if (result.code != Constant.CodeResult.SUCCESS) {
+                    Toast.makeText(getActivity(), result.message, Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                List<ArticleList> articleList = result.data.list;
+                if (articleList != null && articleList.size() != 0){
+                    item = articleList.get(0);
+                    setArticle();
+                }
+            }
+        });
+    }
+
+    private void setArticle() {
+        if (item != null){
+            tvArticleTitle.setText(DataUtil.urlDecode(item.name));
+            tvArticleComment.setText(item.comment);
+            tvArticleTime.setText(item.publish);
+        }
+    }
+
+    private abstract class RefreshResponseListener implements ResponseListener {
+
+        @Override
+        public void onStarted() {
+            progressDialog = ProgressDialog.show(getActivity(), null, getString(R.string.message_waiting));
+        }
+
+        @Override
+        public void onResponse(Object response) {
+            progressDialog.dismiss();
+        }
+
+        @Override
+        public void onErrorResponse(VolleyError volleyError) {
+            progressDialog.dismiss();
+        }
+    }
+
+
+    private void scrollPic() {
+        ApiClient.scrollPic(TAG, new ResponseListener() {
+            @Override
+            public void onStarted() {
+            }
+
+            @Override
+            public void onResponse(Object response) {
+                RotationImage result = (RotationImage) response;
+                if (result.code != Constant.CodeResult.SUCCESS) {
+                    Toast.makeText(getActivity(), result.message, Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                List<RotationImageList> list = result.data.list;
+                for (RotationImageList item : list) {
+                    imageUrls.add(item.pic);
+                }
+                showImageViewPager();
+            }
+
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+            }
+        });
+    }
+
     private class ViewPagerAdapter extends PagerAdapter {
 
-        List<View> views;
+        List<ImageView> views;
 
-        public ViewPagerAdapter(List<View> views) {
+        public ViewPagerAdapter(List<ImageView> views) {
             this.views = views;
         }
 
@@ -311,11 +386,22 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         // 当要显示的图片可以进行缓存的时候，会调用这个方法进行显示图片的初始化，我们将要显示的ImageView加入到ViewGroup中，然后作为返回值返回即可
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
+
+            ImageView imageView = views.get(position);
+            String url = Urls.SERVER_URL + "/" + imageView.getTag().toString();
+            ImageLoader.getInstance().displayImage(url, imageView);
+
+            imageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    UIHelper.showLuckyDraw(getActivity());
+                }
+            });
+
             container.addView(views.get(position));
             return views.get(position);
         }
     }
-
 
     private class ViewPageChangeListener implements ViewPager.OnPageChangeListener {
 
@@ -328,10 +414,11 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         public void onPageSelected(int position) {
 
             viewPager.setCurrentItem(position);
-            for (int i = 0; i < INDICATOR_COUNT; i++) {
-                indicatorImgs[i].setBackgroundResource(R.drawable.dot_normal);
+            int size = dotViewsList.size();
+            for (int i = 0; i < size; i++) {
+                dotViewsList.get(i).setBackgroundResource(R.drawable.dot_normal);
             }
-            indicatorImgs[position].setBackgroundResource(R.drawable.dot_focused);
+            dotViewsList.get(position).setBackgroundResource(R.drawable.dot_focused);
         }
 
         @Override

@@ -30,6 +30,7 @@ import com.weedai.ptp.model.RotationImage;
 import com.weedai.ptp.model.RotationImageList;
 import com.weedai.ptp.utils.DataUtil;
 import com.weedai.ptp.utils.UIHelper;
+import com.weedai.ptp.view.AutoScrollViewPager;
 import com.weedai.ptp.volley.ResponseListener;
 
 import java.io.UnsupportedEncodingException;
@@ -41,10 +42,9 @@ public class ArticleActivity extends BaseActivity implements SwipeRefreshLayout.
 
     private final static String TAG = "ArticleActivity";
 
-    private ViewPager viewPager;
+    private AutoScrollViewPager viewPager;
     //    private ViewPagerAdapter viewPagerAdapter;
     private LinearLayout layoutIndicator;
-
 
     //自定义轮播图的资源
 //    private String[] imageUrls;
@@ -192,12 +192,12 @@ public class ArticleActivity extends BaseActivity implements SwipeRefreshLayout.
             }
         });
 
-        viewPager = (ViewPager) findViewById(R.id.viewPager);
+        viewPager = (AutoScrollViewPager) findViewById(R.id.viewPager);
         layoutIndicator = (LinearLayout) findViewById(R.id.layoutIndicator);
+
     }
 
     private void showImageViewPager() {
-
         int size = imageUrls.size();
         if (imageUrls == null || size == 0) {
             return;
@@ -210,9 +210,8 @@ public class ArticleActivity extends BaseActivity implements SwipeRefreshLayout.
             view.setScaleType(ImageView.ScaleType.FIT_XY);
             imageViewsList.add(view);
 
-
             ImageView dotView = new ImageView(ArticleActivity.this);
-            LinearLayout.LayoutParams linearParams = new LinearLayout.LayoutParams(15, 15);
+            LinearLayout.LayoutParams linearParams = new LinearLayout.LayoutParams(20, 20);
             linearParams.setMargins(7, 10, 7, 10);
             dotView.setLayoutParams(linearParams);
             if (i == 0) {
@@ -223,17 +222,17 @@ public class ArticleActivity extends BaseActivity implements SwipeRefreshLayout.
             dotViewsList.add(dotView);
             layoutIndicator.addView(dotView);
         }
-
         viewPager.setFocusable(true);
-
         viewPager.setAdapter(new ViewPagerAdapter(imageViewsList));
-
+        viewPager.setOnPageChangeListener(new ViewPageChangeListener());
+        viewPager.startAutoScroll();
+        viewPager.setInterval(2*1000);
     }
 
     private void loadData() {
-        getArticleList(infoPage);
 
         scrollPic();
+        getArticleList(infoPage);
     }
 
     private void getArticleList(int page) {
@@ -279,12 +278,10 @@ public class ArticleActivity extends BaseActivity implements SwipeRefreshLayout.
         ApiClient.scrollPic(TAG, new ResponseListener() {
             @Override
             public void onStarted() {
-
             }
 
             @Override
             public void onResponse(Object response) {
-
                 RotationImage result = (RotationImage) response;
                 if (result.code != Constant.CodeResult.SUCCESS) {
                     Toast.makeText(ArticleActivity.this, result.message, Toast.LENGTH_SHORT).show();
@@ -295,18 +292,14 @@ public class ArticleActivity extends BaseActivity implements SwipeRefreshLayout.
                 for (RotationImageList item : list) {
                     imageUrls.add(item.pic);
                 }
-
                 showImageViewPager();
-
             }
 
             @Override
             public void onErrorResponse(VolleyError volleyError) {
-
             }
         });
     }
-
 
     private class ViewPagerAdapter extends PagerAdapter {
 
@@ -343,6 +336,30 @@ public class ArticleActivity extends BaseActivity implements SwipeRefreshLayout.
 
             container.addView(views.get(position));
             return views.get(position);
+        }
+    }
+
+    private class ViewPageChangeListener implements ViewPager.OnPageChangeListener {
+
+        @Override
+        public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+        }
+
+        @Override
+        public void onPageSelected(int position) {
+
+            viewPager.setCurrentItem(position);
+            int size = dotViewsList.size();
+            for (int i = 0; i < size; i++) {
+                dotViewsList.get(i).setBackgroundResource(R.drawable.dot_normal);
+            }
+            dotViewsList.get(position).setBackgroundResource(R.drawable.dot_focused);
+        }
+
+        @Override
+        public void onPageScrollStateChanged(int state) {
+
         }
     }
 

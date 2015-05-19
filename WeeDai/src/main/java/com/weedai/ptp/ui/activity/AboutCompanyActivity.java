@@ -95,8 +95,6 @@ public class AboutCompanyActivity extends BaseActivity {
                 }
 
                 if (result.message.equals("companyshow_list_succ")) {
-//                    Config.isLogin = false;
-//                    finish();
                     String htmlString = DataUtil.urlDecode(result.data.content);
 
                     System.out.println("htmlString " + htmlString);

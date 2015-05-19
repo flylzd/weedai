@@ -13,6 +13,7 @@ import com.weedai.ptp.R;
 import com.weedai.ptp.app.ApiClient;
 import com.weedai.ptp.constant.Config;
 import com.weedai.ptp.constant.Constant;
+import com.weedai.ptp.constant.Urls;
 import com.weedai.ptp.model.About;
 import com.weedai.ptp.model.BaseModel;
 import com.weedai.ptp.utils.DataUtil;
@@ -81,10 +82,13 @@ public class PartnerActivity extends BaseActivity {
                 }
 
                 if (result.message.equals("friends_list_succ")) {
-//                    Config.isLogin = false;
-//                    finish();
+
                     String htmlString = DataUtil.urlDecode(result.data.content);
-                    webView.loadData(htmlString, "text/html; charset=utf-8", "utf-8");
+                    System.out.println("htmlString " + htmlString);
+//                    webView.loadData(htmlString, "text/html; charset=utf-8", "utf-8");
+
+                    webView.loadDataWithBaseURL(Urls.SERVER_URL + "/", htmlString, "text/html", "utf-8", null);
+
                 } else {
                     Toast.makeText(PartnerActivity.this, "加载失败", Toast.LENGTH_SHORT).show();
                 }

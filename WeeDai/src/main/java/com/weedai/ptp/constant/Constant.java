@@ -25,9 +25,9 @@ public class Constant {
 //    }
 
     public final static class XMTYPE {
-        public final static String Borrow = "Borrow";  //:正在招标
-        public final static String Now = "Now";  //正在还款
-        public final static String Yes = "Yes";  //已还完
+        public final static String Borrow = "borrow";  //:正在招标
+        public final static String Now = "now";  //正在还款
+        public final static String Yes = "yes";  //已还完
 
     }
 
@@ -37,8 +37,8 @@ public class Constant {
     }
 
     public final static class ArticleType {
-        public final static int NOTICE = 22;   //资讯
-        public final static int INFORMATION = 59;   //网站公告
+        public final static int NOTICE = 22;   //网站公告
+        public final static int INFORMATION = 59;   // 微E贷资讯
         public final static int AD = 133;  //投资英雄榜公告
     }
 

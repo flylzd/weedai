@@ -8,22 +8,20 @@
         android:layout_width="match_parent"
         android:layout_height="120dp">
 
-        <android.support.v4.view.ViewPager
+        <com.weedai.ptp.view.AutoScrollViewPager
             android:id="@+id/viewPager"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"></android.support.v4.view.ViewPager>
+            android:layout_height="wrap_content" />
 
         <LinearLayout
-            android:id="@+id/indicator"
+            android:id="@+id/layoutIndicator"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="10dp"
             android:gravity="center_horizontal"
-            android:orientation="horizontal">
-
-        </LinearLayout>
+            android:orientation="horizontal"></LinearLayout>
 
     </RelativeLayout>
 
@@ -198,25 +196,49 @@
                 android:src="@drawable/bg_information" />
 
             <TextView
-                android:id="@+id/tvTitle2"
+                android:id="@+id/tvArticleTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignTop="@+id/imgTitle"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="4dp"
                 android:layout_toRightOf="@+id/imgTitle"
-                android:text="住建设部：多种渠道发展租凭市场"
                 android:textColor="@color/white"
                 android:textSize="15sp" />
 
             <TextView
+                android:id="@+id/tvArticleTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/tvTitle2"
-                android:layout_marginTop="5dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="6dp"
+                android:layout_marginStart="4dp"
                 android:layout_toRightOf="@+id/imgTitle"
-                android:text="加强领导，狠抓落实"
                 android:textColor="@color/white"
                 android:textSize="15sp" />
 
+            <TextView
+                android:id="@+id/tvArticleComment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginBottom="6dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginStart="4dp"
+                android:textColor="@color/white"
+                android:textSize="15sp" />
+
+            <ImageView
+                android:id="@+id/imgArticleComment"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_marginEnd="4dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="8dp"
+                android:layout_toLeftOf="@+id/tvArticleComment"
+                android:scaleType="centerCrop"
+                android:src="@drawable/icon_article_comment" />
 
         </RelativeLayout>
 

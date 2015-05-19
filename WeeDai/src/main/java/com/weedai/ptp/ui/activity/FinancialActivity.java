@@ -4,6 +4,7 @@ package com.weedai.ptp.ui.activity;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.Html;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -20,6 +21,7 @@ import com.weedai.ptp.R;
 import com.weedai.ptp.app.ApiClient;
 import com.weedai.ptp.constant.Constant;
 import com.weedai.ptp.model.Invest;
+import com.weedai.ptp.model.InvestData;
 import com.weedai.ptp.model.InvestList;
 import com.weedai.ptp.utils.DataUtil;
 import com.weedai.ptp.utils.UIHelper;
@@ -33,20 +35,32 @@ import java.util.List;
 
 public class FinancialActivity extends BaseActivity implements SwipeRefreshLayout.OnRefreshListener, EndOfListView.OnEndOfListListener {
 
-    private final static String TAG = "OptimizingFinancialActivity";
+    private final static String TAG = "FinancialActivity";
 
     private PMSwipeRefreshLayout pullRefreshLayout;
     private EndOfListView listView;
     private QuickAdapter<InvestList> adapter;
-    private List<InvestList> dataList = new ArrayList<InvestList>();
+    private List<InvestList> dataList1 = new ArrayList<InvestList>();
+    private List<InvestList> dataList2 = new ArrayList<InvestList>();
+    private List<InvestList> dataList3 = new ArrayList<InvestList>();
+    private List<InvestList> dataList4 = new ArrayList<InvestList>();
 
-    private final static int DEFAULT_PAGE = 1;
-    private int page = DEFAULT_PAGE;
+    private final static int DEFAULT_PAGE = 0;
+    private int page;
+    private int page1 = DEFAULT_PAGE;
+    private int page2 = DEFAULT_PAGE;
+    private int page3 = DEFAULT_PAGE;
+    private int page4 = DEFAULT_PAGE;
 
     private RadioGroup radioGroup;
+    //    private String xmtype = Constant.XMTYPE.Borrow;
     private String xmtype;
-
     private boolean isFirstLoadingomplete = false;
+
+    private boolean isBottomLoadingComplete1 = false;
+    private boolean isBottomLoadingComplete2 = false;
+    private boolean isBottomLoadingComplete3 = false;
+    private boolean isBottomLoadingComplete4 = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +68,7 @@ public class FinancialActivity extends BaseActivity implements SwipeRefreshLayou
         setContentView(R.layout.activity_financial);
 
         initView();
-        loadData();
+//        loadData();
     }
 
     @Override
@@ -69,19 +83,50 @@ public class FinancialActivity extends BaseActivity implements SwipeRefreshLayou
 
     @Override
     public void onRefresh() {
-
-        page = DEFAULT_PAGE;
-        getInvestList();
+//        page = DEFAULT_PAGE;
+//        getInvestList();
     }
 
     @Override
     public void onEndOfList(Object lastItem) {
 
-        if (isFirstLoadingomplete) {
-            showIndeterminateProgress(true);
-            page++;
-            getInvestList();
+        if (TextUtils.isEmpty(xmtype)) {
+            if (isBottomLoadingComplete1) {
+                showIndeterminateProgress(false);
+                return;
+            }
+            page1++;
+            page = page1;
+        } else if (xmtype.equals(Constant.XMTYPE.Borrow)) {
+            if (isBottomLoadingComplete2) {
+                showIndeterminateProgress(false);
+                return;
+            }
+            page2++;
+            page = page2;
+        } else if (xmtype.equals(Constant.XMTYPE.Now)) {
+            if (isBottomLoadingComplete3) {
+                showIndeterminateProgress(false);
+                return;
+            }
+            page3++;
+            page = page3;
+        } else if (xmtype.equals(Constant.XMTYPE.Yes)) {
+            if (isBottomLoadingComplete4) {
+                showIndeterminateProgress(false);
+                return;
+            }
+            page4++;
+            page = page4;
         }
+        getInvestList();
+
+
+//        if (isFirstLoadingomplete) {
+//            showIndeterminateProgress(true);
+//            page++;
+//            getInvestList();
+//        }
     }
 
     private void showIndeterminateProgress(boolean visibility) {
@@ -94,8 +139,9 @@ public class FinancialActivity extends BaseActivity implements SwipeRefreshLayou
         pullRefreshLayout = (PMSwipeRefreshLayout) findViewById(R.id.pullRefreshLayout);
         pullRefreshLayout.setColorScheme(android.R.color.holo_blue_bright, android.R.color.holo_green_light,
                 android.R.color.holo_orange_light, android.R.color.holo_red_light);
-        pullRefreshLayout.setOnRefreshListener(this);
+//        pullRefreshLayout.setOnRefreshListener(this);
         pullRefreshLayout.setRefreshing(true);
+        pullRefreshLayout.setEnabled(false);
 
         listView = (EndOfListView) findViewById(R.id.listView);
         listView.setOnEndOfListListener(this);
@@ -192,18 +238,43 @@ public class FinancialActivity extends BaseActivity implements SwipeRefreshLayou
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                switch (checkedId){
+                switch (checkedId) {
                     case R.id.rbConditionsAll:
-                        xmtype = "";
+                        xmtype = null;
+                        adapter.replaceAll(dataList1);
                         break;
                     case R.id.rbConditionsBorrowing:
                         xmtype = Constant.XMTYPE.Borrow;
+                        if (dataList2.size() != 0) {
+                            adapter.replaceAll(dataList2);
+                        } else {
+                            page2++;
+                            page = page2;
+                            adapter.clear();
+                            getInvestList();
+                        }
                         break;
                     case R.id.rbConditionsReimbursing:
                         xmtype = Constant.XMTYPE.Now;
+                        if (dataList3.size() != 0) {
+                            adapter.replaceAll(dataList3);
+                        } else {
+                            page3++;
+                            page = page3;
+                            adapter.clear();
+                            getInvestList();
+                        }
                         break;
                     case R.id.rbConditionsCompleteReimbursement:
                         xmtype = Constant.XMTYPE.Yes;
+                        if (dataList4.size() != 0) {
+                            adapter.replaceAll(dataList4);
+                        } else {
+                            page4++;
+                            page = page4;
+                            adapter.clear();
+                            getInvestList();
+                        }
                         break;
                 }
             }
@@ -211,8 +282,16 @@ public class FinancialActivity extends BaseActivity implements SwipeRefreshLayou
     }
 
     private void loadData() {
+//        getInvestList();
+    }
+
+    private void loadFirstData() {
+        page1++;
+        page = page1;
+        adapter.clear();
         getInvestList();
     }
+
 
     private void getInvestList() {
 
@@ -226,29 +305,74 @@ public class FinancialActivity extends BaseActivity implements SwipeRefreshLayou
                     Toast.makeText(FinancialActivity.this, result.message, Toast.LENGTH_SHORT).show();
                     return;
                 }
+                InvestData data = result.data;
+                int currentPage = data.page;
+                int totalPage = data.total_page;
+                System.out.println("total " + result.data.total);
+                System.out.println("page " + result.data.page);
+                System.out.println("epage " + result.data.epage);
+                System.out.println("total_page " + result.data.total_page);
 
-                List<InvestList> investList = result.data.list;
-                if (page == DEFAULT_PAGE) {
-//                    dataList = investList;
-                    for (InvestList item : investList){
-                        if (item.is_you  ==1){
-                            dataList.add(item);
+                List<InvestList> investListTmp = result.data.list;
+                List<InvestList> investList = new ArrayList<InvestList>();
+                if (investListTmp != null && investListTmp.size() != 0) {
+                    for (InvestList item : investListTmp) {
+                        if (item.is_you == 1) {
+                            investList.add(item);
                         }
                     }
-                    adapter.replaceAll(dataList);
-                } else {
-//                    dataList.addAll(investList);
-                    for (InvestList item : investList){
-                        if (item.is_you  == 1){
-                            dataList.add(item);
+
+                    if (TextUtils.isEmpty(xmtype)) {
+                        if (currentPage == totalPage) {
+                            isBottomLoadingComplete1 = true;
                         }
+                        dataList1.addAll(investList);
+                        adapter.replaceAll(dataList1);
+
+                    } else if (xmtype.equals(Constant.XMTYPE.Borrow)) {
+                        if (currentPage == totalPage) {
+                            isBottomLoadingComplete2 = true;
+                        }
+                        dataList2.addAll(investList);
+                        adapter.replaceAll(dataList2);
+
+                    } else if (xmtype.equals(Constant.XMTYPE.Now)) {
+                        if (currentPage == totalPage) {
+                            isBottomLoadingComplete3 = true;
+                        }
+                        dataList3.addAll(investList);
+                        adapter.replaceAll(dataList3);
+
+                    } else if (xmtype.equals(Constant.XMTYPE.Yes)) {
+                        if (currentPage == totalPage) {
+                            isBottomLoadingComplete4 = true;
+                        }
+                        dataList4.addAll(investList);
+                        adapter.replaceAll(dataList4);
                     }
-                    adapter.replaceAll(dataList);
                 }
-                isFirstLoadingomplete = true;
+
+//                List<InvestList> investList = result.data.list;
+//                if (page == DEFAULT_PAGE) {
+////                    dataList = investList;
+//                    for (InvestList item : investList) {
+//                        if (item.is_you == 1) {
+//                            dataList.add(item);
+//                        }
+//                    }
+//                    adapter.replaceAll(dataList);
+//                } else {
+////                    dataList.addAll(investList);
+//                    for (InvestList item : investList) {
+//                        if (item.is_you == 1) {
+//                            dataList.add(item);
+//                        }
+//                    }
+//                    adapter.replaceAll(dataList);
+//                }
+//                isFirstLoadingomplete = true;
             }
         });
-
     }
 
     private abstract class RefreshResponseListener implements ResponseListener {
@@ -256,9 +380,30 @@ public class FinancialActivity extends BaseActivity implements SwipeRefreshLayou
         @Override
         public void onStarted() {
 
-            if (page != DEFAULT_PAGE) {
-                return;
-            }
+            showIndeterminateProgress(true);
+
+//            if (TextUtils.isEmpty(xmtype)) {
+//                if (isBottomLoadingComplete1) {
+//                    showIndeterminateProgress(true);
+//                    return;
+//                }
+//            } else if (xmtype.equals(Constant.XMTYPE.Borrow)) {
+//                if (isBottomLoadingComplete2) {
+//                    showIndeterminateProgress(false);
+//                    return;
+//                }
+//            } else if (xmtype.equals(Constant.XMTYPE.Now)) {
+//                if (isBottomLoadingComplete3) {
+//                    showIndeterminateProgress(false);
+//                    return;
+//                }
+//            } else if (xmtype.equals(Constant.XMTYPE.Yes)) {
+//                if (isBottomLoadingComplete4) {
+//                    showIndeterminateProgress(false);
+//                    return;
+//                }
+//            }
+
             if (!pullRefreshLayout.isRefreshing()) {
                 pullRefreshLayout.setRefreshing(true);
             }
@@ -267,16 +412,18 @@ public class FinancialActivity extends BaseActivity implements SwipeRefreshLayou
         @Override
         public void onResponse(Object response) {
 
-            if (page != DEFAULT_PAGE) {
-                showIndeterminateProgress(false);
-                return;
-            }
+//            if (page != DEFAULT_PAGE) {
+//                showIndeterminateProgress(false);
+//                return;
+//            }
             pullRefreshLayout.setRefreshing(false);
+            showIndeterminateProgress(false);
         }
 
         @Override
         public void onErrorResponse(VolleyError volleyError) {
             pullRefreshLayout.setRefreshing(false);
+            showIndeterminateProgress(false);
         }
     }
 

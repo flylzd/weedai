@@ -1,10 +1,10 @@
 package com.weedai.ptp.model;
 
 
-import java.io.Serializable;
 import java.util.List;
 
-public class InvestData implements Serializable {
+public class InvestData extends BaseData {
 
     public List<InvestList> list;
+
 }
