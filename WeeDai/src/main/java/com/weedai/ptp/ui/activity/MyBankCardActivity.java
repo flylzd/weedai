@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,6 +24,7 @@ public class MyBankCardActivity extends BaseActivity {
 
     private final static String TAG = "MyBankCardActivity";
 
+    private ImageView imgBankIcon;
     private TextView tvRealName;
     private TextView tvRealEmail;
     private TextView tvBankBranch;
@@ -59,6 +61,7 @@ public class MyBankCardActivity extends BaseActivity {
 
     private void initView() {
 
+        imgBankIcon = (ImageView) findViewById(R.id.imgBankIcon);
         tvRealName = (TextView) findViewById(R.id.tvRealName);
         tvRealEmail = (TextView) findViewById(R.id.tvRealEmail);
         tvBankBranch = (TextView) findViewById(R.id.tvBankBranch);
@@ -75,13 +78,19 @@ public class MyBankCardActivity extends BaseActivity {
 
     private void setInfo(BankData data) {
 
-        if (data != null){
+        if (data != null) {
 
             tvRealName.setText(DataUtil.urlDecode(data.realname));
             tvRealEmail.setText(DataUtil.urlDecode(data.email));
+            tvBankBranch.setText(DataUtil.urlDecode(data.branch));
+            tvBankCode.setText(DataUtil.urlDecode(data.account));
+
+//            String bankName = Constant.bankMap.get(data.bank);
+            int resId = Constant.bankImgMap.get(DataUtil.urlDecode(data.banksname));
+            imgBankIcon.setImageResource(resId);
 
             System.out.println("banksname " + DataUtil.urlDecode(data.banksname));
-            System.out.println("branch " + DataUtil.urlDecode(data.branch));
+            System.out.println("branch " + data.branch);
             System.out.println("account " + DataUtil.urlDecode(data.account));
             System.out.println("bank " + DataUtil.urlDecode(data.bank));
         }

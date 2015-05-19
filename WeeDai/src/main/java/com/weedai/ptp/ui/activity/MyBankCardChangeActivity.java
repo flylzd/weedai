@@ -13,10 +13,16 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.android.volley.error.VolleyError;
 import com.weedai.ptp.R;
+import com.weedai.ptp.app.ApiClient;
 import com.weedai.ptp.constant.Constant;
+import com.weedai.ptp.model.Bank;
+import com.weedai.ptp.volley.ResponseListener;
 
 public class MyBankCardChangeActivity extends BaseActivity {
+
+    private final static String TAG = "MyBankCardChangeActivity";
 
     private ImageView imgBankIcon;
     private EditText etBankBranch;
@@ -25,6 +31,12 @@ public class MyBankCardChangeActivity extends BaseActivity {
 
     private Spinner spinner;
     private ArrayAdapter<String> adapter;
+
+    private String bankName;
+
+    private String bank;
+    private String branch;
+    private String code;
 
     private ProgressDialog progressDialog;
 
@@ -53,7 +65,6 @@ public class MyBankCardChangeActivity extends BaseActivity {
         etBankBranch = (EditText) findViewById(R.id.etBankBranch);
         etBankCode = (EditText) findViewById(R.id.etBankCode);
 
-
         //将可选内容与ArrayAdapter连接起来
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, Constant.bankNameList);
         //设置下拉列表的风格
@@ -64,6 +75,9 @@ public class MyBankCardChangeActivity extends BaseActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
+                bankName = adapter.getItem(position);
+                int resId = Constant.bankImgMap.get(bankName);
+                imgBankIcon.setImageResource(resId);
             }
 
             @Override
@@ -71,12 +85,21 @@ public class MyBankCardChangeActivity extends BaseActivity {
 
             }
         });
-
+        bankName = adapter.getItem(0);
 
         btnModifyBankCard = (Button) findViewById(R.id.btnModifyBankCard);
         btnModifyBankCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                for (String key : Constant.bankMap.keySet()) {
+                    String bankNameTmp = Constant.bankMap.get(key);
+                    if (bankName.equals(bankNameTmp)) {
+                        bank = key;
+                        break;
+                    }
+                }
+
                 String branch = etBankBranch.getText().toString();
                 String code = etBankCode.getText().toString();
 
@@ -88,6 +111,43 @@ public class MyBankCardChangeActivity extends BaseActivity {
                     Toast.makeText(MyBankCardChangeActivity.this, "请填写银行卡号", Toast.LENGTH_SHORT).show();
                     return;
                 }
+
+                changeBank(code, branch);
+            }
+        });
+    }
+
+
+    private void changeBank(String code, String branch) {
+
+        ApiClient.changeBank(TAG, code, bank, branch, new ResponseListener() {
+            @Override
+            public void onStarted() {
+                progressDialog = ProgressDialog.show(MyBankCardChangeActivity.this, null, getString(R.string.message_waiting));
+            }
+
+            @Override
+            public void onResponse(Object response) {
+
+                progressDialog.dismiss();
+
+                Bank result = (Bank) response;
+                if (result.code != Constant.CodeResult.SUCCESS) {
+                    Toast.makeText(MyBankCardChangeActivity.this, result.message, Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (result.message.equals("bank_success")) {
+                    Toast.makeText(MyBankCardChangeActivity.this, "银行卡修改成功", Toast.LENGTH_SHORT).show();
+                    finish();
+                } else {
+                    Toast.makeText(MyBankCardChangeActivity.this, "银行卡修改失败", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                progressDialog.dismiss();
             }
         });
     }

@@ -39,8 +39,8 @@
 
             <ImageView
                 android:id="@+id/imgBankIcon"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_centerVertical="true"
                 android:scaleType="centerCrop"
                 android:src="@drawable/ic_launcher" />
@@ -49,6 +49,7 @@
                 android:id="@+id/tvBankName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
                 android:layout_marginStart="12dp"
                 android:layout_toRightOf="@+id/imgBankIcon"
                 android:text="中国银行"
@@ -56,6 +57,7 @@
                 android:textSize="22sp" />
 
             <TextView
+                android:visibility="gone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tvBankName"

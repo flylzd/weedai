@@ -89,6 +89,11 @@ public class RegisterActivity extends BaseActivity {
                 if (TextUtils.isEmpty(email)) {
                     Toast.makeText(RegisterActivity.this, "邮件地址不能为空", Toast.LENGTH_SHORT).show();
                     return;
+                } else {
+                    if(!email.matches("\\w+@\\w+\\.\\w+")){
+                        Toast.makeText(RegisterActivity.this, "邮箱格式不正确", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
                 }
                 if (TextUtils.isEmpty(username)) {
                     Toast.makeText(RegisterActivity.this, "用户名不能为空", Toast.LENGTH_SHORT).show();

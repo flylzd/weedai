@@ -137,7 +137,8 @@ public class MyWealthActivity extends BaseActivity implements View.OnClickListen
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.layoutRecharge:
-                UIHelper.showMyRecharge(MyWealthActivity.this);
+//                UIHelper.showMyRecharge(MyWealthActivity.this);
+                Toast.makeText(MyWealthActivity.this, "此功能暂不开放", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.layoutWithdrawal:
                 UIHelper.showMyWithdrawal(MyWealthActivity.this);

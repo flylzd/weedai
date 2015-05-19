@@ -68,7 +68,7 @@
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:background="@null"
-                    android:hint="0.4"
+                    android:hint="16.8"
                     android:inputType="numberDecimal"
                     android:paddingLeft="4dp" />
 
@@ -199,7 +199,6 @@
                 android:gravity="left|center_vertical"
                 android:paddingBottom="10dp"
                 android:paddingTop="10dp"
-                android:text="4%"
                 android:textColor="@color/main_text"
                 android:textSize="18sp" />
 
@@ -222,7 +221,6 @@
                 android:gravity="left|center_vertical"
                 android:paddingBottom="10dp"
                 android:paddingTop="10dp"
-                android:text="4%"
                 android:textColor="@color/main_text"
                 android:textSize="18sp" />
 

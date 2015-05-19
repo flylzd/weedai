@@ -35,6 +35,7 @@ public class MyWithdrawalRecordActivity extends BaseActivity implements EndOfLis
     private final static int DEFAULT_PAGE = 1;
     private int page = DEFAULT_PAGE;
 
+    private boolean isFirstLoadingomplete = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,9 +57,18 @@ public class MyWithdrawalRecordActivity extends BaseActivity implements EndOfLis
 
     @Override
     public void onEndOfList(Object lastItem) {
-        showIndeterminateProgress(true);
-        getWithdrawalRecord();
-        page++;
+
+        if (isFirstLoadingomplete){
+            if (dataList.size() < 10) {
+                showIndeterminateProgress(false);
+                return;
+            }
+            showIndeterminateProgress(true);
+            page++;
+            getWithdrawalRecord();
+        } else {
+            getWithdrawalRecord();
+        }
     }
 
     private void showIndeterminateProgress(boolean visibility) {
@@ -91,7 +101,7 @@ public class MyWithdrawalRecordActivity extends BaseActivity implements EndOfLis
                         state = "审核中";
                         break;
                     case 1:
-                        state = "现成功";
+                        state = "提现成功";
                         break;
                     case 2:
                         state = "提现失败";
@@ -124,6 +134,8 @@ public class MyWithdrawalRecordActivity extends BaseActivity implements EndOfLis
                 }
                 dataList.addAll(result.data.list);
                 adapter.replaceAll(dataList);
+
+                isFirstLoadingomplete = true;
             }
         });
     }

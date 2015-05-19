@@ -26,6 +26,7 @@ import com.weedai.ptp.model.Micro;
 import com.weedai.ptp.model.Money;
 import com.weedai.ptp.model.MyWeallth;
 import com.weedai.ptp.model.ReceivableSearch;
+import com.weedai.ptp.model.RotationImage;
 import com.weedai.ptp.model.SecurityLevel;
 import com.weedai.ptp.model.SecurityPhone;
 import com.weedai.ptp.model.SignIn;
@@ -423,6 +424,25 @@ public class ApiClient {
         requestQueue.add(request);
     }
 
+    /**
+     * 修改银行卡信息
+     */
+    public static void changeBank(String tag, String account, String bank, String branch, ResponseListener listener) {
+        listener.onStarted();
+
+        Map<String, String> requestParams = getSignatureMap();
+        requestParams.put("account", account);
+        requestParams.put("bank", bank);
+        requestParams.put("branch", branch);
+        requestParams.put("q", "code/account/bank");
+        requestParams.put(Urls.ACTION, "users");
+
+        String url = Urls.ACTION_INDEX;
+        GsonPostRequest request = createGsonPostRequest(url, requestParams, Bank.class, listener);
+        request.setTag(tag);
+        requestQueue.add(request);
+    }
+
 
     /**
      * 获取手机验证码
@@ -656,14 +676,14 @@ public class ApiClient {
     /**
      * 添加评论
      */
-    public static void addComment(String tag, String id, String comment,String  valicode, ResponseListener listener) {
+    public static void addComment(String tag, String id, String comment, String valicode, ResponseListener listener) {
 
         listener.onStarted();
 
         Map<String, String> requestParams = getSignatureMap();
         requestParams.put("id", id);
         requestParams.put("comment", comment);
-        requestParams.put("valicode",valicode);
+        requestParams.put("valicode", valicode);
         requestParams.put("type", "add");
         requestParams.put("code", "article");
         requestParams.put(Urls.ACTION, "comments");
@@ -703,6 +723,22 @@ public class ApiClient {
 
         String url = Urls.ACTION_INDEX;
         GsonPostRequest request = createGsonPostRequest(url, requestParams, BaseModel.class, listener);
+        request.setTag(tag);
+        requestQueue.add(request);
+    }
+
+    /**
+     * 轮换图
+     */
+    public static void scrollPic(String tag, ResponseListener listener) {
+
+        listener.onStarted();
+
+        Map<String, String> requestParams = getSignatureMap();
+        requestParams.put(Urls.ACTION, "scrollpic");
+
+        String url = Urls.ACTION_INDEX;
+        GsonPostRequest request = createGsonPostRequest(url, requestParams, RotationImage.class, listener);
         request.setTag(tag);
         requestQueue.add(request);
     }

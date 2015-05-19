@@ -165,7 +165,7 @@ public class CalculatorInterestActivity extends BaseActivity {
                 }
 
                 tvAprYear.setText(lilv);
-                tvAprMonthly.setText(String.valueOf(Float.parseFloat(lilv) / Float.parseFloat(times)));
+                tvAprMonthly.setText(result.data.monthslilv);
 
                 tvRepaymentMonthly.setText(result.data.monthpay);
                 tvRepaymentAccount.setText(result.data.allpay);

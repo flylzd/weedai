@@ -1,6 +1,8 @@
 package com.weedai.ptp.constant;
 
 
+import com.weedai.ptp.R;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -43,6 +45,7 @@ public class Constant {
 
     public final static Map<String, String> bankMap = new HashMap<String, String>();
     public final static List<String> bankNameList =  new ArrayList<String>();
+    public final static Map<String, Integer> bankImgMap = new HashMap<String, Integer>();
 
     static {
         bankMap.put("300", "工商银行");
@@ -72,6 +75,20 @@ public class Constant {
         bankNameList.add("华夏银行");
         bankNameList.add("上海浦东发展银行");
         bankNameList.add("中信银行");
+
+        bankImgMap.put("工商银行", R.drawable.icon_bank_gongshang);
+        bankImgMap.put("中国银行", R.drawable.icon_bank_zhongguo);
+        bankImgMap.put("建设银行", R.drawable.icon_bank_jianshe);
+        bankImgMap.put("农业银行", R.drawable.icon_bank_nongye);
+        bankImgMap.put("广发银行", R.drawable.icon_bank_gaungfa);
+        bankImgMap.put("交通银行", R.drawable.icon_bank_jiaotong);
+        bankImgMap.put("招商银行", R.drawable.icon_bank_zhaoshang);
+        bankImgMap.put("平安银行", R.drawable.icon_bank_pingan);
+        bankImgMap.put("兴业银行", R.drawable.icon_bank_xingye);
+        bankImgMap.put("民生银行", R.drawable.icon_bank_minsheng);
+        bankImgMap.put("华夏银行", R.drawable.icon_bank_huaxia);
+        bankImgMap.put("上海浦东发展银行", R.drawable.icon_bank_shanghaipudong);
+        bankImgMap.put("中信银行", R.drawable.icon_bank_zhongxin);
     }
 
 

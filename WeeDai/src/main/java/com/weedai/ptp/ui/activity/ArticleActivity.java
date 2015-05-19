@@ -1,11 +1,15 @@
 package com.weedai.ptp.ui.activity;
 
 import android.os.Bundle;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
@@ -18,9 +22,12 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.weedai.ptp.R;
 import com.weedai.ptp.app.ApiClient;
 import com.weedai.ptp.constant.Constant;
+import com.weedai.ptp.constant.Urls;
 import com.weedai.ptp.model.Article;
 import com.weedai.ptp.model.ArticleData;
 import com.weedai.ptp.model.ArticleList;
+import com.weedai.ptp.model.RotationImage;
+import com.weedai.ptp.model.RotationImageList;
 import com.weedai.ptp.utils.DataUtil;
 import com.weedai.ptp.utils.UIHelper;
 import com.weedai.ptp.volley.ResponseListener;
@@ -33,6 +40,19 @@ import java.util.List;
 public class ArticleActivity extends BaseActivity implements SwipeRefreshLayout.OnRefreshListener, EndOfListView.OnEndOfListListener {
 
     private final static String TAG = "ArticleActivity";
+
+    private ViewPager viewPager;
+    //    private ViewPagerAdapter viewPagerAdapter;
+    private LinearLayout layoutIndicator;
+
+
+    //自定义轮播图的资源
+//    private String[] imageUrls;
+    private List<String> imageUrls = new ArrayList<String>();
+    //放轮播图片的ImageView 的list
+    private List<ImageView> imageViewsList = new ArrayList<ImageView>();
+    //放圆点的View的list
+    private List<View> dotViewsList = new ArrayList<View>();
 
     private RadioGroup radioGroup;
 
@@ -49,6 +69,9 @@ public class ArticleActivity extends BaseActivity implements SwipeRefreshLayout.
     private int noticePage = DEFAULT_PAGE;
 
     private boolean isFirstLoadingomplete = false;
+
+    public ArticleActivity() {
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -168,10 +191,49 @@ public class ArticleActivity extends BaseActivity implements SwipeRefreshLayout.
                 UIHelper.showArticleDetail(ArticleActivity.this, aid);
             }
         });
+
+        viewPager = (ViewPager) findViewById(R.id.viewPager);
+        layoutIndicator = (LinearLayout) findViewById(R.id.layoutIndicator);
+    }
+
+    private void showImageViewPager() {
+
+        int size = imageUrls.size();
+        if (imageUrls == null || size == 0) {
+            return;
+        }
+
+        layoutIndicator.removeAllViews();
+        for (int i = 0; i < size; i++) {
+            ImageView view = new ImageView(ArticleActivity.this);
+            view.setTag(imageUrls.get(i));
+            view.setScaleType(ImageView.ScaleType.FIT_XY);
+            imageViewsList.add(view);
+
+
+            ImageView dotView = new ImageView(ArticleActivity.this);
+            LinearLayout.LayoutParams linearParams = new LinearLayout.LayoutParams(15, 15);
+            linearParams.setMargins(7, 10, 7, 10);
+            dotView.setLayoutParams(linearParams);
+            if (i == 0) {
+                dotView.setBackgroundResource(R.drawable.dot_focused);
+            } else {
+                dotView.setBackgroundResource(R.drawable.dot_normal);
+            }
+            dotViewsList.add(dotView);
+            layoutIndicator.addView(dotView);
+        }
+
+        viewPager.setFocusable(true);
+
+        viewPager.setAdapter(new ViewPagerAdapter(imageViewsList));
+
     }
 
     private void loadData() {
         getArticleList(infoPage);
+
+        scrollPic();
     }
 
     private void getArticleList(int page) {
@@ -213,6 +275,76 @@ public class ArticleActivity extends BaseActivity implements SwipeRefreshLayout.
         });
     }
 
+    private void scrollPic() {
+        ApiClient.scrollPic(TAG, new ResponseListener() {
+            @Override
+            public void onStarted() {
+
+            }
+
+            @Override
+            public void onResponse(Object response) {
+
+                RotationImage result = (RotationImage) response;
+                if (result.code != Constant.CodeResult.SUCCESS) {
+                    Toast.makeText(ArticleActivity.this, result.message, Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                List<RotationImageList> list = result.data.list;
+                for (RotationImageList item : list) {
+                    imageUrls.add(item.pic);
+                }
+
+                showImageViewPager();
+
+            }
+
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+
+            }
+        });
+    }
+
+
+    private class ViewPagerAdapter extends PagerAdapter {
+
+        List<ImageView> views;
+
+        public ViewPagerAdapter(List<ImageView> views) {
+            this.views = views;
+        }
+
+        @Override
+        public int getCount() {
+            return views.size();
+        }
+
+        @Override
+        public boolean isViewFromObject(View view, Object object) {
+            return view == object;
+        }
+
+
+        // PagerAdapter只缓存三张要显示的图片，如果滑动的图片超出了缓存的范围，就会调用这个方法，将图片销毁
+        @Override
+        public void destroyItem(ViewGroup container, int position, Object object) {
+            container.removeView(views.get(position));
+        }
+
+        // 当要显示的图片可以进行缓存的时候，会调用这个方法进行显示图片的初始化，我们将要显示的ImageView加入到ViewGroup中，然后作为返回值返回即可
+        @Override
+        public Object instantiateItem(ViewGroup container, int position) {
+
+            ImageView imageView = views.get(position);
+            String url = Urls.SERVER_URL + "/" + imageView.getTag().toString();
+            ImageLoader.getInstance().displayImage(url, imageView);
+
+            container.addView(views.get(position));
+            return views.get(position);
+        }
+    }
 
     private abstract class RefreshResponseListener implements ResponseListener {
 

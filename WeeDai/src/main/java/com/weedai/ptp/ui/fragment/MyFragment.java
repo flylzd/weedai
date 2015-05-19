@@ -40,6 +40,7 @@ public class MyFragment extends Fragment implements View.OnClickListener {
     private TextView tvMyStandInsideLetter;
     private TextView tvMyLuckyDraw;
     private View layoutSecurityLevel;
+    private TextView tvSecurityLevel;
 
     private ImageView imgAvatar;
     private TextView tvUsername;
@@ -59,6 +60,9 @@ public class MyFragment extends Fragment implements View.OnClickListener {
     private ProgressDialog progressDialog;
 
     private static UserData data;
+
+    private String securityLevel;
+    private int level = 0;
 
     public static MyFragment newInstance() {
         MyFragment fragment = new MyFragment();
@@ -117,7 +121,9 @@ public class MyFragment extends Fragment implements View.OnClickListener {
         tvMyBankCard = (TextView) view.findViewById(R.id.tvMyBankCard);
         tvMyStandInsideLetter = (TextView) view.findViewById(R.id.tvMyStandInsideLetter);
         tvMyLuckyDraw = (TextView) view.findViewById(R.id.tvMyLuckyDraw);
+        tvSecurityLevel = (TextView) view.findViewById(R.id.tvSecurityLevel);
         layoutSecurityLevel = view.findViewById(R.id.layoutSecurityLevel);
+
         layoutAccount.setOnClickListener(this);
         layoutMyWealth.setOnClickListener(this);
         tvMyWithdrawalRecord.setOnClickListener(this);
@@ -180,29 +186,45 @@ public class MyFragment extends Fragment implements View.OnClickListener {
             tvUsername.setText(data.username);
             tvEmail.setText(data.email);
 
+            level = 0;
             if (data.avatar_status == 1) {
                 imgUser.setImageResource(R.drawable.icon_user_on);
+                level++;
             } else {
                 imgUser.setImageResource(R.drawable.icon_user);
             }
 
             if (data.vip_status == 1) {
                 imgVip.setImageResource(R.drawable.icon_vip_on);
+                level++;
             } else {
                 imgVip.setImageResource(R.drawable.icon_vip);
             }
 
             if (data.phone_status == 1) {
                 imgPhone.setImageResource(R.drawable.icon_phone_on);
+                level++;
             } else {
                 imgPhone.setImageResource(R.drawable.icon_phone);
             }
 
             if (data.email_status == 1) {
                 imgEmail.setImageResource(R.drawable.icon_email_on);
+                level++;
             } else {
                 imgEmail.setImageResource(R.drawable.icon_email);
             }
+
+            if (level == 0) {
+                securityLevel = "低";
+            } else if (level == 1) {
+                securityLevel = "低";
+            } else if (level == 2) {
+                securityLevel = "中";
+            } else if (level == 3) {
+                securityLevel = "高";
+            }
+            tvSecurityLevel.setText(securityLevel);
 
 //            System.out.println("data.avatar_status " + data.avatar_status);
 //            System.out.println("data.vip_status " + data.vip_status);

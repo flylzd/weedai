@@ -18,7 +18,7 @@
                 android:layout_height="40dp"
                 android:layout_centerVertical="true"
                 android:scaleType="centerCrop"
-                android:src="@drawable/ic_launcher" />
+                android:src="@drawable/icon_bank_gongshang" />
 
             <TextView
                 android:visibility="gone"

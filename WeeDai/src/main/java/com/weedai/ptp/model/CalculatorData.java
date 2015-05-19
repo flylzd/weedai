@@ -9,6 +9,7 @@ public class CalculatorData  extends BaseData {
 
     public String monthpay;
     public String allpay;
+    public String monthslilv;
 
     public String zshouyi;
     public String awards;
