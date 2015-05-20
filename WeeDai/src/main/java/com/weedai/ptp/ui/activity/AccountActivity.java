@@ -23,6 +23,7 @@ import com.weedai.ptp.constant.Urls;
 import com.weedai.ptp.model.BaseModel;
 import com.weedai.ptp.model.User;
 import com.weedai.ptp.model.UserData;
+import com.weedai.ptp.utils.DataUtil;
 import com.weedai.ptp.utils.UIHelper;
 import com.weedai.ptp.volley.ResponseListener;
 
@@ -123,6 +124,30 @@ public class AccountActivity extends BaseActivity implements View.OnClickListene
                 User.userInfo = result.data;
                 data = User.userInfo;
                 setUserInfo();
+
+                getAvatars();  //获取头像
+            }
+        });
+    }
+
+    private void getAvatars() {
+        ApiClient.getAvatars(TAG, new RefreshResponseListener() {
+            @Override
+            public void onResponse(Object response) {
+                super.onResponse(response);
+
+                User result = (User) response;
+                if (result.code != Constant.CodeResult.SUCCESS) {
+                    Toast.makeText(AccountActivity.this, result.message, Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                User.userInfo.touxiang = DataUtil.urlDecode(data.touxiang);
+                String url = DataUtil.urlDecode(data.touxiang);
+                if (!TextUtils.isEmpty(url)) {
+                    url = Urls.SERVER_URL + url;
+                    ImageLoader.getInstance().displayImage(url, imgAvatar);
+                }
             }
         });
     }
@@ -134,6 +159,7 @@ public class AccountActivity extends BaseActivity implements View.OnClickListene
             ImageLoader.getInstance().displayImage(url, imgAvatar);
         }
 
+        tvRealName.setText(DataUtil.urlDecode(User.userInfo.username));
         String sex = User.userInfo.sex == 1 ? "男" : "女";
         tvSex.setText("性别:  " + sex);
 //        tvAccountPasswordDateBirth

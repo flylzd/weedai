@@ -69,7 +69,6 @@ public class MyFragment extends Fragment implements View.OnClickListener {
         return fragment;
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
@@ -171,7 +170,7 @@ public class MyFragment extends Fragment implements View.OnClickListener {
                     return;
                 }
 
-                User.userInfo.touxiang = result.data.touxiang;
+                User.userInfo.touxiang = DataUtil.urlDecode(data.touxiang);
                 String url = DataUtil.urlDecode(data.touxiang);
                 if (!TextUtils.isEmpty(url)) {
                     url = Urls.SERVER_URL + url;
