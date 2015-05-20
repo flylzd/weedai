@@ -105,18 +105,27 @@ public class MyStandInsideLetterActivity extends BaseActivity implements EndOfLi
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+
+                View viewDialog = getLayoutInflater().inflate(R.layout.dialog_stand_inside_letter, null);
+                TextView tvLetter = (TextView) viewDialog.findViewById(R.id.tvLetter);
+
+                tvLetter.setText(Html.fromHtml(DataUtil.urlDecode(adapter.getItem(position).content)));
                 AlertDialog.Builder builder = new AlertDialog.Builder(MyStandInsideLetterActivity.this);
-                TextView textView = new TextView(MyStandInsideLetterActivity.this);
-                textView.setText(Html.fromHtml(DataUtil.urlDecode(adapter.getItem(position).content)));
-                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
-                textView.setGravity(Gravity.CENTER_VERTICAL);
-                textView.setPadding(4, 0, 4, 0);
-                builder.setView(textView);
+//                TextView textView = new TextView(MyStandInsideLetterActivity.this);
+//                textView.setText(Html.fromHtml(DataUtil.urlDecode(adapter.getItem(position).content)));
+//                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
+//                textView.setGravity(Gravity.CENTER_VERTICAL);
+//                textView.setPadding(10, 10, 10, 10);
+//                textView.setLayoutParams(params);
+                builder.setView(viewDialog);
                 builder.setPositiveButton("确定", null);
                 builder.create();
                 builder.show();
             }
         });
+    }
+    private void showDialog() {
+
     }
 
     private void loadData() {

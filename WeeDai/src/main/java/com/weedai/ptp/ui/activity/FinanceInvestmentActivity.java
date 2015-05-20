@@ -141,7 +141,6 @@ public class FinanceInvestmentActivity extends BaseActivity {
             }
         });
 
-
         AlertDialog.Builder builder = new AlertDialog.Builder(FinanceInvestmentActivity.this);
         builder.setTitle("支付确认");
         builder.setView(view);
