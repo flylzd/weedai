@@ -94,7 +94,7 @@ public class AboutCompanyActivity extends BaseActivity {
                     return;
                 }
 
-                if (result.message.equals("companyshow_list_succ")) {
+                if (result.message.equals("aboutus_list_succ")) {
                     String htmlString = DataUtil.urlDecode(result.data.content);
 
                     System.out.println("htmlString " + htmlString);

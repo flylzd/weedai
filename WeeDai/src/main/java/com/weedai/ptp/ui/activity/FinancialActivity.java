@@ -120,13 +120,6 @@ public class FinancialActivity extends BaseActivity implements SwipeRefreshLayou
             page = page4;
         }
         getInvestList();
-
-
-//        if (isFirstLoadingomplete) {
-//            showIndeterminateProgress(true);
-//            page++;
-//            getInvestList();
-//        }
     }
 
     private void showIndeterminateProgress(boolean visibility) {
@@ -352,25 +345,23 @@ public class FinancialActivity extends BaseActivity implements SwipeRefreshLayou
                     }
                 }
 
-//                List<InvestList> investList = result.data.list;
-//                if (page == DEFAULT_PAGE) {
-////                    dataList = investList;
-//                    for (InvestList item : investList) {
-//                        if (item.is_you == 1) {
-//                            dataList.add(item);
-//                        }
-//                    }
-//                    adapter.replaceAll(dataList);
-//                } else {
-////                    dataList.addAll(investList);
-//                    for (InvestList item : investList) {
-//                        if (item.is_you == 1) {
-//                            dataList.add(item);
-//                        }
-//                    }
-//                    adapter.replaceAll(dataList);
-//                }
-//                isFirstLoadingomplete = true;
+                if (TextUtils.isEmpty(xmtype)) {
+                    if (currentPage == totalPage) {
+                        isBottomLoadingComplete1 = true;
+                    }
+                } else if (xmtype.equals(Constant.XMTYPE.Borrow)) {
+                    if (currentPage == totalPage) {
+                        isBottomLoadingComplete2 = true;
+                    }
+                } else if (xmtype.equals(Constant.XMTYPE.Now)) {
+                    if (currentPage == totalPage) {
+                        isBottomLoadingComplete3 = true;
+                    }
+                } else if (xmtype.equals(Constant.XMTYPE.Yes)) {
+                    if (currentPage == totalPage) {
+                        isBottomLoadingComplete4 = true;
+                    }
+                }
             }
         });
     }
@@ -381,29 +372,6 @@ public class FinancialActivity extends BaseActivity implements SwipeRefreshLayou
         public void onStarted() {
 
             showIndeterminateProgress(true);
-
-//            if (TextUtils.isEmpty(xmtype)) {
-//                if (isBottomLoadingComplete1) {
-//                    showIndeterminateProgress(true);
-//                    return;
-//                }
-//            } else if (xmtype.equals(Constant.XMTYPE.Borrow)) {
-//                if (isBottomLoadingComplete2) {
-//                    showIndeterminateProgress(false);
-//                    return;
-//                }
-//            } else if (xmtype.equals(Constant.XMTYPE.Now)) {
-//                if (isBottomLoadingComplete3) {
-//                    showIndeterminateProgress(false);
-//                    return;
-//                }
-//            } else if (xmtype.equals(Constant.XMTYPE.Yes)) {
-//                if (isBottomLoadingComplete4) {
-//                    showIndeterminateProgress(false);
-//                    return;
-//                }
-//            }
-
             if (!pullRefreshLayout.isRefreshing()) {
                 pullRefreshLayout.setRefreshing(true);
             }
@@ -411,11 +379,6 @@ public class FinancialActivity extends BaseActivity implements SwipeRefreshLayou
 
         @Override
         public void onResponse(Object response) {
-
-//            if (page != DEFAULT_PAGE) {
-//                showIndeterminateProgress(false);
-//                return;
-//            }
             pullRefreshLayout.setRefreshing(false);
             showIndeterminateProgress(false);
         }

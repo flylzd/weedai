@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_vertical"
+    android:orientation="vertical"
+    android:paddingLeft="20dp"
+    android:paddingBottom="10dp"
+    android:paddingTop="20dp">
+
+    <EditText
+        android:id="@+id/etPayPassword"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:hint="请输入支付密码"
+        android:inputType="textPassword"
+        android:layout_marginBottom="10dp"
+        android:textSize="18sp" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/etValicode"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:hint="@string/login_valicode_hint"
+            android:maxLength="4"
+            android:textSize="18sp" />
+
+        <com.weedai.ptp.view.SimpleValidateCodeView
+            android:id="@+id/viewValicode"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

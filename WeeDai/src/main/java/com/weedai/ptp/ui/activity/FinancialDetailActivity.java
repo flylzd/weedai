@@ -8,9 +8,11 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.error.VolleyError;
 import com.weedai.ptp.R;
+import com.weedai.ptp.constant.Config;
 import com.weedai.ptp.model.InvestList;
 import com.weedai.ptp.utils.DataUtil;
 import com.weedai.ptp.utils.UIHelper;
@@ -82,6 +84,12 @@ public class FinancialDetailActivity extends BaseActivity {
         btnInvestment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                if (!Config.isLogin) {
+                    Toast.makeText(FinancialDetailActivity.this, "你未登录，无法进行投资", Toast.LENGTH_SHORT).show();
+                    UIHelper.showLogin(FinancialDetailActivity.this);
+                    return;
+                }
                 UIHelper.showFinanceInvestment(FinancialDetailActivity.this, data);
             }
         });
@@ -118,14 +126,20 @@ public class FinancialDetailActivity extends BaseActivity {
         if (status == 1) {
             if (scale == 100) {
                 statusStr = "已结束";
+                btnInvestment.setText(statusStr);
+                btnInvestment.setEnabled(false);
             } else {
                 statusStr = "开始竞标";
             }
         } else {
             if (data.repayment_account == data.repayment_yesaccount) {
                 statusStr = "已结束";
+                btnInvestment.setText(statusStr);
+                btnInvestment.setEnabled(false);
             } else {
                 statusStr = "还款中";
+                btnInvestment.setText(statusStr);
+                btnInvestment.setEnabled(false);
             }
         }
         tvAboutDistanceSelling.setText(statusStr);
@@ -147,7 +161,6 @@ public class FinancialDetailActivity extends BaseActivity {
         } else if (style == 3) {
             tvReimbursement.setText(getString(R.string.financial_detail_reimbursement_two));
         }
-
     }
 
     private void loadData() {

@@ -74,7 +74,6 @@ public class ArticleDetailActivity extends BaseActivity {
 
     private AlertDialog alertDialog;
 
-
     private SimpleValidateCodeView simpleValidateCodeView;
     private String valicode;
 

@@ -21,6 +21,7 @@ import com.weedai.ptp.R;
 import com.weedai.ptp.app.ApiClient;
 import com.weedai.ptp.constant.Constant;
 import com.weedai.ptp.model.Invest;
+import com.weedai.ptp.model.InvestData;
 import com.weedai.ptp.model.InvestList;
 import com.weedai.ptp.utils.DataUtil;
 import com.weedai.ptp.utils.UIHelper;
@@ -43,17 +44,20 @@ public class LiCaiRecommendActivity extends BaseActivity implements SwipeRefresh
     private List<InvestList> dataList3 = new ArrayList<InvestList>();
     private List<InvestList> dataList4 = new ArrayList<InvestList>();
 
-    private final static int DEFAULT_PAGE = 1;
+    private final static int DEFAULT_PAGE = 0;
     private int page = DEFAULT_PAGE;
     private int page1 = DEFAULT_PAGE;
     private int page2 = DEFAULT_PAGE;
     private int page3 = DEFAULT_PAGE;
     private int page4 = DEFAULT_PAGE;
 
-    private RadioGroup radioGroup;
-    private String xmtype = "";
+    private boolean isBottomLoadingComplete1 = false;
+    private boolean isBottomLoadingComplete2 = false;
+    private boolean isBottomLoadingComplete3 = false;
+    private boolean isBottomLoadingComplete4 = false;
 
-    private boolean isFirstLoadingomplete = false;
+    private RadioGroup radioGroup;
+    private String xmtype;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +65,7 @@ public class LiCaiRecommendActivity extends BaseActivity implements SwipeRefresh
         setContentView(R.layout.activity_financial);
 
         initView();
-        loadData();
+//        loadData();
 
     }
 
@@ -97,40 +101,41 @@ public class LiCaiRecommendActivity extends BaseActivity implements SwipeRefresh
     @Override
     public void onEndOfList(Object lastItem) {
 
-        if (isFirstLoadingomplete) {
-
-//            page++;
-//            getInvestList();
-
-            List<InvestList> dataList = new ArrayList<InvestList>();
-            if (TextUtils.isEmpty(xmtype)) {
-                dataList = dataList1;
-            } else if (xmtype.equals(Constant.XMTYPE.Borrow)) {
-                dataList = dataList2;
-            } else if (xmtype.equals(Constant.XMTYPE.Now)) {
-                dataList = dataList3;
-            } else if (xmtype.equals(Constant.XMTYPE.Yes)) {
-                dataList = dataList4;
+        if (TextUtils.isEmpty(xmtype)) {
+            if (isBottomLoadingComplete1) {
+                showIndeterminateProgress(false);
+                return;
+            } else {
+                page1++;
+                page = page1;
             }
-
-            if (dataList.size() > 2){
-                showIndeterminateProgress(true);
-                if (TextUtils.isEmpty(xmtype)) {
-                    page1++;
-                    page = page1;
-                } else if (xmtype.equals(Constant.XMTYPE.Borrow)) {
-                    page2++;
-                    page = page2;
-                } else if (xmtype.equals(Constant.XMTYPE.Now)) {
-                    page3++;
-                    page = page3;
-                } else if (xmtype.equals(Constant.XMTYPE.Yes)) {
-                    page4++;
-                    page = page4;
-                }
-                getInvestList();
+        } else if (xmtype.equals(Constant.XMTYPE.Borrow)) {
+            if (isBottomLoadingComplete2) {
+                showIndeterminateProgress(false);
+                return;
+            } else {
+                page2++;
+                page = page2;
+            }
+        } else if (xmtype.equals(Constant.XMTYPE.Now)) {
+            if (isBottomLoadingComplete3) {
+                showIndeterminateProgress(false);
+                return;
+            } else {
+                page3++;
+                page = page3;
+            }
+        } else if (xmtype.equals(Constant.XMTYPE.Yes)) {
+            if (isBottomLoadingComplete4) {
+                showIndeterminateProgress(false);
+                return;
+            } else {
+                page4++;
+                page = page4;
             }
         }
+        getInvestList();
+
     }
 
     private void showIndeterminateProgress(boolean visibility) {
@@ -143,8 +148,9 @@ public class LiCaiRecommendActivity extends BaseActivity implements SwipeRefresh
         pullRefreshLayout = (PMSwipeRefreshLayout) findViewById(R.id.pullRefreshLayout);
         pullRefreshLayout.setColorScheme(android.R.color.holo_blue_bright, android.R.color.holo_green_light,
                 android.R.color.holo_orange_light, android.R.color.holo_red_light);
-        pullRefreshLayout.setOnRefreshListener(this);
+//        pullRefreshLayout.setOnRefreshListener(this);
         pullRefreshLayout.setRefreshing(true);
+        pullRefreshLayout.setEnabled(false);
 
         adapter = new QuickAdapter<InvestList>(LiCaiRecommendActivity.this, R.layout.listitem_financial) {
             @Override
@@ -244,35 +250,60 @@ public class LiCaiRecommendActivity extends BaseActivity implements SwipeRefresh
 
                 switch (checkedId) {
                     case R.id.rbConditionsAll:
-                        xmtype = "";
-                        loadDataIsEmpty(dataList1);
+                        xmtype = null;
+                        adapter.replaceAll(dataList1);
                         break;
                     case R.id.rbConditionsBorrowing:
                         xmtype = Constant.XMTYPE.Borrow;
-                        loadDataIsEmpty(dataList2);
+                        if (dataList2.size() != 0) {
+                            adapter.replaceAll(dataList2);
+                        } else {
+//                            if (isBottomLoadingComplete2) {
+//                                showIndeterminateProgress(false);
+//                                adapter.replaceAll(null);
+//                                return;
+//                            }
+                            page2++;
+                            page = page2;
+                            adapter.clear();
+                            getInvestList();
+                        }
                         break;
                     case R.id.rbConditionsReimbursing:
                         xmtype = Constant.XMTYPE.Now;
-                        loadDataIsEmpty(dataList3);
+                        if (dataList3.size() != 0) {
+                            adapter.replaceAll(dataList3);
+                        } else {
+//                            if (isBottomLoadingComplete3) {
+//                                showIndeterminateProgress(false);
+//                                return;
+//                            }
+                            page3++;
+                            page = page3;
+                            adapter.clear();
+                            getInvestList();
+                        }
                         break;
                     case R.id.rbConditionsCompleteReimbursement:
                         xmtype = Constant.XMTYPE.Yes;
-                        loadDataIsEmpty(dataList4);
+                        if (dataList4.size() != 0) {
+                            adapter.replaceAll(dataList4);
+                        } else {
+//                            if (isBottomLoadingComplete4) {
+//                                showIndeterminateProgress(false);
+//                                return;
+//                            }
+                            page4++;
+                            page = page4;
+                            adapter.clear();
+                            getInvestList();
+                        }
                         break;
                 }
             }
         });
     }
 
-    private void loadDataIsEmpty(List<InvestList> list) {
-        if (list.isEmpty()) {
-            isFirstLoadingomplete = false;
-            getInvestList();
-        } else {
-            isFirstLoadingomplete = true;
-            adapter.replaceAll(list);
-        }
-    }
 
     private void loadData() {
         getInvestList();
@@ -291,40 +322,72 @@ public class LiCaiRecommendActivity extends BaseActivity implements SwipeRefresh
                     return;
                 }
 
-                List<InvestList> investList = result.data.list;
-                if (TextUtils.isEmpty(xmtype)) {
-                    changeList(dataList1, investList, page);
-                } else if (xmtype.equals(Constant.XMTYPE.Borrow)) {
-                    changeList(dataList2, investList, page);
-                } else if (xmtype.equals(Constant.XMTYPE.Now)) {
-                    changeList(dataList3, investList, page);
-                } else if (xmtype.equals(Constant.XMTYPE.Yes)) {
-                    changeList(dataList4, investList, page);
+                InvestData data = result.data;
+                int currentPage = data.page;
+                int totalPage = data.total_page;
+                System.out.println("total " + result.data.total);
+                System.out.println("page " + result.data.page);
+                System.out.println("epage " + result.data.epage);
+                System.out.println("total_page " + result.data.total_page);
+
+                List<InvestList> investListTmp = result.data.list;
+                List<InvestList> investList = new ArrayList<InvestList>();
+                if (investListTmp != null && investListTmp.size() != 0) {
+                    for (InvestList item : investListTmp) {
+                        if (item.is_you != 1) {
+                            investList.add(item);
+                        }
+                    }
+
+                    if (TextUtils.isEmpty(xmtype)) {
+                        if (currentPage == totalPage) {
+                            isBottomLoadingComplete1 = true;
+                        }
+                        dataList1.addAll(investList);
+                        adapter.replaceAll(dataList1);
+
+                    } else if (xmtype.equals(Constant.XMTYPE.Borrow)) {
+                        if (currentPage == totalPage) {
+                            isBottomLoadingComplete2 = true;
+                        }
+                        dataList2.addAll(investList);
+                        adapter.replaceAll(dataList2);
+
+                    } else if (xmtype.equals(Constant.XMTYPE.Now)) {
+                        if (currentPage == totalPage) {
+                            isBottomLoadingComplete3 = true;
+                        }
+                        dataList3.addAll(investList);
+                        adapter.replaceAll(dataList3);
+
+                    } else if (xmtype.equals(Constant.XMTYPE.Yes)) {
+                        if (currentPage == totalPage) {
+                            isBottomLoadingComplete4 = true;
+                        }
+                        dataList4.addAll(investList);
+                        adapter.replaceAll(dataList4);
+                    }
                 }
-                isFirstLoadingomplete = true;
+
+                if (TextUtils.isEmpty(xmtype)) {
+                    if (currentPage == totalPage) {
+                        isBottomLoadingComplete1 = true;
+                    }
+                } else if (xmtype.equals(Constant.XMTYPE.Borrow)) {
+                    if (currentPage == totalPage) {
+                        isBottomLoadingComplete2 = true;
+                    }
+                } else if (xmtype.equals(Constant.XMTYPE.Now)) {
+                    if (currentPage == totalPage) {
+                        isBottomLoadingComplete3 = true;
+                    }
+                } else if (xmtype.equals(Constant.XMTYPE.Yes)) {
+                    if (currentPage == totalPage) {
+                        isBottomLoadingComplete4 = true;
+                    }
+                }
             }
         });
-    }
-
-
-    private void changeList(List<InvestList> dataList, List<InvestList> dataListTmp, int page) {
-
-        if (page == DEFAULT_PAGE) {
-            dataList = getYouList(dataListTmp);
-        } else {
-            dataList.addAll(getYouList(dataListTmp));
-        }
-        adapter.replaceAll(dataList);
-    }
-
-    private List<InvestList> getYouList(List<InvestList> investList) {
-        List<InvestList> listTmp = new ArrayList<InvestList>();
-        for (InvestList item : investList) {
-            if (item.is_you != 1) {
-                listTmp.add(item);
-            }
-        }
-        return listTmp;
     }
 
     private abstract class RefreshResponseListener implements ResponseListener {
@@ -332,9 +395,7 @@ public class LiCaiRecommendActivity extends BaseActivity implements SwipeRefresh
         @Override
         public void onStarted() {
 
-            if (page != DEFAULT_PAGE) {
-                return;
-            }
+            showIndeterminateProgress(true);
             if (!pullRefreshLayout.isRefreshing()) {
                 pullRefreshLayout.setRefreshing(true);
             }
@@ -342,17 +403,14 @@ public class LiCaiRecommendActivity extends BaseActivity implements SwipeRefresh
 
         @Override
         public void onResponse(Object response) {
-
-            if (page != DEFAULT_PAGE) {
-                showIndeterminateProgress(false);
-                return;
-            }
             pullRefreshLayout.setRefreshing(false);
+            showIndeterminateProgress(false);
         }
 
         @Override
         public void onErrorResponse(VolleyError volleyError) {
             pullRefreshLayout.setRefreshing(false);
+            showIndeterminateProgress(false);
         }
     }
 

@@ -255,6 +255,28 @@ public class ApiClient {
 
 
     /**
+     * 投标操作
+     */
+    public static void tender(String tag, String id, String money, String paypassword, String valicode,  ResponseListener listener) {
+
+        listener.onStarted();
+
+        Map<String, String> requestParams = getSignatureMap();
+        requestParams.put("id", id);
+        requestParams.put("money", money);
+        requestParams.put("paypassword", paypassword);
+        requestParams.put("valicode", valicode);
+        requestParams.put("q", "code/borrow/tender");
+        requestParams.put(Urls.ACTION, "users");
+
+        String url = Urls.ACTION_INDEX;
+        GsonPostRequest request = createGsonPostRequest(url, requestParams, BaseModel.class, listener);
+        request.setTag(tag);
+        requestQueue.add(request);
+    }
+
+
+    /**
      * 回款查询
      */
     public static void searchReceiable(String tag, ResponseListener listener) {
@@ -800,7 +822,7 @@ public class ApiClient {
         listener.onStarted();
 
         Map<String, String> requestParams = getSignatureMap();
-        requestParams.put(Urls.ACTION, "companyshow/list");
+        requestParams.put(Urls.ACTION, "aboutus/list");
 
         String url = Urls.ACTION_INDEX;
         GsonPostRequest request = createGsonPostRequest(url, requestParams, About.class, listener);

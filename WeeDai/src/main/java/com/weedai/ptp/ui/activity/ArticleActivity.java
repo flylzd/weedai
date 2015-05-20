@@ -64,11 +64,12 @@ public class ArticleActivity extends BaseActivity implements SwipeRefreshLayout.
 
     private int articleType = Constant.ArticleType.INFORMATION;
 
-    private final static int DEFAULT_PAGE = 1;
+    private final static int DEFAULT_PAGE = 0;
     private int infoPage = DEFAULT_PAGE;
     private int noticePage = DEFAULT_PAGE;
 
-    private boolean isFirstLoadingomplete = false;
+    private boolean isBottomLoadingCompleteInfo = false;
+    private boolean isBottomLoadingCompleteNotice = false;
 
     public ArticleActivity() {
     }
@@ -106,16 +107,20 @@ public class ArticleActivity extends BaseActivity implements SwipeRefreshLayout.
     @Override
     public void onEndOfList(Object lastItem) {
 
-        if (isFirstLoadingomplete) {
-            showIndeterminateProgress(true);
-
-            if (articleType == Constant.ArticleType.INFORMATION) {
-                infoPage++;
-                getArticleList(infoPage);
-            } else {
-                noticePage++;
-                getArticleList(noticePage);
+        if (articleType == Constant.ArticleType.INFORMATION) {
+            if (isBottomLoadingCompleteInfo) {
+                showIndeterminateProgress(false);
+                return;
             }
+            infoPage++;
+            getArticleList(infoPage);
+        } else {
+            if (isBottomLoadingCompleteNotice) {
+                showIndeterminateProgress(false);
+                return;
+            }
+            noticePage++;
+            getArticleList(noticePage);
         }
     }
 
@@ -136,7 +141,9 @@ public class ArticleActivity extends BaseActivity implements SwipeRefreshLayout.
                         if (!informationList.isEmpty()) {
                             adapter.replaceAll(informationList);
                         } else {
-                            isFirstLoadingomplete = false;
+                            if (infoPage == 0){
+                                infoPage++;
+                            }
                             getArticleList(infoPage);
                         }
                         break;
@@ -145,7 +152,9 @@ public class ArticleActivity extends BaseActivity implements SwipeRefreshLayout.
                         if (!noticeList.isEmpty()) {
                             adapter.replaceAll(noticeList);
                         } else {
-                            isFirstLoadingomplete = false;
+                            if (noticePage == 0){
+                                noticePage++;
+                            }
                             getArticleList(noticePage);
                         }
                         break;
@@ -156,8 +165,10 @@ public class ArticleActivity extends BaseActivity implements SwipeRefreshLayout.
         pullRefreshLayout = (PMSwipeRefreshLayout) findViewById(R.id.pullRefreshLayout);
         pullRefreshLayout.setColorScheme(android.R.color.holo_blue_bright, android.R.color.holo_green_light,
                 android.R.color.holo_orange_light, android.R.color.holo_red_light);
-        pullRefreshLayout.setOnRefreshListener(this);
+//        pullRefreshLayout.setOnRefreshListener(this);
         pullRefreshLayout.setRefreshing(true);
+        pullRefreshLayout.setEnabled(false);
+
         listView = (EndOfListView) findViewById(R.id.listView);
         listView.setOnEndOfListListener(this);
 
@@ -226,13 +237,13 @@ public class ArticleActivity extends BaseActivity implements SwipeRefreshLayout.
         viewPager.setAdapter(new ViewPagerAdapter(imageViewsList));
         viewPager.setOnPageChangeListener(new ViewPageChangeListener());
         viewPager.startAutoScroll();
-        viewPager.setInterval(2*1000);
+        viewPager.setInterval(2 * 1000);
     }
 
     private void loadData() {
 
         scrollPic();
-        getArticleList(infoPage);
+//        getArticleList(infoPage);
     }
 
     private void getArticleList(int page) {
@@ -249,27 +260,38 @@ public class ArticleActivity extends BaseActivity implements SwipeRefreshLayout.
                     return;
                 }
                 List<ArticleList> articleList = result.data.list;
-                if (articleList != null) {
-                    switch (articleType) {
-                        case Constant.ArticleType.INFORMATION:
-                            if (infoPage == DEFAULT_PAGE) {
-                                informationList = articleList;
-                            } else {
-                                informationList.addAll(articleList);
-                            }
-                            adapter.replaceAll(informationList);
-                            break;
-                        case Constant.ArticleType.NOTICE:
-                            if (noticePage == DEFAULT_PAGE) {
-                                noticeList = articleList;
-                            } else {
-                                noticeList.addAll(articleList);
-                            }
-                            adapter.replaceAll(noticeList);
-                            break;
+//                if (articleList != null) {
+//                    switch (articleType) {
+//                        case Constant.ArticleType.INFORMATION:
+//                            if (infoPage == DEFAULT_PAGE) {
+//                                informationList = articleList;
+//                            } else {
+//                                informationList.addAll(articleList);
+//                            }
+//                            adapter.replaceAll(informationList);
+//                            break;
+//                        case Constant.ArticleType.NOTICE:
+//                            if (noticePage == DEFAULT_PAGE) {
+//                                noticeList = articleList;
+//                            } else {
+//                                noticeList.addAll(articleList);
+//                            }
+//                            adapter.replaceAll(noticeList);
+//                            break;
+//                    }
+//                }
+//                isFirstLoadingomplete = true;
+
+                if (articleList != null && articleList.size() != 0) {
+
+                    if (articleType == Constant.ArticleType.INFORMATION) {
+                        informationList.addAll(articleList);
+                        adapter.replaceAll(informationList);
+                    } else {
+                        noticeList.addAll(articleList);
+                        adapter.replaceAll(noticeList);
                     }
                 }
-                isFirstLoadingomplete = true;
             }
         });
     }
@@ -368,9 +390,7 @@ public class ArticleActivity extends BaseActivity implements SwipeRefreshLayout.
         @Override
         public void onStarted() {
 
-            if (infoPage != DEFAULT_PAGE || noticePage != DEFAULT_PAGE) {
-                return;
-            }
+            showIndeterminateProgress(true);
             if (!pullRefreshLayout.isRefreshing()) {
                 pullRefreshLayout.setRefreshing(true);
             }
@@ -378,17 +398,14 @@ public class ArticleActivity extends BaseActivity implements SwipeRefreshLayout.
 
         @Override
         public void onResponse(Object response) {
-
-            if (infoPage != DEFAULT_PAGE || noticePage != DEFAULT_PAGE) {
-                showIndeterminateProgress(false);
-                return;
-            }
             pullRefreshLayout.setRefreshing(false);
+            showIndeterminateProgress(false);
         }
 
         @Override
         public void onErrorResponse(VolleyError volleyError) {
             pullRefreshLayout.setRefreshing(false);
+            showIndeterminateProgress(false);
         }
     }
 
