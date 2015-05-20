@@ -1,13 +1,14 @@
 package com.weedai.ptp.ui.activity;
 
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
-import android.content.ContentResolver;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -29,12 +30,10 @@ import com.weedai.ptp.model.BaseModel;
 import com.weedai.ptp.model.User;
 import com.weedai.ptp.model.UserData;
 import com.weedai.ptp.utils.DataUtil;
-import com.weedai.ptp.utils.ImageUtil;
 import com.weedai.ptp.volley.ResponseListener;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 
 public class AccountAvatarsActivity extends BaseActivity {
 
@@ -48,19 +47,22 @@ public class AccountAvatarsActivity extends BaseActivity {
     private TextView tvPhone;
     private TextView tvEmail;
 
-    private boolean isTakePhoto;
-    public static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
-    public static final int CAPTURE_VIDEO_ACTIVITY_REQUEST_CODE = 200;
-    private static final int SCALE_CAMERA = 8; // 缩放比例
-    private static final int SCALE_PHOTO = 2; // 缩放比例
-
-    private static final String IMG_SCALE_NAME = "/img_scale_name.jpg";
-    private static final String IMG_NAME = "/img_name.jpg";
-
-    private AlertDialog cameraDialog;
-    private String filePath;
-
     private ProgressDialog progressDialog;
+
+    private String[] items = new String[]{"选择本地图片", "拍照"};
+    /**
+     * 头像名称
+     */
+    private static final String IMAGE_FILE_NAME = "image.jpg";
+
+    /**
+     * 请求码
+     */
+    private static final int IMAGE_REQUEST_CODE = 0;
+    private static final int CAMERA_REQUEST_CODE = 1;
+    private static final int RESULT_REQUEST_CODE = 2;
+
+    private Uri imgUri = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,52 +95,12 @@ public class AccountAvatarsActivity extends BaseActivity {
         imgAvatar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
             }
         });
-
         btnAvatar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                System.out.println("filePath " + filePath);
-                openCameraDialog();
-
-                if (TextUtils.isEmpty(filePath)) {
-                    Toast.makeText(AccountAvatarsActivity.this, "请选择头像", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                ApiClient.uploadAvatars(TAG, filePath, new ResponseListener() {
-                    @Override
-                    public void onStarted() {
-                        progressDialog = ProgressDialog.show(AccountAvatarsActivity.this, null, getString(R.string.message_waiting));
-                    }
-
-                    @Override
-                    public void onResponse(Object response) {
-                        progressDialog.dismiss();
-
-                        BaseModel result = (BaseModel) response;
-                        if (result.code != Constant.CodeResult.SUCCESS) {
-                            Toast.makeText(AccountAvatarsActivity.this, result.message, Toast.LENGTH_SHORT).show();
-                            return;
-                        }
-
-                        if (result.message.equals("edit_success")) {
-
-                            Toast.makeText(AccountAvatarsActivity.this, "头像上传成功", Toast.LENGTH_SHORT).show();
-
-                        } else {
-                            Toast.makeText(AccountAvatarsActivity.this, "头像上传失败", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-
-                    @Override
-                    public void onErrorResponse(VolleyError volleyError) {
-                        progressDialog.dismiss();
-                    }
-                });
+                showCameraDialog();
             }
         });
         setInfo();
@@ -162,110 +124,174 @@ public class AccountAvatarsActivity extends BaseActivity {
         tvEmail.setText(data.email);
     }
 
-    private void openCameraDialog() {
+    private void uploadAvatar() {
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(AccountAvatarsActivity.this);
-        View view = getLayoutInflater().inflate(R.layout.dialog_camera, null);
-        TextView tvCamera = (TextView) view.findViewById(R.id.tvCamera);
-        TextView tvPhoto = (TextView) view.findViewById(R.id.tvPhoto);
-        TextView tvCancel = (TextView) view.findViewById(R.id.tvCancel);
-//            tvCamera.setOnClickListener(this);
-//            tvPhoto.setOnClickListener(this);
-        tvCamera.setOnClickListener(new View.OnClickListener() {
+        String filePath = imgUri.getPath();
+        System.out.println("filePath === " + filePath);
+        ApiClient.uploadAvatars(TAG, filePath, new ResponseListener() {
             @Override
-            public void onClick(View v) {
-                takeCamera();
+            public void onStarted() {
+                progressDialog = ProgressDialog.show(AccountAvatarsActivity.this, null, getString(R.string.message_submit));
+            }
+            @Override
+            public void onResponse(Object response) {
+                progressDialog.dismiss();
+
+                BaseModel result = (BaseModel) response;
+                if (result.code != Constant.CodeResult.SUCCESS) {
+                    Toast.makeText(AccountAvatarsActivity.this, result.message, Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (result.message.equals("edit_success")) {
+                    Toast.makeText(AccountAvatarsActivity.this, "头像上传成功", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(AccountAvatarsActivity.this, "头像上传失败", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                progressDialog.dismiss();
             }
         });
-        tvPhoto.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                takePhoto();
-            }
-        });
-        tvCancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                cameraDialog.dismiss();
-            }
-        });
-
-        builder.setTitle("选择图片");
-        builder.setView(view);
-        cameraDialog = builder.create();
-        cameraDialog.show();
     }
 
-    private void takeCamera() {
+    /**
+     * 显示选择对话框
+     */
+    private void showCameraDialog() {
 
-        Intent cameraIntent = new Intent(
-                android.provider.MediaStore.ACTION_IMAGE_CAPTURE);// 调用系统相机
-        Uri imageUri = Uri.fromFile(new File(Environment
-                .getExternalStorageDirectory(), IMG_NAME));
-        // 指定照片保存路径（SD卡），image.jpg为一个临时文件，每次拍照后这个图片都会被替换
-        cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
-        startActivityForResult(cameraIntent,
-                CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
+        new AlertDialog.Builder(this)
+                .setTitle("设置头像")
+                .setItems(items, new DialogInterface.OnClickListener() {
 
-        cameraDialog.dismiss();
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        switch (which) {
+                            case 0:
+                                Intent intentFromGallery = new Intent();
+                                intentFromGallery.setType("image/*"); // 设置文件类型
+                                intentFromGallery.setAction(Intent.ACTION_GET_CONTENT);
+                                startActivityForResult(intentFromGallery, IMAGE_REQUEST_CODE);
+                                break;
+                            case 1:
+                                Intent intentFromCapture = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                                // 判断存储卡是否可以用，可用进行存储
+                                String state = Environment.getExternalStorageState();
+                                if (state.equals(Environment.MEDIA_MOUNTED)) {
+                                    File path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM);
+                                    File file = new File(path, IMAGE_FILE_NAME);
+                                    intentFromCapture.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(file));
+                                }
+                                startActivityForResult(intentFromCapture, CAMERA_REQUEST_CODE);
+                                break;
+                        }
+                    }
+                })
+                .setNegativeButton("取消", null).show();
     }
-
-    private void takePhoto() {
-        Intent intent = new Intent(Intent.ACTION_PICK,
-                MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        startActivityForResult(intent, CAPTURE_VIDEO_ACTIVITY_REQUEST_CODE);
-
-        cameraDialog.dismiss();
-    }
-
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE
-                && resultCode == Activity.RESULT_OK) {
+        if (resultCode != RESULT_OK) {
+            Toast.makeText(AccountAvatarsActivity.this, "ActivityResult resultCode error", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
-            isTakePhoto = true;
-            // 将保存在本地的图片取出并缩小后显示在界面上
-            Bitmap bitmap = BitmapFactory.decodeFile(Environment
-                    .getExternalStorageDirectory() + IMG_NAME);
-            Bitmap smallBitmap = ImageUtil.zoomBitmap(bitmap, bitmap.getWidth()
-                    / SCALE_CAMERA, bitmap.getHeight() / SCALE_CAMERA);
-
-            // 由于Bitmap内存占用较大，这里需要回收内存，否则会报out of memory异常
-            bitmap.recycle();
-            // 将处理过的图片显示在界面上，并保存到本地
-            imgAvatar.setImageBitmap(smallBitmap);
-            ImageUtil.savePhotoToSDCard(smallBitmap, Environment.getExternalStorageDirectory().getAbsolutePath(),
-                    AccountAvatarsActivity.IMG_SCALE_NAME);
-            filePath = Environment.getExternalStorageDirectory().getAbsolutePath() + IMG_SCALE_NAME;
-
-        } else if (requestCode == CAPTURE_VIDEO_ACTIVITY_REQUEST_CODE
-                && resultCode == Activity.RESULT_OK) {
-
-            isTakePhoto = true;
-            ContentResolver resolver = getContentResolver();
-            // 照片的原始资源地址
-            Uri originalUri = data.getData();
-            try {
-                // 使用ContentProvider通过URI获取原始图片
-                Bitmap photo = MediaStore.Images.Media.getBitmap(resolver, originalUri);
-                if (photo != null) {
-                    // 为防止原始图片过大导致内存溢出，这里先缩小原图显示，然后释放原始Bitmap占用的内存
-                    Bitmap smallBitmap = ImageUtil.zoomBitmap(photo, photo.getWidth() / SCALE_PHOTO, photo.getHeight()
-                            / SCALE_PHOTO);
-                    // 释放原始图片占用的内存，防止out of memory异常发生
-                    photo.recycle();
-                    imgAvatar.setImageBitmap(smallBitmap);
-                    ImageUtil.savePhotoToSDCard(smallBitmap, Environment.getExternalStorageDirectory().getAbsolutePath(),
-                            IMG_SCALE_NAME);
-                    filePath = Environment.getExternalStorageDirectory().getAbsolutePath() + IMG_SCALE_NAME;
+        switch (requestCode) {
+            case IMAGE_REQUEST_CODE:
+                startPhotoZoom(data.getData());
+                break;
+            case CAMERA_REQUEST_CODE:
+                // 判断存储卡是否可以用，可用进行存储
+                String state = Environment.getExternalStorageState();
+                if (state.equals(Environment.MEDIA_MOUNTED)) {
+                    File path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM);
+                    File tempFile = new File(path, IMAGE_FILE_NAME);
+                    startPhotoZoom(Uri.fromFile(tempFile));
+                } else {
+                    Toast.makeText(getApplicationContext(), "未找到存储卡，无法存储照片！", Toast.LENGTH_SHORT).show();
                 }
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+                break;
+            case RESULT_REQUEST_CODE:
+//                if (data != null) {
+//                    System.out.println("filePath " + data.toURI());
+//                    getImageToView(data);
+//                }
+                if (imgUri != null) {
+                    Bitmap bitmap = decodeUriAsBitmap(imgUri);//decode bitmap
+                    imgAvatar.setImageBitmap(bitmap);
+
+                    uploadAvatar();
+                }
+                break;
         }
     }
+
+    /**
+     * 裁剪图片方法实现
+     *
+     * @param uri
+     */
+    public void startPhotoZoom(Uri uri) {
+
+        // 判断存储卡是否可以用，可用进行存储
+        String state = Environment.getExternalStorageState();
+        if (state.equals(Environment.MEDIA_MOUNTED)) {
+            File path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM);
+            File tempFile = new File(path, IMAGE_FILE_NAME);
+            System.out.println("path === " + tempFile.toString());
+            System.out.println("path === " + tempFile.getAbsolutePath());
+            System.out.println("path === " + tempFile.getPath());
+            imgUri = Uri.fromFile(tempFile);
+        } else {
+            Toast.makeText(getApplicationContext(), "未找到存储卡，无法存储照片！", Toast.LENGTH_SHORT).show();
+        }
+
+        Intent intent = new Intent("com.android.camera.action.CROP");
+        intent.setDataAndType(uri, "image/*");
+        // 设置裁剪
+        intent.putExtra("crop", "true");
+        intent.putExtra("scale", true);
+        // aspectX aspectY 是宽高的比例
+        intent.putExtra("aspectX", 1);
+        intent.putExtra("aspectY", 1);
+        // outputX outputY 是裁剪图片宽高
+        intent.putExtra("outputX", 340);
+        intent.putExtra("outputY", 340);
+//        intent.putExtra("return-data", true);  //true，不能把裁剪的图片输出
+        intent.putExtra("return-data", false);
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, imgUri);
+        intent.putExtra("outputFormat", Bitmap.CompressFormat.JPEG.toString());
+        intent.putExtra("noFaceDetection", true); // no face detection
+
+        startActivityForResult(intent, RESULT_REQUEST_CODE);
+    }
+
+    /**
+     * 保存裁剪之后的图片数据
+     */
+    private void getImageToView(Intent data) {
+        Bundle extras = data.getExtras();
+        if (extras != null) {
+            Bitmap photo = extras.getParcelable("data");
+            Drawable drawable = new BitmapDrawable(this.getResources(), photo);
+            imgAvatar.setImageDrawable(drawable);
+        }
+    }
+
+    private Bitmap decodeUriAsBitmap(Uri uri) {
+        Bitmap bitmap = null;
+        try {
+            bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(uri));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            return null;
+        }
+        return bitmap;
+    }
+
 }

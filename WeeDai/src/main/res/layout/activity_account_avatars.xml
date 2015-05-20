@@ -17,7 +17,6 @@
             android:layout_height="140dp" />
 
         <Button
-            android:visibility="gone"
             android:id="@+id/btnAvatar"
             android:layout_width="wrap_content"
             android:layout_height="45dp"
