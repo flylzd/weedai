@@ -36,13 +36,13 @@
                         android:src="@drawable/icon_you" />
 
                     <!--<TextView-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:layout_centerHorizontal="true"-->
-                        <!--android:layout_centerVertical="true"-->
-                        <!--android:text="优"-->
-                        <!--android:textColor="@color/white"-->
-                        <!--android:textSize="18dp" />-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_centerHorizontal="true"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:text="优"-->
+                    <!--android:textColor="@color/white"-->
+                    <!--android:textSize="18dp" />-->
                 </RelativeLayout>
 
                 <TextView
@@ -277,11 +277,11 @@
                     <include layout="@layout/view_horizontal_line" />
 
                     <TextView
+                        android:id="@+id/tvInterestAgreement"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="4dp"
                         android:layout_marginTop="8dp"
-                        android:id="@+id/tvInterest"
                         android:text="本息保障计划协议"
                         android:textColor="#f14728" />
                 </LinearLayout>
@@ -487,11 +487,11 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="16sp"
                     android:layout_below="@+id/layoutPlanAbout"
                     android:paddingEnd="@dimen/financial_detail_about_title_padding_end"
                     android:text="@string/financial_detail_plan_about"
-                    android:textColor="@color/financial_main_text_black" />
+                    android:textColor="@color/financial_main_text_black"
+                    android:textSize="16sp" />
 
             </RelativeLayout>
 

@@ -2,6 +2,8 @@ package com.weedai.ptp.ui.activity;
 
 
 import android.app.ProgressDialog;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.TextUtils;
@@ -37,7 +39,9 @@ public class FinancialDetailActivity extends BaseActivity {
     private TextView tvAboutDistanceSelling;  //距离发售
     private NumberProgressBar numberProgressBar;  //进度
     private TextView tvAboutAudit;  //距离审核
-    private TextView tvAboutReviewTime;  //复审时间R
+    private TextView tvAboutReviewTime;  //复审时间
+
+    private TextView tvInterestAgreement;
 
     private TextView tvReimbursement;
     private Button btnInvestment;
@@ -80,6 +84,16 @@ public class FinancialDetailActivity extends BaseActivity {
         tvFinancialAnnualRate = (TextView) findViewById(R.id.tvFinancialAnnualRate);
         tvReward = (TextView) findViewById(R.id.tvReward);
         tvFinancialLockPeriod = (TextView) findViewById(R.id.tvFinancialLockPeriod);
+        tvInterestAgreement = (TextView) findViewById(R.id.tvInterestAgreement);
+        tvInterestAgreement.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String url = "http://www.weedai.com/benjin/index.html"; // web address
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse(url));
+                startActivity(intent);
+            }
+        });
         btnInvestment = (Button) findViewById(R.id.btnInvestment);
         btnInvestment.setOnClickListener(new View.OnClickListener() {
             @Override
