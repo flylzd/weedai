@@ -21,6 +21,7 @@ import com.lemon.aklib.widget.PMSwipeRefreshLayout;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.weedai.ptp.R;
 import com.weedai.ptp.app.ApiClient;
+import com.weedai.ptp.constant.Config;
 import com.weedai.ptp.constant.Constant;
 import com.weedai.ptp.constant.Urls;
 import com.weedai.ptp.model.Article;
@@ -94,6 +95,18 @@ public class ArticleActivity extends BaseActivity implements SwipeRefreshLayout.
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        viewPager.startAutoScroll();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        viewPager.stopAutoScroll();
+    }
+
+    @Override
     public void onRefresh() {
         if (articleType == Constant.ArticleType.INFORMATION) {
             infoPage = DEFAULT_PAGE;
@@ -141,7 +154,7 @@ public class ArticleActivity extends BaseActivity implements SwipeRefreshLayout.
                         if (!informationList.isEmpty()) {
                             adapter.replaceAll(informationList);
                         } else {
-                            if (infoPage == 0){
+                            if (infoPage == 0) {
                                 infoPage++;
                             }
                             getArticleList(infoPage);
@@ -152,7 +165,7 @@ public class ArticleActivity extends BaseActivity implements SwipeRefreshLayout.
                         if (!noticeList.isEmpty()) {
                             adapter.replaceAll(noticeList);
                         } else {
-                            if (noticePage == 0){
+                            if (noticePage == 0) {
                                 noticePage++;
                             }
                             getArticleList(noticePage);

@@ -238,19 +238,16 @@ public class FinanceInvestmentActivity extends BaseActivity {
                         Toast.makeText(FinanceInvestmentActivity.this, "投标异常", Toast.LENGTH_SHORT).show();
                     } else if (message.equals("need_lowest")) {
                         Toast.makeText(FinanceInvestmentActivity.this, "投标金额不能低于最小限额", Toast.LENGTH_SHORT).show();
+                    } else if (message.equals("tender_succ")) {
+                        Toast.makeText(FinanceInvestmentActivity.this, "投标成功", Toast.LENGTH_SHORT).show();
+                        alertDialog.dismiss();
+
+                        getMyWealth();
+                        etInvestmentAmount.getText().clear();
                     }
                     return;
                 }
-
-                String message = result.message;
-                if (message.equals("tender_succ")) {
-                    Toast.makeText(FinanceInvestmentActivity.this, "投标成功", Toast.LENGTH_SHORT).show();
-                    alertDialog.dismiss();
-
-                    getMyWealth();
-                    etInvestmentAmount.getText().clear();
-                }
-
+//                String message = result.message;
             }
 
             @Override

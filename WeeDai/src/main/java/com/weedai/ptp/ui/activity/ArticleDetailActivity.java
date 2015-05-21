@@ -58,13 +58,15 @@ public class ArticleDetailActivity extends BaseActivity {
     private ListView listViewComment;
     private QuickAdapter<CommentList> adapterComment;
     private List<CommentList> commentList = new ArrayList<CommentList>();
+    private List<CommentList> commentListMore = new ArrayList<CommentList>();
     private int page = 0;
 
     private TextView tvComments;
 
     private EditText etSendComment;
-    private Button btnSend;
+    //    private Button btnSend;
     private String sendComment;
+    private View layoutSendComment;
 
     private ProgressDialog progressDialog;
 
@@ -153,16 +155,44 @@ public class ArticleDetailActivity extends BaseActivity {
         listViewComment = (ListView) findViewById(R.id.listViewComment);
         listViewComment.setAdapter(adapterComment);
 
-        tvComments = (TextView) findViewById(R.id.tvComments);
+        tvComments = (TextView) findViewById(R.id.tvComments);  //更多评论
+        tvComments.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (commentListMore == null || commentListMore.size() == 0) {
+                    return;
+                }
+                int sizeMore = commentListMore.size();
+                int size = commentList.size();
+                if (size == sizeMore) {
+                    return;
+                }
+
+                int count = (size + 4) > sizeMore ? (sizeMore - size) : 4;
+                System.out.println("count == " + count);
+                for (int i = size; i < size + count; i++) {
+                    commentList.add(commentListMore.get(i));
+                }
+                size = commentList.size();
+                if (size < sizeMore) {
+                    tvComments.setText("查看更多评论");
+                } else {
+                    tvComments.setText("没有更多评论");
+                }
+                adapterComment.replaceAll(commentList);
+                ListViewUtil.setListViewHeightBasedOnChildren(listViewComment);
+            }
+        });
 
         etSendComment = (EditText) findViewById(R.id.etSendComment);
-        btnSend = (Button) findViewById(R.id.btnSend);
-        btnSend.setOnClickListener(new View.OnClickListener() {
+        layoutSendComment = findViewById(R.id.layoutSendComment);
+        layoutSendComment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 if (!Config.isLogin) {
-                    Toast.makeText(ArticleDetailActivity.this,"请先登录，在发表评论...",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ArticleDetailActivity.this, "请先登录，在发表评论...", Toast.LENGTH_SHORT).show();
                     UIHelper.showLogin(ArticleDetailActivity.this);
                     return;
                 }
@@ -176,7 +206,7 @@ public class ArticleDetailActivity extends BaseActivity {
                 View view = getLayoutInflater().inflate(R.layout.dialog_simple_validate_code_view, null);
                 final EditText etValicode = (EditText) view.findViewById(R.id.etValicode);
                 simpleValidateCodeView = (SimpleValidateCodeView) view.findViewById(R.id.viewValicode);
-                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.MATCH_PARENT);
+                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
                 view.setLayoutParams(params);
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(ArticleDetailActivity.this);
@@ -289,15 +319,23 @@ public class ArticleDetailActivity extends BaseActivity {
                 }
 
                 List<CommentList> list = result.data.list;
-                commentList = list;
+//                commentList = list;
+                commentListMore = list;
+
+                int size = list.size();
+                if (list == null || size == 0) {
+                    tvComments.setText("没有评论");
+                } else if (size > 4) {
+                    tvComments.setText("查看更多评论");
+                    for (int i = 0; i < 4; i++) {
+                        commentList.add(commentListMore.get(i));
+                    }
+                } else {
+                    tvComments.setText("没有更多评论");
+                    commentList.addAll(list);
+                }
                 adapterComment.replaceAll(commentList);
                 ListViewUtil.setListViewHeightBasedOnChildren(listViewComment);
-
-                if (list == null || list.size() == 0) {
-                    tvComments.setText("没有评论");
-                } else {
-                    tvComments.setText("查看更多评论");
-                }
             }
         });
     }

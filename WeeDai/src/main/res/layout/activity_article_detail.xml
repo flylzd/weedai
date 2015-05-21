@@ -92,12 +92,34 @@
             android:layout_height="wrap_content"
             android:layout_weight="1" />
 
-        <Button
-            android:id="@+id/btnSend"
-            android:drawableLeft="@drawable/icon_article_comment"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:layout_marginRight="10dp"
+            android:id="@+id/layoutSendComment"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:text="" />
+            android:background="@drawable/icon_bg_border"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="20dp">
+
+            <ImageView
+
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/icon_comment_send" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:text="评论"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+
 
     </LinearLayout>
 
