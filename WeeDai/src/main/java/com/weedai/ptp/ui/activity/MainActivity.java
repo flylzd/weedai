@@ -1,5 +1,7 @@
 package com.weedai.ptp.ui.activity;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -31,14 +33,20 @@ public class MainActivity extends BaseActivity {
     public static int lastSelect = 0;
     public static boolean isLoginFromMain;
 
+    private static final String SHAREDPREFERENCES_NAME = "first_pref";
+    private boolean isFirstIn = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        initFragmentSwitcher();
-        initRadioGroup();
+        initGuided();
+        if (!isFirstIn){
+            initFragmentSwitcher();
+            initRadioGroup();
+        }
     }
 
     @Override
@@ -78,6 +86,24 @@ public class MainActivity extends BaseActivity {
     @Override
     protected int getActionBarTitle() {
         return R.string.main_tab_home;
+    }
+
+    private void initGuided() {
+
+        // 读取SharedPreferences中需要的数据
+        // 使用SharedPreferences来记录程序的使用次数
+        SharedPreferences preferences = getSharedPreferences(
+                SHAREDPREFERENCES_NAME, MODE_PRIVATE);
+
+        // 取得相应的值，如果没有该值，说明还未写入，用true作为默认值
+        isFirstIn = preferences.getBoolean("isFirstIn", true);
+
+        // 判断程序与第几次运行，如果是第一次运行则跳转到引导界面，否则跳转到主界面
+        if (isFirstIn) {
+            Intent intent = new Intent(MainActivity.this, GuidedActivity.class);
+            this.startActivity(intent);
+            finish();
+        }
     }
 
     private void initFragmentSwitcher() {

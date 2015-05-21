@@ -150,7 +150,6 @@ public class AccountAvatarsActivity extends BaseActivity {
                 }
             }
 
-            @Override
             public void onErrorResponse(VolleyError volleyError) {
                 progressDialog.dismiss();
             }

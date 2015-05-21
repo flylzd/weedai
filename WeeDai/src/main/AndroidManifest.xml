@@ -28,6 +28,10 @@
             </intent-filter>
         </activity>
         <activity
+            android:name="com.weedai.ptp.ui.activity.GuidedActivity"
+            android:configChanges="keyboard|orientation|screenSize"
+            android:screenOrientation="portrait" />
+        <activity
             android:name="com.weedai.ptp.ui.activity.RegisterActivity"
             android:configChanges="keyboard|orientation|screenSize"
             android:screenOrientation="portrait" />
