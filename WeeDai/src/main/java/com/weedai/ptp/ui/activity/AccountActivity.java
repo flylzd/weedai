@@ -142,6 +142,7 @@ public class AccountActivity extends BaseActivity implements View.OnClickListene
                     return;
                 }
 
+                System.out.println("头像 == " + DataUtil.urlDecode(data.touxiang));
                 User.userInfo.touxiang = DataUtil.urlDecode(data.touxiang);
                 String url = DataUtil.urlDecode(data.touxiang);
                 if (!TextUtils.isEmpty(url)) {
