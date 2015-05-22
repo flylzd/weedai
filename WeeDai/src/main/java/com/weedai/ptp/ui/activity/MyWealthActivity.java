@@ -58,9 +58,14 @@ public class MyWealthActivity extends BaseActivity implements View.OnClickListen
         }
 
         initView();
-        loadData();
+//        loadData();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadData();
+    }
 
     @Override
     protected int getActionBarTitle() {

@@ -2,6 +2,7 @@ package com.weedai.ptp.ui.activity;
 
 
 import android.app.ProgressDialog;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -112,7 +113,7 @@ public class MyBankCardChangeActivity extends BaseActivity {
                     return;
                 }
 
-                changeBank(code, branch);
+                changeBank(code, Uri.encode(branch));
             }
         });
     }

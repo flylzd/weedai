@@ -9,7 +9,9 @@ public class UserData implements Serializable {
     public String email;
     public int sex;
     public String wb;
+    public String total;
     public String use_money;
+    public String no_use_money;
     public String phone;
     public int avatar_status;
 //    public boolean phone_status;

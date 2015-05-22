@@ -52,8 +52,7 @@
 
         <TextView
             android:id="@+id/tvFreezeBalance"
-            style="@style/textMyBank"
-            android:text="微E贷" />
+            style="@style/textMyBank" />
     </LinearLayout>
 
     <include layout="@layout/view_horizontal_line" />
@@ -75,24 +74,22 @@
                 android:src="@drawable/ic_launcher" />
 
             <TextView
-                android:id="@+id/tvBankName"
+                android:id="@+id/tvBankAccount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
                 android:layout_toRightOf="@+id/imgBankIcon"
-                android:text="中国银行"
                 android:textColor="@color/main_text"
                 android:textSize="20sp" />
 
             <TextView
-                android:id="@+id/tvBankNum"
+                android:id="@+id/tvBankName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/tvBankName"
+                android:layout_below="@+id/tvBankAccount"
                 android:layout_marginStart="12dp"
                 android:layout_marginTop="4dp"
                 android:layout_toRightOf="@+id/imgBankIcon"
-                android:text="尾号6215储蓄卡"
                 android:textColor="@color/main_text"
                 android:textSize="16sp" />
 
@@ -108,9 +105,10 @@
             style="@style/textMyBankTitle"
             android:text="@string/user_my_withdrawal_trade_password" />
 
-        <TextView
+        <EditText
             android:id="@+id/tvTradePassword"
             style="@style/textMyBank"
+            android:hint="请输入交易密码"
             android:inputType="textPassword" />
     </LinearLayout>
 
@@ -122,7 +120,9 @@
             style="@style/textMyBankTitle"
             android:text="@string/user_my_withdrawal_withdrawal_amount" />
 
-        <TextView
+        <EditText
+            android:hint="请输入整数,大于等于50元"
+            android:inputType="number"
             android:id="@+id/tvWithdrawalAmount"
             style="@style/textMyBank" />
     </LinearLayout>

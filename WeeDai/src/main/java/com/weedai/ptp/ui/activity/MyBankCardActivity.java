@@ -90,7 +90,7 @@ public class MyBankCardActivity extends BaseActivity {
             imgBankIcon.setImageResource(resId);
 
             System.out.println("banksname " + DataUtil.urlDecode(data.banksname));
-            System.out.println("branch " + data.branch);
+            System.out.println("branch " + DataUtil.urlDecode(data.branch));
             System.out.println("account " + DataUtil.urlDecode(data.account));
             System.out.println("bank " + DataUtil.urlDecode(data.bank));
         }

@@ -416,6 +416,30 @@ public class ApiClient {
 
 
     /**
+     * 提现操作
+     */
+    public static void withdrawal(String tag, String paypassword, String money, ResponseListener listener) {
+
+        if (!hashkNewwork()) {
+            return;
+        }
+
+        listener.onStarted();
+
+        Map<String, String> requestParams = getSignatureMap();
+        requestParams.put("paypassword", paypassword);
+        requestParams.put("money", money);
+        requestParams.put("q", "code/account/cash_new");
+        requestParams.put(Urls.ACTION, "users");
+
+        String url = Urls.ACTION_INDEX;
+        GsonPostRequest request = createGsonPostRequest(url, requestParams, BaseModel.class, listener);
+        request.setTag(tag);
+        requestQueue.add(request);
+    }
+
+
+    /**
      * 理财管理-成功投资的借款
      */
     public static void getFinancialSuccess(String tag, int page, ResponseListener listener) {
