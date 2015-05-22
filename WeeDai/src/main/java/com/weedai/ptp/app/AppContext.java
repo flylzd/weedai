@@ -11,6 +11,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 import com.weedai.ptp.R;
+import com.weedai.ptp.utils.NetworkStateManager;
 import com.weedai.ptp.volley.VolleySingleton;
 
 
@@ -36,6 +37,7 @@ public class AppContext extends Application {
     }
 
     private void init() {
+        NetworkStateManager.instance().init(this);
         VolleySingleton.init(this);
     }
 

@@ -36,6 +36,7 @@ import com.weedai.ptp.model.Valicode;
 import com.weedai.ptp.model.WithdrawalRecord;
 import com.weedai.ptp.utils.AppUtil;
 import com.weedai.ptp.utils.Logger;
+import com.weedai.ptp.utils.NetworkStateManager;
 import com.weedai.ptp.volley.GsonGetRequest;
 import com.weedai.ptp.volley.GsonPostRequest;
 import com.weedai.ptp.volley.MultiPartGsonPostRequest;
@@ -63,6 +64,20 @@ public class ApiClient {
 
     private static final int PAGE_LIMIT = 10;
 
+
+    /**
+     * 检查网络是否联网
+     */
+    private static boolean hashkNewwork() {
+
+        boolean hasNetwork = NetworkStateManager.instance().isNetworkConnected();
+        if (!hasNetwork) {
+            Toast.makeText(AppContext.getInstance(), "您的网络连接已中断", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
+    }
+
     /**
      * 接口验证
      */
@@ -86,6 +101,10 @@ public class ApiClient {
      */
     public static void getImgcode(String tag, ResponseListener listener) {
 
+        if (!hashkNewwork()) {
+            return;
+        }
+
         listener.onStarted();
 
         Map<String, String> requestParams = getSignatureMap();
@@ -102,6 +121,10 @@ public class ApiClient {
      * 登陆
      */
     public static void login(String tag, String username, String passwrod, String valicode, ResponseListener listener) {
+
+        if (!hashkNewwork()) {
+            return;
+        }
 
         listener.onStarted();
 
@@ -123,6 +146,10 @@ public class ApiClient {
      */
     public static void logout(String tag, ResponseListener listener) {
 
+        if (!hashkNewwork()) {
+            return;
+        }
+
         listener.onStarted();
 
         Map<String, String> requestParams = getSignatureMap();
@@ -139,6 +166,10 @@ public class ApiClient {
      * 验证用户名是否存在
      */
     public static void checkUsername(String tag, String username, ResponseListener listener) {
+
+        if (!hashkNewwork()) {
+            return;
+        }
 
         listener.onStarted();
 
@@ -157,6 +188,10 @@ public class ApiClient {
      * 注册
      */
     public static void register(String tag, String email, String username, String password, String realname, int sex, ResponseListener listener) {
+
+        if (!hashkNewwork()) {
+            return;
+        }
 
         listener.onStarted();
 
@@ -180,6 +215,10 @@ public class ApiClient {
      * 每天签到
      */
     public static void signIn(String tag, ResponseListener listener) {
+
+        if (!hashkNewwork()) {
+            return;
+        }
 
         listener.onStarted();
 
@@ -206,6 +245,10 @@ public class ApiClient {
      */
     public static void getInvestList(String tag, int page, int type, String timelimit, ResponseListener listener) {
 
+        if (!hashkNewwork()) {
+            return;
+        }
+
         listener.onStarted();
 
         Map<String, String> requestParams = getSignatureMap();
@@ -221,6 +264,10 @@ public class ApiClient {
     }
 
     public static void getInvestList(String tag, int page, String xmtype, ResponseListener listener) {
+
+        if (!hashkNewwork()) {
+            return;
+        }
 
         listener.onStarted();
 
@@ -241,6 +288,10 @@ public class ApiClient {
      */
     public static void getFinancialDetail(String tag, String id, ResponseListener listener) {
 
+        if (!hashkNewwork()) {
+            return;
+        }
+
         listener.onStarted();
 
         Map<String, String> requestParams = getSignatureMap();
@@ -257,7 +308,11 @@ public class ApiClient {
     /**
      * 投标操作
      */
-    public static void tender(String tag, String id, String money, String paypassword, String valicode,  ResponseListener listener) {
+    public static void tender(String tag, String id, String money, String paypassword, String valicode, ResponseListener listener) {
+
+        if (!hashkNewwork()) {
+            return;
+        }
 
         listener.onStarted();
 
@@ -280,6 +335,11 @@ public class ApiClient {
      * 回款查询
      */
     public static void searchReceiable(String tag, ResponseListener listener) {
+
+        if (!hashkNewwork()) {
+            return;
+        }
+
         listener.onStarted();
 
         Map<String, String> requestParams = getSignatureMap();
@@ -297,6 +357,11 @@ public class ApiClient {
      * 资金记录
      */
     public static void getMoneyRecord(String tag, int page, ResponseListener listener) {
+
+        if (!hashkNewwork()) {
+            return;
+        }
+
         listener.onStarted();
 
         Map<String, String> requestParams = getSignatureMap();
@@ -314,6 +379,11 @@ public class ApiClient {
      * 我的财富
      */
     public static void getMyWealth(String tag, ResponseListener listener) {
+
+        if (!hashkNewwork()) {
+            return;
+        }
+
         listener.onStarted();
 
         Map<String, String> requestParams = getSignatureMap();
@@ -330,6 +400,11 @@ public class ApiClient {
      * 提现记录
      */
     public static void getWithdrawalRecord(String tag, int page, ResponseListener listener) {
+
+        if (!hashkNewwork()) {
+            return;
+        }
+
         listener.onStarted();
 
         Map<String, String> requestParams = getSignatureMap();
@@ -348,6 +423,11 @@ public class ApiClient {
      * 理财管理-成功投资的借款
      */
     public static void getFinancialSuccess(String tag, int page, ResponseListener listener) {
+
+        if (!hashkNewwork()) {
+            return;
+        }
+
         listener.onStarted();
 
         Map<String, String> requestParams = getSignatureMap();
@@ -365,6 +445,11 @@ public class ApiClient {
      * 理财管理-未收款明细
      */
     public static void getFinancialGathering(String tag, int page, ResponseListener listener) {
+
+        if (!hashkNewwork()) {
+            return;
+        }
+
         listener.onStarted();
 
         Map<String, String> requestParams = getSignatureMap();
@@ -384,6 +469,11 @@ public class ApiClient {
      * 微币记录
      */
     public static void getMicroHistory(String tag, int page, ResponseListener listener) {
+
+        if (!hashkNewwork()) {
+            return;
+        }
+
         listener.onStarted();
 
         Map<String, String> requestParams = getSignatureMap();
@@ -401,6 +491,11 @@ public class ApiClient {
      * 站内信
      */
     public static void getStandInsideLetter(String tag, int page, ResponseListener listener) {
+
+        if (!hashkNewwork()) {
+            return;
+        }
+
         listener.onStarted();
 
         Map<String, String> requestParams = getSignatureMap();
@@ -419,6 +514,11 @@ public class ApiClient {
      * 账户安全
      */
     public static void getSecurityLevel(String tag, ResponseListener listener) {
+
+        if (!hashkNewwork()) {
+            return;
+        }
+
         listener.onStarted();
 
         Map<String, String> requestParams = getSignatureMap();
@@ -434,6 +534,11 @@ public class ApiClient {
      * 获得银行卡信息
      */
     public static void getBank(String tag, ResponseListener listener) {
+
+        if (!hashkNewwork()) {
+            return;
+        }
+
         listener.onStarted();
 
         Map<String, String> requestParams = getSignatureMap();
@@ -450,6 +555,11 @@ public class ApiClient {
      * 修改银行卡信息
      */
     public static void changeBank(String tag, String account, String bank, String branch, ResponseListener listener) {
+
+        if (!hashkNewwork()) {
+            return;
+        }
+
         listener.onStarted();
 
         Map<String, String> requestParams = getSignatureMap();
@@ -470,6 +580,11 @@ public class ApiClient {
      * 获取手机验证码
      */
     public static void getPhoneVerificationCode(String tag, String phonenum, ResponseListener listener) {
+
+        if (!hashkNewwork()) {
+            return;
+        }
+
         listener.onStarted();
 
         Map<String, String> requestParams = getSignatureMap();
@@ -486,6 +601,11 @@ public class ApiClient {
      * 绑定手机验证
      */
     public static void bindingPhone(String tag, String phone, String valicodes, ResponseListener listener) {
+
+        if (!hashkNewwork()) {
+            return;
+        }
+
         listener.onStarted();
 
         Map<String, String> requestParams = getSignatureMap();
@@ -504,6 +624,11 @@ public class ApiClient {
      * 邮箱验证
      */
     public static void bindingEmail(String tag, String email, ResponseListener listener) {
+
+        if (!hashkNewwork()) {
+            return;
+        }
+
         listener.onStarted();
 
         Map<String, String> requestParams = getSignatureMap();
@@ -521,6 +646,11 @@ public class ApiClient {
      * 修改登录密码
      */
     public static void changePassword(String tag, String oldpassword, String newpassword, ResponseListener listener) {
+
+        if (!hashkNewwork()) {
+            return;
+        }
+
         listener.onStarted();
 
         Map<String, String> requestParams = getSignatureMap();
@@ -539,6 +669,11 @@ public class ApiClient {
      * 修改支付密码
      */
     public static void changeaymentPassword(String tag, String oldpassword, String newpassword, String valicode, ResponseListener listener) {
+
+        if (!hashkNewwork()) {
+            return;
+        }
+
         listener.onStarted();
 
         Map<String, String> requestParams = getSignatureMap();
@@ -558,6 +693,11 @@ public class ApiClient {
      * 利息计算器
      */
     public static void calculatorInterest(String tag, String account, String lilv, String times, int type, ResponseListener listener) {
+
+        if (!hashkNewwork()) {
+            return;
+        }
+
         listener.onStarted();
 
         Map<String, String> requestParams = getSignatureMap();
@@ -577,6 +717,11 @@ public class ApiClient {
      * 网贷计算器
      */
     public static void calculatorNetCredit(String tag, String nianxi, String times, int type, String account, String addtime, String award, String manage, ResponseListener listener) {
+
+        if (!hashkNewwork()) {
+            return;
+        }
+
         listener.onStarted();
 
         Map<String, String> requestParams = getSignatureMap();
@@ -603,6 +748,10 @@ public class ApiClient {
      */
     public static void getHeroList(String tag, int dact, ResponseListener listener) {
 
+        if (!hashkNewwork()) {
+            return;
+        }
+
         listener.onStarted();
 
         Map<String, String> requestParams = getSignatureMap();
@@ -626,6 +775,10 @@ public class ApiClient {
      */
     public static void getArticleList(String tag, int page, int type, ResponseListener listener) {
 
+        if (!hashkNewwork()) {
+            return;
+        }
+
         listener.onStarted();
 
         Map<String, String> requestParams = getSignatureMap();
@@ -646,6 +799,10 @@ public class ApiClient {
      */
     public static void getArticleDetail(String tag, String aid, ResponseListener listener) {
 
+        if (!hashkNewwork()) {
+            return;
+        }
+
         listener.onStarted();
 
         Map<String, String> requestParams = getSignatureMap();
@@ -663,6 +820,10 @@ public class ApiClient {
      */
     public static void getRelatedArticleList(String tag, String siteid, ResponseListener listener) {
 
+        if (!hashkNewwork()) {
+            return;
+        }
+
         listener.onStarted();
 
         Map<String, String> requestParams = getSignatureMap();
@@ -679,6 +840,10 @@ public class ApiClient {
      * 评论列表
      */
     public static void getCommentList(String tag, String id, int page, ResponseListener listener) {
+
+        if (!hashkNewwork()) {
+            return;
+        }
 
         listener.onStarted();
 
@@ -699,6 +864,10 @@ public class ApiClient {
      * 添加评论
      */
     public static void addComment(String tag, String id, String comment, String valicode, ResponseListener listener) {
+
+        if (!hashkNewwork()) {
+            return;
+        }
 
         listener.onStarted();
 
@@ -722,6 +891,10 @@ public class ApiClient {
      */
     public static void getUser(String tag, ResponseListener listener) {
 
+        if (!hashkNewwork()) {
+            return;
+        }
+
         listener.onStarted();
 
         Map<String, String> requestParams = getSignatureMap();
@@ -738,6 +911,10 @@ public class ApiClient {
      */
     public static void changeWb(String tag, ResponseListener listener) {
 
+        if (!hashkNewwork()) {
+            return;
+        }
+
         listener.onStarted();
 
         Map<String, String> requestParams = getSignatureMap();
@@ -753,6 +930,10 @@ public class ApiClient {
      * 轮换图
      */
     public static void scrollPic(String tag, ResponseListener listener) {
+
+        if (!hashkNewwork()) {
+            return;
+        }
 
         listener.onStarted();
 
@@ -771,6 +952,10 @@ public class ApiClient {
      */
     public static void getAwardNumber(String tag, ResponseListener listener) {
 
+        if (!hashkNewwork()) {
+            return;
+        }
+
         listener.onStarted();
 
         Map<String, String> requestParams = getSignatureMap();
@@ -788,6 +973,10 @@ public class ApiClient {
      */
     public static void award(String tag, ResponseListener listener) {
 
+        if (!hashkNewwork()) {
+            return;
+        }
+
         listener.onStarted();
 
         Map<String, String> requestParams = getSignatureMap();
@@ -804,6 +993,11 @@ public class ApiClient {
      * 合作伙伴
      */
     public static void getPartner(String tag, ResponseListener listener) {
+
+        if (!hashkNewwork()) {
+            return;
+        }
+
         listener.onStarted();
 
         Map<String, String> requestParams = getSignatureMap();
@@ -819,6 +1013,11 @@ public class ApiClient {
      * 公司介绍
      */
     public static void getAboutCompany(String tag, ResponseListener listener) {
+
+        if (!hashkNewwork()) {
+            return;
+        }
+
         listener.onStarted();
 
         Map<String, String> requestParams = getSignatureMap();
@@ -835,6 +1034,10 @@ public class ApiClient {
      * 头像获得
      */
     public static void getAvatars(String tag, ResponseListener listener) {
+
+        if (!hashkNewwork()) {
+            return;
+        }
 
         listener.onStarted();
 
@@ -853,6 +1056,10 @@ public class ApiClient {
      * 上传头像
      */
     public static void uploadAvatars(String tag, String filePath, final ResponseListener listener) {
+
+        if (!hashkNewwork()) {
+            return;
+        }
 
         listener.onStarted();
 
@@ -887,6 +1094,10 @@ public class ApiClient {
      * 上传头像
      */
     public static void uploadAvatars(String tag, Bitmap bitmap, final ResponseListener listener) {
+
+        if (!hashkNewwork()) {
+            return;
+        }
 
         listener.onStarted();
 

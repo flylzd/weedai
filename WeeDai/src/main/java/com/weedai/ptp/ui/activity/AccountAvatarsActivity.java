@@ -124,6 +124,29 @@ public class AccountAvatarsActivity extends BaseActivity {
         tvEmail.setText(data.email);
     }
 
+    private void getAvatars() {
+        ApiClient.getAvatars(TAG, new RefreshResponseListener() {
+            @Override
+            public void onResponse(Object response) {
+                super.onResponse(response);
+
+                User result = (User) response;
+                if (result.code != Constant.CodeResult.SUCCESS) {
+                    Toast.makeText(AccountAvatarsActivity.this, result.message, Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                System.out.println("头像 == " + DataUtil.urlDecode(result.data.touxiang));
+//                User.userInfo.touxiang = DataUtil.urlDecode(result.data.touxiang);
+                String url = DataUtil.urlDecode(result.data.touxiang);
+                if (!TextUtils.isEmpty(url)) {
+                    url = Urls.SERVER_URL + url;
+                    ImageLoader.getInstance().displayImage(url, imgAvatar);
+                }
+            }
+        });
+    }
+
     private void uploadAvatar() {
 
         String filePath = imgUri.getPath();
@@ -133,6 +156,7 @@ public class AccountAvatarsActivity extends BaseActivity {
             public void onStarted() {
                 progressDialog = ProgressDialog.show(AccountAvatarsActivity.this, null, getString(R.string.message_submit));
             }
+
             @Override
             public void onResponse(Object response) {
                 progressDialog.dismiss();
@@ -145,6 +169,8 @@ public class AccountAvatarsActivity extends BaseActivity {
 
                 if (result.message.equals("edit_success")) {
                     Toast.makeText(AccountAvatarsActivity.this, "头像上传成功", Toast.LENGTH_SHORT).show();
+
+                    getAvatars();  //获取头像
                 } else {
                     Toast.makeText(AccountAvatarsActivity.this, "头像上传失败", Toast.LENGTH_SHORT).show();
                 }
@@ -155,6 +181,26 @@ public class AccountAvatarsActivity extends BaseActivity {
             }
         });
     }
+
+
+    private abstract class RefreshResponseListener implements ResponseListener {
+
+        @Override
+        public void onStarted() {
+            progressDialog = ProgressDialog.show(AccountAvatarsActivity.this, null, getString(R.string.message_waiting));
+        }
+
+        @Override
+        public void onResponse(Object response) {
+            progressDialog.dismiss();
+        }
+
+        @Override
+        public void onErrorResponse(VolleyError volleyError) {
+            progressDialog.dismiss();
+        }
+    }
+
 
     /**
      * 显示选择对话框
