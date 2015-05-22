@@ -1,7 +1,6 @@
 package com.weedai.ptp.app;
 
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -27,7 +26,6 @@ import com.weedai.ptp.model.Money;
 import com.weedai.ptp.model.MyWeallth;
 import com.weedai.ptp.model.ReceivableSearch;
 import com.weedai.ptp.model.RotationImage;
-import com.weedai.ptp.model.SecurityLevel;
 import com.weedai.ptp.model.SecurityPhone;
 import com.weedai.ptp.model.SignIn;
 import com.weedai.ptp.model.StandInsideLetter;
@@ -46,10 +44,8 @@ import com.weedai.ptp.volley.SimpleMultipartRequest;
 import com.weedai.ptp.volley.VolleySingleton;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Random;
 
 
 public class ApiClient {
