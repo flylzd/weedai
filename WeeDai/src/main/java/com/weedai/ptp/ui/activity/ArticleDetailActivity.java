@@ -41,6 +41,10 @@ import com.weedai.ptp.utils.UIHelper;
 import com.weedai.ptp.view.SimpleValidateCodeView;
 import com.weedai.ptp.volley.ResponseListener;
 
+import java.net.URI;
+import java.net.URL;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -121,7 +125,7 @@ public class ArticleDetailActivity extends BaseActivity {
                 helper.setText(R.id.tvArticleTitle, DataUtil.urlDecode(item.name));
                 helper.setText(R.id.tvArticleSubTitle, DataUtil.urlDecode(item.summary));
                 helper.setText(R.id.tvArticleDate, item.publish);
-                helper.setText(R.id.tvComments, item.comment);
+                helper.setText(R.id.tvComments, DataUtil.urlDecode(item.comment));
 
                 ImageView imageView = helper.getView(R.id.imgArticle);
                 String url = item.litpic;
@@ -226,7 +230,12 @@ public class ArticleDetailActivity extends BaseActivity {
                                 Toast.makeText(ArticleDetailActivity.this, getString(R.string.login_valicode_not_match), Toast.LENGTH_SHORT).show();
 //                                return;
                             } else {
-                                addComment(aid, sendComment, code);
+
+                                System.out.println("sendComment " + sendComment);
+                                String comment = URLEncoder.encode(sendComment);
+                                System.out.println("comment " + comment);
+
+                                addComment(aid, comment, code);
                             }
                         }
                     }

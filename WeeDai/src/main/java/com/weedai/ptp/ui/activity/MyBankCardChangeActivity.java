@@ -19,7 +19,10 @@ import com.weedai.ptp.R;
 import com.weedai.ptp.app.ApiClient;
 import com.weedai.ptp.constant.Constant;
 import com.weedai.ptp.model.Bank;
+import com.weedai.ptp.utils.DataUtil;
 import com.weedai.ptp.volley.ResponseListener;
+
+import java.net.URLEncoder;
 
 public class MyBankCardChangeActivity extends BaseActivity {
 
@@ -36,8 +39,8 @@ public class MyBankCardChangeActivity extends BaseActivity {
     private String bankName;
 
     private String bank;
-    private String branch;
-    private String code;
+//    private String branch;
+//    private String code;
 
     private ProgressDialog progressDialog;
 
@@ -45,6 +48,9 @@ public class MyBankCardChangeActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_bank_card_change);
+        if (getIntent().hasExtra("bank")) {
+            bank = getIntent().getStringExtra("bank");
+        }
 
         initView();
     }
@@ -86,7 +92,12 @@ public class MyBankCardChangeActivity extends BaseActivity {
 
             }
         });
-        bankName = adapter.getItem(0);
+
+        bankName =Constant.bankMap.get(bank);
+        int resId = Constant.bankImgMap.get(bankName);
+        imgBankIcon.setImageResource(resId);
+
+        spinner.setSelection(adapter.getPosition(bankName));
 
         btnModifyBankCard = (Button) findViewById(R.id.btnModifyBankCard);
         btnModifyBankCard.setOnClickListener(new View.OnClickListener() {
@@ -113,7 +124,8 @@ public class MyBankCardChangeActivity extends BaseActivity {
                     return;
                 }
 
-                changeBank(code, Uri.encode(branch));
+                changeBank(code, URLEncoder.encode(branch));
+//                changeBank(code, branch);
             }
         });
     }

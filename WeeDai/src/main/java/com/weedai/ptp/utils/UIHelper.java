@@ -92,8 +92,9 @@ public class UIHelper {
         context.startActivity(intent);
     }
 
-    public static void showMyBankCardChange(Context context) {
+    public static void showMyBankCardChange(Context context, String bank) {
         Intent intent = new Intent(context, MyBankCardChangeActivity.class);
+        intent.putExtra("bank", bank);
         context.startActivity(intent);
     }
 

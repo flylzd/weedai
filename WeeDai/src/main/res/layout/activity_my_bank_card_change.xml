@@ -70,6 +70,7 @@
 
         <EditText
             android:hint="开户人姓名必须为马云"
+            android:inputType="number"
             android:id="@+id/etBankCode"
             style="@style/textMyBank" />
     </LinearLayout>

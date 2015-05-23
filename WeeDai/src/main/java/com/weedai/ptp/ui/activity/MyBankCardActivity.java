@@ -20,6 +20,8 @@ import com.weedai.ptp.utils.DataUtil;
 import com.weedai.ptp.utils.UIHelper;
 import com.weedai.ptp.volley.ResponseListener;
 
+import java.io.UnsupportedEncodingException;
+
 public class MyBankCardActivity extends BaseActivity {
 
     private final static String TAG = "MyBankCardActivity";
@@ -30,6 +32,8 @@ public class MyBankCardActivity extends BaseActivity {
     private TextView tvBankBranch;
     private TextView tvBankCode;
     private Button btnModifyBankCard;
+
+    private String bank;
 
     private ProgressDialog progressDialog;
 
@@ -71,7 +75,7 @@ public class MyBankCardActivity extends BaseActivity {
         btnModifyBankCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                UIHelper.showMyBankCardChange(MyBankCardActivity.this);
+                UIHelper.showMyBankCardChange(MyBankCardActivity.this,bank );
             }
         });
     }
@@ -82,17 +86,31 @@ public class MyBankCardActivity extends BaseActivity {
 
             tvRealName.setText(DataUtil.urlDecode(data.realname));
             tvRealEmail.setText(DataUtil.urlDecode(data.email));
-            tvBankBranch.setText(DataUtil.urlDecode(data.branch));
+            tvBankBranch.setText(DataUtil.urlDecode(DataUtil.urlDecode(data.branch)));
+//            tvBankBranch.setText(DataUtil.urlDecode(data.branch));
             tvBankCode.setText(DataUtil.urlDecode(data.account));
 
 //            String bankName = Constant.bankMap.get(data.bank);
             int resId = Constant.bankImgMap.get(DataUtil.urlDecode(data.banksname));
             imgBankIcon.setImageResource(resId);
+            bank = data.bank;
 
-            System.out.println("banksname " + DataUtil.urlDecode(data.banksname));
-            System.out.println("branch " + DataUtil.urlDecode(data.branch));
-            System.out.println("account " + DataUtil.urlDecode(data.account));
-            System.out.println("bank " + DataUtil.urlDecode(data.bank));
+//            System.out.println("banksname " + DataUtil.urlDecode(data.banksname));
+//            System.out.println("branch " +DataUtil.urlDecode(DataUtil.urlDecode(data.branch)));
+//            System.out.println("branch " + data.branch);
+//            try {
+//                System.out.println("branch " + new String(data.branch.getBytes("utf-8"),"gbk"));
+//                System.out.println("branch " + new String(data.branch.getBytes("utf-8"),"GB2312"));
+//
+//                System.out.println("branch " + new String(data.branch.getBytes("gbk"),"utf-8"));
+//                System.out.println("branch " + new String(data.branch.getBytes("iso-8859-1"),"utf-8"));
+//                System.out.println("branch " + new String(data.branch.getBytes("iso-8859-1"),"GB2312"));
+//                System.out.println("branch " + new String(data.branch.getBytes("utf-8"),"iso-8859-1"));
+//            } catch (UnsupportedEncodingException e) {
+//                e.printStackTrace();
+//            }
+//            System.out.println("account " + DataUtil.urlDecode(data.account));
+//            System.out.println("bank " + DataUtil.urlDecode(data.bank));
         }
     }
 
