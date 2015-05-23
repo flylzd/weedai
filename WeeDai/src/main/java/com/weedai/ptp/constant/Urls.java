@@ -5,10 +5,10 @@ public class Urls {
 
     private static String SERVER_IP = "112.124.22.39";
 
-//    private static String PROJECT_NAME = "/appptp"; //发布环境
+    private static String PROJECT_NAME = "/appptp"; //发布环境
 
 
-    private static String PROJECT_NAME = "/apptest";   //测试环境
+//    private static String PROJECT_NAME = "/apptest";   //测试环境
 
 
     public static String SERVER_URL = "http://" + SERVER_IP + PROJECT_NAME;

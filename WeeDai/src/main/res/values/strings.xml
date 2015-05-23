@@ -37,6 +37,7 @@
     <string name="title_calculator_interest">利息计算器</string>
     <string name="title_calculator_net_credit">网贷计算器</string>
     <string name="title_information">资讯</string>
+    <string name="title_hero">英雄榜</string>
     <string name="title_lucky_draw">抽奖</string>
 
     <string name="login_user_hint">手机号/邮箱/用户名</string>
@@ -238,6 +239,9 @@
     <string name="hero_one">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;2014年9月30日，结束时间2015年2月28日</string>
     <string name="hero_two">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;在每一个英雄榜里，我们按照投资人当期的投资积分排名，投资积分越多，排名越靠前。按投资积分从第一名到第十名。</string>
     <string name="hero_hint">获得积分公式：投资积分=当期内投资额*标期月份</string>
+
+    <string name="hero_content">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;我们按照投资人当期的投资积分排名，投资积分越多，排名越靠前。其中每期奖励前三名，第一名奖励金额388元，第二名奖励金额188元，第三名奖励金额88元\n
+                                &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;获得积分公式：投资积分=当期内投资额*标期月份</string>
 
     <string name="award_number_hint">您还有<![CDATA[ <b><font color="#ff5601">%s</font></b>]]>次抽奖机会</string>
     <string name="award_hint">1. 活动时间: 2014年12月30日零点开始到2015年3月15日\n

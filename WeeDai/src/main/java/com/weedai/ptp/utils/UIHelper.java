@@ -247,7 +247,7 @@ public class UIHelper {
         Intent intent = new Intent(context, HeroActivity.class);
         context.startActivity(intent);
     }
-
+    
     /**
      * 关于我们
      */

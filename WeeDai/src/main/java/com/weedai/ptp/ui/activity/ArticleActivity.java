@@ -369,6 +369,14 @@ public class ArticleActivity extends BaseActivity implements SwipeRefreshLayout.
             String url = Urls.SERVER_URL + "/" + imageView.getTag().toString();
             ImageLoader.getInstance().displayImage(url, imageView);
 
+            imageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+//                    UIHelper.showLuckyDraw(getActivity());
+                    UIHelper.showHero(ArticleActivity.this);
+                }
+            });
+
             container.addView(views.get(position));
             return views.get(position);
         }

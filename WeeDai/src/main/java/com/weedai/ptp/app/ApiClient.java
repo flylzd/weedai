@@ -20,6 +20,7 @@ import com.weedai.ptp.model.BaseModel;
 import com.weedai.ptp.model.Calculator;
 import com.weedai.ptp.model.Comment;
 import com.weedai.ptp.model.FinancialManager;
+import com.weedai.ptp.model.Hero;
 import com.weedai.ptp.model.Invest;
 import com.weedai.ptp.model.Micro;
 import com.weedai.ptp.model.Money;
@@ -775,11 +776,11 @@ public class ApiClient {
         listener.onStarted();
 
         Map<String, String> requestParams = getSignatureMap();
-        requestParams.put("dact", String.valueOf(1));
+        requestParams.put("dact", String.valueOf(dact));
         requestParams.put(Urls.ACTION, "heroact/list");
 
         String url = Urls.ACTION_INDEX;
-        GsonGetRequest request = createGsonGetRequest(url, requestParams, Article.class, listener);
+        GsonGetRequest request = createGsonGetRequest(url, requestParams, Hero.class, listener);
         request.setTag(tag);
         requestQueue.add(request);
     }
