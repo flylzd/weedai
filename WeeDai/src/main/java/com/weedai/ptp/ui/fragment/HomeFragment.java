@@ -59,8 +59,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     private ImageView imgYa;
     private ImageView imgSign;
     private ImageView imgMyAccount;
-    private ImageView imgInformation;
-    private ImageView imgNotice;
 
     private RelativeLayout layoutInformation;
 
@@ -135,15 +133,11 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         imgYa =(ImageView) view.findViewById(R.id.imgYa);
         imgSign = (ImageView) view.findViewById(R.id.imgSign);
         imgMyAccount = (ImageView) view.findViewById(R.id.imgMyAccount);
-        imgInformation = (ImageView) view.findViewById(R.id.imgInformation);
-        imgNotice = (ImageView) view.findViewById(R.id.imgNotice);
 
         imgYou.setOnClickListener(this);
         imgYa.setOnClickListener(this);
         imgSign.setOnClickListener(this);
         imgMyAccount.setOnClickListener(this);
-        imgInformation.setOnClickListener(this);
-        imgNotice.setOnClickListener(this);
 
         layoutInformation = (RelativeLayout) view.findViewById(R.id.layoutInformation);
         layoutInformation.setOnClickListener(this);
@@ -236,13 +230,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                     HomeFragment.isLoginFromHome = true;
                     UIHelper.showLogin(getActivity());
                 }
-                break;
-            case R.id.imgInformation:
-                UIHelper.showArticle(getActivity());
-                break;
-
-            case R.id.imgNotice:
-                UIHelper.showArticle(getActivity());
                 break;
             case R.id.layoutInformation:
                 UIHelper.showArticle(getActivity());

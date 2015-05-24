@@ -200,10 +200,10 @@ public class ArticleActivity extends BaseActivity implements SwipeRefreshLayout.
                 String url = item.litpic;
                 System.out.println("url " + url);
                 if (!TextUtils.isEmpty(url)) {
-                    url = "http://www.weedai.com" + url;
+                    url = Config.DEFAULT_IMG_URL + url;
                     ImageLoader.getInstance().displayImage(url, imageView);
                 } else {
-                    url = "http://chuantu.biz/t2/9/1432287458x1822611433.jpg";
+                    url = Config.DEFAULT_IMG_DOWNLOAD;
                     ImageLoader.getInstance().displayImage(url, imageView);
                 }
 

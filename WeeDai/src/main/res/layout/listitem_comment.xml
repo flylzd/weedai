@@ -43,4 +43,6 @@
         android:paddingTop="4dp"
         android:textSize="20sp" />
 
+    <include layout="@layout/view_horizontal_line" />
+
 </LinearLayout>

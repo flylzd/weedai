@@ -39,6 +39,7 @@ import com.weedai.ptp.model.Valicode;
 import com.weedai.ptp.utils.DataUtil;
 import com.weedai.ptp.utils.ListViewUtil;
 import com.weedai.ptp.utils.UIHelper;
+import com.weedai.ptp.view.ListScrollView;
 import com.weedai.ptp.view.SimpleValidateCodeView;
 import com.weedai.ptp.volley.ResponseListener;
 
@@ -66,7 +67,14 @@ public class ArticleDetailActivity extends BaseActivity {
     private List<CommentList> commentListMore = new ArrayList<CommentList>();
     private int page = 0;
 
+    private ListScrollView listScrollView;
+
+    private View footerView;
     private TextView tvComments;
+
+    private View layoutRelated;
+
+    private LinearLayout layoutComments;
 
     private EditText etSendComment;
     //    private Button btnSend;
@@ -131,6 +139,10 @@ public class ArticleDetailActivity extends BaseActivity {
                 ImageView imageView = helper.getView(R.id.imgArticle);
                 String url = item.litpic;
                 if (!TextUtils.isEmpty(url)) {
+                    url = Config.DEFAULT_IMG_URL + url;
+                    ImageLoader.getInstance().displayImage(url, imageView);
+                } else {
+                    url = Config.DEFAULT_IMG_DOWNLOAD;
                     ImageLoader.getInstance().displayImage(url, imageView);
                 }
             }
@@ -144,6 +156,7 @@ public class ArticleDetailActivity extends BaseActivity {
             }
         });
 
+        layoutRelated = findViewById(R.id.layoutRelated);
 
         adapterComment = new QuickAdapter<CommentList>(ArticleDetailActivity.this, R.layout.listitem_comment) {
             @Override
@@ -160,7 +173,15 @@ public class ArticleDetailActivity extends BaseActivity {
         listViewComment = (ListView) findViewById(R.id.listViewComment);
         listViewComment.setAdapter(adapterComment);
 
+        listScrollView = (ListScrollView) findViewById(R.id.listScrollView);
+//        listScrollView.setListView(listViewComment);
+
+        layoutComments = (LinearLayout) findViewById(R.id.layoutComments);
+
+
         tvComments = (TextView) findViewById(R.id.tvComments);  //更多评论
+//         footerView = getLayoutInflater().inflate(R.layout.view_article_detail_listview_bottom,null);
+//        tvComments = (TextView) footerView.findViewById(R.id.tvComments);
         tvComments.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -178,17 +199,24 @@ public class ArticleDetailActivity extends BaseActivity {
                 System.out.println("count == " + count);
                 for (int i = size; i < size + count; i++) {
                     commentList.add(commentListMore.get(i));
+                    addCommentLayoutItem(commentListMore.get(i));
                 }
+
                 size = commentList.size();
                 if (size < sizeMore) {
                     tvComments.setText("查看更多评论");
                 } else {
                     tvComments.setText("没有更多评论");
                 }
-                adapterComment.replaceAll(commentList);
-                ListViewUtil.setListViewHeightBasedOnChildren(listViewComment);
+//                adapterComment.replaceAll(commentList);
+//                ListViewUtil.setListViewHeightBasedOnChildren(listViewComment);
+
+
             }
         });
+//        listViewComment.addFooterView(footerView);
+////        listView.addFooterView(view);
+        ListViewUtil.setListViewHeightBasedOnChildren(listViewComment);
 
         etSendComment = (EditText) findViewById(R.id.etSendComment);
         layoutSendComment = findViewById(R.id.layoutSendComment);
@@ -284,9 +312,9 @@ public class ArticleDetailActivity extends BaseActivity {
 //                webView.loadDataWithBaseURL(null, htmlString, "text/html", "utf-8", null);
 
                 siteId = result.data.site_id;
-                getRelatedArticleList();
 
                 getCommentList();
+                getRelatedArticleList();
             }
         });
     }
@@ -350,11 +378,50 @@ public class ArticleDetailActivity extends BaseActivity {
                     tvComments.setText("没有更多评论");
                     commentList.addAll(list);
                 }
-                adapterComment.replaceAll(commentList);
-                ListViewUtil.setListViewHeightBasedOnChildren(listViewComment);
+//                listViewComment.addFooterView(footerView);
+//                adapterComment.replaceAll(commentList);
+//                ListViewUtil.setListViewHeightBasedOnChildren(listViewComment);
+//                listViewComment.addFooterView(footerView);
+
+                addCommentLayoutList(commentList);
             }
         });
     }
+
+    private void addCommentLayoutList(List<CommentList> commentList) {
+
+        for (CommentList item : commentList) {
+            View view = getLayoutInflater().inflate(R.layout.listitem_comment, null);
+            TextView tvTime = (TextView) view.findViewById(R.id.tvTime);
+            TextView tvUsername = (TextView) view.findViewById(R.id.tvUsername);
+            TextView tvComments = (TextView) view.findViewById(R.id.tvComments);
+
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm");
+            String addtime = sdf.format(Long.parseLong(item.addtime + "000"));
+
+            tvTime.setText(DataUtil.urlDecode(addtime));
+            tvUsername.setText(DataUtil.urlDecode(item.username));
+            tvComments.setText(DataUtil.urlDecode(item.comment));
+
+            layoutComments.addView(view);
+        }
+    }
+
+    private void addCommentLayoutItem(CommentList item) {
+        View view = getLayoutInflater().inflate(R.layout.listitem_comment, null);
+        TextView tvTime = (TextView) view.findViewById(R.id.tvTime);
+        TextView tvUsername = (TextView) view.findViewById(R.id.tvUsername);
+        TextView tvComments = (TextView) view.findViewById(R.id.tvComments);
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm");
+        String addtime = sdf.format(Long.parseLong(item.addtime + "000"));
+        tvTime.setText(DataUtil.urlDecode(addtime));
+        tvUsername.setText(DataUtil.urlDecode(item.username));
+        tvComments.setText(DataUtil.urlDecode(item.comment));
+
+        layoutComments.addView(view);
+    }
+
 
     private void addComment(String id, String comment, String valicode) {
         ApiClient.addComment(TAG, id, comment, valicode, new RefreshResponseListener() {
