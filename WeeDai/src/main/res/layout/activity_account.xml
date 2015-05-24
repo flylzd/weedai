@@ -164,6 +164,7 @@
         <include layout="@layout/view_horizontal_line" />
 
         <RelativeLayout
+            android:visibility="gone"
             android:id="@+id/layoutAccountPasswordManagementGestures"
             style="@style/layoutAccount"
             android:clickable="true">

@@ -35,7 +35,7 @@
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:background="@null"
-                    android:hint="16.8"
+                    android:text="16.8"
                     android:inputType="numberDecimal"
                     android:paddingLeft="4dp" />
 
@@ -69,7 +69,7 @@
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:background="@null"
-                    android:hint="12"
+                    android:text="12"
                     android:inputType="number"
                     android:paddingLeft="4dp" />
 
@@ -106,7 +106,7 @@
                     android:gravity="center_vertical"
                     android:paddingLeft="8dp"
                     android:text="到期还本，按月付息"
-                    android:textColor="@color/main_text"
+                    android:textColor="@color/main_text_black"
                     android:textSize="18sp" />
 
             </LinearLayout>
@@ -131,9 +131,8 @@
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:background="@null"
-                    android:hint="10000"
+                    android:text="10000"
                     android:inputType="number"
-
                     android:paddingLeft="4dp" />
 
                 <TextView
@@ -167,7 +166,7 @@
                     android:layout_height="wrap_content"
                     android:background="@null"
                     android:focusable="false"
-                    android:hint="2015-5-4"
+                    android:text="2015-1-1"
                     android:paddingLeft="4dp" />
 
                 <TextView
@@ -201,7 +200,7 @@
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:background="@null"
-                    android:hint="0.2"
+                    android:text="1.00"
                     android:inputType="numberDecimal"
                     android:paddingLeft="4dp" />
 
@@ -235,7 +234,7 @@
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:background="@null"
-                    android:hint="0.0"
+                    android:text="0.00"
                     android:inputType="numberDecimal"
                     android:paddingLeft="4dp" />
 
@@ -254,8 +253,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="20dp"
-            android:layout_marginStart="20dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="20dp"
             android:orientation="horizontal">
 
@@ -284,8 +283,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
             android:layout_marginTop="20dp"
             android:orientation="horizontal">
 
@@ -313,9 +312,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="20dp"
+            android:layout_marginEnd="10dp"
             android:orientation="horizontal">
 
             <TextView
@@ -329,7 +328,7 @@
                 android:id="@+id/tvAwards"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.7"
+                android:layout_weight="0.8"
                 android:text="含奖励:"
                 android:textColor="@color/main_text"
                 android:textSize="15sp" />
@@ -338,9 +337,8 @@
                 android:id="@+id/tvNianlilv"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight="0.8"
                 android:text="年化利率:"
-
                 android:textColor="@color/main_text"
                 android:textSize="15sp" />
 
@@ -348,7 +346,7 @@
                 android:id="@+id/tvYuelilv"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight="0.9"
                 android:text="年化月利率:"
                 android:textColor="@color/main_text"
                 android:textSize="15sp" />

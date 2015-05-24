@@ -20,7 +20,7 @@
     <com.weedai.ptp.view.SimpleValidateCodeView
         android:id="@+id/viewValicode"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_height="40dp"
         android:gravity="center_vertical" />
 
 

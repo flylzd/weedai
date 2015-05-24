@@ -125,7 +125,7 @@ public class AccountActivity extends BaseActivity implements View.OnClickListene
                 data = User.userInfo;
                 setUserInfo();
 
-                getAvatars();  //获取头像
+//                getAvatars();  //获取头像
             }
         });
     }
@@ -160,7 +160,7 @@ public class AccountActivity extends BaseActivity implements View.OnClickListene
             ImageLoader.getInstance().displayImage(url, imgAvatar);
         }
 
-        tvRealName.setText(DataUtil.urlDecode(User.userInfo.username));
+        tvRealName.setText("真实姓名: " + DataUtil.urlDecode(User.userInfo.realname));
         String sex = User.userInfo.sex == 1 ? "男" : "女";
         tvSex.setText("性别:  " + sex);
 //        tvAccountPasswordDateBirth
@@ -247,7 +247,6 @@ public class AccountActivity extends BaseActivity implements View.OnClickListene
                 } else {
                     Toast.makeText(AccountActivity.this, "安全退出失败", Toast.LENGTH_SHORT).show();
                 }
-
             }
 
             @Override

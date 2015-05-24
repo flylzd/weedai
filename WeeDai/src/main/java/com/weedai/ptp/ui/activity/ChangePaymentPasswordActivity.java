@@ -105,7 +105,7 @@ public class ChangePaymentPasswordActivity extends BaseActivity implements View.
                     Toast.makeText(ChangePaymentPasswordActivity.this, getString(R.string.login_valicode_empty), Toast.LENGTH_SHORT).show();
                     return;
                 } else {
-                    if (!valicode.equals(code)) {
+                    if (!valicode.equalsIgnoreCase(code)) {
                         Toast.makeText(ChangePaymentPasswordActivity.this, getString(R.string.login_valicode_not_match), Toast.LENGTH_SHORT).show();
                         return;
                     }

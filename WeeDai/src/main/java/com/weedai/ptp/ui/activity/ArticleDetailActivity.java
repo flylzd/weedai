@@ -2,6 +2,7 @@ package com.weedai.ptp.ui.activity;
 
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.os.Build;
@@ -212,6 +213,12 @@ public class ArticleDetailActivity extends BaseActivity {
                 simpleValidateCodeView = (SimpleValidateCodeView) view.findViewById(R.id.viewValicode);
                 LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
                 view.setLayoutParams(params);
+                simpleValidateCodeView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        getImgcode();
+                    }
+                });
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(ArticleDetailActivity.this);
                 builder.setTitle("请输入验证码");
@@ -220,33 +227,32 @@ public class ArticleDetailActivity extends BaseActivity {
                 builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-
-                        String code = etValicode.getText().toString();
-                        if (TextUtils.isEmpty(code)) {
-                            Toast.makeText(ArticleDetailActivity.this, getString(R.string.login_valicode_empty), Toast.LENGTH_SHORT).show();
-//                            return;
-                        } else {
-                            if (!valicode.equals(code)) {
-                                Toast.makeText(ArticleDetailActivity.this, getString(R.string.login_valicode_not_match), Toast.LENGTH_SHORT).show();
-//                                return;
-                            } else {
-
-                                System.out.println("sendComment " + sendComment);
-                                String comment = URLEncoder.encode(sendComment);
-                                System.out.println("comment " + comment);
-
-                                addComment(aid, comment, code);
-                            }
-                        }
                     }
                 });
                 builder.create();
                 alertDialog = builder.show();
-
+                alertDialog.getButton(Dialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String code = etValicode.getText().toString();
+                        if (TextUtils.isEmpty(code)) {
+                            Toast.makeText(ArticleDetailActivity.this, getString(R.string.login_valicode_empty), Toast.LENGTH_SHORT).show();
+                        } else {
+                            if (!valicode.equalsIgnoreCase(code)) {
+                                Toast.makeText(ArticleDetailActivity.this, getString(R.string.login_valicode_not_match), Toast.LENGTH_SHORT).show();
+                                getImgcode();
+                            } else {
+                                System.out.println("sendComment " + sendComment);
+                                String comment = URLEncoder.encode(sendComment);
+                                System.out.println("comment " + comment);
+                                addComment(aid, comment, valicode);
+                            }
+                        }
+                    }
+                });
                 getImgcode();
             }
         });
-
         progressDialog = ProgressDialog.show(ArticleDetailActivity.this, null, getString(R.string.message_waiting));
     }
 
@@ -331,6 +337,7 @@ public class ArticleDetailActivity extends BaseActivity {
 //                commentList = list;
                 commentListMore = list;
 
+                commentList.clear();
                 int size = list.size();
                 if (list == null || size == 0) {
                     tvComments.setText("没有评论");
@@ -370,7 +377,8 @@ public class ArticleDetailActivity extends BaseActivity {
                 if (result.message.equals("addcomment_success")) {
                     alertDialog.dismiss();
                     etSendComment.getText().clear();
-                    getArticleDetail();
+//                    getArticleDetail();
+                    getCommentList();
                 } else {
                     Toast.makeText(ArticleDetailActivity.this, "评论失败", Toast.LENGTH_SHORT).show();
                 }
@@ -416,6 +424,7 @@ public class ArticleDetailActivity extends BaseActivity {
         @Override
         public void onStarted() {
             if (!progressDialog.isShowing()) {
+                progressDialog.setMessage(getString(R.string.message_waiting));
                 progressDialog.show();
             }
         }

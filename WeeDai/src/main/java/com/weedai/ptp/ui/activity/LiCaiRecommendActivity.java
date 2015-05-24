@@ -163,7 +163,7 @@ public class LiCaiRecommendActivity extends BaseActivity implements SwipeRefresh
                 if (item.award.equals("0")) {
                     reward = getString(R.string.financial_reward_empty);
                 } else {
-                    reward = String.format(getString(R.string.financial_reward), item.award);
+                    reward = String.format(getString(R.string.financial_reward), item.funds);
                 }
                 helper.setText(R.id.tvAnnualRate, Html.fromHtml(apr));
                 helper.setText(R.id.tvDeadline, timeLimit);

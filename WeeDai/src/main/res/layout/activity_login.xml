@@ -44,7 +44,6 @@
             android:background="@null"
             android:gravity="center_vertical"
             android:hint="@string/login_user_hint"
-            android:text="xiuwen3"
             android:textSize="18sp" />
 
     </LinearLayout>
@@ -76,7 +75,6 @@
             android:background="@null"
             android:gravity="center_vertical"
             android:hint="@string/login_password_hint"
-            android:text="888888"
             android:textSize="18sp" />
 
     </LinearLayout>
@@ -97,7 +95,7 @@
             android:layout_marginEnd="10dp"
             android:layout_marginStart="40dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/ic_login_password" />
+            android:src="@drawable/icon_login_ver_code" />
 
         <EditText
             android:id="@+id/etValicode"

@@ -107,22 +107,23 @@ public class AccountEmailActivity extends BaseActivity {
                 progressDialog.dismiss();
 
                 SecurityPhone result = (SecurityPhone) response;
+                String message = result.message;
                 if (result.code != Constant.CodeResult.SUCCESS) {
-                    Toast.makeText(AccountEmailActivity.this, result.message, Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(AccountEmailActivity.this, result.message, Toast.LENGTH_SHORT).show();
+                    if (message.equals("emailexist ")) {
+                        Toast.makeText(AccountEmailActivity.this, "邮箱已经存在", Toast.LENGTH_SHORT).show();
+                    } else if (message.equals("aftertwo")) {
+                        Toast.makeText(AccountEmailActivity.this, "请两分钟后再发", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(AccountEmailActivity.this, "邮箱验证失败", Toast.LENGTH_SHORT).show();
+                    }
                     return;
                 }
                 SecurityPhoneData data = result.data;
-                String message = result.message;
                 if (message.equals("sendsuccess")) {
                     Toast.makeText(AccountEmailActivity.this, "邮箱验证成功", Toast.LENGTH_SHORT).show();
                     User.userInfo.phone_status = 1;
                     finish();
-                } else if (message.equals("emailexist ")) {
-                    Toast.makeText(AccountEmailActivity.this, "邮箱已经存在", Toast.LENGTH_SHORT).show();
-                } else if (message.equals("aftertwo")) {
-                    Toast.makeText(AccountEmailActivity.this, "请两分钟后再发", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(AccountEmailActivity.this, "邮箱验证失败", Toast.LENGTH_SHORT).show();
                 }
             }
 

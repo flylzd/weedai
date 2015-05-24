@@ -1,9 +1,13 @@
 package com.weedai.ptp.ui.activity;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.Html;
+import android.view.ContextMenu;
 import android.view.Gravity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
@@ -17,6 +21,8 @@ import com.lemon.aklib.widget.EndOfListView;
 import com.weedai.ptp.R;
 import com.weedai.ptp.app.ApiClient;
 import com.weedai.ptp.constant.Constant;
+import com.weedai.ptp.model.Bank;
+import com.weedai.ptp.model.BaseModel;
 import com.weedai.ptp.model.StandInsideLetter;
 import com.weedai.ptp.model.StandInsideLetterList;
 import com.weedai.ptp.utils.DataUtil;
@@ -38,6 +44,10 @@ public class MyStandInsideLetterActivity extends BaseActivity implements EndOfLi
     private int page = DEFAULT_PAGE;
 
     private boolean isFirstLoadingomplete = false;
+
+    private ProgressDialog progressDialog;
+
+    private int selectPosition;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,27 +113,30 @@ public class MyStandInsideLetterActivity extends BaseActivity implements EndOfLi
         listView.setOnEndOfListListener(this);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
 
+                selectPosition = position;
 
                 View viewDialog = getLayoutInflater().inflate(R.layout.dialog_stand_inside_letter, null);
                 TextView tvLetter = (TextView) viewDialog.findViewById(R.id.tvLetter);
 
                 tvLetter.setText(Html.fromHtml(DataUtil.urlDecode(adapter.getItem(position).content)));
                 AlertDialog.Builder builder = new AlertDialog.Builder(MyStandInsideLetterActivity.this);
-//                TextView textView = new TextView(MyStandInsideLetterActivity.this);
-//                textView.setText(Html.fromHtml(DataUtil.urlDecode(adapter.getItem(position).content)));
-//                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
-//                textView.setGravity(Gravity.CENTER_VERTICAL);
-//                textView.setPadding(10, 10, 10, 10);
-//                textView.setLayoutParams(params);
                 builder.setView(viewDialog);
-                builder.setPositiveButton("确定", null);
+                builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        toRead(adapter.getItem(position).id);
+                    }
+                });
                 builder.create();
                 builder.show();
             }
         });
+        registerForContextMenu(listView);//为ListView添加上下文菜单
+
     }
+
     private void showDialog() {
 
     }
@@ -137,7 +150,6 @@ public class MyStandInsideLetterActivity extends BaseActivity implements EndOfLi
         ApiClient.getStandInsideLetter(TAG, page, new ResponseListener() {
             @Override
             public void onStarted() {
-
             }
 
             @Override
@@ -165,5 +177,96 @@ public class MyStandInsideLetterActivity extends BaseActivity implements EndOfLi
         });
     }
 
+
+    private void toRead(String id) {
+        ApiClient.standInsideLetterToRead(TAG, id, new ResponseListener() {
+            @Override
+            public void onStarted() {
+                progressDialog = ProgressDialog.show(MyStandInsideLetterActivity.this, null, getString(R.string.message_waiting));
+            }
+
+            @Override
+            public void onResponse(Object response) {
+                progressDialog.dismiss();
+                BaseModel result = (BaseModel) response;
+                if (result.code != Constant.CodeResult.SUCCESS) {
+                    Toast.makeText(MyStandInsideLetterActivity.this, result.message, Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                String message = result.message;
+                if ("mess_yidu_suc".equals(message)) {
+                    System.out.println("mess_yidu_suc");
+                    adapter.getItem(selectPosition).status = 1;
+                    adapter.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                progressDialog.dismiss();
+            }
+        });
+    }
+
+    private void toDelete(String id) {
+        ApiClient.standInsideLetterToDelete(TAG, id, new ResponseListener() {
+            @Override
+            public void onStarted() {
+                progressDialog = ProgressDialog.show(MyStandInsideLetterActivity.this, null, getString(R.string.message_submit));
+            }
+
+            @Override
+            public void onResponse(Object response) {
+                progressDialog.dismiss();
+                BaseModel result = (BaseModel) response;
+                if (result.code != Constant.CodeResult.SUCCESS) {
+                    Toast.makeText(MyStandInsideLetterActivity.this, result.message, Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                String message = result.message;
+                if ("mess_del_suc".equals(message)) {
+                    System.out.println("mess_del_suc");
+                    adapter.remove(selectPosition);
+                    adapter.notifyDataSetChanged();
+//                    getStandInsideLetter();
+                }
+            }
+
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                progressDialog.dismiss();
+            }
+        });
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v,
+                                    ContextMenu.ContextMenuInfo menuInfo) {
+        menu.setHeaderTitle("操作");
+        menu.add(0, 1, 0, "删除该站内信");
+        super.onCreateContextMenu(menu, v, menuInfo);
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+
+        AdapterView.AdapterContextMenuInfo itemInfo = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        switch (item.getItemId()) {
+            case 1:
+                selectPosition = itemInfo.position;
+                System.out.println("删除 " +  itemInfo.position);
+                System.out.println("删除 " +  adapter.getItem(itemInfo.position).id);
+                System.out.println("删除 " +  DataUtil.urlDecode(adapter.getItem(itemInfo.position).name));
+                System.out.println("删除 " +  DataUtil.urlDecode(adapter.getItem(itemInfo.position).content));
+                toDelete(adapter.getItem(itemInfo.position).id);
+                break;
+            default:
+                break;
+        }
+
+        return super.onContextItemSelected(item);
+    }
 
 }

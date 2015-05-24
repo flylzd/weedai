@@ -124,28 +124,28 @@ public class AccountAvatarsActivity extends BaseActivity {
         tvEmail.setText(data.email);
     }
 
-    private void getAvatars() {
-        ApiClient.getAvatars(TAG, new RefreshResponseListener() {
-            @Override
-            public void onResponse(Object response) {
-                super.onResponse(response);
-
-                User result = (User) response;
-                if (result.code != Constant.CodeResult.SUCCESS) {
-                    Toast.makeText(AccountAvatarsActivity.this, result.message, Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                System.out.println("头像 == " + DataUtil.urlDecode(result.data.touxiang));
-//                User.userInfo.touxiang = DataUtil.urlDecode(result.data.touxiang);
-                String url = DataUtil.urlDecode(result.data.touxiang);
-                if (!TextUtils.isEmpty(url)) {
-                    url = Urls.SERVER_URL + url;
-                    ImageLoader.getInstance().displayImage(url, imgAvatar);
-                }
-            }
-        });
-    }
+//    private void getAvatars() {
+//        ApiClient.getAvatars(TAG, new RefreshResponseListener() {
+//            @Override
+//            public void onResponse(Object response) {
+//                super.onResponse(response);
+//
+//                User result = (User) response;
+//                if (result.code != Constant.CodeResult.SUCCESS) {
+//                    Toast.makeText(AccountAvatarsActivity.this, result.message, Toast.LENGTH_SHORT).show();
+//                    return;
+//                }
+//
+//                System.out.println("头像 == " + DataUtil.urlDecode(result.data.touxiang));
+////                User.userInfo.touxiang = DataUtil.urlDecode(result.data.touxiang);
+//                String url = DataUtil.urlDecode(result.data.touxiang);
+//                if (!TextUtils.isEmpty(url)) {
+//                    url = Urls.SERVER_URL + url;
+//                    ImageLoader.getInstance().displayImage(url, imgAvatar);
+//                }
+//            }
+//        });
+//    }
 
     private void uploadAvatar() {
 
@@ -170,7 +170,7 @@ public class AccountAvatarsActivity extends BaseActivity {
                 if (result.message.equals("edit_success")) {
                     Toast.makeText(AccountAvatarsActivity.this, "头像上传成功", Toast.LENGTH_SHORT).show();
 
-                    getAvatars();  //获取头像
+//                    getAvatars();  //获取头像
                 } else {
                     Toast.makeText(AccountAvatarsActivity.this, "头像上传失败", Toast.LENGTH_SHORT).show();
                 }
@@ -337,6 +337,18 @@ public class AccountAvatarsActivity extends BaseActivity {
             return null;
         }
         return bitmap;
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        ImageLoader.getInstance().clearMemoryCache();
+        ImageLoader.getInstance().clearDiskCache();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
     }
 
 }

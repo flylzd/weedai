@@ -72,7 +72,8 @@ public class SimpleValidateCodeView extends View {
         Bitmap sourceBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(sourceBitmap);
         Paint p = new Paint();
-        p.setTextSize(height / 2);
+//        p.setTextSize(height / 2);
+        p.setTextSize(50);
         p.setFakeBoldText(true);
 
         p.setColor(getRandColor(200, 230, 170));
@@ -98,7 +99,7 @@ public class SimpleValidateCodeView extends View {
 
         //障碍设置
         int startX = 0,startY = 0,stopX = 0,stopY = 0;
-        for (int i = 0; i < 55; i++) {
+        for (int i = 0; i < 5; i++) {
             startX = pointRadom(width);
             startY = pointRadom(height);
             stopX = pointRadom(15);

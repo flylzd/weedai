@@ -80,18 +80,18 @@
                 android:layout_marginStart="12dp"
                 android:layout_toRightOf="@+id/imgBankIcon"
                 android:textColor="@color/main_text"
-                android:textSize="20sp" />
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/tvBankName"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tvBankAccount"
                 android:layout_marginStart="12dp"
                 android:layout_marginTop="4dp"
                 android:layout_toRightOf="@+id/imgBankIcon"
                 android:textColor="@color/main_text"
-                android:textSize="16sp" />
+                android:textSize="14sp" />
 
         </RelativeLayout>
 

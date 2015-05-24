@@ -164,11 +164,11 @@ public class CalculatorInterestActivity extends BaseActivity {
                     return;
                 }
 
-                tvAprYear.setText(lilv);
-                tvAprMonthly.setText(result.data.monthslilv);
+                tvAprYear.setText(lilv + "%");
+                tvAprMonthly.setText(result.data.monthslilv + "%");
 
-                tvRepaymentMonthly.setText(result.data.monthpay);
-                tvRepaymentAccount.setText(result.data.allpay);
+                tvRepaymentMonthly.setText(result.data.monthpay + " 元");
+                tvRepaymentAccount.setText(result.data.allpay + " 元");
 
 //                List<CalculatorList> list = result.data.list;
 //                if (list != null && list.size() != 0) {

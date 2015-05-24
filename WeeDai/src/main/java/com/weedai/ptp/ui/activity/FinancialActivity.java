@@ -19,6 +19,7 @@ import com.lemon.aklib.widget.EndOfListView;
 import com.lemon.aklib.widget.PMSwipeRefreshLayout;
 import com.weedai.ptp.R;
 import com.weedai.ptp.app.ApiClient;
+import com.weedai.ptp.constant.Config;
 import com.weedai.ptp.constant.Constant;
 import com.weedai.ptp.model.Invest;
 import com.weedai.ptp.model.InvestData;
@@ -150,7 +151,7 @@ public class FinancialActivity extends BaseActivity implements SwipeRefreshLayou
                 if (item.award.equals("0")) {
                     reward = getString(R.string.financial_reward_empty);
                 } else {
-                    reward = String.format(getString(R.string.financial_reward), item.award);
+                    reward = String.format(getString(R.string.financial_reward), item.funds);
                 }
                 helper.setText(R.id.tvAnnualRate, Html.fromHtml(apr));
                 helper.setText(R.id.tvDeadline, timeLimit);
@@ -212,6 +213,11 @@ public class FinancialActivity extends BaseActivity implements SwipeRefreshLayou
                     @Override
                     public void onClick(View v) {
                         if (btnState.getText().toString().equals(getString(R.string.financial_btn_join))) {
+                            if (!Config.isLogin) {
+                                Toast.makeText(FinancialActivity.this, "你未登录，无法进行投资", Toast.LENGTH_SHORT).show();
+                                UIHelper.showLogin(FinancialActivity.this);
+                                return;
+                            }
                             UIHelper.showFinanceInvestment(FinancialActivity.this, item);
                         }
                     }

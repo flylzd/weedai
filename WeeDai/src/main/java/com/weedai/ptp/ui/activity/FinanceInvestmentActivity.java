@@ -160,12 +160,13 @@ public class FinanceInvestmentActivity extends BaseActivity {
                 if (TextUtils.isEmpty(code)) {
                     Toast.makeText(FinanceInvestmentActivity.this, getString(R.string.login_valicode_empty), Toast.LENGTH_SHORT).show();
                 } else {
-                    if (!valicode.equals(code)) {
+                    if (!valicode.equalsIgnoreCase(code)) {
                         Toast.makeText(FinanceInvestmentActivity.this, getString(R.string.login_valicode_not_match), Toast.LENGTH_SHORT).show();
+                        getImgcode();
                     } else {
                         String money = etInvestmentAmount.getText().toString();
                         String paypassword = etPayPassword.getText().toString();
-                        String valicode = etValicode.getText().toString();
+//                        String valicode = etValicode.getText().toString();
 
                         tender(data.id, money, paypassword, valicode);
                     }
@@ -214,40 +215,39 @@ public class FinanceInvestmentActivity extends BaseActivity {
 
                 BaseModel result = (BaseModel) response;
                 if (result.code != Constant.CodeResult.SUCCESS) {
-//                    Toast.makeText(FinanceInvestmentActivity.this, result.message, Toast.LENGTH_SHORT).show();
-                    String message = result.message;
-                    if (message.equals("valicode_fail")) {
-                        Toast.makeText(FinanceInvestmentActivity.this, "验证码错误", Toast.LENGTH_SHORT).show();
-                    } else if (message.equals("account_lock")) {
-                        Toast.makeText(FinanceInvestmentActivity.this, "账户被锁定", Toast.LENGTH_SHORT).show();
-                    } else if (message.equals("barray_fail")) {
-                        Toast.makeText(FinanceInvestmentActivity.this, "获取数据异常", Toast.LENGTH_SHORT).show();
-                    } else if (message.equals("biao_man")) {
-                        Toast.makeText(FinanceInvestmentActivity.this, "标已满，请勿再投", Toast.LENGTH_SHORT).show();
-                    } else if (message.equals("biao_noshenhe")) {
-                        Toast.makeText(FinanceInvestmentActivity.this, "该标没审核", Toast.LENGTH_SHORT).show();
-                    } else if (message.equals("biao_past")) {
-                        Toast.makeText(FinanceInvestmentActivity.this, "此标已过期", Toast.LENGTH_SHORT).show();
-                    } else if (message.equals("more_money")) {
-                        Toast.makeText(FinanceInvestmentActivity.this, "投标超出标的总金额", Toast.LENGTH_SHORT).show();
-                    } else if (message.equals("paysercet_fail")) {
-                        Toast.makeText(FinanceInvestmentActivity.this, "支付密码不正确", Toast.LENGTH_SHORT).show();
-                    } else if (message.equals("yue_notenough")) {
-                        Toast.makeText(FinanceInvestmentActivity.this, "余额不足", Toast.LENGTH_SHORT).show();
-                    } else if (message.equals("tender_yichang")) {
-                        Toast.makeText(FinanceInvestmentActivity.this, "投标异常", Toast.LENGTH_SHORT).show();
-                    } else if (message.equals("need_lowest")) {
-                        Toast.makeText(FinanceInvestmentActivity.this, "投标金额不能低于最小限额", Toast.LENGTH_SHORT).show();
-                    } else if (message.equals("tender_succ")) {
-                        Toast.makeText(FinanceInvestmentActivity.this, "投标成功", Toast.LENGTH_SHORT).show();
-                        alertDialog.dismiss();
-
-                        getMyWealth();
-                        etInvestmentAmount.getText().clear();
-                    }
+                    Toast.makeText(FinanceInvestmentActivity.this, result.message, Toast.LENGTH_SHORT).show();
                     return;
                 }
-//                String message = result.message;
+                String message = result.message;
+                if (message.equals("valicode_fail")) {
+                    Toast.makeText(FinanceInvestmentActivity.this, "验证码错误", Toast.LENGTH_SHORT).show();
+                } else if (message.equals("account_lock")) {
+                    Toast.makeText(FinanceInvestmentActivity.this, "账户被锁定", Toast.LENGTH_SHORT).show();
+                } else if (message.equals("barray_fail")) {
+                    Toast.makeText(FinanceInvestmentActivity.this, "获取数据异常", Toast.LENGTH_SHORT).show();
+                } else if (message.equals("biao_man")) {
+                    Toast.makeText(FinanceInvestmentActivity.this, "标已满，请勿再投", Toast.LENGTH_SHORT).show();
+                } else if (message.equals("biao_noshenhe")) {
+                    Toast.makeText(FinanceInvestmentActivity.this, "该标没审核", Toast.LENGTH_SHORT).show();
+                } else if (message.equals("biao_past")) {
+                    Toast.makeText(FinanceInvestmentActivity.this, "此标已过期", Toast.LENGTH_SHORT).show();
+                } else if (message.equals("more_money")) {
+                    Toast.makeText(FinanceInvestmentActivity.this, "投标超出标的总金额", Toast.LENGTH_SHORT).show();
+                } else if (message.equals("paysercet_fail")) {
+                    Toast.makeText(FinanceInvestmentActivity.this, "支付密码不正确", Toast.LENGTH_SHORT).show();
+                } else if (message.equals("yue_notenough")) {
+                    Toast.makeText(FinanceInvestmentActivity.this, "余额不足", Toast.LENGTH_SHORT).show();
+                } else if (message.equals("tender_yichang")) {
+                    Toast.makeText(FinanceInvestmentActivity.this, "投标异常", Toast.LENGTH_SHORT).show();
+                } else if (message.equals("need_lowest")) {
+                    Toast.makeText(FinanceInvestmentActivity.this, "投标金额不能低于最小限额", Toast.LENGTH_SHORT).show();
+                } else if (message.equals("tender_succ")) {
+                    Toast.makeText(FinanceInvestmentActivity.this, "投标成功", Toast.LENGTH_SHORT).show();
+                    alertDialog.dismiss();
+
+                    getMyWealth();
+                    etInvestmentAmount.getText().clear();
+                }
             }
 
             @Override

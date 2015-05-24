@@ -3,6 +3,7 @@ package com.weedai.ptp.ui.activity;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -28,6 +29,7 @@ public class MyBankCardActivity extends BaseActivity {
 
     private ImageView imgBankIcon;
     private TextView tvRealName;
+    private TextView tvBankName;
     private TextView tvRealEmail;
     private TextView tvBankBranch;
     private TextView tvBankCode;
@@ -70,6 +72,7 @@ public class MyBankCardActivity extends BaseActivity {
         tvRealEmail = (TextView) findViewById(R.id.tvRealEmail);
         tvBankBranch = (TextView) findViewById(R.id.tvBankBranch);
         tvBankCode = (TextView) findViewById(R.id.tvBankCode);
+        tvBankName = (TextView) findViewById(R.id.tvBankName);
 
         btnModifyBankCard = (Button) findViewById(R.id.btnModifyBankCard);
         btnModifyBankCard.setOnClickListener(new View.OnClickListener() {
@@ -84,33 +87,25 @@ public class MyBankCardActivity extends BaseActivity {
 
         if (data != null) {
 
+            String realname = data.realname;
+            String banksname =  data.banksname;
+            String branch = data.branch;
+            String account = data.account;
+
+
+
             tvRealName.setText(DataUtil.urlDecode(data.realname));
             tvRealEmail.setText(DataUtil.urlDecode(data.email));
-            tvBankBranch.setText(DataUtil.urlDecode(DataUtil.urlDecode(data.branch)));
-//            tvBankBranch.setText(DataUtil.urlDecode(data.branch));
+//            tvBankBranch.setText(DataUtil.urlDecode(DataUtil.urlDecode(data.branch)));
+            tvBankBranch.setText(DataUtil.urlDecode(data.branch));
             tvBankCode.setText(DataUtil.urlDecode(data.account));
+            tvBankName.setText(DataUtil.urlDecode(data.banksname));
 
-//            String bankName = Constant.bankMap.get(data.bank);
-            int resId = Constant.bankImgMap.get(DataUtil.urlDecode(data.banksname));
-            imgBankIcon.setImageResource(resId);
-            bank = data.bank;
-
-//            System.out.println("banksname " + DataUtil.urlDecode(data.banksname));
-//            System.out.println("branch " +DataUtil.urlDecode(DataUtil.urlDecode(data.branch)));
-//            System.out.println("branch " + data.branch);
-//            try {
-//                System.out.println("branch " + new String(data.branch.getBytes("utf-8"),"gbk"));
-//                System.out.println("branch " + new String(data.branch.getBytes("utf-8"),"GB2312"));
-//
-//                System.out.println("branch " + new String(data.branch.getBytes("gbk"),"utf-8"));
-//                System.out.println("branch " + new String(data.branch.getBytes("iso-8859-1"),"utf-8"));
-//                System.out.println("branch " + new String(data.branch.getBytes("iso-8859-1"),"GB2312"));
-//                System.out.println("branch " + new String(data.branch.getBytes("utf-8"),"iso-8859-1"));
-//            } catch (UnsupportedEncodingException e) {
-//                e.printStackTrace();
-//            }
-//            System.out.println("account " + DataUtil.urlDecode(data.account));
-//            System.out.println("bank " + DataUtil.urlDecode(data.bank));
+            if (!TextUtils.isEmpty(banksname)) {
+                int resId = Constant.bankImgMap.get(DataUtil.urlDecode(data.banksname));
+                imgBankIcon.setImageResource(resId);
+                bank = data.bank;
+            }
         }
     }
 

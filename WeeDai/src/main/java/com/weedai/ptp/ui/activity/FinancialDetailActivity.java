@@ -123,7 +123,7 @@ public class FinancialDetailActivity extends BaseActivity {
             reward = getString(R.string.financial_detail_reward_empty);
             tvRewardIcon.setVisibility(View.GONE);
         } else {
-            reward = String.format(getString(R.string.financial_detail_reward), data.award);
+            reward = String.format(getString(R.string.financial_detail_reward), data.funds);
             tvRewardIcon.setVisibility(View.VISIBLE);
         }
         tvReward.setText(Html.fromHtml(reward));

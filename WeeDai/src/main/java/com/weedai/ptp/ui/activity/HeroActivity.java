@@ -35,6 +35,7 @@ public class HeroActivity extends BaseActivity {
     private int dact = 0; //1. 上星期
     // 0. 本星期
 
+    private TextView tvHeroTitle;
     private TextView tvLastWeek;
     private TextView tvThisWeek;
 
@@ -118,6 +119,7 @@ public class HeroActivity extends BaseActivity {
         listView.setAdapter(adapter);
         ListViewUtil.setListViewHeightBasedOnChildren(listView);
 
+        tvHeroTitle = (TextView) findViewById(R.id.tvHeroTitle);
         tvLastWeek = (TextView) findViewById(R.id.tvLastWeek);
         tvThisWeek = (TextView) findViewById(R.id.tvThisWeek);
         tvLastWeek.setOnClickListener(new View.OnClickListener() {
@@ -125,6 +127,8 @@ public class HeroActivity extends BaseActivity {
             public void onClick(View v) {
                 dact = 1;
                 getHeroList(dact);
+
+                tvHeroTitle.setText("上周投资英雄榜");
             }
         });
         tvThisWeek.setOnClickListener(new View.OnClickListener() {
@@ -132,6 +136,7 @@ public class HeroActivity extends BaseActivity {
             public void onClick(View v) {
                 dact = 0;
                 getHeroList(dact);
+                tvHeroTitle.setText("本周投资英雄榜");
             }
         });
 

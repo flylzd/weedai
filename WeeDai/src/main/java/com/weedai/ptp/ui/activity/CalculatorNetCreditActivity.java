@@ -243,9 +243,9 @@ public class CalculatorNetCreditActivity extends BaseActivity implements View.On
                 if (TextUtils.isEmpty(yuelilv)) {
                     yuelilv = "0";
                 }
-                tvAwards.setText("含奖励:" + awards);
-                tvNianlilv.setText("年化利率:" + nianlilv);
-                tvYuelilv.setText("年月化利率:" + yuelilv);
+                tvAwards.setText("含奖励:" + awards + "元");
+                tvNianlilv.setText("年化利率:" + nianlilv + "%");
+                tvYuelilv.setText("年月化利率:" + yuelilv + "%");
             }
 
             @Override

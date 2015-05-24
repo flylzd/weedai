@@ -16,6 +16,7 @@ import com.weedai.ptp.app.ApiClient;
 import com.weedai.ptp.constant.Constant;
 import com.weedai.ptp.model.BaseModel;
 import com.weedai.ptp.model.SecurityPhone;
+import com.weedai.ptp.utils.UIHelper;
 import com.weedai.ptp.volley.ResponseListener;
 
 public class RegisterActivity extends BaseActivity {
@@ -171,6 +172,7 @@ public class RegisterActivity extends BaseActivity {
                 if (result.message.equals("reg_suc")) {
                     Toast.makeText(RegisterActivity.this, "注册成功", Toast.LENGTH_SHORT).show();
                     finish();
+                    UIHelper.showLogin(RegisterActivity.this);
                 } else {
                     Toast.makeText(RegisterActivity.this, "注册失败", Toast.LENGTH_SHORT).show();
                 }

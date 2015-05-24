@@ -98,7 +98,7 @@ public class MyWithdrawalActivity extends BaseActivity {
                 }
 
                 String balance = tvAvailableBalance.getText().toString();
-                float availableBalance = Float.parseFloat(balance.substring(0,balance.indexOf("元")).trim());
+                float availableBalance = Float.parseFloat(balance.substring(0, balance.indexOf("元")).trim());
                 if (amount > availableBalance) {
                     Toast.makeText(MyWithdrawalActivity.this, "提现金额不能大于可用余额", Toast.LENGTH_SHORT).show();
                     return;
@@ -163,7 +163,8 @@ public class MyWithdrawalActivity extends BaseActivity {
                     imgBankIcon.setImageResource(resId);
 
                     tvBankAccount.setText(DataUtil.urlDecode(data.account));
-                    tvBankName.setText(DataUtil.urlDecode(data.banksname) + DataUtil.urlDecode(data.branch));
+                    tvBankName.setText(DataUtil.urlDecode(data.banksname));
+                    System.out.println("branch " + DataUtil.urlDecode(data.branch));
                 }
             }
 
@@ -195,7 +196,7 @@ public class MyWithdrawalActivity extends BaseActivity {
                 if (message.equals("paypsw_notsuit")) {
                     Toast.makeText(MyWithdrawalActivity.this, "交易密码错误", Toast.LENGTH_SHORT).show();
                     return;
-                }else if (message.equals("no_account")) {
+                } else if (message.equals("no_account")) {
                     Toast.makeText(MyWithdrawalActivity.this, "银行账号还没填写", Toast.LENGTH_SHORT).show();
                     return;
                 } else if (message.equals("post_success")) {

@@ -208,7 +208,7 @@
                     custom:progress="20"
 
                     custom:progress_reached_bar_height="6dp"
-                    custom:progress_reached_color="#3498DB"
+                    custom:progress_reached_color="#ff5601"
                     custom:progress_text_color="#ff5601"
                     custom:progress_text_offset="1dp"
 

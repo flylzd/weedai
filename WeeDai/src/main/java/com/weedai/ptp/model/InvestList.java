@@ -15,7 +15,8 @@ public class InvestList implements Serializable {
     public String is_fast;
     public String is_transfer;
     public String account_yes;
-    public String award;
+    public String award;   //奖励的类型
+    public String funds;
     public int status;
     public float repayment_yesaccount;
     public float repayment_account;

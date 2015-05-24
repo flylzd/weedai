@@ -5,6 +5,7 @@ import java.io.Serializable;
 
 public class StandInsideLetterList implements Serializable {
 
+    public String id;
     public String content;
     public String name;
     public String addtime;

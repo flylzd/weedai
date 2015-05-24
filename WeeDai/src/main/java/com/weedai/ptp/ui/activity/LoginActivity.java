@@ -3,6 +3,8 @@ package com.weedai.ptp.ui.activity;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -105,13 +107,14 @@ public class LoginActivity extends Activity implements View.OnClickListener {
             Toast.makeText(LoginActivity.this, getString(R.string.login_valicode_empty), Toast.LENGTH_SHORT).show();
             return;
         } else {
-            if (!valicode.equals(code)) {
+            if (!valicode.equalsIgnoreCase(code)) {
                 Toast.makeText(LoginActivity.this, getString(R.string.login_valicode_not_match), Toast.LENGTH_SHORT).show();
+                getImgcode();
                 return;
             }
         }
 
-        ApiClient.login(TAG, username, password, code, new ResponseListener() {
+        ApiClient.login(TAG, username, password, valicode, new ResponseListener() {
             @Override
             public void onStarted() {
                 progressDialog = ProgressDialog.show(LoginActivity.this, null, getString(R.string.login_waiting));
@@ -199,8 +202,13 @@ public class LoginActivity extends Activity implements View.OnClickListener {
                 break;
             case R.id.tvLoginRegister:
                 UIHelper.showRegister(LoginActivity.this);
+                finish();
                 break;
             case R.id.tvLoginForgetPassword:
+                String url = "https://www.weedai.com/index.php?user&q=action/getpwd"; // web address
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse(url));
+                startActivity(intent);
                 break;
             case R.id.viewValicode:
 //                viewValicode.getValidataAndSetImage(new String[]{"2", "7", "1", "9"});

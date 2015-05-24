@@ -157,6 +157,7 @@ public class ArticleActivity extends BaseActivity implements SwipeRefreshLayout.
                             if (infoPage == 0) {
                                 infoPage++;
                             }
+                            adapter.clear();
                             getArticleList(infoPage);
                         }
                         break;
@@ -168,6 +169,7 @@ public class ArticleActivity extends BaseActivity implements SwipeRefreshLayout.
                             if (noticePage == 0) {
                                 noticePage++;
                             }
+                            adapter.clear();
                             getArticleList(noticePage);
                         }
                         break;
@@ -196,9 +198,15 @@ public class ArticleActivity extends BaseActivity implements SwipeRefreshLayout.
 
                 ImageView imageView = helper.getView(R.id.imgArticle);
                 String url = item.litpic;
+                System.out.println("url " + url);
                 if (!TextUtils.isEmpty(url)) {
+                    url = "http://www.weedai.com" + url;
+                    ImageLoader.getInstance().displayImage(url, imageView);
+                } else {
+                    url = "http://chuantu.biz/t2/9/1432287458x1822611433.jpg";
                     ImageLoader.getInstance().displayImage(url, imageView);
                 }
+
             }
         };
         listView.setAdapter(adapter);

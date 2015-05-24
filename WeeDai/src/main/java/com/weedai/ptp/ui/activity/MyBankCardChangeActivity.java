@@ -93,11 +93,13 @@ public class MyBankCardChangeActivity extends BaseActivity {
             }
         });
 
-        bankName =Constant.bankMap.get(bank);
-        int resId = Constant.bankImgMap.get(bankName);
-        imgBankIcon.setImageResource(resId);
+        if (!TextUtils.isEmpty(bank)) {
+            bankName =Constant.bankMap.get(bank);
+            int resId = Constant.bankImgMap.get(bankName);
+            imgBankIcon.setImageResource(resId);
 
-        spinner.setSelection(adapter.getPosition(bankName));
+            spinner.setSelection(adapter.getPosition(bankName));
+        }
 
         btnModifyBankCard = (Button) findViewById(R.id.btnModifyBankCard);
         btnModifyBankCard.setOnClickListener(new View.OnClickListener() {

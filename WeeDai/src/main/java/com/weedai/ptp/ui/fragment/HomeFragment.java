@@ -92,6 +92,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        System.out.println("HomeFragment onViewCreated");
         init(view);
 
         if (item != null && imageViewsList.size() != 0){
@@ -105,6 +106,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onResume() {
         super.onResume();
+        System.out.println("HomeFragment onResume");
         if (Config.isLogin) {
             tvMyAccount.setText("已登录");
             if (Config.isSignIn) {
@@ -168,7 +170,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
 
     private void loadData() {
-        scrollPic();
+
         getArticleList();
     }
 
@@ -178,7 +180,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             return;
         }
 
-        layoutIndicator.removeAllViews();
+//        layoutIndicator.removeAllViews();
         for (int i = 0; i < size; i++) {
             ImageView view = new ImageView(getActivity());
             view.setTag(imageUrls.get(i));
@@ -300,6 +302,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                     item = articleList.get(0);
                     setArticle();
                 }
+                scrollPic();
             }
         });
     }

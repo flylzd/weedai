@@ -52,7 +52,6 @@
                 android:layout_centerVertical="true"
                 android:layout_marginStart="12dp"
                 android:layout_toRightOf="@+id/imgBankIcon"
-                android:text="中国银行"
                 android:textColor="@color/main_text"
                 android:textSize="22sp" />
 

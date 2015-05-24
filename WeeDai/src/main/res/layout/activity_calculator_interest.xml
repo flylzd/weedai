@@ -34,7 +34,7 @@
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:background="@null"
-                    android:hint="10000"
+                    android:text="10000"
                     android:inputType="number"
                     android:paddingLeft="4dp" />
 
@@ -68,7 +68,7 @@
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:background="@null"
-                    android:hint="16.8"
+                    android:text="16.8"
                     android:inputType="numberDecimal"
                     android:paddingLeft="4dp" />
 
@@ -102,7 +102,7 @@
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:background="@null"
-                    android:hint="12"
+                    android:text="12"
                     android:inputType="number"
                     android:paddingLeft="4dp" />
 
@@ -138,7 +138,7 @@
                     android:gravity="center_vertical"
                     android:paddingLeft="8dp"
                     android:text="到期还本，按月付息"
-                    android:textColor="@color/main_text"
+                    android:textColor="@color/main_text_black"
                     android:textSize="18sp" />
 
             </LinearLayout>
@@ -193,7 +193,7 @@
 
             <TextView
                 android:id="@+id/tvAprYear"
-                android:layout_width="40dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:gravity="left|center_vertical"
@@ -215,7 +215,7 @@
 
             <TextView
                 android:id="@+id/tvAprMonthly"
-                android:layout_width="40dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:gravity="left|center_vertical"

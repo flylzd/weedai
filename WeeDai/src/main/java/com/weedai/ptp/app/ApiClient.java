@@ -530,6 +530,52 @@ public class ApiClient {
         requestQueue.add(request);
     }
 
+    /**
+     * 站内信标记已读
+     */
+    public static void standInsideLetterToRead(String tag, String id, ResponseListener listener) {
+
+        if (!hashkNewwork()) {
+            return;
+        }
+
+        listener.onStarted();
+
+        Map<String, String> requestParams = getSignatureMap();
+        requestParams.put("q", "code/message");
+        requestParams.put("type", "2");  //已读
+        requestParams.put("id", id);
+        requestParams.put(Urls.ACTION, "users");
+
+        String url = Urls.ACTION_INDEX;
+        GsonPostRequest request = createGsonPostRequest(url, requestParams, BaseModel.class, listener);
+        request.setTag(tag);
+        requestQueue.add(request);
+    }
+
+    /**
+     * 站内信标记删除
+     */
+    public static void standInsideLetterToDelete(String tag, String id, ResponseListener listener) {
+
+        if (!hashkNewwork()) {
+            return;
+        }
+
+        listener.onStarted();
+
+        Map<String, String> requestParams = getSignatureMap();
+        requestParams.put("q", "code/message");
+        requestParams.put("type", "1");  //删除
+        requestParams.put("id", id);
+        requestParams.put(Urls.ACTION, "users");
+
+        String url = Urls.ACTION_INDEX;
+        GsonPostRequest request = createGsonPostRequest(url, requestParams, BaseModel.class, listener);
+        request.setTag(tag);
+        requestQueue.add(request);
+    }
+
 
     /**
      * 账户安全

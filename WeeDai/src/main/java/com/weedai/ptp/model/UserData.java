@@ -19,6 +19,7 @@ public class UserData implements Serializable {
     public int vip_status;
     public int credit;
     public String touxiang;
+    public String realname;
 
     public String paypassword; // null为没设置 其他为已设置
     public int phone_status; //  1为已经手机认证
