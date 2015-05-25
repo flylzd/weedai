@@ -44,11 +44,11 @@ public class AppContext extends Application {
     public static void initImageLoader(Context context) {
 
         DisplayImageOptions displayOptions = new DisplayImageOptions.Builder()
-                .showImageOnLoading(R.drawable.ic_launcher)
-                        // 设置图片在下载期间显示的图片
-                .showImageForEmptyUri(R.drawable.ic_launcher)
-                        // 设置图片Uri为空或是错误的时候显示的图片
-                .showImageOnFail(R.drawable.ic_launcher)
+//                .showImageOnLoading(R.drawable.ic_launcher)
+//                        // 设置图片在下载期间显示的图片
+//                .showImageForEmptyUri(R.drawable.ic_launcher)
+//                        // 设置图片Uri为空或是错误的时候显示的图片
+//                .showImageOnFail(R.drawable.ic_launcher)
                         // 设置图片加载/解码过程中错误时候显示的图片
                 .cacheInMemory(true).cacheOnDisk(true)
                 .bitmapConfig(Bitmap.Config.ARGB_8888).build();

@@ -94,7 +94,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         init(view);
 
         if (item != null && imageViewsList.size() != 0){
-            showImageViewPager();
             setArticle();
         } else {
             loadData();
@@ -117,6 +116,11 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             tvSign.setText(getActivity().getString(R.string.home_my_account_right));
         }
         viewPager.startAutoScroll();
+
+//        if (imageViewsList.size() != 0){
+//            System.out.println("onResume imageViewsList.size() == " + imageViewsList.size());
+//            showImageViewPager();
+//        }
     }
 
     @Override
@@ -174,7 +178,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             return;
         }
 
-//        layoutIndicator.removeAllViews();
+        layoutIndicator.removeAllViews();
         for (int i = 0; i < size; i++) {
             ImageView view = new ImageView(getActivity());
             view.setTag(imageUrls.get(i));
@@ -196,8 +200,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         viewPager.setFocusable(true);
         viewPager.setAdapter(new ViewPagerAdapter(imageViewsList));
         viewPager.setOnPageChangeListener(new ViewPageChangeListener());
-        viewPager.startAutoScroll();
         viewPager.setInterval(2*1000);
+        viewPager.startAutoScroll();
     }
 
     @Override
@@ -405,6 +409,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
             viewPager.setCurrentItem(position);
             int size = dotViewsList.size();
+            System.out.println("ViewPageChangeListener size = " + size);
             for (int i = 0; i < size; i++) {
                 dotViewsList.get(i).setBackgroundResource(R.drawable.dot_normal);
             }

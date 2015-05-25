@@ -9,7 +9,7 @@
         android:layout_height="0dp"
         android:layout_weight="1">
 
-        <com.weedai.ptp.view.ListScrollView
+        <ScrollView
             android:id="@+id/listScrollView"
             android:layout_width="match_parent"
             android:fillViewport="true"
@@ -89,7 +89,7 @@
 
             </LinearLayout>
 
-        </com.weedai.ptp.view.ListScrollView>
+        </ScrollView>
 
     </LinearLayout>
 

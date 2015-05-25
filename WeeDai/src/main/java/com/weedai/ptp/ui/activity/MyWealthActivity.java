@@ -167,7 +167,8 @@ public class MyWealthActivity extends BaseActivity implements View.OnClickListen
 
         final AlertDialog.Builder builder = new AlertDialog.Builder(MyWealthActivity.this);
         builder.setTitle("提示");
-        builder.setMessage("你有" + microCurrency + "微币将转换成余额" + Float.parseFloat(microCurrency) * 0.1 + "元，该操作不可逆,请选择是否确定操作!");
+        String result = String .format("%.1f", Float.parseFloat(microCurrency) * 0.1f);
+        builder.setMessage("你有" + microCurrency + "微币将转换成余额" + result + "元，该操作不可逆,请选择是否确定操作!");
         builder.setNegativeButton("取消", null);
         builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
             @Override

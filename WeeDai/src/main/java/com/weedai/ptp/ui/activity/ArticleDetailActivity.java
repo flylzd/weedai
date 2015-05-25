@@ -67,7 +67,7 @@ public class ArticleDetailActivity extends BaseActivity {
     private List<CommentList> commentListMore = new ArrayList<CommentList>();
     private int page = 0;
 
-    private ListScrollView listScrollView;
+//    private ListScrollView listScrollView;
 
     private View footerView;
     private TextView tvComments;
@@ -173,7 +173,7 @@ public class ArticleDetailActivity extends BaseActivity {
         listViewComment = (ListView) findViewById(R.id.listViewComment);
         listViewComment.setAdapter(adapterComment);
 
-        listScrollView = (ListScrollView) findViewById(R.id.listScrollView);
+//        listScrollView = (ListScrollView) findViewById(R.id.listScrollView);
 //        listScrollView.setListView(listViewComment);
 
         layoutComments = (LinearLayout) findViewById(R.id.layoutComments);
