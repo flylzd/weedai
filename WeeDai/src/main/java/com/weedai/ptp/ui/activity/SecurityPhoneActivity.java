@@ -42,6 +42,7 @@ public class SecurityPhoneActivity extends BaseActivity {
             if (time < 0) {
                 btnSecurityVerificationCode.setEnabled(true);
                 btnSecurityVerificationCode.setText("发送手机验证码");
+                time = 120;
                 return;
             }
             handler.postDelayed(runnable, 1000);
@@ -127,11 +128,12 @@ public class SecurityPhoneActivity extends BaseActivity {
                 SecurityPhoneData data = result.data;
                 int id = data.id;
                 if (id == 2 || id == 4) {
-
+                    Toast.makeText(SecurityPhoneActivity.this, "手机验证码获取成功", Toast.LENGTH_SHORT).show();
                 } else if (id == 3) {
                     Toast.makeText(SecurityPhoneActivity.this, "手机验证码获取失败", Toast.LENGTH_SHORT).show();
                 } else if (id == 1) {
-                    Toast.makeText(SecurityPhoneActivity.this, result.message, Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(SecurityPhoneActivity.this, result.message, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SecurityPhoneActivity.this, "绑定手机号码已存在", Toast.LENGTH_SHORT).show();
                 }
             }
 

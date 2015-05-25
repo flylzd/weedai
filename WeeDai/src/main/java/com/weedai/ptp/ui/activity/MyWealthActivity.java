@@ -101,9 +101,19 @@ public class MyWealthActivity extends BaseActivity implements View.OnClickListen
     private void setInfo() {
         if (data != null) {
             tvTotalAmount.setText(data.zongjine);
-            tvAvailableBalance.setText(amount);
+            String useMoney = data.use_money;
+            if (TextUtils.isEmpty(useMoney)){
+                tvAvailableBalance.setText("0");
+            } else {
+                tvAvailableBalance.setText(useMoney);
+            }
+            String noUseMoney = data.no_use_money;
+            if (TextUtils.isEmpty(useMoney)){
+                tvFreezeFunds.setText("0");
+            } else {
+                tvFreezeFunds.setText(noUseMoney);
+            }
             tvCollectingMoney.setText(data.tender_wait);
-            tvFreezeFunds.setText(data.no_use_money);
             tvAvailableMicroCurrency.setText(wb);
             tvTotalMicroCurrency.setText(data.wb);
         }

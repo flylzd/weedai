@@ -32,10 +32,10 @@ public class MyWithdrawalRecordActivity extends BaseActivity implements EndOfLis
     private QuickAdapter<WithdrawalRecordList> adapter;
     private List<WithdrawalRecordList> dataList = new ArrayList<WithdrawalRecordList>();
 
-    private final static int DEFAULT_PAGE = 1;
+    private final static int DEFAULT_PAGE = 0;
     private int page = DEFAULT_PAGE;
 
-    private boolean isFirstLoadingomplete = false;
+    private boolean isBottomLoadingComplete = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,17 +58,24 @@ public class MyWithdrawalRecordActivity extends BaseActivity implements EndOfLis
     @Override
     public void onEndOfList(Object lastItem) {
 
-        if (isFirstLoadingomplete){
-            if (dataList.size() < 10) {
-                showIndeterminateProgress(false);
-                return;
-            }
-            showIndeterminateProgress(true);
-            page++;
-            getWithdrawalRecord();
-        } else {
-            getWithdrawalRecord();
+//        if (isFirstLoadingomplete){
+//            if (dataList.size() < 10) {
+//                showIndeterminateProgress(false);
+//                return;
+//            }
+//            showIndeterminateProgress(true);
+//            page++;
+//            getWithdrawalRecord();
+//        } else {
+//            getWithdrawalRecord();
+//        }
+
+        if (isBottomLoadingComplete) {
+            showIndeterminateProgress(false);
+            return;
         }
+        page++;
+        getWithdrawalRecord();
     }
 
     private void showIndeterminateProgress(boolean visibility) {
@@ -135,7 +142,13 @@ public class MyWithdrawalRecordActivity extends BaseActivity implements EndOfLis
                 dataList.addAll(result.data.list);
                 adapter.replaceAll(dataList);
 
-                isFirstLoadingomplete = true;
+//                isFirstLoadingomplete = true;
+
+                int currentPage = result.data.page;
+                int totalPage = result.data.total_page;
+                if (currentPage == totalPage || totalPage == 0) {
+                    isBottomLoadingComplete = true;
+                }
             }
         });
     }
@@ -145,6 +158,7 @@ public class MyWithdrawalRecordActivity extends BaseActivity implements EndOfLis
 
         @Override
         public void onStarted() {
+            showIndeterminateProgress(true);
         }
 
         @Override

@@ -280,29 +280,8 @@ public class ArticleActivity extends BaseActivity implements SwipeRefreshLayout.
                     Toast.makeText(ArticleActivity.this, result.message, Toast.LENGTH_SHORT).show();
                     return;
                 }
-                List<ArticleList> articleList = result.data.list;
-//                if (articleList != null) {
-//                    switch (articleType) {
-//                        case Constant.ArticleType.INFORMATION:
-//                            if (infoPage == DEFAULT_PAGE) {
-//                                informationList = articleList;
-//                            } else {
-//                                informationList.addAll(articleList);
-//                            }
-//                            adapter.replaceAll(informationList);
-//                            break;
-//                        case Constant.ArticleType.NOTICE:
-//                            if (noticePage == DEFAULT_PAGE) {
-//                                noticeList = articleList;
-//                            } else {
-//                                noticeList.addAll(articleList);
-//                            }
-//                            adapter.replaceAll(noticeList);
-//                            break;
-//                    }
-//                }
-//                isFirstLoadingomplete = true;
 
+                List<ArticleList> articleList = result.data.list;
                 if (articleList != null && articleList.size() != 0) {
 
                     if (articleType == Constant.ArticleType.INFORMATION) {
@@ -311,6 +290,16 @@ public class ArticleActivity extends BaseActivity implements SwipeRefreshLayout.
                     } else {
                         noticeList.addAll(articleList);
                         adapter.replaceAll(noticeList);
+                    }
+                }
+
+                int currentPage = result.data.page;
+                int totalPage = result.data.total_page;
+                if (currentPage == totalPage || totalPage == 0) {
+                    if (articleType == Constant.ArticleType.INFORMATION) {
+                        isBottomLoadingCompleteInfo = true;
+                    } else {
+                        isBottomLoadingCompleteNotice = true;
                     }
                 }
             }

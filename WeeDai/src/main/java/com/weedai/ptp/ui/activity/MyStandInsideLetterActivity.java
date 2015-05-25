@@ -40,10 +40,10 @@ public class MyStandInsideLetterActivity extends BaseActivity implements EndOfLi
     private QuickAdapter<StandInsideLetterList> adapter;
     private List<StandInsideLetterList> dataList = new ArrayList<StandInsideLetterList>();
 
-    private final static int DEFAULT_PAGE = 1;
+    private final static int DEFAULT_PAGE = 0;
     private int page = DEFAULT_PAGE;
 
-    private boolean isFirstLoadingomplete = false;
+    private boolean isBottomLoadingComplete = false;
 
     private ProgressDialog progressDialog;
 
@@ -55,7 +55,7 @@ public class MyStandInsideLetterActivity extends BaseActivity implements EndOfLi
         setContentView(R.layout.activity_my_stand_inside_letter);
 
         initView();
-        loadData();
+//        loadData();
     }
 
     @Override
@@ -71,14 +71,12 @@ public class MyStandInsideLetterActivity extends BaseActivity implements EndOfLi
     @Override
     public void onEndOfList(Object lastItem) {
 
-        showIndeterminateProgress(true);
-        if (isFirstLoadingomplete) {
-            int size = dataList.size();
-            if (size > 6) {
-                page++;
-                getStandInsideLetter();
-            }
+        if (isBottomLoadingComplete) {
+            showIndeterminateProgress(false);
+            return;
         }
+        page++;
+        getStandInsideLetter();
     }
 
     private void showIndeterminateProgress(boolean visibility) {
@@ -137,10 +135,6 @@ public class MyStandInsideLetterActivity extends BaseActivity implements EndOfLi
 
     }
 
-    private void showDialog() {
-
-    }
-
     private void loadData() {
         getStandInsideLetter();
     }
@@ -150,6 +144,7 @@ public class MyStandInsideLetterActivity extends BaseActivity implements EndOfLi
         ApiClient.getStandInsideLetter(TAG, page, new ResponseListener() {
             @Override
             public void onStarted() {
+                showIndeterminateProgress(true);
             }
 
             @Override
@@ -167,7 +162,11 @@ public class MyStandInsideLetterActivity extends BaseActivity implements EndOfLi
                 dataList.addAll(list);
                 adapter.replaceAll(dataList);
 
-                isFirstLoadingomplete = true;
+                int currentPage = result.data.page;
+                int totalPage = result.data.total_page;
+                if (currentPage == totalPage || totalPage == 0) {
+                    isBottomLoadingComplete = true;
+                }
             }
 
             @Override
@@ -256,10 +255,10 @@ public class MyStandInsideLetterActivity extends BaseActivity implements EndOfLi
         switch (item.getItemId()) {
             case 1:
                 selectPosition = itemInfo.position;
-                System.out.println("删除 " +  itemInfo.position);
-                System.out.println("删除 " +  adapter.getItem(itemInfo.position).id);
-                System.out.println("删除 " +  DataUtil.urlDecode(adapter.getItem(itemInfo.position).name));
-                System.out.println("删除 " +  DataUtil.urlDecode(adapter.getItem(itemInfo.position).content));
+                System.out.println("删除 " + itemInfo.position);
+                System.out.println("删除 " + adapter.getItem(itemInfo.position).id);
+                System.out.println("删除 " + DataUtil.urlDecode(adapter.getItem(itemInfo.position).name));
+                System.out.println("删除 " + DataUtil.urlDecode(adapter.getItem(itemInfo.position).content));
                 toDelete(adapter.getItem(itemInfo.position).id);
                 break;
             default:

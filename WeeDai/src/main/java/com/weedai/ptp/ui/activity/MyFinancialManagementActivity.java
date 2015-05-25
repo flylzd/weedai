@@ -40,10 +40,12 @@ public class MyFinancialManagementActivity extends BaseActivity implements EndOf
     private QuickAdapter<FinancialManagerList> adapter2;
     private List<FinancialManagerList> dataList2 = new ArrayList<FinancialManagerList>();
 
-
-    private final static int DEFAULT_PAGE = 1;
+    private final static int DEFAULT_PAGE = 0;
     private int page = DEFAULT_PAGE;
     private int page2 = DEFAULT_PAGE;
+
+    private boolean isBottomLoadingComplete1 = false;
+    private boolean isBottomLoadingComplete2 = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,19 +70,28 @@ public class MyFinancialManagementActivity extends BaseActivity implements EndOf
     public void onEndOfList(Object lastItem) {
 
         if (selectType == 0) {
-            showIndeterminateProgress(true);
-            getFinancialSuccess();
+            if (isBottomLoadingComplete1) {
+                showIndeterminateProgress(false);
+                return;
+            }
             page++;
+            getFinancialSuccess();
         } else {
-            showIndeterminateProgress(true);
-            getFinancialGathering();
+            if (isBottomLoadingComplete2) {
+                showIndeterminateProgress(false);
+                return;
+            }
             page2++;
+            getFinancialGathering();
         }
     }
 
     private void showIndeterminateProgress(boolean visibility) {
-        adapter.showIndeterminateProgress(visibility);
-        adapter2.showIndeterminateProgress(visibility);
+        if (selectType == 0) {
+            adapter.showIndeterminateProgress(visibility);
+        }else {
+            adapter2.showIndeterminateProgress(visibility);
+        }
     }
 
     private void initView() {
@@ -205,6 +216,12 @@ public class MyFinancialManagementActivity extends BaseActivity implements EndOf
                 List<FinancialManagerList> list = result.data.list;
                 dataList.addAll(list);
                 adapter.replaceAll(dataList);
+
+                int currentPage = result.data.page;
+                int totalPage = result.data.total_page;
+                if (currentPage == totalPage || totalPage == 0) {
+                    isBottomLoadingComplete1 = true;
+                }
             }
         });
     }
@@ -225,6 +242,12 @@ public class MyFinancialManagementActivity extends BaseActivity implements EndOf
                 List<FinancialManagerList> list = result.data.list;
                 dataList2.addAll(list);
                 adapter2.replaceAll(dataList2);
+
+                int currentPage = result.data.page;
+                int totalPage = result.data.total_page;
+                if (currentPage == totalPage || totalPage == 0) {
+                    isBottomLoadingComplete2 = true;
+                }
             }
         });
     }
@@ -234,19 +257,12 @@ public class MyFinancialManagementActivity extends BaseActivity implements EndOf
 
         @Override
         public void onStarted() {
-//            if (page != DEFAULT_PAGE) {
-//                return;
-//            }
+            showIndeterminateProgress(true);
         }
 
         @Override
         public void onResponse(Object response) {
-
             showIndeterminateProgress(false);
-//            if (page != DEFAULT_PAGE) {
-//                showIndeterminateProgress(false);
-//                return;
-//            }
         }
 
         @Override

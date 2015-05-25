@@ -127,9 +127,15 @@ public class MyWithdrawalActivity extends BaseActivity {
 
                 UserData data = result.data;
                 if (data != null) {
-                    tvAccountBalance.setText(data.total + "  元");
-                    tvAvailableBalance.setText(data.use_money + "  元");
-                    tvFreezeBalance.setText(data.no_use_money + "  元");
+                    String total = data.total;
+                    String useMoney = data.use_money;
+                    String noUseMoney = data.no_use_money;
+                    total = TextUtils.isEmpty(total) ? "0" : total;
+                    useMoney = TextUtils.isEmpty(useMoney) ? "0" : useMoney;
+                    noUseMoney = TextUtils.isEmpty(noUseMoney) ? "0" : noUseMoney;
+                    tvAccountBalance.setText(total + "  元");
+                    tvAvailableBalance.setText(useMoney + "  元");
+                    tvFreezeBalance.setText(noUseMoney + "  元");
 
                     getBank();
                 }
@@ -159,11 +165,13 @@ public class MyWithdrawalActivity extends BaseActivity {
 
                     tvRealName.setText(DataUtil.urlDecode(data.realname));
 
-                    int resId = Constant.bankImgMap.get(DataUtil.urlDecode(data.banksname));
-                    imgBankIcon.setImageResource(resId);
+                    if (!TextUtils.isEmpty(data.banksname)){
+                        int resId = Constant.bankImgMap.get(DataUtil.urlDecode(data.banksname));
+                        imgBankIcon.setImageResource(resId);
 
-                    tvBankAccount.setText(DataUtil.urlDecode(data.account));
-                    tvBankName.setText(DataUtil.urlDecode(data.banksname));
+                        tvBankAccount.setText(DataUtil.urlDecode(data.account));
+                        tvBankName.setText(DataUtil.urlDecode(data.banksname));
+                    }
                     System.out.println("branch " + DataUtil.urlDecode(data.branch));
                 }
             }

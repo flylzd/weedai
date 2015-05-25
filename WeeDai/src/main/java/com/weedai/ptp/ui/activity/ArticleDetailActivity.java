@@ -194,6 +194,8 @@ public class ArticleDetailActivity extends BaseActivity {
                 if (size == sizeMore) {
                     return;
                 }
+                System.out.println("sizeMore == " + sizeMore);
+                System.out.println("size == " + size);
 
                 int count = (size + 4) > sizeMore ? (sizeMore - size) : 4;
                 System.out.println("count == " + count);
@@ -365,6 +367,7 @@ public class ArticleDetailActivity extends BaseActivity {
 //                commentList = list;
                 commentListMore = list;
 
+                layoutComments.removeAllViews();
                 commentList.clear();
                 int size = list.size();
                 if (list == null || size == 0) {

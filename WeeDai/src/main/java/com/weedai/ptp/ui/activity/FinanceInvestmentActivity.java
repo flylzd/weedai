@@ -163,6 +163,7 @@ public class FinanceInvestmentActivity extends BaseActivity {
                     if (!valicode.equalsIgnoreCase(code)) {
                         Toast.makeText(FinanceInvestmentActivity.this, getString(R.string.login_valicode_not_match), Toast.LENGTH_SHORT).show();
                         getImgcode();
+                        etValicode.getText().clear();
                     } else {
                         String money = etInvestmentAmount.getText().toString();
                         String paypassword = etPayPassword.getText().toString();
@@ -179,12 +180,11 @@ public class FinanceInvestmentActivity extends BaseActivity {
 
         if (data != null) {
             tvTitle.setText(DataUtil.urlDecode(data.name));
-            String award = data.funds;
-            if (award.equals("0")) {
+            if (TextUtils.isEmpty(data.funds)) {
                 tvAward.setText("暂无");
                 imgAward.setVisibility(View.GONE);
             } else {
-                tvAward.setText(award + "%");
+                tvAward.setText(data.funds + "%");
                 imgAward.setVisibility(View.VISIBLE);
 
             }
@@ -275,7 +275,12 @@ public class FinanceInvestmentActivity extends BaseActivity {
                     Toast.makeText(FinanceInvestmentActivity.this, result.message, Toast.LENGTH_SHORT).show();
                     return;
                 }
-                tvRemainingAmount.setText(result.data.use_money + " 元");
+                String useMoney = result.data.use_money;
+                if (!TextUtils.isEmpty(useMoney)){
+                    tvRemainingAmount.setText(result.data.use_money + " 元");
+                }else {
+                    tvRemainingAmount.setText(0 + " 元");
+                }
             }
 
             @Override

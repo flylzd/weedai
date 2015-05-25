@@ -30,6 +30,7 @@
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:hint="@string/login_valicode_hint"
+            android:singleLine="true"
             android:maxLength="4"
             android:textSize="18sp" />
 

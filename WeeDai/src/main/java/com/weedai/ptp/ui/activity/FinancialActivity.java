@@ -148,7 +148,7 @@ public class FinancialActivity extends BaseActivity implements SwipeRefreshLayou
                 String timeLimit = String.format(getString(R.string.financial_deadline), item.time_limit);
                 String amount = String.format(getString(R.string.financial_amount), item.account);
                 String reward;
-                if (item.funds.equals("0")) {
+                if (TextUtils.isEmpty(item.funds)) {
                     reward = getString(R.string.financial_reward_empty);
                 } else {
                     reward = String.format(getString(R.string.financial_reward), item.funds);
@@ -352,19 +352,19 @@ public class FinancialActivity extends BaseActivity implements SwipeRefreshLayou
                 }
 
                 if (TextUtils.isEmpty(xmtype)) {
-                    if (currentPage == totalPage) {
+                    if (currentPage == totalPage || totalPage == 0) {
                         isBottomLoadingComplete1 = true;
                     }
                 } else if (xmtype.equals(Constant.XMTYPE.Borrow)) {
-                    if (currentPage == totalPage) {
+                    if (currentPage == totalPage || totalPage == 0) {
                         isBottomLoadingComplete2 = true;
                     }
                 } else if (xmtype.equals(Constant.XMTYPE.Now)) {
-                    if (currentPage == totalPage) {
+                    if (currentPage == totalPage || totalPage == 0) {
                         isBottomLoadingComplete3 = true;
                     }
                 } else if (xmtype.equals(Constant.XMTYPE.Yes)) {
-                    if (currentPage == totalPage) {
+                    if (currentPage == totalPage || totalPage == 0) {
                         isBottomLoadingComplete4 = true;
                     }
                 }

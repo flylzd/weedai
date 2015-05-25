@@ -129,6 +129,8 @@ public class LoginActivity extends Activity implements View.OnClickListener {
                     String message = result.message;
                     if (message.equals("login_fail")) {
                         message = "登录失败,密码不正确";
+                        getImgcode();
+                        etValicode.getText().clear();
                     }
                     Toast.makeText(LoginActivity.this, message, Toast.LENGTH_SHORT).show();
                     return;

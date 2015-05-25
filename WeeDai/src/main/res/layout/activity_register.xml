@@ -18,6 +18,7 @@
             <EditText
                 android:id="@+id/etEmail"
                 style="@style/textRegister"
+                android:singleLine="true"
                 android:inputType="textEmailAddress"
                 android:hint="@string/register_email_hint" />
         </LinearLayout>
@@ -32,6 +33,7 @@
 
             <EditText
                 android:id="@+id/etUsername"
+                android:singleLine="true"
                 style="@style/textRegister"
                 android:hint="@string/register_username_hint" />
         </LinearLayout>
@@ -47,6 +49,7 @@
             <EditText
                 android:id="@+id/etNewPassword"
                 style="@style/textRegister"
+                android:singleLine="true"
                 android:hint="@string/register_login_password_hint"
                 android:inputType="textPassword" />
         </LinearLayout>
@@ -63,6 +66,7 @@
                 android:id="@+id/etConfirmPassword"
                 style="@style/textRegister"
                 android:hint="@string/register_login_password_hint"
+                android:singleLine="true"
                 android:inputType="textPassword" />
         </LinearLayout>
 
@@ -77,6 +81,7 @@
             <EditText
                 android:id="@+id/etRealName"
                 style="@style/textRegister"
+                android:singleLine="true"
                 android:hint="@string/register_real_name_hint" />
         </LinearLayout>
 

@@ -19,6 +19,8 @@ import com.weedai.ptp.model.SecurityPhone;
 import com.weedai.ptp.utils.UIHelper;
 import com.weedai.ptp.volley.ResponseListener;
 
+import java.net.URLEncoder;
+
 public class RegisterActivity extends BaseActivity {
 
     private final static String TAG = "RegisterActivity";
@@ -91,7 +93,7 @@ public class RegisterActivity extends BaseActivity {
                     Toast.makeText(RegisterActivity.this, "邮件地址不能为空", Toast.LENGTH_SHORT).show();
                     return;
                 } else {
-                    if(!email.matches("\\w+@\\w+\\.\\w+")){
+                    if (!email.matches("\\w+@\\w+\\.\\w+")) {
                         Toast.makeText(RegisterActivity.this, "邮箱格式不正确", Toast.LENGTH_SHORT).show();
                         return;
                     }
@@ -131,11 +133,16 @@ public class RegisterActivity extends BaseActivity {
                 progressDialog.dismiss();
                 BaseModel result = (BaseModel) response;
                 if (result.code != Constant.CodeResult.SUCCESS) {
-                    Toast.makeText(RegisterActivity.this, result.message, Toast.LENGTH_SHORT).show();
+                    if (result.message.equals("reg_fail")) {
+                        Toast.makeText(RegisterActivity.this, "注册失败", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(RegisterActivity.this, result.message, Toast.LENGTH_SHORT).show();
+                    }
                     return;
                 }
 
                 if (result.message.equals("user_not_exist")) {
+                    realName = URLEncoder.encode(realName);
                     register(email, username, password, realName, sex);  //注册
                 } else {
                     Toast.makeText(RegisterActivity.this, "用户名已存在,请重新输入", Toast.LENGTH_SHORT).show();

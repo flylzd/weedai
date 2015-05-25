@@ -42,6 +42,7 @@
             android:layout_height="30dp"
             android:layout_weight="1"
             android:background="@null"
+            android:singleLine="true"
             android:gravity="center_vertical"
             android:hint="@string/login_user_hint"
             android:textSize="18sp" />
@@ -73,6 +74,7 @@
             android:layout_height="30dp"
             android:layout_weight="1"
             android:background="@null"
+            android:singleLine="true"
             android:gravity="center_vertical"
             android:hint="@string/login_password_hint"
             android:textSize="18sp" />
@@ -104,6 +106,7 @@
             android:background="@null"
             android:gravity="center_vertical"
             android:hint="@string/login_valicode_hint"
+            android:singleLine="true"
             android:maxLength="4"
             android:textSize="18sp" />
 
@@ -154,7 +157,6 @@
         android:background="@drawable/selector_btn_bg"
         android:text="@string/login_btn"
         android:textColor="@color/white" />
-
 
     <TextView
         android:id="@+id/tvLoginRegister"

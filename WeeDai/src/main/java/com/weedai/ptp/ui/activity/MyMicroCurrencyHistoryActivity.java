@@ -33,8 +33,10 @@ public class MyMicroCurrencyHistoryActivity extends BaseActivity implements EndO
     private TextView tvAvailableMicroCurrency;
     private TextView tvTotalMicroCurrency;
 
-    private final static int DEFAULT_PAGE = 1;
+    private final static int DEFAULT_PAGE = 0;
     private int page = DEFAULT_PAGE;
+
+    private boolean isBottomLoadingComplete = false;
 
     private String wb = "0";
 
@@ -47,6 +49,7 @@ public class MyMicroCurrencyHistoryActivity extends BaseActivity implements EndO
             wb = getIntent().getStringExtra("wb");
         }
         initView();
+//        loadData();
     }
 
 
@@ -62,9 +65,12 @@ public class MyMicroCurrencyHistoryActivity extends BaseActivity implements EndO
 
     @Override
     public void onEndOfList(Object lastItem) {
-        showIndeterminateProgress(true);
-        getMicroHistory();
+        if (isBottomLoadingComplete) {
+            showIndeterminateProgress(false);
+            return;
+        }
         page++;
+        getMicroHistory();
     }
 
     private void showIndeterminateProgress(boolean visibility) {
@@ -130,6 +136,10 @@ public class MyMicroCurrencyHistoryActivity extends BaseActivity implements EndO
         listView.setOnEndOfListListener(this);
     }
 
+    private void  loadData() {
+        getMicroHistory();
+    }
+
     private void getMicroHistory() {
         ApiClient.getMicroHistory(TAG, page, new RefreshResponseListener() {
             @Override
@@ -143,8 +153,13 @@ public class MyMicroCurrencyHistoryActivity extends BaseActivity implements EndO
                 }
                 dataList.addAll(result.data.list);
                 adapter.replaceAll(dataList);
-
                 tvTotalMicroCurrency.setText(result.data.account_num);
+
+                int currentPage = result.data.page;
+                int totalPage = result.data.total_page;
+                if (currentPage == totalPage || totalPage == 0) {
+                    isBottomLoadingComplete = true;
+                }
             }
         });
     }
@@ -154,6 +169,7 @@ public class MyMicroCurrencyHistoryActivity extends BaseActivity implements EndO
 
         @Override
         public void onStarted() {
+            showIndeterminateProgress(true);
         }
 
         @Override

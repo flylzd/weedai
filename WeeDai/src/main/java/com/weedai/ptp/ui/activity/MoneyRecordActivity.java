@@ -34,8 +34,10 @@ public class MoneyRecordActivity extends BaseActivity implements EndOfListView.O
     private QuickAdapter<MoneyList> adapter;
     private List<MoneyList> dataList = new ArrayList<MoneyList>();
 
-    private final static int DEFAULT_PAGE = 1;
+    private final static int DEFAULT_PAGE = 0;
     private int page = DEFAULT_PAGE;
+
+    private boolean isBottomLoadingComplete = false;
 
     private ProgressDialog progressDialog;
 
@@ -60,9 +62,12 @@ public class MoneyRecordActivity extends BaseActivity implements EndOfListView.O
 
     @Override
     public void onEndOfList(Object lastItem) {
-        showIndeterminateProgress(true);
-        getMoneyRecord();
+        if (isBottomLoadingComplete) {
+            showIndeterminateProgress(false);
+            return;
+        }
         page++;
+        getMoneyRecord();
     }
 
     private void showIndeterminateProgress(boolean visibility) {
@@ -113,16 +118,21 @@ public class MoneyRecordActivity extends BaseActivity implements EndOfListView.O
                 }
                 dataList.addAll(result.data.list);
                 adapter.replaceAll(dataList);
+
+                int currentPage = result.data.page;
+                int totalPage = result.data.total_page;
+                if (currentPage == totalPage || totalPage == 0) {
+                    isBottomLoadingComplete = true;
+                }
             }
         });
     }
-
 
     private abstract class RefreshResponseListener implements ResponseListener {
 
         @Override
         public void onStarted() {
-
+            showIndeterminateProgress(true);
         }
 
         @Override
