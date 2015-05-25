@@ -72,9 +72,6 @@ public class ArticleActivity extends BaseActivity implements SwipeRefreshLayout.
     private boolean isBottomLoadingCompleteInfo = false;
     private boolean isBottomLoadingCompleteNotice = false;
 
-    public ArticleActivity() {
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -97,7 +94,11 @@ public class ArticleActivity extends BaseActivity implements SwipeRefreshLayout.
     @Override
     public void onResume() {
         super.onResume();
-        viewPager.startAutoScroll();
+//        viewPager.startAutoScroll();
+        if (imageUrls.size() != 0){
+            System.out.println("onResume imageViewsList.size() == " + imageViewsList.size());
+            showImageViewPager();
+        }
     }
 
     @Override
@@ -236,6 +237,8 @@ public class ArticleActivity extends BaseActivity implements SwipeRefreshLayout.
         }
 
         layoutIndicator.removeAllViews();
+        dotViewsList.clear();
+        imageViewsList.clear();
         for (int i = 0; i < size; i++) {
             ImageView view = new ImageView(ArticleActivity.this);
             view.setTag(imageUrls.get(i));

@@ -93,7 +93,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         System.out.println("HomeFragment onViewCreated");
         init(view);
 
-        if (item != null && imageViewsList.size() != 0){
+        if (item != null && imageUrls.size() != 0){
             setArticle();
         } else {
             loadData();
@@ -115,12 +115,12 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             tvMyAccount.setText(getActivity().getString(R.string.home_my_account_right));
             tvSign.setText(getActivity().getString(R.string.home_my_account_right));
         }
-        viewPager.startAutoScroll();
+//        viewPager.startAutoScroll();
 
-//        if (imageViewsList.size() != 0){
-//            System.out.println("onResume imageViewsList.size() == " + imageViewsList.size());
-//            showImageViewPager();
-//        }
+        if (imageUrls.size() != 0){
+            System.out.println("onResume imageViewsList.size() == " + imageViewsList.size());
+            showImageViewPager();
+        }
     }
 
     @Override
@@ -174,11 +174,14 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
     private void showImageViewPager() {
         int size = imageUrls.size();
+        System.out.println("showImageViewPager size ==  "  + size);
         if (imageUrls == null || size == 0) {
             return;
         }
 
         layoutIndicator.removeAllViews();
+        dotViewsList.clear();
+        imageViewsList.clear();
         for (int i = 0; i < size; i++) {
             ImageView view = new ImageView(getActivity());
             view.setTag(imageUrls.get(i));
@@ -200,7 +203,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         viewPager.setFocusable(true);
         viewPager.setAdapter(new ViewPagerAdapter(imageViewsList));
         viewPager.setOnPageChangeListener(new ViewPageChangeListener());
-        viewPager.setInterval(2*1000);
+        viewPager.setInterval(2 * 1000);
         viewPager.startAutoScroll();
     }
 
@@ -406,6 +409,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
         @Override
         public void onPageSelected(int position) {
+
+            System.out.println("ViewPageChangeListener position = " + position);
 
             viewPager.setCurrentItem(position);
             int size = dotViewsList.size();
