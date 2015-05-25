@@ -179,7 +179,7 @@ public class FinanceInvestmentActivity extends BaseActivity {
 
         if (data != null) {
             tvTitle.setText(DataUtil.urlDecode(data.name));
-            String award = data.award;
+            String award = data.funds;
             if (award.equals("0")) {
                 tvAward.setText("暂无");
                 imgAward.setVisibility(View.GONE);

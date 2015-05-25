@@ -119,7 +119,7 @@ public class FinancialDetailActivity extends BaseActivity {
         tvFinancialLockPeriod.setText(Html.fromHtml(timeLimit));
 
         String reward;
-        if (data.award.equals("0")) {
+        if (data.funds.equals("0")) {
             reward = getString(R.string.financial_detail_reward_empty);
             tvRewardIcon.setVisibility(View.GONE);
         } else {

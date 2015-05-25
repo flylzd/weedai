@@ -148,7 +148,7 @@ public class FinancialActivity extends BaseActivity implements SwipeRefreshLayou
                 String timeLimit = String.format(getString(R.string.financial_deadline), item.time_limit);
                 String amount = String.format(getString(R.string.financial_amount), item.account);
                 String reward;
-                if (item.award.equals("0")) {
+                if (item.funds.equals("0")) {
                     reward = getString(R.string.financial_reward_empty);
                 } else {
                     reward = String.format(getString(R.string.financial_reward), item.funds);

@@ -141,7 +141,8 @@
                 android:layout_height="wrap_content"
                 android:paddingBottom="2dp"
                 android:paddingTop="2dp"
-                android:text="地址:佛山市顺德区乐从大道西12号物联天下B座109"
+                android:paddingRight="4dp"
+                android:text="地址:广东省佛山市顺德区乐从大道北鹭晖商厦409-410室（即乐从天佑城斜对面)"
                 android:textColor="@color/main_text"
                 android:textSize="15sp" />
 
