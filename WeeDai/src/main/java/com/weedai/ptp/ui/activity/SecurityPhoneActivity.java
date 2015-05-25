@@ -30,7 +30,7 @@ public class SecurityPhoneActivity extends BaseActivity {
 
     private ProgressDialog progressDialog;
 
-    private int time = 60;
+    private int time = 120;
     private Handler handler = new Handler();
     private Runnable runnable = new Runnable() {
         @Override
