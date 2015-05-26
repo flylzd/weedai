@@ -193,7 +193,7 @@
 
                 <ImageView
                     android:id="@+id/imgTitle"
-                    android:layout_width="80dp"
+                    android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:layout_below="@+id/tvTitle"
                     android:layout_marginRight="4dp"
@@ -242,7 +242,7 @@
                     android:layout_marginRight="4dp"
                     android:layout_toLeftOf="@+id/tvArticleComment"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/icon_article_comment" />
+                    android:src="@drawable/icon_comment_send" />
 
             </RelativeLayout>
 

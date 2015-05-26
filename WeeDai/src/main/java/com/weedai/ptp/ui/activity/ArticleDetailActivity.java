@@ -55,6 +55,8 @@ public class ArticleDetailActivity extends BaseActivity {
 
     private final static String TAG = "ArticleDetailActivity";
 
+    private TextView tvTitle;
+
     private WebView webView;
 
     private ListView listView;
@@ -116,6 +118,8 @@ public class ArticleDetailActivity extends BaseActivity {
     }
 
     private void initView() {
+
+        tvTitle = (TextView) findViewById(R.id.tvTitle);
 
         webView = (WebView) findViewById(R.id.webView);
 
@@ -307,6 +311,7 @@ public class ArticleDetailActivity extends BaseActivity {
                 String htmlString = DataUtil.urlDecode(result.data.content);
                 System.out.println("name " + DataUtil.urlDecode(result.data.name));
                 System.out.println("content " + DataUtil.urlDecode(result.data.content));
+                tvTitle.setText(DataUtil.urlDecode(result.data.name));
                 // 载入这个html页面
 //                webView.loadData(htmlString, "text/html", "utf-8");
                 webView.loadData(getHtmlData(htmlString), "text/html; charset=utf-8", "utf-8");
