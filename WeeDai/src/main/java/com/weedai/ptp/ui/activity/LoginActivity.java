@@ -110,6 +110,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
             if (!valicode.equalsIgnoreCase(code)) {
                 Toast.makeText(LoginActivity.this, getString(R.string.login_valicode_not_match), Toast.LENGTH_SHORT).show();
                 getImgcode();
+                etValicode.getText().clear();
                 return;
             }
         }

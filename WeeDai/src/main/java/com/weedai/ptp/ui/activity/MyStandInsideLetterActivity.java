@@ -3,6 +3,7 @@ package com.weedai.ptp.ui.activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.ContextMenu;
@@ -18,6 +19,7 @@ import com.android.volley.error.VolleyError;
 import com.lemon.aklib.adapter.BaseAdapterHelper;
 import com.lemon.aklib.adapter.QuickAdapter;
 import com.lemon.aklib.widget.EndOfListView;
+import com.nostra13.universalimageloader.cache.memory.impl.FIFOLimitedMemoryCache;
 import com.weedai.ptp.R;
 import com.weedai.ptp.app.ApiClient;
 import com.weedai.ptp.constant.Constant;
@@ -26,6 +28,7 @@ import com.weedai.ptp.model.BaseModel;
 import com.weedai.ptp.model.StandInsideLetter;
 import com.weedai.ptp.model.StandInsideLetterList;
 import com.weedai.ptp.utils.DataUtil;
+import com.weedai.ptp.utils.UIHelper;
 import com.weedai.ptp.volley.ResponseListener;
 
 import java.text.SimpleDateFormat;
@@ -48,6 +51,8 @@ public class MyStandInsideLetterActivity extends BaseActivity implements EndOfLi
     private ProgressDialog progressDialog;
 
     private int selectPosition;
+
+    public static final int DETAIL_DELETE = 101;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,24 +120,27 @@ public class MyStandInsideLetterActivity extends BaseActivity implements EndOfLi
 
                 selectPosition = position;
 
-                View viewDialog = getLayoutInflater().inflate(R.layout.dialog_stand_inside_letter, null);
-                TextView tvLetter = (TextView) viewDialog.findViewById(R.id.tvLetter);
+//                View viewDialog = getLayoutInflater().inflate(R.layout.dialog_stand_inside_letter, null);
+//                TextView tvLetter = (TextView) viewDialog.findViewById(R.id.tvLetter);
+//
+//                tvLetter.setText(Html.fromHtml(DataUtil.urlDecode(adapter.getItem(position).content)));
+//                AlertDialog.Builder builder = new AlertDialog.Builder(MyStandInsideLetterActivity.this);
+//                builder.setView(viewDialog);
+//                builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        toRead(adapter.getItem(position).id);
+//                    }
+//                });
+//                builder.create();
+//                builder.show();
 
-                tvLetter.setText(Html.fromHtml(DataUtil.urlDecode(adapter.getItem(position).content)));
-                AlertDialog.Builder builder = new AlertDialog.Builder(MyStandInsideLetterActivity.this);
-                builder.setView(viewDialog);
-                builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        toRead(adapter.getItem(position).id);
-                    }
-                });
-                builder.create();
-                builder.show();
+                adapter.getItem(selectPosition).status = 1;
+                adapter.notifyDataSetChanged();
+                UIHelper.showMyStandInsideLetterDetail(MyStandInsideLetterActivity.this, adapter.getItem(selectPosition), DETAIL_DELETE);
             }
         });
         registerForContextMenu(listView);//为ListView添加上下文菜单
-
     }
 
     private void loadData() {
@@ -229,7 +237,6 @@ public class MyStandInsideLetterActivity extends BaseActivity implements EndOfLi
                     System.out.println("mess_del_suc");
                     adapter.remove(selectPosition);
                     adapter.notifyDataSetChanged();
-//                    getStandInsideLetter();
                 }
             }
 
@@ -255,17 +262,29 @@ public class MyStandInsideLetterActivity extends BaseActivity implements EndOfLi
         switch (item.getItemId()) {
             case 1:
                 selectPosition = itemInfo.position;
-                System.out.println("删除 " + itemInfo.position);
-                System.out.println("删除 " + adapter.getItem(itemInfo.position).id);
-                System.out.println("删除 " + DataUtil.urlDecode(adapter.getItem(itemInfo.position).name));
-                System.out.println("删除 " + DataUtil.urlDecode(adapter.getItem(itemInfo.position).content));
                 toDelete(adapter.getItem(itemInfo.position).id);
                 break;
             default:
                 break;
         }
-
         return super.onContextItemSelected(item);
+    }
+
+    // 回调方法，从第二个页面回来的时候会执行这个方法
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        System.out.println("onActivityResult resultCode " + resultCode);
+        System.out.println("onActivityResult requestCode " + requestCode);
+        if (resultCode == RESULT_OK) {
+            System.out.println("onActivityResult ");
+            if (requestCode == DETAIL_DELETE) {
+                System.out.println("删除");
+
+                adapter.remove(selectPosition);
+                adapter.notifyDataSetChanged();
+            }
+        }
     }
 
 }

@@ -9,9 +9,7 @@
         android:layout_height="wrap_content"
         android:background="#dedbdb"
         android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:paddingBottom="10dp"
-        android:paddingTop="10dp">
+        android:orientation="horizontal">
 
 
         <ImageView
@@ -20,44 +18,52 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="20dp"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
             android:scaleType="centerCrop"
             android:src="@drawable/icon_stand_inside_read" />
 
         <TextView
             android:id="@+id/tvName"
-            android:layout_width="100dp"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:layout_toRightOf="@+id/imgLetter"
             android:ellipsize="end"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
             android:singleLine="true"
             android:textSize="18sp" />
 
-        <TextView
+        <Button
             android:id="@+id/tvDelete"
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
+            android:background="@null"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="20dp"
+            android:gravity="center"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
             android:text="删除"
             android:textSize="18sp" />
 
     </RelativeLayout>
 
     <TextView
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
         android:id="@+id/tvContent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         android:textSize="18sp" />
 
     <TextView
-        android:paddingRight="10dp"
-        android:gravity="right"
         android:id="@+id/tvTime"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:gravity="right"
+        android:paddingRight="10dp"
         android:textSize="16sp" />
 
 </LinearLayout>

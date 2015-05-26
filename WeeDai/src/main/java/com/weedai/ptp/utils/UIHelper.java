@@ -1,10 +1,12 @@
 package com.weedai.ptp.utils;
 
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 
 import com.weedai.ptp.model.InvestList;
+import com.weedai.ptp.model.StandInsideLetterList;
 import com.weedai.ptp.ui.activity.AboutActivity;
 import com.weedai.ptp.ui.activity.AboutCompanyActivity;
 import com.weedai.ptp.ui.activity.AccountActivity;
@@ -31,6 +33,7 @@ import com.weedai.ptp.ui.activity.MyFinancialManagementActivity;
 import com.weedai.ptp.ui.activity.MyMicroCurrencyHistoryActivity;
 import com.weedai.ptp.ui.activity.MyRechargeActivity;
 import com.weedai.ptp.ui.activity.MyStandInsideLetterActivity;
+import com.weedai.ptp.ui.activity.MyStandInsideLetterDetailActivity;
 import com.weedai.ptp.ui.activity.MyWealthActivity;
 import com.weedai.ptp.ui.activity.MyWithdrawalActivity;
 import com.weedai.ptp.ui.activity.MyWithdrawalRecordActivity;
@@ -133,6 +136,15 @@ public class UIHelper {
     public static void showMyStandInsideLetter(Context context) {
         Intent intent = new Intent(context, MyStandInsideLetterActivity.class);
         context.startActivity(intent);
+    }
+
+    /**
+     * 站内信详情
+     */
+    public static void showMyStandInsideLetterDetail(Context context, StandInsideLetterList data, int requestCode) {
+        Intent intent = new Intent(context, MyStandInsideLetterDetailActivity.class);
+        intent.putExtra("data", data);
+        ((Activity) context).startActivityForResult(intent, requestCode);
     }
 
     /**
