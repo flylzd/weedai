@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -68,7 +69,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     private TextView tvArticleTitle;
     private TextView tvArticleTime;
     private TextView tvArticleComment;
-    private ImageView imgArticleComment;
+    private ImageView imgTitle;
 
     private ProgressDialog progressDialog;
 
@@ -163,7 +164,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         tvArticleTitle = (TextView) view.findViewById(R.id.tvArticleTitle);
         tvArticleTime = (TextView) view.findViewById(R.id.tvArticleTime);
         tvArticleComment = (TextView) view.findViewById(R.id.tvArticleComment);
-        imgArticleComment = (ImageView) view.findViewById(R.id.imgArticleComment);
+        imgTitle = (ImageView) view.findViewById(R.id.imgTitle);
     }
 
 
@@ -303,6 +304,17 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
     private void setArticle() {
         if (item != null){
+
+            String url = item.litpic;
+            System.out.println("url " + url);
+            if (!TextUtils.isEmpty(url)) {
+                url = Config.DEFAULT_IMG_URL + url;
+                ImageLoader.getInstance().displayImage(url, imgTitle);
+            } else {
+                url = Config.DEFAULT_IMG_DOWNLOAD;
+                ImageLoader.getInstance().displayImage(url, imgTitle);
+            }
+
             tvArticleTitle.setText(DataUtil.urlDecode(item.name));
             tvArticleComment.setText(item.comment);
             tvArticleTime.setText(item.publish);

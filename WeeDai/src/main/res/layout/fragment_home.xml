@@ -1,248 +1,253 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="120dp">
-
-        <com.weedai.ptp.view.AutoScrollViewPager
-            android:id="@+id/viewPager"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <LinearLayout
-            android:id="@+id/layoutIndicator"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="10dp"
-            android:gravity="center_horizontal"
-            android:orientation="horizontal"></LinearLayout>
-
-    </RelativeLayout>
-
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:paddingBottom="5dp"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:paddingTop="5dp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="horizontal"
-            android:paddingBottom="5dp"
-            android:paddingTop="5dp">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginRight="5dp"
-                android:layout_weight="1">
-
-                <ImageView
-                    android:id="@+id/imgYou"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/bg_you" />
-
-                <TextView
-                    android:id="@+id/tvHomeYouLeft"
-                    style="@style/textHomeLeft"
-                    android:text="@string/home_you_left" />
-
-                <TextView
-                    style="@style/textHomeRight"
-                    android:layout_alignBottom="@+id/tvHomeYouLeft"
-                    android:layout_toRightOf="@+id/tvHomeYouLeft"
-                    android:text="@string/home_you_right" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="5dp"
-                android:layout_weight="1">
-
-                <ImageView
-                    android:id="@+id/imgYa"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/bg_ya" />
-
-                <TextView
-                    android:id="@+id/tvHomeYaLeft"
-                    style="@style/textHomeLeft"
-                    android:text="@string/home_ya_left" />
-
-                <TextView
-                    style="@style/textHomeRight"
-                    android:layout_alignBottom="@+id/tvHomeYaLeft"
-                    android:layout_marginStart="30dp"
-                    android:layout_toRightOf="@+id/tvHomeYaLeft"
-                    android:text="@string/home_ya_right" />
-
-            </RelativeLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="horizontal"
-            android:paddingBottom="5dp"
-            android:paddingTop="5dp">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginRight="5dp"
-                android:layout_weight="1">
-
-                <ImageView
-                    android:id="@+id/imgSign"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/bg_sign_in" />
-
-                <TextView
-                    android:id="@+id/tvHomeSignInLeft"
-                    style="@style/textHomeLeft"
-                    android:text="@string/home_sign_in_left" />
-
-                <TextView
-                    android:id="@+id/tvSign"
-                    style="@style/textHomeRight"
-                    android:layout_alignBottom="@+id/tvHomeSignInLeft"
-                    android:layout_marginStart="30dp"
-                    android:layout_toRightOf="@+id/tvHomeSignInLeft"
-                    android:text="@string/home_sign_in_right" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="5dp"
-                android:layout_weight="1">
-
-                <ImageView
-                    android:id="@+id/imgMyAccount"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/bg_my_account" />
-
-                <TextView
-                    android:id="@+id/tvHomeMyAccountLeft"
-                    style="@style/textHomeLeft"
-                    android:text="@string/home_my_account_left" />
-
-                <TextView
-                    android:id="@+id/tvMyAccount"
-                    style="@style/textHomeRight"
-                    android:layout_alignBottom="@+id/tvHomeMyAccountLeft"
-                    android:layout_marginStart="30dp"
-                    android:layout_toRightOf="@+id/tvHomeMyAccountLeft"
-                    android:text="@string/home_my_account_right" />
-
-            </RelativeLayout>
-
-        </LinearLayout>
+        android:orientation="vertical">
 
         <RelativeLayout
-            android:id="@+id/layoutInformation"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:background="@drawable/selector_btn_bg"
-            android:clickable="true"
-            android:orientation="horizontal"
-            android:paddingBottom="5dp"
-            android:paddingLeft="10dp"
-            android:paddingTop="5dp">
+            android:layout_height="120dp">
 
-            <TextView
-                android:id="@+id/tvTitle"
+            <com.weedai.ptp.view.AutoScrollViewPager
+                android:id="@+id/viewPager"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:id="@+id/layoutIndicator"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:text="微贷资讯"
-                android:layout_marginBottom="4dp"
-                android:textColor="@color/white"
-                android:textSize="18sp" />
-
-            <ImageView
-                android:id="@+id/imgTitle"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/tvTitle"
-                android:layout_marginRight="4dp"
-                android:scaleType="fitXY"
-                android:src="@drawable/bg_information" />
-
-            <TextView
-                android:id="@+id/tvArticleTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignTop="@+id/imgTitle"
-                android:layout_marginEnd="8dp"
-                android:gravity="top"
-                android:layout_marginStart="4dp"
-                android:layout_toRightOf="@+id/imgTitle"
-                android:textColor="@color/white"
-                android:textSize="15sp" />
-
-            <TextView
-                android:id="@+id/tvArticleTime"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/imgTitle"
-                android:layout_marginStart="4dp"
-                android:gravity="bottom"
-                android:layout_toRightOf="@+id/imgTitle"
-                android:textColor="@color/white"
-                android:textSize="15sp" />
-
-            <TextView
-                android:id="@+id/tvArticleComment"
-                android:layout_width="wrap_content"
-                android:gravity="bottom"
-                android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/imgTitle"
-                android:layout_alignParentRight="true"
-                android:layout_marginEnd="20dp"
-                android:layout_marginStart="4dp"
-                android:textColor="@color/white"
-                android:textSize="15sp" />
-
-            <ImageView
-                android:id="@+id/imgArticleComment"
-                android:layout_width="15dp"
-                android:layout_height="15dp"
-                android:layout_marginEnd="4dp"
-                android:layout_alignBottom="@+id/imgTitle"
-                android:layout_toLeftOf="@+id/tvArticleComment"
-                android:scaleType="centerCrop"
-                android:src="@drawable/icon_article_comment" />
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="10dp"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal"></LinearLayout>
 
         </RelativeLayout>
 
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="5dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1">
+
+                    <ImageView
+                        android:id="@+id/imgYou"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/bg_you" />
+
+                    <TextView
+                        android:id="@+id/tvHomeYouLeft"
+                        style="@style/textHomeLeft"
+                        android:text="@string/home_you_left" />
+
+                    <TextView
+                        style="@style/textHomeRight"
+                        android:layout_alignBottom="@+id/tvHomeYouLeft"
+                        android:layout_toRightOf="@+id/tvHomeYouLeft"
+                        android:text="@string/home_you_right" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="1">
+
+                    <ImageView
+                        android:id="@+id/imgYa"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/bg_ya" />
+
+                    <TextView
+                        android:id="@+id/tvHomeYaLeft"
+                        style="@style/textHomeLeft"
+                        android:text="@string/home_ya_left" />
+
+                    <TextView
+                        style="@style/textHomeRight"
+                        android:layout_alignBottom="@+id/tvHomeYaLeft"
+                        android:layout_marginLeft="30dp"
+                        android:layout_toRightOf="@+id/tvHomeYaLeft"
+                        android:text="@string/home_ya_right" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1">
+
+                    <ImageView
+                        android:id="@+id/imgSign"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/bg_sign_in" />
+
+                    <TextView
+                        android:id="@+id/tvHomeSignInLeft"
+                        style="@style/textHomeLeft"
+                        android:text="@string/home_sign_in_left" />
+
+                    <TextView
+                        android:id="@+id/tvSign"
+                        style="@style/textHomeRight"
+                        android:layout_alignBottom="@+id/tvHomeSignInLeft"
+                        android:layout_marginLeft="30dp"
+                        android:layout_toRightOf="@+id/tvHomeSignInLeft"
+                        android:text="@string/home_sign_in_right" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="1">
+
+                    <ImageView
+                        android:id="@+id/imgMyAccount"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/bg_my_account" />
+
+                    <TextView
+                        android:id="@+id/tvHomeMyAccountLeft"
+                        style="@style/textHomeLeft"
+                        android:text="@string/home_my_account_left" />
+
+                    <TextView
+                        android:id="@+id/tvMyAccount"
+                        style="@style/textHomeRight"
+                        android:layout_alignBottom="@+id/tvHomeMyAccountLeft"
+                        android:layout_marginLeft="30dp"
+                        android:layout_toRightOf="@+id/tvHomeMyAccountLeft"
+                        android:text="@string/home_my_account_right" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/layoutInformation"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="@drawable/selector_btn_bg"
+                android:clickable="true"
+                android:orientation="horizontal"
+                android:paddingBottom="5dp"
+                android:paddingLeft="10dp"
+                android:paddingTop="5dp">
+
+                <TextView
+                    android:id="@+id/tvTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginBottom="4dp"
+                    android:text="微贷资讯"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+
+                <ImageView
+                    android:id="@+id/imgTitle"
+                    android:layout_width="80dp"
+                    android:layout_height="60dp"
+                    android:layout_below="@+id/tvTitle"
+                    android:layout_marginRight="4dp"
+                    android:scaleType="centerCrop" />
+
+                <TextView
+                    android:id="@+id/tvArticleTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/imgTitle"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_toRightOf="@+id/imgTitle"
+                    android:gravity="top"
+                    android:textColor="@color/white"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/tvArticleTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/imgTitle"
+                    android:layout_marginLeft="4dp"
+                    android:layout_toRightOf="@+id/imgTitle"
+                    android:gravity="bottom"
+                    android:textColor="@color/white"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/tvArticleComment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/imgTitle"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="20dp"
+                    android:gravity="bottom"
+                    android:textColor="@color/white"
+                    android:textSize="15sp" />
+
+                <ImageView
+                    android:id="@+id/imgArticleComment"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_alignBottom="@+id/imgTitle"
+                    android:layout_marginRight="4dp"
+                    android:layout_toLeftOf="@+id/tvArticleComment"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/icon_article_comment" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+
     </LinearLayout>
-
-
-</LinearLayout>
+</ScrollView>

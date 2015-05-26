@@ -58,6 +58,7 @@ public class MyWithdrawalActivity extends BaseActivity {
         return R.string.title_withdrawal;
     }
 
+    @Override
     protected boolean hasBackButton() {
         return true;
     }

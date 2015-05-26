@@ -98,6 +98,7 @@ public class SecurityLevelActivity extends BaseActivity implements View.OnClickL
             if (data.real_status == 1) {
                 imgSecurityName.setImageResource(R.drawable.icon_security_set);
                 level++;
+                tvSecurityName.setText("");
             } else {
                 imgSecurityName.setImageResource(R.drawable.icon_security_not_set);
             }
