@@ -29,7 +29,9 @@ import com.weedai.ptp.volley.ResponseListener;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class MyStandInsideLetterActivity extends BaseActivity implements EndOfListView.OnEndOfListListener {
 
@@ -55,6 +57,10 @@ public class MyStandInsideLetterActivity extends BaseActivity implements EndOfLi
     private TextView tvLetterRead;
 
     private List<String> ids = new ArrayList<String>();
+
+    private List<String> idChecks = new ArrayList<String>();
+
+    private Map<Integer, StandInsideLetterList> selectMap = new HashMap<Integer, StandInsideLetterList>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,32 +112,18 @@ public class MyStandInsideLetterActivity extends BaseActivity implements EndOfLi
 
                 final int position = helper.getPosition();
                 CheckBox cbLetter = helper.getView(R.id.cbLetter);
-                if (item.isChecked) {
+                if (selectMap.get(position) != null) {
                     cbLetter.setChecked(true);
-                }else {
+                } else {
                     cbLetter.setChecked(false);
                 }
-                cbLetter.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-
-                    String id = adapter.getItem(position).id;
-
+                cbLetter.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                        if (isChecked) {
-                            System.out.println("check id " + id);
-
-                            ids.add(id);
-
-                            adapter.getItem(position).isChecked = true;
-                            adapter.notifyDataSetChanged();
+                    public void onClick(View v) {
+                        if (selectMap.get(position) != null) {
+                            selectMap.remove(position);
                         } else {
-
-                            System.out.println("not check id " + id);
-
-                            ids.remove(id);
-
-                            adapter.getItem(position).isChecked = false;
-                            adapter.notifyDataSetChanged();
+                            selectMap.put(position, item);
                         }
                     }
                 });
@@ -184,17 +176,38 @@ public class MyStandInsideLetterActivity extends BaseActivity implements EndOfLi
         tvDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (selectMap.size() == 0) {
+                    Toast.makeText(MyStandInsideLetterActivity.this,"请选择信件",Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
+                ids.clear();
+                for (Map.Entry<Integer, StandInsideLetterList> entry : selectMap.entrySet()) {
+                    System.out.println("key= " + entry.getKey() + " and value= " + entry.getValue());
+                    ids.add(((StandInsideLetterList)entry.getValue()).id);
+                }
+                System.out.println("ids " + ids.toString());
+                toDelete(ids.toString());
             }
         });
         tvLetterRead.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+                if (selectMap.size() == 0) {
+                    Toast.makeText(MyStandInsideLetterActivity.this,"请选择信件",Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                ids.clear();
+                for (Map.Entry<Integer, StandInsideLetterList> entry : selectMap.entrySet()) {
+                    System.out.println("key= " + entry.getKey() + " and value= " + entry.getValue());
+                    ids.add(((StandInsideLetterList)entry.getValue()).id);
+                }
                 System.out.println("ids " + ids.toString());
+                toRead(ids.toString());
             }
         });
-
     }
 
     private void loadData() {
@@ -257,9 +270,16 @@ public class MyStandInsideLetterActivity extends BaseActivity implements EndOfLi
 
                 String message = result.message;
                 if ("mess_yidu_suc".equals(message)) {
-                    System.out.println("mess_yidu_suc");
-                    adapter.getItem(selectPosition).status = 1;
-                    adapter.notifyDataSetChanged();
+                    if (selectMap.size() == 0 ){  //单选
+                        System.out.println("mess_yidu_suc");
+                        adapter.getItem(selectPosition).status = 1;
+                        adapter.notifyDataSetChanged();
+                    } else {  //多选
+                        for (Map.Entry<Integer, StandInsideLetterList> entry : selectMap.entrySet()) {
+                            adapter.getItem(entry.getKey()).status = 1;
+                        }
+                        adapter.notifyDataSetChanged();
+                    }
                 }
             }
 
@@ -288,12 +308,18 @@ public class MyStandInsideLetterActivity extends BaseActivity implements EndOfLi
 
                 String message = result.message;
                 if ("mess_del_suc".equals(message)) {
-                    System.out.println("mess_del_suc");
-                    adapter.remove(selectPosition);
-                    adapter.notifyDataSetChanged();
+                    if (selectMap.size() == 0 ) {  //单选
+                        System.out.println("mess_del_suc");
+                        adapter.remove(selectPosition);
+                    } else {
+                        List<Integer> selectPositions = new ArrayList<Integer>();
+                        for (Map.Entry<Integer, StandInsideLetterList> entry : selectMap.entrySet()) {
+//                            selectPositions.add(entry.getKey());
+                            adapter.remove(entry.getKey());
+                        }
+                    }
                 }
             }
-
             @Override
             public void onErrorResponse(VolleyError volleyError) {
                 progressDialog.dismiss();
