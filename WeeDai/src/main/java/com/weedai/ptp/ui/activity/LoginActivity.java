@@ -28,6 +28,7 @@ import com.weedai.ptp.view.SimpleValidateCodeView;
 import com.weedai.ptp.view.ValidateCodeView;
 import com.weedai.ptp.volley.ResponseListener;
 
+import java.net.URLEncoder;
 import java.util.Arrays;
 
 public class LoginActivity extends Activity implements View.OnClickListener {
@@ -115,6 +116,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
             }
         }
 
+        username = URLEncoder.encode(username);
         ApiClient.login(TAG, username, password, valicode, new ResponseListener() {
             @Override
             public void onStarted() {

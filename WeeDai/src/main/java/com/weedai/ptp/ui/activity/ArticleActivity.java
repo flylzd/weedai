@@ -95,7 +95,7 @@ public class ArticleActivity extends BaseActivity implements SwipeRefreshLayout.
     public void onResume() {
         super.onResume();
 //        viewPager.startAutoScroll();
-        if (imageUrls.size() != 0){
+        if (imageUrls.size() != 0) {
             System.out.println("onResume imageViewsList.size() == " + imageViewsList.size());
             showImageViewPager();
         }
@@ -111,10 +111,10 @@ public class ArticleActivity extends BaseActivity implements SwipeRefreshLayout.
     public void onRefresh() {
         if (articleType == Constant.ArticleType.INFORMATION) {
             infoPage = DEFAULT_PAGE;
-            getArticleList(infoPage);
+            getArticleInfo(infoPage);
         } else {
             noticePage = DEFAULT_PAGE;
-            getArticleList(noticePage);
+            getArticleNotice(noticePage);
         }
     }
 
@@ -127,14 +127,14 @@ public class ArticleActivity extends BaseActivity implements SwipeRefreshLayout.
                 return;
             }
             infoPage++;
-            getArticleList(infoPage);
+            getArticleInfo(infoPage);
         } else {
             if (isBottomLoadingCompleteNotice) {
                 showIndeterminateProgress(false);
                 return;
             }
             noticePage++;
-            getArticleList(noticePage);
+            getArticleNotice(noticePage);
         }
     }
 
@@ -151,27 +151,32 @@ public class ArticleActivity extends BaseActivity implements SwipeRefreshLayout.
                 switch (checkedId) {
                     case R.id.rbArticleInformation:
 
-                        articleType = Constant.ArticleType.INFORMATION;
-                        if (!informationList.isEmpty()) {
-                            adapter.replaceAll(informationList);
-                        } else {
-                            if (infoPage == 0) {
-                                infoPage++;
+                        synchronized (ArticleActivity.this){
+                            articleType = Constant.ArticleType.INFORMATION;
+                            if (!informationList.isEmpty()) {
+                                adapter.replaceAll(informationList);
+                            } else {
+                                if (infoPage == 0) {
+                                    infoPage++;
+                                }
+                                adapter.clear();
+                                getArticleInfo(infoPage);
                             }
-                            adapter.clear();
-                            getArticleList(infoPage);
                         }
+
                         break;
                     case R.id.rbArticleNotice:
-                        articleType = Constant.ArticleType.NOTICE;
-                        if (!noticeList.isEmpty()) {
-                            adapter.replaceAll(noticeList);
-                        } else {
-                            if (noticePage == 0) {
-                                noticePage++;
+                        synchronized (ArticleActivity.this){
+                            articleType = Constant.ArticleType.NOTICE;
+                            if (!noticeList.isEmpty()) {
+                                adapter.replaceAll(noticeList);
+                            } else {
+                                if (noticePage == 0) {
+                                    noticePage++;
+                                }
+                                adapter.clear();
+                                getArticleNotice(noticePage);
                             }
-                            adapter.clear();
-                            getArticleList(noticePage);
                         }
                         break;
                 }
@@ -270,9 +275,47 @@ public class ArticleActivity extends BaseActivity implements SwipeRefreshLayout.
 //        getArticleList(infoPage);
     }
 
-    private void getArticleList(int page) {
+//    private void getArticleList(int page) {
+//
+//        ApiClient.getArticleList(TAG, page, articleType, new RefreshResponseListener() {
+//
+//            @Override
+//            public void onResponse(Object response) {
+//                super.onResponse(response);
+//
+//                Article result = (Article) response;
+//                if (result.code != Constant.CodeResult.SUCCESS) {
+//                    Toast.makeText(ArticleActivity.this, result.message, Toast.LENGTH_SHORT).show();
+//                    return;
+//                }
+//                List<ArticleList> articleList = result.data.list;
+//                if (articleList != null && articleList.size() != 0) {
+//
+//                    if (articleType == Constant.ArticleType.INFORMATION) {
+//                        informationList.addAll(articleList);
+//                        adapter.replaceAll(informationList);
+//                    } else {
+//                        noticeList.addAll(articleList);
+//                        adapter.replaceAll(noticeList);
+//                    }
+//                }
+//
+//                int currentPage = result.data.page;
+//                int totalPage = result.data.total_page;
+//                if (currentPage == totalPage || totalPage == 0) {
+//                    if (articleType == Constant.ArticleType.INFORMATION) {
+//                        isBottomLoadingCompleteInfo = true;
+//                    } else {
+//                        isBottomLoadingCompleteNotice = true;
+//                    }
+//                }
+//            }
+//        });
+//    }
 
-        ApiClient.getArticleList(TAG, page, articleType, new RefreshResponseListener() {
+    private void getArticleInfo(int page) {
+
+        ApiClient.getArticleList(TAG, page, Constant.ArticleType.INFORMATION, new RefreshResponseListener() {
 
             @Override
             public void onResponse(Object response) {
@@ -283,27 +326,44 @@ public class ArticleActivity extends BaseActivity implements SwipeRefreshLayout.
                     Toast.makeText(ArticleActivity.this, result.message, Toast.LENGTH_SHORT).show();
                     return;
                 }
-
                 List<ArticleList> articleList = result.data.list;
                 if (articleList != null && articleList.size() != 0) {
-
-                    if (articleType == Constant.ArticleType.INFORMATION) {
                         informationList.addAll(articleList);
                         adapter.replaceAll(informationList);
-                    } else {
-                        noticeList.addAll(articleList);
-                        adapter.replaceAll(noticeList);
-                    }
                 }
 
                 int currentPage = result.data.page;
                 int totalPage = result.data.total_page;
                 if (currentPage == totalPage || totalPage == 0) {
-                    if (articleType == Constant.ArticleType.INFORMATION) {
                         isBottomLoadingCompleteInfo = true;
-                    } else {
+                }
+            }
+        });
+    }
+
+    private void getArticleNotice(int page) {
+
+        ApiClient.getArticleList(TAG, page, Constant.ArticleType.NOTICE, new RefreshResponseListener() {
+
+            @Override
+            public void onResponse(Object response) {
+                super.onResponse(response);
+
+                Article result = (Article) response;
+                if (result.code != Constant.CodeResult.SUCCESS) {
+                    Toast.makeText(ArticleActivity.this, result.message, Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                List<ArticleList> articleList = result.data.list;
+                if (articleList != null && articleList.size() != 0) {
+                    noticeList.addAll(articleList);
+                    adapter.replaceAll(noticeList);
+                }
+
+                int currentPage = result.data.page;
+                int totalPage = result.data.total_page;
+                if (currentPage == totalPage || totalPage == 0) {
                         isBottomLoadingCompleteNotice = true;
-                    }
                 }
             }
         });
