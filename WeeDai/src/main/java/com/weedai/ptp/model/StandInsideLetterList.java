@@ -10,4 +10,6 @@ public class StandInsideLetterList implements Serializable {
     public String name;
     public String addtime;
     public int status;  //0为没读  1为已读
+
+    public  boolean isChecked;
 }

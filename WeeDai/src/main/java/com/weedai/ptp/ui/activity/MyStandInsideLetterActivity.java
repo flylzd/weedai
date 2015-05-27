@@ -1,17 +1,15 @@
 package com.weedai.ptp.ui.activity;
 
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.ContextMenu;
-import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.LinearLayout;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,11 +17,9 @@ import com.android.volley.error.VolleyError;
 import com.lemon.aklib.adapter.BaseAdapterHelper;
 import com.lemon.aklib.adapter.QuickAdapter;
 import com.lemon.aklib.widget.EndOfListView;
-import com.nostra13.universalimageloader.cache.memory.impl.FIFOLimitedMemoryCache;
 import com.weedai.ptp.R;
 import com.weedai.ptp.app.ApiClient;
 import com.weedai.ptp.constant.Constant;
-import com.weedai.ptp.model.Bank;
 import com.weedai.ptp.model.BaseModel;
 import com.weedai.ptp.model.StandInsideLetter;
 import com.weedai.ptp.model.StandInsideLetterList;
@@ -53,6 +49,12 @@ public class MyStandInsideLetterActivity extends BaseActivity implements EndOfLi
     private int selectPosition;
 
     public static final int DETAIL_DELETE = 101;
+
+    private CheckBox cbLetterAll;
+    private TextView tvDelete;
+    private TextView tvLetterRead;
+
+    private List<String> ids = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,14 +95,46 @@ public class MyStandInsideLetterActivity extends BaseActivity implements EndOfLi
         adapter = new QuickAdapter<StandInsideLetterList>(MyStandInsideLetterActivity.this, R.layout.listitem_stand_inside_letter) {
 
             @Override
-            protected void convert(BaseAdapterHelper helper, StandInsideLetterList item) {
+            protected void convert(BaseAdapterHelper helper, final StandInsideLetterList item) {
 
-                String addTime = item.addtime + "000";
+                final String addTime = item.addtime + "000";
                 SimpleDateFormat sdf = new SimpleDateFormat("MM月dd日 hh:mm");
                 String time = sdf.format(Long.parseLong(addTime));
 
                 helper.setText(R.id.tvTitle, Html.fromHtml(DataUtil.urlDecode(item.name)));
                 helper.setText(R.id.tvTime, time);
+
+                final int position = helper.getPosition();
+                CheckBox cbLetter = helper.getView(R.id.cbLetter);
+                if (item.isChecked) {
+                    cbLetter.setChecked(true);
+                }else {
+                    cbLetter.setChecked(false);
+                }
+                cbLetter.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+                    String id = adapter.getItem(position).id;
+
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                        if (isChecked) {
+                            System.out.println("check id " + id);
+
+                            ids.add(id);
+
+                            adapter.getItem(position).isChecked = true;
+                            adapter.notifyDataSetChanged();
+                        } else {
+
+                            System.out.println("not check id " + id);
+
+                            ids.remove(id);
+
+                            adapter.getItem(position).isChecked = false;
+                            adapter.notifyDataSetChanged();
+                        }
+                    }
+                });
 
                 int status = item.status;
                 if (status == 0) {  //没读
@@ -141,6 +175,26 @@ public class MyStandInsideLetterActivity extends BaseActivity implements EndOfLi
             }
         });
         registerForContextMenu(listView);//为ListView添加上下文菜单
+
+
+        cbLetterAll = (CheckBox) findViewById(R.id.cbLetter);
+        tvDelete = (TextView) findViewById(R.id.tvDelete);
+        tvLetterRead = (TextView) findViewById(R.id.tvLetterRead);
+
+        tvDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        tvLetterRead.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                System.out.println("ids " + ids.toString());
+            }
+        });
+
     }
 
     private void loadData() {

@@ -4,6 +4,50 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#dedbdb"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <CheckBox
+            android:id="@+id/cbLetterAll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:text="全选" />
+
+
+        <TextView
+            android:id="@+id/tvDelete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:padding="10dp"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/tvLetterRead"
+            android:drawableLeft="@drawable/icon_delete"
+            android:text="删除"
+            android:textSize="18sp" />
+
+
+        <TextView
+            android:id="@+id/tvLetterRead"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:padding="10dp"
+            android:drawableLeft="@drawable/icon_letter_set_read"
+            android:text="标记已读"
+            android:textSize="18sp" />
+
+
+    </RelativeLayout>
+
 
     <com.lemon.aklib.widget.EndOfListView
         android:id="@+id/listView"

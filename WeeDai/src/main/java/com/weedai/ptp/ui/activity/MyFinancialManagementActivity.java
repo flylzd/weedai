@@ -139,7 +139,7 @@ public class MyFinancialManagementActivity extends BaseActivity implements EndOf
                 }
 
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-                String repay_time = sdf.format(Long.parseLong(item.repay_time + "000"));
+                String repay_time = sdf.format(Long.parseLong(item.repayment_times + "000"));
 
                 String receivableDate = String.format(getString(R.string.user_my_financial_borrowers_receivable_date), repay_time);
                 String order = item.order + "/" + item.time_limit;

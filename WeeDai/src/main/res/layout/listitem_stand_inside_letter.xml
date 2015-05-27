@@ -5,8 +5,15 @@
     android:gravity="center_vertical"
     android:orientation="horizontal"
     android:paddingBottom="10dp"
+    android:descendantFocusability="blocksDescendants"
     android:paddingLeft="10dp"
     android:paddingTop="10dp">
+
+    <CheckBox
+        android:id="@+id/cbLetter"
+        android:layout_width="wrap_content"
+        android:layout_marginRight="12dp"
+        android:layout_height="wrap_content" />
 
 
     <ImageView

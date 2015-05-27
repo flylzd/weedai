@@ -21,6 +21,7 @@ public class FinancialManagerList implements Serializable {
 
 
     public int status;
+    public String repayment_times;
     public String repay_time;
     public String order;
     public String repay_account;

@@ -96,8 +96,8 @@ public class MyBankCardActivity extends BaseActivity {
 
             tvRealName.setText(DataUtil.urlDecode(data.realname));
             tvRealEmail.setText(DataUtil.urlDecode(data.email));
-//            tvBankBranch.setText(DataUtil.urlDecode(DataUtil.urlDecode(data.branch)));
-            tvBankBranch.setText(DataUtil.urlDecode(data.branch));
+            tvBankBranch.setText(DataUtil.urlDecode(DataUtil.urlDecode(data.branch)));
+//            tvBankBranch.setText(DataUtil.urlDecode(data.branch));
             tvBankCode.setText(DataUtil.urlDecode(data.account));
             tvBankName.setText(DataUtil.urlDecode(data.banksname));
 

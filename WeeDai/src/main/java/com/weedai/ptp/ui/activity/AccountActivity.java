@@ -196,6 +196,7 @@ public class AccountActivity extends BaseActivity implements View.OnClickListene
             case R.id.layoutAccountDateBirth:
                 break;
             case R.id.layoutAccountPhone:
+                UIHelper.showSecurityPhone(AccountActivity.this);
                 break;
             case R.id.layoutAccountEmail:
                 UIHelper.showSecurityEmail(AccountActivity.this);
