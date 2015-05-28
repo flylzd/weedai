@@ -10,9 +10,7 @@
             style="@style/textMyBankTitle"
             android:text="@string/user_my_bank_bank" />
 
-        <RelativeLayout
-            style="@style/textMyBank"
-            android:paddingRight="20dp">
+        <RelativeLayout style="@style/textMyBank" android:paddingRight="20dp">
 
             <ImageView
                 android:id="@+id/imgBankIcon"
@@ -23,26 +21,25 @@
                 android:src="@drawable/icon_bank_gongshang" />
 
             <TextView
+                android:visibility="gone"
                 android:id="@+id/tvBankName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
                 android:layout_marginLeft="12dp"
+                android:layout_centerVertical="true"
                 android:layout_toRightOf="@+id/imgBankIcon"
                 android:text="中国银行"
                 android:textColor="@color/main_text"
-                android:textSize="22sp"
-                android:visibility="gone" />
-
-            <Spinner
-                android:id="@+id/spinner"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="12dp"
-                android:layout_toRightOf="@+id/imgBankIcon"
-                android:background="@null"
                 android:textSize="22sp" />
+
+            <Spinner android:id="@+id/spinner"
+                android:layout_width="match_parent"
+                android:layout_marginLeft="12dp"
+                android:background="@null"
+                android:textSize="22sp"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/imgBankIcon"
+                android:layout_height="wrap_content" />
 
         </RelativeLayout>
 
@@ -58,9 +55,9 @@
             android:text="@string/user_my_bank_branch_name" />
 
         <EditText
+            android:hint="如广东分行勒流支行"
             android:id="@+id/etBankBranch"
-            style="@style/textMyBank"
-            android:hint="如广东分行勒流支行" />
+            style="@style/textMyBank" />
     </LinearLayout>
 
     <include layout="@layout/view_horizontal_line" />
@@ -72,10 +69,9 @@
             android:text="@string/user_my_bank_bank_card_code" />
 
         <EditText
+            android:inputType="number"
             android:id="@+id/etBankCode"
-            style="@style/textMyBank"
-            android:hint="开户人姓名必须为马云"
-            android:inputType="number" />
+            style="@style/textMyBank" />
     </LinearLayout>
 
     <Button

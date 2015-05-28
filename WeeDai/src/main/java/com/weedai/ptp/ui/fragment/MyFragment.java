@@ -94,6 +94,11 @@ public class MyFragment extends Fragment implements View.OnClickListener {
         loadData();
     }
 
+    @Override
+    public void onStop() {
+        super.onStop();
+    }
+
     private void init(View view) {
 
         imgAvatar = (ImageView) view.findViewById(R.id.imgAvatar);
@@ -182,8 +187,8 @@ public class MyFragment extends Fragment implements View.OnClickListener {
 
     private void setUserInfo() {
         if (data != null) {
-            tvUsername.setText(data.username);
-            tvEmail.setText(data.email);
+            tvUsername.setText(DataUtil.urlDecode(data.username));
+            tvEmail.setText(DataUtil.urlDecode(data.email));
 
             level = 0;
             if (data.avatar_status == 1) {

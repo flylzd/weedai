@@ -38,6 +38,7 @@ import com.weedai.ptp.utils.Logger;
 import com.weedai.ptp.utils.NetworkStateManager;
 import com.weedai.ptp.volley.GsonGetRequest;
 import com.weedai.ptp.volley.GsonPostRequest;
+import com.weedai.ptp.volley.GsonPostUTF8Request;
 import com.weedai.ptp.volley.MultiPartGsonPostRequest;
 import com.weedai.ptp.volley.MultipartEntity;
 import com.weedai.ptp.volley.ResponseListener;
@@ -46,6 +47,7 @@ import com.weedai.ptp.volley.VolleySingleton;
 
 import java.io.ByteArrayOutputStream;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -133,7 +135,7 @@ public class ApiClient {
         requestParams.put(Urls.ACTION, "users");
 
         String url = Urls.ACTION_INDEX;
-        GsonPostRequest request = createGsonPostRequest(url, requestParams, BaseModel.class, listener);
+        GsonPostUTF8Request request = createGsonPostUTF8Request(url, requestParams, BaseModel.class, listener);
         request.setTag(tag);
         requestQueue.add(request);
     }
@@ -545,6 +547,56 @@ public class ApiClient {
         requestParams.put("q", "code/message");
         requestParams.put("type", "2");  //已读
         requestParams.put("id", id);
+        requestParams.put(Urls.ACTION, "users");
+
+        String url = Urls.ACTION_INDEX;
+        GsonPostRequest request = createGsonPostRequest(url, requestParams, BaseModel.class, listener);
+        request.setTag(tag);
+        requestQueue.add(request);
+    }
+
+    /**
+     * 站内信标记已读
+     */
+    public static void standInsideLetterToRead(String tag, List<String> ids, ResponseListener listener) {
+
+        if (!hashkNewwork()) {
+            return;
+        }
+
+        listener.onStarted();
+
+        Map<String, String> requestParams = getSignatureMap();
+        requestParams.put("q", "code/message");
+        requestParams.put("type", "2");  //已读
+        for (int i = 0; i < ids.size(); i++) {
+            requestParams.put("id[" + i + "]", ids.get(i));
+        }
+        requestParams.put(Urls.ACTION, "users");
+
+        String url = Urls.ACTION_INDEX;
+        GsonPostRequest request = createGsonPostRequest(url, requestParams, BaseModel.class, listener);
+        request.setTag(tag);
+        requestQueue.add(request);
+    }
+
+    /**
+     * 站内信标记删除
+     */
+    public static void standInsideLetterToDelete(String tag, List<String> ids, ResponseListener listener) {
+
+        if (!hashkNewwork()) {
+            return;
+        }
+
+        listener.onStarted();
+
+        Map<String, String> requestParams = getSignatureMap();
+        requestParams.put("q", "code/message");
+        requestParams.put("type", "1");  //删除
+        for (int i = 0; i < ids.size(); i++) {
+            requestParams.put("id[" + i + "]", ids.get(i));
+        }
         requestParams.put(Urls.ACTION, "users");
 
         String url = Urls.ACTION_INDEX;
@@ -1329,6 +1381,35 @@ public class ApiClient {
         } catch (AuthFailureError authFailureError) {
             authFailureError.printStackTrace();
         }
+        return request;
+    }
+
+
+    private static <T> GsonPostUTF8Request createGsonPostUTF8Request(String url, Map<String, String> requestParamsMap, Class<T> clazz, final ResponseListener listener) {
+
+        GsonPostUTF8Request request = new GsonPostUTF8Request(url, clazz, requestParamsMap, new Response.Listener<T>() {
+            @Override
+            public void onResponse(T response) {
+                Log.d(TAG, "onResponse = " + response.toString());
+                listener.onResponse(response);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                Log.d(TAG, "volleyError = " + volleyError.toString());
+                listener.onErrorResponse(volleyError);
+            }
+        });
+
+        try {
+            Log.d(TAG, "request Headers = " + request.getHeaders().toString());
+        } catch (AuthFailureError authFailureError) {
+            authFailureError.printStackTrace();
+        }
+        String params = requestParamsMap.toString().substring(1, requestParamsMap.toString().length() - 1);
+        Log.d(TAG, "request Url-Params = " + request.getUrl() + "?" + params);
+//        Log.d(TAG, "request Url-Params = " + request.getUrl());
+
         return request;
     }
 

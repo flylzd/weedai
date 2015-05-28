@@ -116,7 +116,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
             }
         }
 
-        username = URLEncoder.encode(username);
+//        username = URLEncoder.encode(username);
         ApiClient.login(TAG, username, password, valicode, new ResponseListener() {
             @Override
             public void onStarted() {

@@ -30,6 +30,7 @@ import java.util.List;
  * Abstraction class of a BaseAdapter in which you only need
  * to provide the convert() implementation.<br/>
  * Using the provided BaseAdapterHelper, your code is minimalist.
+ *
  * @param <T> The type of the items in the list.
  */
 public abstract class BaseQuickAdapter<T, H extends BaseAdapterHelper> extends BaseAdapter {
@@ -46,6 +47,7 @@ public abstract class BaseQuickAdapter<T, H extends BaseAdapterHelper> extends B
 
     /**
      * Create a QuickAdapter.
+     *
      * @param context     The context.
      * @param layoutResId The layout resource id of each item.
      */
@@ -56,6 +58,7 @@ public abstract class BaseQuickAdapter<T, H extends BaseAdapterHelper> extends B
     /**
      * Same as QuickAdapter#QuickAdapter(Context,int) but with
      * some initialization data.
+     *
      * @param context     The context.
      * @param layoutResId The layout resource id of each item.
      * @param data        A new list is created out of this one to avoid mutable list
@@ -151,6 +154,11 @@ public abstract class BaseQuickAdapter<T, H extends BaseAdapterHelper> extends B
         notifyDataSetChanged();
     }
 
+    public void removeAll(List<Integer> indexs) {
+        data.removeAll(indexs);
+        notifyDataSetChanged();
+    }
+
     public void replaceAll(List<T> elem) {
         data.clear();
         data.addAll(elem);
@@ -161,7 +169,9 @@ public abstract class BaseQuickAdapter<T, H extends BaseAdapterHelper> extends B
         return data.contains(elem);
     }
 
-    /** Clear data list */
+    /**
+     * Clear data list
+     */
     public void clear() {
         data.clear();
         notifyDataSetChanged();
@@ -175,6 +185,7 @@ public abstract class BaseQuickAdapter<T, H extends BaseAdapterHelper> extends B
 
     /**
      * Implement this method and use the helper to adapt the view to the given item.
+     *
      * @param helper A fully initialized helper.
      * @param item   The item that needs to be displayed.
      */
@@ -182,6 +193,7 @@ public abstract class BaseQuickAdapter<T, H extends BaseAdapterHelper> extends B
 
     /**
      * You can override this method to use a custom BaseAdapterHelper in order to fit your needs
+     *
      * @param position    The position of the item within the adapter's data set of the item whose view we want.
      * @param convertView The old view to reuse, if possible. Note: You should check that this view
      *                    is non-null and of an appropriate type before using. If it is not possible to convert

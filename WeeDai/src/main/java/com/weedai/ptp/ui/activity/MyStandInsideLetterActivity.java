@@ -166,28 +166,67 @@ public class MyStandInsideLetterActivity extends BaseActivity implements EndOfLi
                 UIHelper.showMyStandInsideLetterDetail(MyStandInsideLetterActivity.this, adapter.getItem(selectPosition), DETAIL_DELETE);
             }
         });
-        registerForContextMenu(listView);//为ListView添加上下文菜单
+        registerForContextMenu(listView);//为ListView添加上下文
 
 
-        cbLetterAll = (CheckBox) findViewById(R.id.cbLetter);
+        cbLetterAll = (CheckBox) findViewById(R.id.cbLetterAll);
         tvDelete = (TextView) findViewById(R.id.tvDelete);
         tvLetterRead = (TextView) findViewById(R.id.tvLetterRead);
+
+        cbLetterAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (cbLetterAll.isChecked()) {
+                    System.out.println("cbLetterAll.isChecked() " + cbLetterAll.isChecked());
+
+                    int size = dataList.size();
+                    selectMap.clear();
+                    for (int i = 0; i < size; i++) {
+                        selectMap.put(i, dataList.get(i));
+                    }
+                } else {
+                    System.out.println("cbLetterAll.isChecked() is not  " + cbLetterAll.isChecked());
+                    selectMap.clear();
+                }
+                adapter.notifyDataSetChanged();
+            }
+        });
 
         tvDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (selectMap.size() == 0) {
-                    Toast.makeText(MyStandInsideLetterActivity.this,"请选择信件",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MyStandInsideLetterActivity.this, "请选择信件", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 ids.clear();
                 for (Map.Entry<Integer, StandInsideLetterList> entry : selectMap.entrySet()) {
                     System.out.println("key= " + entry.getKey() + " and value= " + entry.getValue());
-                    ids.add(((StandInsideLetterList)entry.getValue()).id);
+                    ids.add(((StandInsideLetterList) entry.getValue()).id);
                 }
                 System.out.println("ids " + ids.toString());
-                toDelete(ids.toString());
+                toDelete(ids);
+
+
+//                adapter.notifyDataSetChanged();
+//                List<StandInsideLetterList> listTmp = new ArrayList<StandInsideLetterList>();
+//                for (StandInsideLetterList item : dataList) {
+//                    listTmp.add(item);
+//                }
+//                System.out.println("dataList ' size == " + dataList.size());
+//                System.out.println("listTmp ' size == " + listTmp.size());
+//                for (int i = 0; i < selectPositions.size(); i++) {
+//                    System.out.println("position " + selectPositions.get(i));
+//                    selectMap.remove(selectPositions.get(i));
+////                        dataList.remove(position);
+//                    System.out.println("remove is " + listTmp.remove(selectPositions.get(i)));
+////                        adapter.remove(position);
+//                }
+//                dataList = listTmp;
+
+                System.out.println("dataList ' size == " + dataList.size());
             }
         });
         tvLetterRead.setOnClickListener(new View.OnClickListener() {
@@ -195,17 +234,17 @@ public class MyStandInsideLetterActivity extends BaseActivity implements EndOfLi
             public void onClick(View v) {
 
                 if (selectMap.size() == 0) {
-                    Toast.makeText(MyStandInsideLetterActivity.this,"请选择信件",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MyStandInsideLetterActivity.this, "请选择信件", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 ids.clear();
                 for (Map.Entry<Integer, StandInsideLetterList> entry : selectMap.entrySet()) {
                     System.out.println("key= " + entry.getKey() + " and value= " + entry.getValue());
-                    ids.add(((StandInsideLetterList)entry.getValue()).id);
+                    ids.add(((StandInsideLetterList) entry.getValue()).id);
                 }
                 System.out.println("ids " + ids.toString());
-                toRead(ids.toString());
+                toRead(ids);
             }
         });
     }
@@ -270,16 +309,52 @@ public class MyStandInsideLetterActivity extends BaseActivity implements EndOfLi
 
                 String message = result.message;
                 if ("mess_yidu_suc".equals(message)) {
-                    if (selectMap.size() == 0 ){  //单选
+                    if (selectMap.size() == 0) {  //单选
                         System.out.println("mess_yidu_suc");
                         adapter.getItem(selectPosition).status = 1;
                         adapter.notifyDataSetChanged();
-                    } else {  //多选
-                        for (Map.Entry<Integer, StandInsideLetterList> entry : selectMap.entrySet()) {
-                            adapter.getItem(entry.getKey()).status = 1;
-                        }
-                        adapter.notifyDataSetChanged();
                     }
+//                    else {  //多选
+//                        for (Map.Entry<Integer, StandInsideLetterList> entry : selectMap.entrySet()) {
+//                            adapter.getItem(entry.getKey()).status = 1;
+//                        }
+//                        adapter.notifyDataSetChanged();
+//                    }
+                }
+            }
+
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                progressDialog.dismiss();
+            }
+        });
+    }
+
+
+    private void toRead(List<String> id) {
+        ApiClient.standInsideLetterToRead(TAG, id, new ResponseListener() {
+            @Override
+            public void onStarted() {
+                progressDialog = ProgressDialog.show(MyStandInsideLetterActivity.this, null, getString(R.string.message_waiting));
+            }
+
+            @Override
+            public void onResponse(Object response) {
+                progressDialog.dismiss();
+                BaseModel result = (BaseModel) response;
+                if (result.code != Constant.CodeResult.SUCCESS) {
+                    Toast.makeText(MyStandInsideLetterActivity.this, result.message, Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                String message = result.message;
+                if ("mess_yidu_suc".equals(message)) {
+                    //多选
+                    for (Map.Entry<Integer, StandInsideLetterList> entry : selectMap.entrySet()) {
+                        adapter.getItem(entry.getKey()).status = 1;
+                    }
+                    selectMap.clear();
+                    adapter.notifyDataSetChanged();
                 }
             }
 
@@ -308,18 +383,61 @@ public class MyStandInsideLetterActivity extends BaseActivity implements EndOfLi
 
                 String message = result.message;
                 if ("mess_del_suc".equals(message)) {
-                    if (selectMap.size() == 0 ) {  //单选
+                    if (selectMap.size() == 0) {  //单选
                         System.out.println("mess_del_suc");
                         adapter.remove(selectPosition);
-                    } else {
-                        List<Integer> selectPositions = new ArrayList<Integer>();
-                        for (Map.Entry<Integer, StandInsideLetterList> entry : selectMap.entrySet()) {
-//                            selectPositions.add(entry.getKey());
-                            adapter.remove(entry.getKey());
-                        }
                     }
+//                    else {
+//                        List<Integer> selectPositions = new ArrayList<Integer>();
+//                        for (Map.Entry<Integer, StandInsideLetterList> entry : selectMap.entrySet()) {
+////                            selectPositions.add(entry.getKey());
+//                            adapter.remove(entry.getKey());
+//                        }
+//                    }
                 }
             }
+
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                progressDialog.dismiss();
+            }
+        });
+    }
+
+    private void toDelete(List<String> id) {
+        ApiClient.standInsideLetterToDelete(TAG, id, new ResponseListener() {
+            @Override
+            public void onStarted() {
+                progressDialog = ProgressDialog.show(MyStandInsideLetterActivity.this, null, getString(R.string.message_submit));
+            }
+
+            @Override
+            public void onResponse(Object response) {
+                progressDialog.dismiss();
+                BaseModel result = (BaseModel) response;
+                if (result.code != Constant.CodeResult.SUCCESS) {
+                    Toast.makeText(MyStandInsideLetterActivity.this, result.message, Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                String message = result.message;
+                if ("mess_del_suc".equals(message)) {
+
+                    List<Integer> selectPositions = new ArrayList<Integer>();
+                    for (Map.Entry<Integer, StandInsideLetterList> entry : selectMap.entrySet()) {
+                        System.out.println("entry.getKey() " + entry.getKey());
+//                        selectPositions.add(entry.getKey());
+                        System.out.println("remove is " + dataList.remove(entry.getValue()));
+                    }
+                    selectMap.clear();
+                    List<StandInsideLetterList> listTmp = new ArrayList<StandInsideLetterList>();
+                    listTmp.addAll(dataList);
+                    dataList.clear();
+                    dataList.addAll(listTmp);
+                    adapter.replaceAll(dataList);
+                }
+            }
+
             @Override
             public void onErrorResponse(VolleyError volleyError) {
                 progressDialog.dismiss();
@@ -362,7 +480,6 @@ public class MyStandInsideLetterActivity extends BaseActivity implements EndOfLi
                 System.out.println("删除");
 
                 adapter.remove(selectPosition);
-                adapter.notifyDataSetChanged();
             }
         }
     }
