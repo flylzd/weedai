@@ -36,27 +36,38 @@
             android:scaleType="centerCrop"
             android:src="@drawable/ic_login_user" />
 
-        <EditText
-            android:id="@+id/etUsername"
+        <FrameLayout
             android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:layout_weight="1"
-            android:background="@null"
-            android:gravity="center_vertical"
-            android:hint="@string/login_user_hint"
-            android:singleLine="true"
-            android:textSize="18sp" />
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
 
+            <EditText
+                android:id="@+id/etUsername"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:background="@null"
+                android:gravity="center_vertical"
+                android:hint="@string/login_user_hint"
+                android:singleLine="true"
+                android:textSize="18sp" />
 
-        <Spinner
-            android:id="@+id/spinner"
-            android:layout_width="25dp"
-            android:visibility="gone"
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:visibility="invisible"
+                android:layout_centerVertical="true"
+                android:textSize="18sp" />
+
+        </FrameLayout>
+
+        <ImageView
+            android:id="@+id/imgSelect"
+            android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="12dp"
-            android:background="@drawable/ic_login_user"
-            android:textSize="22sp" />
+            android:layout_marginRight="30dp"
+            android:src="@drawable/icon_user_right" />
+
 
     </LinearLayout>
 
@@ -142,6 +153,7 @@
         <CheckBox
             android:id="@+id/cbRememberUser"
             android:layout_width="wrap_content"
+            android:checked="true"
             android:layout_height="wrap_content"
             android:text="@string/login_remember_user"
             android:textColor="@color/text_login"
