@@ -13,9 +13,79 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:background="@color/white"
         android:orientation="vertical"
-        android:layout_weight="1">
+        android:paddingBottom="10dp"
+        android:paddingLeft="18dp"
+        android:paddingTop="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="2dp"
+            android:paddingTop="2dp"
+            android:text="佛山市微贷网络科技有限公司"
+            android:textSize="20sp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="2dp"
+            android:paddingTop="2dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="电话:"
+                android:textColor="@color/main_text"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="0757-28789201"
+                android:textColor="@color/main_text_black"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:text="28789207"
+                android:textColor="@color/main_text_black"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:text="28782012"
+                android:textColor="@color/main_text_black"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="2dp"
+            android:paddingRight="4dp"
+            android:paddingTop="2dp"
+            android:text="地址:广东省佛山市顺德区乐从大道北鹭晖商厦409-410室（即乐从天佑城斜对面)"
+            android:textColor="@color/main_text"
+            android:textSize="15sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -23,9 +93,9 @@
             android:layout_marginTop="15dp"
             android:background="@color/white"
             android:orientation="vertical"
-            android:paddingBottom="20dp"
+            android:paddingBottom="10dp"
             android:paddingLeft="18dp"
-            android:paddingTop="18dp">
+            android:paddingTop="10dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -78,78 +148,8 @@
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:background="@color/white"
-            android:orientation="vertical"
-            android:paddingBottom="20dp"
-            android:paddingLeft="18dp"
-            android:paddingTop="18dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingBottom="2dp"
-                android:paddingTop="2dp"
-                android:text="深圳市微贷投资有限公司(佛山分公司)"
-                android:textSize="20sp" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingBottom="2dp"
-                android:paddingTop="2dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="电话:"
-                    android:textColor="@color/main_text"
-                    android:textSize="20sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:text="0757-28789201"
-                    android:textColor="@color/main_text_black"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="4dp"
-                    android:text="28789207"
-                    android:textColor="@color/main_text_black"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="4dp"
-                    android:text="28782012"
-                    android:textColor="@color/main_text_black"
-                    android:textSize="16sp" />
-
-            </LinearLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingBottom="2dp"
-                android:paddingTop="2dp"
-                android:paddingRight="4dp"
-                android:text="地址:广东省佛山市顺德区乐从大道北鹭晖商厦409-410室（即乐从天佑城斜对面)"
-                android:textColor="@color/main_text"
-                android:textSize="15sp" />
-
-        </LinearLayout>
-
-        </LinearLayout>
-
+    </LinearLayout>
 
 
     <LinearLayout
@@ -159,26 +159,26 @@
         <Button
             android:id="@+id/btnPartner"
             android:layout_width="0dp"
-            android:background="@drawable/selector_btn_bg"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:textColor="@color/white"
-            android:textSize="20sp"
             android:layout_weight="1"
-            android:text="合作伙伴"/>
+            android:background="@drawable/selector_btn_bg"
+            android:gravity="center"
+            android:text="合作伙伴"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
 
         <Button
             android:id="@+id/btnAbout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:gravity="center"
             android:background="@drawable/selector_btn_about_company_bg"
-            android:textSize="20sp"
+            android:gravity="center"
+            android:text="公司介绍"
             android:textColor="@color/white"
-            android:text="公司介绍"/>
+            android:textSize="20sp" />
 
-        </LinearLayout>
+    </LinearLayout>
 
 
 </LinearLayout>
