@@ -1,7 +1,12 @@
 package com.weedai.ptp.ui.activity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -11,15 +16,20 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.android.volley.error.VolleyError;
 import com.lemon.aklib.widget.fragmentswitcher.FragmentStateArrayPagerAdapter;
 import com.lemon.aklib.widget.fragmentswitcher.FragmentSwitcher;
 import com.weedai.ptp.R;
+import com.weedai.ptp.app.ApiClient;
 import com.weedai.ptp.constant.Config;
+import com.weedai.ptp.model.AppVersion;
 import com.weedai.ptp.ui.fragment.BbsFragment;
 import com.weedai.ptp.ui.fragment.HomeFragment;
 import com.weedai.ptp.ui.fragment.MoreFragment;
 import com.weedai.ptp.ui.fragment.MyFragment;
+import com.weedai.ptp.utils.DataUtil;
 import com.weedai.ptp.utils.UIHelper;
+import com.weedai.ptp.volley.ResponseListener;
 
 
 public class MainActivity extends BaseActivity {
@@ -43,10 +53,12 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
 
         initGuided();
-        if (!isFirstIn){
+        if (!isFirstIn) {
             initFragmentSwitcher();
             initRadioGroup();
         }
+
+        getAppVersion();
     }
 
     @Override
@@ -193,6 +205,64 @@ public class MainActivity extends BaseActivity {
 //            this.finish();
             System.exit(0);
         }
+    }
+
+    private void getAppVersion() {
+
+        ApiClient.getAppVersion(TAG, new ResponseListener() {
+            @Override
+            public void onStarted() {
+
+            }
+
+            @Override
+            public void onResponse(Object response) {
+
+
+                final AppVersion appVersion = (AppVersion) response;
+
+                try {
+                    // 获取packagemanager的实例
+                    PackageManager packageManager = getPackageManager();
+                    // getPackageName()是你当前类的包名，0代表是获取版本信息
+                    PackageInfo packInfo = packageManager.getPackageInfo(getPackageName(), 0);
+                    String version = String.valueOf(packInfo.versionCode);
+
+                    System.out.println("native version " + version);
+                    System.out.println("remote version " + appVersion.version);
+
+                    if (version.compareTo(appVersion.version) < 0) { //更新
+
+                        final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                        builder.setTitle("更新");
+                        builder.setMessage("有新的版本可以更新");
+                        builder.setNegativeButton("以后再说", null);
+                        builder.setPositiveButton("立即更新", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                                String url = appVersion.installUrl; // web address
+                                Intent intent = new Intent(Intent.ACTION_VIEW);
+                                intent.setData(Uri.parse(url));
+                                startActivity(intent);
+                            }
+                        });
+                        builder.create();
+                        builder.show();
+                    }
+
+                } catch (PackageManager.NameNotFoundException e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+
+            }
+        });
     }
 
 

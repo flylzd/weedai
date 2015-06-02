@@ -87,6 +87,7 @@ public class PartnerActivity extends BaseActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+//                String url = "http://fir.im/api/v2/app/install/556d260d2bb8ac0e5d001c70?token=fde5284008d811e5a100b5a12cbae0834df29872";
                 String url = DataUtil.urlDecode(adapter.getItem(position).url); // web address
                 Intent intent = new Intent(Intent.ACTION_VIEW);
                 intent.setData(Uri.parse(url));

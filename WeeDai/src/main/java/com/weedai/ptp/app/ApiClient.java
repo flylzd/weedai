@@ -11,6 +11,7 @@ import com.android.volley.error.VolleyError;
 import com.android.volley.error.VolleyErrorHelper;
 import com.weedai.ptp.constant.Urls;
 import com.weedai.ptp.model.About;
+import com.weedai.ptp.model.AppVersion;
 import com.weedai.ptp.model.Article;
 import com.weedai.ptp.model.ArticleDetail;
 import com.weedai.ptp.model.ArticleRelated;
@@ -1245,6 +1246,27 @@ public class ApiClient {
         multipartEntity.addBinaryPart("avatarpic", bitmapToBytes(bitmap));
 
         requestQueue.add(multiPartRequest);
+    }
+
+
+    /**
+     * 版本查询
+     *
+     * @param tag
+     * @param listener
+     */
+    public static void getAppVersion(String tag, final ResponseListener listener) {
+
+        if (!hashkNewwork()) {
+            return;
+        }
+
+        listener.onStarted();
+
+        String url = Urls.APP_VERSION_URL;
+        GsonGetRequest request = createGsonGetRequest(url, new HashMap<String, String>(), AppVersion.class, listener);
+        request.setTag(tag);
+        requestQueue.add(request);
     }
 
     private static byte[] bitmapToBytes(Bitmap bm) {
