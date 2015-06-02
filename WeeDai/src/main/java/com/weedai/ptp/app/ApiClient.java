@@ -19,6 +19,7 @@ import com.weedai.ptp.model.Bank;
 import com.weedai.ptp.model.BaseModel;
 import com.weedai.ptp.model.Calculator;
 import com.weedai.ptp.model.Comment;
+import com.weedai.ptp.model.Company;
 import com.weedai.ptp.model.FinancialManager;
 import com.weedai.ptp.model.Hero;
 import com.weedai.ptp.model.Invest;
@@ -1123,7 +1124,7 @@ public class ApiClient {
         requestParams.put(Urls.ACTION, "friends/list");
 
         String url = Urls.ACTION_INDEX;
-        GsonPostRequest request = createGsonPostRequest(url, requestParams, About.class, listener);
+        GsonPostRequest request = createGsonPostRequest(url, requestParams, Company.class, listener);
         request.setTag(tag);
         requestQueue.add(request);
     }
