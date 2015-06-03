@@ -215,6 +215,7 @@
     <string name="financial_detail_hint">为保障资金安全,投资前需完成安全认证</string>
     <string name="financial_detail_btn">立即投资</string>
     <string name="financial_detail_amount">理财金额 %s 元</string>
+    <string name="financial_detail_other">剩余金额 %s 元</string>
     <string name="financial_detail_annual_rate">年化利率 %s %%</string>
     <string name="financial_detail_reward">奖励 <![CDATA[ <b><font color="#ff5601">%s %%</font></b> ]]></string>
     <string name="financial_detail_reward_empty">奖励 <![CDATA[ <b><font color="#ff5601">暂无</font></b> ]]></string>

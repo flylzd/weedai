@@ -32,6 +32,7 @@ public class FinancialDetailActivity extends BaseActivity {
     private TextView tvBreakEvenIcon;
     private TextView tvRewardIcon;
     private TextView tvFinancialAmount;
+    private TextView tvFinancialOther;
     private TextView tvFinancialAnnualRate;
     private TextView tvReward;
     private TextView tvFinancialLockPeriod;
@@ -81,6 +82,7 @@ public class FinancialDetailActivity extends BaseActivity {
         tvBreakEvenIcon = (TextView) findViewById(R.id.tvBreakEvenIcon);
         tvRewardIcon = (TextView) findViewById(R.id.tvRewardIcon);
         tvFinancialAmount = (TextView) findViewById(R.id.tvFinancialAmount);
+        tvFinancialOther = (TextView) findViewById(R.id.tvFinancialOther);
         tvFinancialAnnualRate = (TextView) findViewById(R.id.tvFinancialAnnualRate);
         tvReward = (TextView) findViewById(R.id.tvReward);
         tvFinancialLockPeriod = (TextView) findViewById(R.id.tvFinancialLockPeriod);
@@ -117,6 +119,9 @@ public class FinancialDetailActivity extends BaseActivity {
         tvFinancialAmount.setText(amount);
         tvFinancialAnnualRate.setText(apr);
         tvFinancialLockPeriod.setText(Html.fromHtml(timeLimit));
+
+        String other = String.format(getString(R.string.financial_detail_other), data.other);
+        tvFinancialOther.setText(other);
 
         String reward;
         if (TextUtils.isEmpty(data.funds)) {
