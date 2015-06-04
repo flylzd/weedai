@@ -60,14 +60,17 @@ public class LoginActivity extends Activity implements View.OnClickListener {
     private ProgressDialog progressDialog;
 
     private CheckBox cbRememberUser;
-    private ImageView imgSelect;
-    private Spinner spinner;
-    private QuickAdapter<String> adapter;
-    private List<String> dataList = new ArrayList<String>();
-    private Set<String> hashSet = new HashSet<String>();
+//    private ImageView imgSelect;
+//    private Spinner spinner;
+//    private QuickAdapter<String> adapter;
+//    private List<String> dataList = new ArrayList<String>();
+//    private Set<String> hashSet = new HashSet<String>();
 
     private final String PREFERENCE_NAME = "userinfo";
     private final String REMEBER_USER = "remeber_user";
+
+    private final String REMEBER_USERNAME = "remeber_username";
+    private final String REMEBER_PASSWORD = "remeber_password";
 
 
     @Override
@@ -99,12 +102,12 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         btnLogin = (Button) findViewById(R.id.btnLogin);
         tvLoginRegister = (TextView) findViewById(R.id.tvLoginRegister);
         tvLoginForgetPassword = (TextView) findViewById(R.id.tvLoginForgetPassword);
-        imgSelect = (ImageView) findViewById(R.id.imgSelect);
+//        imgSelect = (ImageView) findViewById(R.id.imgSelect);
 
         btnLogin.setOnClickListener(this);
         tvLoginRegister.setOnClickListener(this);
         tvLoginForgetPassword.setOnClickListener(this);
-        imgSelect.setOnClickListener(this);
+//        imgSelect.setOnClickListener(this);
 
         viewValicode = (SimpleValidateCodeView) findViewById(R.id.viewValicode);
 //        viewValicode.getValidataAndSetImage(new String[]{"4","7","0","2"});
@@ -112,67 +115,70 @@ public class LoginActivity extends Activity implements View.OnClickListener {
 
         getImgcode();  //获取验证码
 
-        adapter = new QuickAdapter<String>(LoginActivity.this, R.layout.listitem_user_remeber) {
-            @Override
-            protected void convert(final BaseAdapterHelper helper, final String item) {
+        showRemeberUser();
 
-                helper.setText(R.id.tvUsername, item);
-                helper.setOnClickListener(R.id.imgDetele, new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-
-                        if (adapter.getItem(helper.getPosition()).equals(etUsername.getText().toString())) {
-                            etUsername.getText().clear();
-                        }
-
-                        adapter.remove(item);
-                        dataList.remove(item);
-
-                        hashSet.clear();
-                        for (String item : dataList) {
-                            hashSet.add(item);
-                        }
-                        SharedPreferences preferences = getSharedPreferences(PREFERENCE_NAME, MODE_PRIVATE);
-                        SharedPreferences.Editor editor = preferences.edit();
-                        editor.putStringSet(REMEBER_USER, hashSet);
-                        editor.commit();
-                    }
-                });
-
-                helper.getView().setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        System.out.println("setOnClickListener");
-                        etUsername.setText(adapter.getItem(helper.getPosition()));
-                        spinner.setSelection(helper.getPosition());
-//                        spinner.
-                    }
-                });
-            }
-        };
-
-        spinner = (Spinner) findViewById(R.id.spinner);
-        spinner.setAdapter(adapter);
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                etUsername.setText(adapter.getItem(position));
-                System.out.println("setOnItemSelectedListener");
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-
-        SharedPreferences preferences = getSharedPreferences(PREFERENCE_NAME, MODE_PRIVATE);
-        hashSet = preferences.getStringSet(REMEBER_USER, new HashSet<String>());
-        for (String item : hashSet) {
-            System.out.println("init remeber user " + item);
-            dataList.add(item);
-        }
-        adapter.addAll(dataList);
+//
+//        adapter = new QuickAdapter<String>(LoginActivity.this, R.layout.listitem_user_remeber) {
+//            @Override
+//            protected void convert(final BaseAdapterHelper helper, final String item) {
+//
+//                helper.setText(R.id.tvUsername, item);
+//                helper.setOnClickListener(R.id.imgDetele, new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//
+//                        if (adapter.getItem(helper.getPosition()).equals(etUsername.getText().toString())) {
+//                            etUsername.getText().clear();
+//                        }
+//
+//                        adapter.remove(item);
+//                        dataList.remove(item);
+//
+//                        hashSet.clear();
+//                        for (String item : dataList) {
+//                            hashSet.add(item);
+//                        }
+//                        SharedPreferences preferences = getSharedPreferences(PREFERENCE_NAME, MODE_PRIVATE);
+//                        SharedPreferences.Editor editor = preferences.edit();
+//                        editor.putStringSet(REMEBER_USER, hashSet);
+//                        editor.commit();
+//                    }
+//                });
+//
+//                helper.getView().setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        System.out.println("setOnClickListener");
+//                        etUsername.setText(adapter.getItem(helper.getPosition()));
+//                        spinner.setSelection(helper.getPosition());
+////                        spinner.
+//                    }
+//                });
+//            }
+//        };
+//
+//        spinner = (Spinner) findViewById(R.id.spinner);
+//        spinner.setAdapter(adapter);
+//        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//            @Override
+//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+////                etUsername.setText(adapter.getItem(position));
+//                System.out.println("setOnItemSelectedListener");
+//            }
+//
+//            @Override
+//            public void onNothingSelected(AdapterView<?> parent) {
+//
+//            }
+//        });
+//
+//        SharedPreferences preferences = getSharedPreferences(PREFERENCE_NAME, MODE_PRIVATE);
+//        hashSet = preferences.getStringSet(REMEBER_USER, new HashSet<String>());
+//        for (String item : hashSet) {
+//            System.out.println("init remeber user " + item);
+//            dataList.add(item);
+//        }
+//        adapter.addAll(dataList);
 
     }
 
@@ -180,7 +186,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
     private void login() {
 
         final String username = etUsername.getText().toString();
-        String password = etPassword.getText().toString();
+        final String password = etPassword.getText().toString();
         String code = etValicode.getText().toString();
 
         if (TextUtils.isEmpty(username)) {
@@ -229,7 +235,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
                 }
 
                 if (cbRememberUser.isChecked()) {  //记住用户
-                    saveRemeberUser(username);
+                    saveRemeberUser(username, password);
                 }
 
                 if (HomeFragment.isLoginFromHome) {
@@ -292,28 +298,41 @@ public class LoginActivity extends Activity implements View.OnClickListener {
 
     private void showRemeberUser() {
 
+//        SharedPreferences preferences = getSharedPreferences(PREFERENCE_NAME, MODE_PRIVATE);
+//        hashSet = preferences.getStringSet(REMEBER_USER, new HashSet<String>());
+//        dataList.clear();
+//        for (String item : hashSet) {
+//            System.out.println("showRemeberUser remeber user " + item);
+//            dataList.add(item);
+//        }
+////        adapter.replaceAll(dataList);
+//        spinner.performClick();
+
         SharedPreferences preferences = getSharedPreferences(PREFERENCE_NAME, MODE_PRIVATE);
-        hashSet = preferences.getStringSet(REMEBER_USER, new HashSet<String>());
-        dataList.clear();
-        for (String item : hashSet) {
-            System.out.println("showRemeberUser remeber user " + item);
-            dataList.add(item);
-        }
-//        adapter.replaceAll(dataList);
-        spinner.performClick();
+        String username = preferences.getString(REMEBER_USERNAME,"");
+        String password = preferences.getString(REMEBER_PASSWORD,"");
+        etUsername.setText(username);
+        etPassword.setText(password);
+
     }
 
-    private void saveRemeberUser(String username) {
+    private void saveRemeberUser(String username, String password) {
 
-        dataList.add(0, username);
-        hashSet.clear();
-        for (String item : dataList) {
-            System.out.println("saveRemeberUser remeber user " + item);
-            hashSet.add(item);
-        }
+//        dataList.add(0, username);
+//        hashSet.clear();
+//        for (String item : dataList) {
+//            System.out.println("saveRemeberUser remeber user " + item);
+//            hashSet.add(item);
+//        }
+//        SharedPreferences preferences = getSharedPreferences(PREFERENCE_NAME, MODE_PRIVATE);
+//        SharedPreferences.Editor editor = preferences.edit();
+//        editor.putStringSet(REMEBER_USER, hashSet);
+//        editor.commit();
+
         SharedPreferences preferences = getSharedPreferences(PREFERENCE_NAME, MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
-        editor.putStringSet(REMEBER_USER, hashSet);
+        editor.putString(REMEBER_USERNAME, username);
+        editor.putString(REMEBER_PASSWORD, password);
         editor.commit();
     }
 
@@ -327,7 +346,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
                 login();
                 break;
             case R.id.imgSelect:
-                showRemeberUser();
+//                showRemeberUser();
                 break;
             case R.id.tvLoginRegister:
                 UIHelper.showRegister(LoginActivity.this);
