@@ -236,6 +236,8 @@ public class LoginActivity extends Activity implements View.OnClickListener {
 
                 if (cbRememberUser.isChecked()) {  //记住用户
                     saveRemeberUser(username, password);
+                } else{
+                    saveRemeberUser("", "");
                 }
 
                 if (HomeFragment.isLoginFromHome) {
