@@ -142,7 +142,7 @@ public class MyFinancialManagementActivity extends BaseActivity implements EndOf
 //                String repay_time = sdf.format(Long.parseLong(item.repayment_times + "000"));
 //
 //                String receivableDate = String.format(getString(R.string.user_my_financial_borrowers_receivable_date), repay_time);
-                String receivableDate = String.format(getString(R.string.user_my_financial_borrowers_receivable_date), item.repayment_times);
+                String receivableDate = String.format(getString(R.string.user_my_financial_borrowers_receivable_date), item.repayment_times_d);
 
                 String order = item.order + "/" + item.time_limit;
                 order = String.format(getString(R.string.user_my_financial_borrowers_installment), order);
