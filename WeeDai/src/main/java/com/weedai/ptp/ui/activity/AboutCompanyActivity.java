@@ -69,6 +69,7 @@ public class AboutCompanyActivity extends BaseActivity {
                 }
             }
         };
+        webView.removeJavascriptInterface("searchBoxJavaBredge_");
         webView.setWebViewClient(webViewClient);
     }
 
