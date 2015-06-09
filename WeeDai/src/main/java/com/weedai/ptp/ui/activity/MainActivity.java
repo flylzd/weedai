@@ -25,6 +25,7 @@ import com.weedai.ptp.constant.Config;
 import com.weedai.ptp.model.AppVersion;
 import com.weedai.ptp.ui.fragment.BbsFragment;
 import com.weedai.ptp.ui.fragment.HomeFragment;
+import com.weedai.ptp.ui.fragment.HomeNewFragment;
 import com.weedai.ptp.ui.fragment.MoreFragment;
 import com.weedai.ptp.ui.fragment.MyFragment;
 import com.weedai.ptp.utils.DataUtil;
@@ -123,12 +124,14 @@ public class MainActivity extends BaseActivity {
         fragmentAdapter = new FragmentStateArrayPagerAdapter(getSupportFragmentManager());
         fragmentSwitcher.setAdapter(fragmentAdapter);
 
-        HomeFragment homeFragment = HomeFragment.newInstance();
+//        HomeFragment homeFragment = HomeFragment.newInstance();
+        HomeNewFragment homeNewFragment = HomeNewFragment.newInstance();
         MyFragment myFragment = MyFragment.newInstance();
         BbsFragment bbsFragment = BbsFragment.newInstance();
         MoreFragment moreFragment = MoreFragment.newInstance();
 
-        fragmentAdapter.add(homeFragment);
+//        fragmentAdapter.add(homeFragment);
+        fragmentAdapter.add(homeNewFragment);
         fragmentAdapter.add(myFragment);
         fragmentAdapter.add(bbsFragment);
         fragmentAdapter.add(moreFragment);

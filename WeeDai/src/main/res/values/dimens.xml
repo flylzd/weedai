@@ -43,4 +43,8 @@
     <dimen name="space_2">2.0dip</dimen>
     <dimen name="space_1">1.0dip</dimen>
 
+
+    <dimen name="home_sub_title">12sp</dimen>
+    <dimen name="home_bottom_title">15sp</dimen>
+
 </resources>

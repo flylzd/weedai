@@ -30,14 +30,412 @@
 
         </RelativeLayout>
 
+        <LinearLayout style="@style/homeLayoutContainer">
+
+            <FrameLayout
+                android:id="@+id/layoutHomeLiCai"
+                style="@style/homeLayoutodule">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/icon_home_licai_left" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/tvLiCaiTitle"
+                        style="@style/homeTitle"
+                        android:text="15% ~ 23%" />
+
+                    <LinearLayout
+                        android:id="@+id/layoutLiCaiSubTitle"
+                        style="@style/homeLayoutSubTitle"
+                        android:layout_below="@+id/tvLiCaiTitle">
+
+                        <TextView
+                            android:id="@+id/tvTitleBankOne"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="left|center_vertical"
+                            android:text="银行活期存款的50倍"
+                            android:textSize="@dimen/home_sub_title" />
+
+                        <TextView
+                            android:id="@+id/tvTitleBankTwo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:gravity="left|center_vertical"
+                            android:text="银行定期存款的5倍"
+                            android:textSize="@dimen/home_sub_title" />
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/imgHomeLicai"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_below="@+id/layoutLiCaiSubTitle"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="2dp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/icon_home_licai" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/imgHomeLicai"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="2dp"
+                        android:gravity="center"
+                        android:text="立即投标"
+                        android:textSize="@dimen/home_bottom_title" />
+
+                </RelativeLayout>
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/layoutHomeXiangMu"
+                style="@style/homeLayoutodule">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/icon_home_xiangmu_left" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/tvXiangMuTitle"
+                        style="@style/homeTitle"
+                        android:text="高达21%" />
+
+                    <LinearLayout
+                        android:id="@+id/layoutXiangMuSubTitle"
+                        style="@style/homeLayoutSubTitle"
+                        android:layout_below="@+id/tvXiangMuTitle">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:text="年化率高达"
+                            android:textSize="@dimen/home_sub_title" />
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/imgHomeXiangMu"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_below="@+id/layoutXiangMuSubTitle"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="2dp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/icon_home_xiangmu" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/imgHomeXiangMu"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="2dp"
+                        android:gravity="center"
+                        android:text="立即加入"
+                        android:textSize="@dimen/home_bottom_title" />
+
+                </RelativeLayout>
+            </FrameLayout>
+
+        </LinearLayout>
+
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="140dp"
             android:orientation="horizontal">
 
+            <FrameLayout
+                android:id="@+id/layoutHomeZhaiQuan"
+                style="@style/homeLayoutodule">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/icon_home_zhaiquan_left" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/tvZhaiQuanTitle"
+                        style="@style/homeTitle"
+                        android:text="18.8% ~ 23%" />
+
+                    <LinearLayout
+                        android:id="@+id/layoutZhaiQuanSubTitle"
+                        style="@style/homeLayoutSubTitle"
+                        android:layout_below="@+id/tvZhaiQuanTitle">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="100%本息保障"
+                            android:textSize="@dimen/home_sub_title" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:gravity="center"
+                            android:text="到期还息还本"
+                            android:textSize="@dimen/home_sub_title" />
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/imgHomeZhaiQuan"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_below="@+id/layoutZhaiQuanSubTitle"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="2dp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/icon_home_zhaiquan" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/imgHomeZhaiQuan"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="2dp"
+                        android:gravity="center"
+                        android:text="了解详情"
+                        android:textSize="@dimen/home_bottom_title" />
+
+                </RelativeLayout>
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/layoutHomeGeRen"
+                style="@style/homeLayoutodule">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/tvGeRenTitle"
+                        style="@style/homeTitle"
+                        android:text="个人中心" />
+
+                    <LinearLayout
+                        android:id="@+id/layoutGeRenSubTitle"
+                        style="@style/homeLayoutSubTitle"
+                        android:layout_below="@+id/tvGeRenTitle"
+                        android:padding="2dp">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/icon_my" />
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/imgHomeUser"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_below="@+id/layoutGeRenSubTitle"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="2dp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/icon_home_geren" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/imgHomeUser"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="2dp"
+                        android:gravity="center"
+                        android:text="签到有微币赠送"
+                        android:textSize="@dimen/home_bottom_title" />
+
+                </RelativeLayout>
+
+            </FrameLayout>
+        </LinearLayout>
 
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:orientation="horizontal">
 
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="2"
+                android:background="@color/home_total"></LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:background="@color/home_video">
+
+                <ImageView
+                    android:id="@+id/imgHomeVideo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/icon_home_video" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/imgHomeVideo"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="4dp"
+                    android:text="微E贷宣传视频"
+                    android:textColor="@color/white"
+                    android:textSize="8sp" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:id="@+id/layoutCalculatorNetCredit"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:background="@color/home_daikuai">
+
+                    <ImageView
+                        android:id="@+id/imgHomeDaiKuai"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="10dp"
+                        android:src="@drawable/icon_home_daikuai" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/imgHomeDaiKuai"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="4dp"
+                        android:text="贷款计算器"
+                        android:textColor="@color/white"
+                        android:textSize="14sp" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/layoutCalculatorInterest"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="1"
+                    android:background="@color/home_shouyi">
+
+                    <ImageView
+                        android:id="@+id/imgHomeShouYi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="10dp"
+                        android:src="@drawable/icon_home_shouyi" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/imgHomeShouYi"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="4dp"
+                        android:text="收益计算器"
+                        android:textColor="@color/white"
+                        android:textSize="14sp" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+
+            <FrameLayout
+                android:id="@+id/layoutInformation"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/selector_bg_layout"
+                android:clickable="true">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/icon_home_zhaiquan_left" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/tvNewTitle"
+                        style="@style/homeTitle"
+                        android:text="NEWS" />
+
+                    <LinearLayout
+                        android:id="@+id/layoutNewSubTitle"
+                        style="@style/homeLayoutSubTitle"
+                        android:layout_height="20dp"
+                        android:layout_below="@+id/tvNewTitle">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="微E贷资讯"
+                            android:textSize="@dimen/home_sub_title" />
+                    </LinearLayout>
+
+                    <!--<ListView-->
+                        <!--android:id="@+id/listView"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:layout_below="@+id/layoutNewSubTitle"-->
+                        <!--android:cacheColorHint="@android:color/transparent" />-->
+
+                </RelativeLayout>
+            </FrameLayout>
 
         </LinearLayout>
 

@@ -8,6 +8,11 @@
     <color name="main_tab_background">#f0f0f0</color>
     <color name="text_login">#ff5601</color>
 
+    <color name="home_video">#a9d969</color>
+    <color name="home_total">#ff8e58</color>
+    <color name="home_daikuai">#5eedf3</color>
+    <color name="home_shouyi">#69d3fa</color>
+
     <color name="actionbar_background">#ff5601</color>
     <color name="actionbar_item_background_normal">@color/transparent</color>
     <color name="actionbar_item_background_pressed">#3b351e</color>
