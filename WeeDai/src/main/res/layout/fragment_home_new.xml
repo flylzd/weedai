@@ -291,10 +291,12 @@
                 android:background="@color/home_total"></LinearLayout>
 
             <RelativeLayout
+                android:id="@+id/layoutHomeVideo"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginRight="10dp"
                 android:layout_weight="1"
+                android:clickable="true"
                 android:background="@color/home_video">
 
                 <ImageView

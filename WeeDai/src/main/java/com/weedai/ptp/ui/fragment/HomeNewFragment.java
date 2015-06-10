@@ -54,6 +54,8 @@ public class HomeNewFragment extends Fragment implements View.OnClickListener {
     private View layoutHomeZhaiQuan;
     private View layoutHomeGeRen;
 
+    private View layoutHomeVideo;
+
     private View layoutCalculatorInterest;
     private View layoutCalculatorNetCredit;
 
@@ -146,6 +148,9 @@ public class HomeNewFragment extends Fragment implements View.OnClickListener {
                     UIHelper.showLogin(getActivity());
                 }
                 break;
+            case R.id.layoutHomeVideo:
+                UIHelper.showHomeVideo(getActivity());
+                break;
             case R.id.layoutCalculatorInterest:
                 UIHelper.showCalculatorInterest(getActivity());
                 break;
@@ -165,6 +170,8 @@ public class HomeNewFragment extends Fragment implements View.OnClickListener {
         layoutHomeZhaiQuan = view.findViewById(R.id.layoutHomeZhaiQuan);
         layoutHomeGeRen = view.findViewById(R.id.layoutHomeGeRen);
 
+        layoutHomeVideo = view.findViewById(R.id.layoutHomeVideo);
+
         layoutCalculatorInterest = view.findViewById(R.id.layoutCalculatorInterest);
         layoutCalculatorNetCredit = view.findViewById(R.id.layoutCalculatorNetCredit);
 
@@ -174,6 +181,8 @@ public class HomeNewFragment extends Fragment implements View.OnClickListener {
         layoutHomeXiangMu.setOnClickListener(this);
         layoutHomeZhaiQuan.setOnClickListener(this);
         layoutHomeGeRen.setOnClickListener(this);
+
+        layoutHomeVideo.setOnClickListener(this);
 
         layoutCalculatorInterest.setOnClickListener(this);
         layoutCalculatorNetCredit.setOnClickListener(this);

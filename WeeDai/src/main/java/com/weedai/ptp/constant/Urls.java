@@ -21,4 +21,7 @@ public class Urls {
 
 
     public static String APP_VERSION_URL = "http://fir.im/api/v2/app/version/556d0ee3546ca04275001be8?token=6c0d47a0080011e5a1009205912c89c04c24950b";
+
+    public static String VIDEO_URL = "http://vr.tudou.com/v2proxy/v2?it=198753506&st=52&pw=";
+
 }

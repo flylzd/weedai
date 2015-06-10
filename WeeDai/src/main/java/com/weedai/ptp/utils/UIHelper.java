@@ -22,6 +22,7 @@ import com.weedai.ptp.ui.activity.FinanceInvestmentActivity;
 import com.weedai.ptp.ui.activity.FinancialActivity;
 import com.weedai.ptp.ui.activity.FinancialDetailActivity;
 import com.weedai.ptp.ui.activity.HeroActivity;
+import com.weedai.ptp.ui.activity.HomeVideoActivity;
 import com.weedai.ptp.ui.activity.LiCaiRecommendActivity;
 import com.weedai.ptp.ui.activity.LoginActivity;
 import com.weedai.ptp.ui.activity.LuckyDrawActivity;
@@ -260,7 +261,7 @@ public class UIHelper {
         Intent intent = new Intent(context, HeroActivity.class);
         context.startActivity(intent);
     }
-    
+
     /**
      * 关于我们
      */
@@ -298,6 +299,11 @@ public class UIHelper {
      */
     public static void showCalculatorNetCredit(Context context) {
         Intent intent = new Intent(context, CalculatorNetCreditActivity.class);
+        context.startActivity(intent);
+    }
+
+    public static void showHomeVideo(Context context) {
+        Intent intent = new Intent(context, HomeVideoActivity.class);
         context.startActivity(intent);
     }
 }
