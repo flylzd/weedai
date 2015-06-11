@@ -7,11 +7,13 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.error.VolleyError;
@@ -21,15 +23,21 @@ import com.weedai.ptp.app.ApiClient;
 import com.weedai.ptp.constant.Config;
 import com.weedai.ptp.constant.Constant;
 import com.weedai.ptp.constant.Urls;
+import com.weedai.ptp.model.Article;
+import com.weedai.ptp.model.ArticleData;
 import com.weedai.ptp.model.ArticleList;
+import com.weedai.ptp.model.Days;
 import com.weedai.ptp.model.RotationImage;
 import com.weedai.ptp.model.RotationImageList;
 import com.weedai.ptp.model.SignIn;
+import com.weedai.ptp.utils.DataUtil;
 import com.weedai.ptp.utils.UIHelper;
 import com.weedai.ptp.view.AutoScrollViewPager;
 import com.weedai.ptp.volley.ResponseListener;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class HomeNewFragment extends Fragment implements View.OnClickListener {
@@ -61,6 +69,30 @@ public class HomeNewFragment extends Fragment implements View.OnClickListener {
 
     private View layoutInformation;
 
+    private String zongchengjiao;
+    private String yesterdatcj;
+    private TextView tvHomeTotal;
+    private TextView tvHomeYesterday;
+
+    private View layoutHomeInfo1;
+    private View layoutHomeInfo2;
+    private View layoutHomeInfo3;
+
+    private TextView tvHomeInfo1;
+    private TextView tvHomeInfoDate1;
+    private TextView tvHomeInfo2;
+    private TextView tvHomeInfoDate2;
+    private TextView tvHomeInfo3;
+    private TextView tvHomeInfoDate3;
+
+    private ArticleList itemDataInfo1;
+    private ArticleList itemDataInfo2;
+    private ArticleList itemDataInfo3;
+
+    private View layoutHomeNotice;
+    private TextView tvHomeNotice;
+
+    private ArticleList itemDataNotice;
 
     private ProgressDialog progressDialog;
 
@@ -85,11 +117,24 @@ public class HomeNewFragment extends Fragment implements View.OnClickListener {
         System.out.println("HomeFragment onViewCreated");
         init(view);
 
-        if (item != null && imageUrls.size() != 0) {
-//            setArticle();
+        if (TextUtils.isEmpty(zongchengjiao)) {
+            getDaysData();
         } else {
-//            loadData();
+            showDaysData();
         }
+
+        if (itemDataInfo1 != null) {
+            showInfoList();
+        } else {
+            getInfoList();
+        }
+
+        if (itemDataNotice != null) {
+            showNotice();
+        } else {
+            getNoticeList();
+        }
+
     }
 
     @Override
@@ -156,6 +201,8 @@ public class HomeNewFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.layoutCalculatorNetCredit:
                 UIHelper.showCalculatorNetCredit(getActivity());
+            case R.id.layoutInformation:
+                UIHelper.showArticle(getActivity());
                 break;
         }
     }
@@ -188,6 +235,24 @@ public class HomeNewFragment extends Fragment implements View.OnClickListener {
         layoutCalculatorNetCredit.setOnClickListener(this);
 
         layoutInformation.setOnClickListener(this);
+
+        tvHomeTotal = (TextView) view.findViewById(R.id.tvHomeTotal);
+        tvHomeYesterday = (TextView) view.findViewById(R.id.tvHomeYesterday);
+
+        layoutHomeInfo1 = view.findViewById(R.id.layoutHomeInfo1);
+        layoutHomeInfo2 = view.findViewById(R.id.layoutHomeInfo2);
+        layoutHomeInfo3 = view.findViewById(R.id.layoutHomeInfo3);
+
+        tvHomeInfo1 = (TextView) view.findViewById(R.id.tvHomeInfo1);
+        tvHomeInfo2 = (TextView) view.findViewById(R.id.tvHomeInfo2);
+        tvHomeInfo3 = (TextView) view.findViewById(R.id.tvHomeInfo3);
+
+        tvHomeInfoDate1 = (TextView) view.findViewById(R.id.tvHomeInfoDate1);
+        tvHomeInfoDate2 = (TextView) view.findViewById(R.id.tvHomeInfoDate2);
+        tvHomeInfoDate3 = (TextView) view.findViewById(R.id.tvHomeInfoDate3);
+
+        layoutHomeNotice = view.findViewById(R.id.layoutHomeNotice);
+        tvHomeNotice = (TextView) view.findViewById(R.id.tvHomeNotice);
     }
 
 
@@ -226,6 +291,51 @@ public class HomeNewFragment extends Fragment implements View.OnClickListener {
         viewPager.startAutoScroll();
     }
 
+    private void showDaysData() {
+
+        tvHomeTotal.setText("￥ " + zongchengjiao);
+        tvHomeYesterday.setText(yesterdatcj);
+    }
+
+    private void showInfoList() {
+
+        if (itemDataInfo1 != null) {
+            layoutHomeInfo1.setVisibility(View.VISIBLE);
+            tvHomeInfo1.setText(DataUtil.urlDecode(itemDataInfo1.name));
+            String date = itemDataInfo1.publish.substring(itemDataInfo1.publish.indexOf("-") + 1, itemDataInfo1.publish.indexOf(" "));
+            tvHomeInfoDate1.setText(date);
+        } else {
+            layoutHomeInfo1.setVisibility(View.GONE);
+        }
+
+        if (itemDataInfo2 != null) {
+            layoutHomeInfo2.setVisibility(View.VISIBLE);
+            tvHomeInfo2.setText(DataUtil.urlDecode(itemDataInfo2.name));
+            String date = itemDataInfo1.publish.substring(itemDataInfo2.publish.indexOf("-") + 1, itemDataInfo2.publish.indexOf(" "));
+            tvHomeInfoDate2.setText(date);
+        } else {
+            layoutHomeInfo2.setVisibility(View.GONE);
+        }
+
+        if (itemDataInfo3 != null) {
+            layoutHomeInfo3.setVisibility(View.VISIBLE);
+            tvHomeInfo3.setText(DataUtil.urlDecode(itemDataInfo3.name));
+            String date = itemDataInfo1.publish.substring(itemDataInfo3.publish.indexOf("-") + 1, itemDataInfo3.publish.indexOf(" "));
+            tvHomeInfoDate3.setText(date);
+        } else {
+            layoutHomeInfo3.setVisibility(View.GONE);
+        }
+    }
+
+    private void showNotice() {
+
+        if (itemDataNotice != null) {
+            layoutHomeNotice.setVisibility(View.VISIBLE);
+            tvHomeNotice.setText(DataUtil.urlDecode(itemDataNotice.name));
+        } else {
+            layoutHomeNotice.setVisibility(View.GONE);
+        }
+    }
 
     private abstract class RefreshResponseListener implements ResponseListener {
 
@@ -243,6 +353,34 @@ public class HomeNewFragment extends Fragment implements View.OnClickListener {
         public void onErrorResponse(VolleyError volleyError) {
             progressDialog.dismiss();
         }
+    }
+
+    private void getDaysData() {
+        ApiClient.getDaysData(TAG, new ResponseListener() {
+            @Override
+            public void onStarted() {
+
+            }
+
+            @Override
+            public void onResponse(Object response) {
+                Days result = (Days) response;
+                if (result.code != Constant.CodeResult.SUCCESS) {
+                    Toast.makeText(getActivity(), result.message, Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                zongchengjiao = result.data.zongchengjiao;
+                yesterdatcj = result.data.yesterdatcj;
+
+                showDaysData();
+            }
+
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+
+            }
+        });
     }
 
     private void signIn() {
@@ -276,6 +414,66 @@ public class HomeNewFragment extends Fragment implements View.OnClickListener {
             @Override
             public void onErrorResponse(VolleyError volleyError) {
                 progressDialog.dismiss();
+            }
+        });
+    }
+
+    private void getInfoList() {
+        ApiClient.getArticleList(TAG, 1, Constant.ArticleType.INFORMATION, new RefreshResponseListener() {
+
+            @Override
+            public void onResponse(Object response) {
+                super.onResponse(response);
+
+                Article result = (Article) response;
+                if (result.code != Constant.CodeResult.SUCCESS) {
+                    Toast.makeText(getActivity(), result.message, Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                List<ArticleList> articleList = result.data.list;
+                if (articleList != null && articleList.size() != 0) {
+//                    item = articleList.get(0);
+//                    setArticle();
+
+                    itemDataInfo1 = articleList.get(0);
+                    itemDataInfo2 = articleList.get(1);
+                    itemDataInfo3 = articleList.get(2);
+
+                    showInfoList();
+                }
+            }
+        });
+    }
+
+    private void getNoticeList() {
+
+        ApiClient.getArticleList(TAG, 1, Constant.ArticleType.NOTICE, new ResponseListener() {
+            @Override
+            public void onStarted() {
+
+            }
+
+            @Override
+            public void onResponse(Object response) {
+
+                Article result = (Article) response;
+                if (result.code != Constant.CodeResult.SUCCESS) {
+                    Toast.makeText(getActivity(), result.message, Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                List<ArticleList> articleList = result.data.list;
+                if (articleList != null && articleList.size() != 0) {
+
+                    itemDataNotice = articleList.get(0);
+//                    setArticle();
+
+                    showNotice();
+                }
+            }
+
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+
             }
         });
     }

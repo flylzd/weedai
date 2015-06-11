@@ -21,6 +21,7 @@ import com.weedai.ptp.model.BaseModel;
 import com.weedai.ptp.model.Calculator;
 import com.weedai.ptp.model.Comment;
 import com.weedai.ptp.model.Company;
+import com.weedai.ptp.model.Days;
 import com.weedai.ptp.model.FinancialManager;
 import com.weedai.ptp.model.Hero;
 import com.weedai.ptp.model.Invest;
@@ -1246,6 +1247,30 @@ public class ApiClient {
         multipartEntity.addBinaryPart("avatarpic", bitmapToBytes(bitmap));
 
         requestQueue.add(multiPartRequest);
+    }
+
+
+    /**
+     * 每日数据
+     *
+     * @param tag
+     * @param listener
+     */
+    public static void getDaysData(String tag, final ResponseListener listener) {
+
+        if (!hashkNewwork()) {
+            return;
+        }
+
+        listener.onStarted();
+
+        Map<String, String> requestParams = getSignatureMap();
+        requestParams.put(Urls.ACTION, "daysdata");
+
+        String url = Urls.ACTION_INDEX;
+        GsonGetRequest request = createGsonGetRequest(url, requestParams, Days.class, listener);
+        request.setTag(tag);
+        requestQueue.add(request);
     }
 
 
