@@ -43,6 +43,7 @@ import com.weedai.ptp.ui.activity.ReceivableSearchActivity;
 import com.weedai.ptp.ui.activity.RegisterActivity;
 import com.weedai.ptp.ui.activity.SecurityLevelActivity;
 import com.weedai.ptp.ui.activity.SecurityPhoneActivity;
+import com.weedai.ptp.ui.activity.TransferActivity;
 
 public class UIHelper {
 
@@ -225,6 +226,14 @@ public class UIHelper {
      */
     public static void showLiCaiRecommend(Context context) {
         Intent intent = new Intent(context, LiCaiRecommendActivity.class);
+        context.startActivity(intent);
+    }
+
+    /**
+     * 债权转让
+     */
+    public static void showTransfer(Context context) {
+        Intent intent = new Intent(context, TransferActivity.class);
         context.startActivity(intent);
     }
 

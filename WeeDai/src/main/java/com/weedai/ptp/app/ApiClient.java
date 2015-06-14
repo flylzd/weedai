@@ -285,6 +285,27 @@ public class ApiClient {
         requestQueue.add(request);
     }
 
+    public static void getTransferInvestList(String tag, int page, String xmtype, ResponseListener listener) {
+
+        if (!hashkNewwork()) {
+            return;
+        }
+
+        listener.onStarted();
+
+        Map<String, String> requestParams = getSignatureMap();
+        requestParams.put("page", String.valueOf(page));
+        requestParams.put("type", "2");  //债权转让
+        requestParams.put("xmtype", xmtype);
+//        requestParams.put("timelimit", null);
+        requestParams.put(Urls.ACTION, "invest/list");
+
+        String url = Urls.ACTION_INDEX;
+        GsonGetRequest request = createGsonGetRequest(url, requestParams, Invest.class, listener);
+        request.setTag(tag);
+        requestQueue.add(request);
+    }
+
     /**
      * 投资详情
      */

@@ -72,7 +72,7 @@
                     android:id="@+id/imgBao"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="4dp"
+                    android:layout_marginRight="4dp"
                     android:scaleType="centerCrop"
                     android:src="@drawable/icon_bao" />
 
@@ -80,7 +80,7 @@
                     android:id="@+id/imgAward"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="4dp"
+                    android:layout_marginRight="4dp"
                     android:scaleType="centerCrop"
                     android:src="@drawable/icon_award" />
 
@@ -88,7 +88,6 @@
                     android:id="@+id/tvTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="游戏理财"
                     android:textColor="@color/main_text_black"
                     android:textSize="18sp" />
             </LinearLayout>
@@ -105,7 +104,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="4dp"
+                    android:layout_marginRight="4dp"
                     android:text="理财金额"
                     android:textColor="@color/main_text" />
 
@@ -129,7 +128,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="4dp"
+                    android:layout_marginRight="4dp"
                     android:text="年化利率"
                     android:textColor="@color/main_text" />
 
@@ -141,12 +140,11 @@
                     android:textColor="@color/main_text_black"
                     android:textSize="18sp" />
 
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="4dp"
-                    android:layout_marginStart="20dp"
+                    android:layout_marginRight="4dp"
+                    android:layout_marginLeft="20dp"
                     android:text="奖励"
                     android:textColor="@color/main_text" />
 
@@ -170,7 +168,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="4dp"
+                    android:layout_marginRight="4dp"
                     android:text="锁定限期"
                     android:textColor="@color/main_text" />
 
@@ -185,7 +183,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
+                    android:layout_marginLeft="4dp"
                     android:text="(持有30日即可转让)"
                     android:textColor="@color/main_text_orange"
                     android:textSize="13sp" />
@@ -202,7 +200,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="4dp"
+                    android:layout_marginRight="4dp"
                     android:text="当前进度"
                     android:textColor="@color/main_text" />
 
@@ -254,7 +252,7 @@
                 android:id="@+id/btnTopUp"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
-                android:layout_marginStart="60dp"
+                android:layout_marginLeft="60dp"
                 android:background="@drawable/selector_btn_bg"
                 android:text="充值"
                 android:textColor="@color/white" />
@@ -273,7 +271,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
+                android:layout_marginLeft="4dp"
                 android:text="(持有30日即可转让)"
                 android:textColor="@color/main_text_orange"
                 android:textSize="13sp" />

@@ -57,6 +57,10 @@
             android:configChanges="keyboard|orientation|screenSize"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".ui.activity.TransferActivity"
+            android:configChanges="keyboard|orientation|screenSize"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".ui.activity.FinancialDetailActivity"
             android:configChanges="keyboard|orientation|screenSize"
             android:screenOrientation="portrait" />

@@ -33,9 +33,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LiCaiRecommendActivity extends BaseActivity implements SwipeRefreshLayout.OnRefreshListener, EndOfListView.OnEndOfListListener {
+public class TransferActivity extends BaseActivity implements SwipeRefreshLayout.OnRefreshListener, EndOfListView.OnEndOfListListener {
 
-    private final static String TAG = "LiCaiRecommendActivity";
+    private final static String TAG = "TransferActivity";
 
     private PMSwipeRefreshLayout pullRefreshLayout;
     private EndOfListView listView;
@@ -46,19 +46,21 @@ public class LiCaiRecommendActivity extends BaseActivity implements SwipeRefresh
     private List<InvestList> dataList4 = new ArrayList<InvestList>();
 
     private final static int DEFAULT_PAGE = 0;
-    private int page = DEFAULT_PAGE;
+    private int page;
     private int page1 = DEFAULT_PAGE;
     private int page2 = DEFAULT_PAGE;
     private int page3 = DEFAULT_PAGE;
     private int page4 = DEFAULT_PAGE;
 
+    private RadioGroup radioGroup;
+    //    private String xmtype = Constant.XMTYPE.Borrow;
+    private String xmtype;
+    private boolean isFirstLoadingomplete = false;
+
     private boolean isBottomLoadingComplete1 = false;
     private boolean isBottomLoadingComplete2 = false;
     private boolean isBottomLoadingComplete3 = false;
     private boolean isBottomLoadingComplete4 = false;
-
-    private RadioGroup radioGroup;
-    private String xmtype;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,12 +69,11 @@ public class LiCaiRecommendActivity extends BaseActivity implements SwipeRefresh
 
         initView();
 //        loadData();
-
     }
 
     @Override
     protected int getActionBarTitle() {
-        return R.string.title_licai_recommend;
+        return R.string.title_licai_transfer;
     }
 
     @Override
@@ -82,21 +83,8 @@ public class LiCaiRecommendActivity extends BaseActivity implements SwipeRefresh
 
     @Override
     public void onRefresh() {
-
-        if (TextUtils.isEmpty(xmtype)) {
-            page1 = DEFAULT_PAGE;
-            page = page1;
-        } else if (xmtype.equals(Constant.XMTYPE.Borrow)) {
-            page2 = DEFAULT_PAGE;
-            page = page2;
-        } else if (xmtype.equals(Constant.XMTYPE.Now)) {
-            page3 = DEFAULT_PAGE;
-            page = page3;
-        } else if (xmtype.equals(Constant.XMTYPE.Yes)) {
-            page4 = DEFAULT_PAGE;
-            page = page4;
-        }
-        getInvestList();
+//        page = DEFAULT_PAGE;
+//        getInvestList();
     }
 
     @Override
@@ -106,37 +94,32 @@ public class LiCaiRecommendActivity extends BaseActivity implements SwipeRefresh
             if (isBottomLoadingComplete1) {
                 showIndeterminateProgress(false);
                 return;
-            } else {
-                page1++;
-                page = page1;
             }
+            page1++;
+            page = page1;
         } else if (xmtype.equals(Constant.XMTYPE.Borrow)) {
             if (isBottomLoadingComplete2) {
                 showIndeterminateProgress(false);
                 return;
-            } else {
-                page2++;
-                page = page2;
             }
+            page2++;
+            page = page2;
         } else if (xmtype.equals(Constant.XMTYPE.Now)) {
             if (isBottomLoadingComplete3) {
                 showIndeterminateProgress(false);
                 return;
-            } else {
-                page3++;
-                page = page3;
             }
+            page3++;
+            page = page3;
         } else if (xmtype.equals(Constant.XMTYPE.Yes)) {
             if (isBottomLoadingComplete4) {
                 showIndeterminateProgress(false);
                 return;
-            } else {
-                page4++;
-                page = page4;
             }
+            page4++;
+            page = page4;
         }
         getInvestList();
-
     }
 
     private void showIndeterminateProgress(boolean visibility) {
@@ -153,7 +136,10 @@ public class LiCaiRecommendActivity extends BaseActivity implements SwipeRefresh
         pullRefreshLayout.setRefreshing(true);
         pullRefreshLayout.setEnabled(false);
 
-        adapter = new QuickAdapter<InvestList>(LiCaiRecommendActivity.this, R.layout.listitem_financial) {
+        listView = (EndOfListView) findViewById(R.id.listView);
+        listView.setOnEndOfListListener(this);
+
+        adapter = new QuickAdapter<InvestList>(TransferActivity.this, R.layout.listitem_financial) {
             @Override
             protected void convert(BaseAdapterHelper helper, final InvestList item) {
 
@@ -161,7 +147,7 @@ public class LiCaiRecommendActivity extends BaseActivity implements SwipeRefresh
                 String timeLimit = String.format(getString(R.string.financial_deadline), item.time_limit);
                 String amount = String.format(getString(R.string.financial_amount), item.account);
                 String reward;
-                if (item.award.equals("0")) {
+                if (TextUtils.isEmpty(item.funds)) {
                     reward = getString(R.string.financial_reward_empty);
                 } else {
                     reward = String.format(getString(R.string.financial_reward), item.funds);
@@ -227,25 +213,22 @@ public class LiCaiRecommendActivity extends BaseActivity implements SwipeRefresh
                     public void onClick(View v) {
                         if (btnState.getText().toString().equals(getString(R.string.financial_btn_join))) {
                             if (!Config.isLogin) {
-                                Toast.makeText(LiCaiRecommendActivity.this, "你未登录，无法进行投资", Toast.LENGTH_SHORT).show();
-                                UIHelper.showLogin(LiCaiRecommendActivity.this);
+                                Toast.makeText(TransferActivity.this, "你未登录，无法进行投资", Toast.LENGTH_SHORT).show();
+                                UIHelper.showLogin(TransferActivity.this);
                                 return;
                             }
-                            UIHelper.showFinanceInvestment(LiCaiRecommendActivity.this, item);
+                            UIHelper.showFinanceInvestment(TransferActivity.this, item);
                         }
                     }
                 });
             }
         };
-
-        listView = (EndOfListView) findViewById(R.id.listView);
         listView.setAdapter(adapter);
-        listView.setOnEndOfListListener(this);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 //                UIHelper.showFinancialDetail(FinancialActivity.this, adapter.getItem(position).id);
-                UIHelper.showFinancialDetail(LiCaiRecommendActivity.this, adapter.getItem(position));
+                UIHelper.showFinancialDetail(TransferActivity.this, adapter.getItem(position));
             }
         });
 
@@ -253,7 +236,6 @@ public class LiCaiRecommendActivity extends BaseActivity implements SwipeRefresh
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-
                 switch (checkedId) {
                     case R.id.rbConditionsAll:
                         xmtype = null;
@@ -264,11 +246,6 @@ public class LiCaiRecommendActivity extends BaseActivity implements SwipeRefresh
                         if (dataList2.size() != 0) {
                             adapter.replaceAll(dataList2);
                         } else {
-//                            if (isBottomLoadingComplete2) {
-//                                showIndeterminateProgress(false);
-//                                adapter.replaceAll(null);
-//                                return;
-//                            }
                             page2++;
                             page = page2;
                             adapter.clear();
@@ -280,10 +257,6 @@ public class LiCaiRecommendActivity extends BaseActivity implements SwipeRefresh
                         if (dataList3.size() != 0) {
                             adapter.replaceAll(dataList3);
                         } else {
-//                            if (isBottomLoadingComplete3) {
-//                                showIndeterminateProgress(false);
-//                                return;
-//                            }
                             page3++;
                             page = page3;
                             adapter.clear();
@@ -295,10 +268,6 @@ public class LiCaiRecommendActivity extends BaseActivity implements SwipeRefresh
                         if (dataList4.size() != 0) {
                             adapter.replaceAll(dataList4);
                         } else {
-//                            if (isBottomLoadingComplete4) {
-//                                showIndeterminateProgress(false);
-//                                return;
-//                            }
                             page4++;
                             page = page4;
                             adapter.clear();
@@ -310,24 +279,30 @@ public class LiCaiRecommendActivity extends BaseActivity implements SwipeRefresh
         });
     }
 
-
     private void loadData() {
+//        getInvestList();
+    }
+
+    private void loadFirstData() {
+        page1++;
+        page = page1;
+        adapter.clear();
         getInvestList();
     }
 
+
     private void getInvestList() {
 
-        ApiClient.getInvestList(TAG, page, xmtype, new RefreshResponseListener() {
+        ApiClient.getTransferInvestList(TAG, page, xmtype, new RefreshResponseListener() {
             @Override
             public void onResponse(Object response) {
                 super.onResponse(response);
 
                 Invest result = (Invest) response;
                 if (result.code != Constant.CodeResult.SUCCESS) {
-                    Toast.makeText(LiCaiRecommendActivity.this, result.message, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(TransferActivity.this, result.message, Toast.LENGTH_SHORT).show();
                     return;
                 }
-
                 InvestData data = result.data;
                 int currentPage = data.page;
                 int totalPage = data.total_page;
@@ -340,9 +315,10 @@ public class LiCaiRecommendActivity extends BaseActivity implements SwipeRefresh
                 List<InvestList> investList = new ArrayList<InvestList>();
                 if (investListTmp != null && investListTmp.size() != 0) {
                     for (InvestList item : investListTmp) {
-                        if (item.is_you != 1) {
-                            investList.add(item);
-                        }
+//                        if (item.is_you == 1) {
+//                            investList.add(item);
+//                        }
+                        investList.add(item);
                     }
 
                     if (TextUtils.isEmpty(xmtype)) {
@@ -376,19 +352,19 @@ public class LiCaiRecommendActivity extends BaseActivity implements SwipeRefresh
                 }
 
                 if (TextUtils.isEmpty(xmtype)) {
-                    if (currentPage == totalPage) {
+                    if (currentPage == totalPage || totalPage == 0) {
                         isBottomLoadingComplete1 = true;
                     }
                 } else if (xmtype.equals(Constant.XMTYPE.Borrow)) {
-                    if (currentPage == totalPage) {
+                    if (currentPage == totalPage || totalPage == 0) {
                         isBottomLoadingComplete2 = true;
                     }
                 } else if (xmtype.equals(Constant.XMTYPE.Now)) {
-                    if (currentPage == totalPage) {
+                    if (currentPage == totalPage || totalPage == 0) {
                         isBottomLoadingComplete3 = true;
                     }
                 } else if (xmtype.equals(Constant.XMTYPE.Yes)) {
-                    if (currentPage == totalPage) {
+                    if (currentPage == totalPage || totalPage == 0) {
                         isBottomLoadingComplete4 = true;
                     }
                 }
@@ -419,6 +395,4 @@ public class LiCaiRecommendActivity extends BaseActivity implements SwipeRefresh
             showIndeterminateProgress(false);
         }
     }
-
-
 }

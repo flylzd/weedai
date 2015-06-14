@@ -179,6 +179,7 @@ public class HomeNewFragment extends Fragment implements View.OnClickListener {
                 UIHelper.showLiCaiRecommend(getActivity());
                 break;
             case R.id.layoutHomeZhaiQuan:
+                UIHelper.showTransfer(getActivity());
                 break;
             case R.id.layoutHomeGeRen:
                 if (Config.isLogin) {
@@ -203,6 +204,8 @@ public class HomeNewFragment extends Fragment implements View.OnClickListener {
                 UIHelper.showCalculatorNetCredit(getActivity());
             case R.id.layoutInformation:
                 UIHelper.showArticle(getActivity());
+            case R.id.layoutHomeNotice:
+                UIHelper.showArticle(getActivity());
                 break;
         }
     }
@@ -222,7 +225,8 @@ public class HomeNewFragment extends Fragment implements View.OnClickListener {
         layoutCalculatorInterest = view.findViewById(R.id.layoutCalculatorInterest);
         layoutCalculatorNetCredit = view.findViewById(R.id.layoutCalculatorNetCredit);
 
-        layoutInformation = view.findViewById(R.id.layoutCalculatorNetCredit);
+        layoutInformation = view.findViewById(R.id.layoutInformation);
+        layoutHomeNotice = view.findViewById(R.id.layoutHomeNotice);
 
         layoutHomeLiCai.setOnClickListener(this);
         layoutHomeXiangMu.setOnClickListener(this);
@@ -235,6 +239,7 @@ public class HomeNewFragment extends Fragment implements View.OnClickListener {
         layoutCalculatorNetCredit.setOnClickListener(this);
 
         layoutInformation.setOnClickListener(this);
+        layoutHomeNotice.setOnClickListener(this);
 
         tvHomeTotal = (TextView) view.findViewById(R.id.tvHomeTotal);
         tvHomeYesterday = (TextView) view.findViewById(R.id.tvHomeYesterday);
