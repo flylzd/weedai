@@ -101,6 +101,22 @@
             <include layout="@layout/view_horizontal_line" />
 
             <RelativeLayout
+                android:id="@+id/layoutAccountSetting"
+                style="@style/layoutMore">
+
+                <TextView
+                    style="@style/textMoreLeft"
+                    android:text="@string/more_account_setting" />
+
+                <ImageView
+                    style="@style/textMoreRight"
+                    android:src="@drawable/ic_arrow_right" />
+
+            </RelativeLayout>
+
+            <include layout="@layout/view_horizontal_line" />
+
+            <RelativeLayout
                 style="@style/layoutMore"
                 android:visibility="gone">
 

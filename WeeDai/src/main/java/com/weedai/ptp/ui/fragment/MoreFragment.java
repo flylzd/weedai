@@ -21,6 +21,7 @@ import android.widget.Toast;
 import com.android.volley.error.VolleyError;
 import com.weedai.ptp.R;
 import com.weedai.ptp.app.ApiClient;
+import com.weedai.ptp.constant.Config;
 import com.weedai.ptp.model.AppVersion;
 import com.weedai.ptp.utils.UIHelper;
 import com.weedai.ptp.volley.ResponseListener;
@@ -33,6 +34,7 @@ public class MoreFragment extends Fragment implements View.OnClickListener {
     private RelativeLayout layoutWebsite;
     private RelativeLayout layoutPhone;
     private RelativeLayout layoutVersion;
+    private View layoutAccountSetting;
     private TextView tvVersionCode;
 
     private View layoutCalculatorInterest;
@@ -69,6 +71,7 @@ public class MoreFragment extends Fragment implements View.OnClickListener {
         layoutWebsite = (RelativeLayout) view.findViewById(R.id.layoutWebsite);
         layoutPhone = (RelativeLayout) view.findViewById(R.id.layoutPhone);
         layoutVersion = (RelativeLayout) view.findViewById(R.id.layoutVersion);
+        layoutAccountSetting = view.findViewById(R.id.layoutAccountSetting);
         tvVersionCode = (TextView) view.findViewById(R.id.tvVersionCode);
         layoutVersion.setOnClickListener(this);
         layoutCalculatorInterest.setOnClickListener(this);
@@ -76,6 +79,7 @@ public class MoreFragment extends Fragment implements View.OnClickListener {
         layoutAbout.setOnClickListener(this);
         layoutWebsite.setOnClickListener(this);
         layoutPhone.setOnClickListener(this);
+        layoutAccountSetting.setOnClickListener(this);
 
 
         try {
@@ -107,6 +111,13 @@ public class MoreFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.layoutAbout:
                 UIHelper.showAbout(getActivity());
+                break;
+            case R.id.layoutAccountSetting:
+                if (!Config.isLogin){
+                    UIHelper.showLogin(getActivity());
+                    return;
+                }
+                UIHelper.showAccount(getActivity());
                 break;
             case R.id.layoutWebsite: {
                 String url = "http://www.weedai.com"; // web address
