@@ -460,14 +460,13 @@
             </LinearLayout>
 
 
-            <FrameLayout
+            <RelativeLayout
                 android:id="@+id/layoutInformation"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
-                android:background="@drawable/selector_bg_layout"
-                android:clickable="true">
+                android:background="@drawable/selector_bg_layout">
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -590,7 +589,7 @@
                     </LinearLayout>
 
                 </RelativeLayout>
-            </FrameLayout>
+            </RelativeLayout>
 
         </LinearLayout>
 

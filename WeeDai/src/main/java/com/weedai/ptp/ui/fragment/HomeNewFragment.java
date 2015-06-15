@@ -64,10 +64,12 @@ public class HomeNewFragment extends Fragment implements View.OnClickListener {
 
     private View layoutHomeVideo;
 
-    private View layoutCalculatorInterest;
     private View layoutCalculatorNetCredit;
+    private View layoutCalculatorInterest;
 
     private View layoutInformation;
+    private View layoutHomeNotice;
+    private TextView tvHomeNotice;
 
     private String zongchengjiao;
     private String yesterdatcj;
@@ -88,9 +90,6 @@ public class HomeNewFragment extends Fragment implements View.OnClickListener {
     private ArticleList itemDataInfo1;
     private ArticleList itemDataInfo2;
     private ArticleList itemDataInfo3;
-
-    private View layoutHomeNotice;
-    private TextView tvHomeNotice;
 
     private ArticleList itemDataNotice;
 
@@ -198,12 +197,16 @@ public class HomeNewFragment extends Fragment implements View.OnClickListener {
                 UIHelper.showHomeVideo(getActivity());
                 break;
             case R.id.layoutCalculatorInterest:
+                System.out.println("网贷计算器");
                 UIHelper.showCalculatorInterest(getActivity());
                 break;
             case R.id.layoutCalculatorNetCredit:
                 UIHelper.showCalculatorNetCredit(getActivity());
+                break;
             case R.id.layoutInformation:
+                System.out.println("资讯资讯");
                 UIHelper.showArticle(getActivity());
+                break;
             case R.id.layoutHomeNotice:
                 UIHelper.showArticle(getActivity());
                 break;
@@ -222,11 +225,13 @@ public class HomeNewFragment extends Fragment implements View.OnClickListener {
 
         layoutHomeVideo = view.findViewById(R.id.layoutHomeVideo);
 
-        layoutCalculatorInterest = view.findViewById(R.id.layoutCalculatorInterest);
+
         layoutCalculatorNetCredit = view.findViewById(R.id.layoutCalculatorNetCredit);
+        layoutCalculatorInterest = view.findViewById(R.id.layoutCalculatorInterest);
 
         layoutInformation = view.findViewById(R.id.layoutInformation);
         layoutHomeNotice = view.findViewById(R.id.layoutHomeNotice);
+        tvHomeNotice = (TextView) view.findViewById(R.id.tvHomeNotice);
 
         layoutHomeLiCai.setOnClickListener(this);
         layoutHomeXiangMu.setOnClickListener(this);
@@ -235,8 +240,8 @@ public class HomeNewFragment extends Fragment implements View.OnClickListener {
 
         layoutHomeVideo.setOnClickListener(this);
 
-        layoutCalculatorInterest.setOnClickListener(this);
         layoutCalculatorNetCredit.setOnClickListener(this);
+        layoutCalculatorInterest.setOnClickListener(this);
 
         layoutInformation.setOnClickListener(this);
         layoutHomeNotice.setOnClickListener(this);
@@ -256,8 +261,6 @@ public class HomeNewFragment extends Fragment implements View.OnClickListener {
         tvHomeInfoDate2 = (TextView) view.findViewById(R.id.tvHomeInfoDate2);
         tvHomeInfoDate3 = (TextView) view.findViewById(R.id.tvHomeInfoDate3);
 
-        layoutHomeNotice = view.findViewById(R.id.layoutHomeNotice);
-        tvHomeNotice = (TextView) view.findViewById(R.id.tvHomeNotice);
     }
 
 
