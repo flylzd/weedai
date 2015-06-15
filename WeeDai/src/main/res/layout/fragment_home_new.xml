@@ -236,7 +236,7 @@
                     <TextView
                         android:id="@+id/tvGeRenTitle"
                         style="@style/homeTitle"
-                        android:text="个人中心" />
+                        android:text="签到" />
 
                     <LinearLayout
                         android:id="@+id/layoutGeRenSubTitle"
@@ -244,10 +244,16 @@
                         android:layout_below="@+id/tvGeRenTitle"
                         android:padding="2dp">
 
-                        <ImageView
+                        <!--<ImageView-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:src="@drawable/icon_my" />-->
+                        <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/icon_my" />
+                            android:gravity="center"
+                            android:text="每天坚持必做的事情"
+                            android:textSize="@dimen/home_sub_title" />
 
                     </LinearLayout>
 
@@ -259,7 +265,7 @@
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="2dp"
                         android:scaleType="fitXY"
-                        android:src="@drawable/icon_home_geren" />
+                        android:src="@drawable/icon_home_sign" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -604,8 +610,8 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:scaleType="center"
                 android:layout_marginRight="2dp"
+                android:scaleType="center"
                 android:src="@drawable/icon_home_notice" />
 
             <TextView
