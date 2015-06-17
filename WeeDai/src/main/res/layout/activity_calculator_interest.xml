@@ -34,9 +34,9 @@
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:background="@null"
-                    android:text="10000"
                     android:inputType="number"
-                    android:paddingLeft="4dp" />
+                    android:paddingLeft="4dp"
+                    android:text="10000" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -68,9 +68,9 @@
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:background="@null"
-                    android:text="16.8"
                     android:inputType="numberDecimal"
-                    android:paddingLeft="4dp" />
+                    android:paddingLeft="4dp"
+                    android:text="16.8" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -102,9 +102,9 @@
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:background="@null"
-                    android:text="12"
                     android:inputType="number"
-                    android:paddingLeft="4dp" />
+                    android:paddingLeft="4dp"
+                    android:text="12" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -226,13 +226,6 @@
 
         </LinearLayout>
 
-        <ListView
-            android:visibility="gone"
-            android:id="@+id/listView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:cacheColorHint="@android:color/transparent" />
-
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -251,7 +244,7 @@
 
             <TextView
                 android:id="@+id/tvRepaymentMonthly"
-                android:layout_width="80dp"
+                android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:gravity="left|center_vertical"
@@ -281,7 +274,7 @@
 
             <TextView
                 android:id="@+id/tvRepaymentAccount"
-                android:layout_width="80dp"
+                android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:gravity="left|center_vertical"
@@ -289,6 +282,71 @@
                 android:paddingTop="10dp"
                 android:textColor="@color/main_text"
                 android:textSize="18sp" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
+            android:layout_marginTop="4dp"
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:paddingBottom="8dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="8dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="期数" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:text="还款本息" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:text="还款本金" />
+
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.5"
+                    android:gravity="center"
+                    android:text="利息" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:text="金额" />
+
+            </LinearLayout>
+
+            <ListView
+                android:id="@+id/listView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:cacheColorHint="@android:color/transparent" />
 
         </LinearLayout>
 

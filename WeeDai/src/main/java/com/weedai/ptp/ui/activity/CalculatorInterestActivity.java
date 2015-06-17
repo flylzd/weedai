@@ -22,6 +22,7 @@ import com.weedai.ptp.model.Article;
 import com.weedai.ptp.model.ArticleList;
 import com.weedai.ptp.model.Calculator;
 import com.weedai.ptp.model.CalculatorList;
+import com.weedai.ptp.utils.ListViewUtil;
 import com.weedai.ptp.volley.ResponseListener;
 
 import java.util.ArrayList;
@@ -48,6 +49,9 @@ public class CalculatorInterestActivity extends BaseActivity {
 
     private int type = 3;   //0等额本息
     //3到期还本,按月付息
+
+    private float balanceAmount;
+
     private AlertDialog alertDialog;
 
     private ProgressDialog progressDialog;
@@ -131,18 +135,49 @@ public class CalculatorInterestActivity extends BaseActivity {
             }
         });
 
-//        adapter = new QuickAdapter<CalculatorList>(CalculatorInterestActivity.this, R.layout.listitem_calculator_interest) {
-//            @Override
-//            protected void convert(BaseAdapterHelper helper, CalculatorList item) {
-//
-//                helper.setText(R.id.tvRepaymentMonthly, item.monthpay);
-//                helper.setText(R.id.tvRepaymentAccount, item.allpay);
-//
-//            }
-//        };
-//
-//        listView = (ListView) findViewById(R.id.listView);
-//        listView.setAdapter(adapter);
+        adapter = new QuickAdapter<CalculatorList>(CalculatorInterestActivity.this, R.layout.listitem_calculate_interest) {
+            @Override
+            protected void convert(BaseAdapterHelper helper, CalculatorList item) {
+
+                int position = helper.getPosition();
+                helper.setText(R.id.tvNumber, String.valueOf(position + 1));
+                helper.setText(R.id.tvRepaymentInterest, item.repayment_account);
+                helper.setText(R.id.tvRepaymentMoney, item.capital);
+                helper.setText(R.id.tvInterest, item.interest);
+
+                if (type == 0) {//0等额本息
+
+                    System.out.println("position " + (position + 1));
+                    System.out.println("balanceAmount11 " + balanceAmount);
+                    System.out.println("repayment_account " + item.repayment_account);
+                    balanceAmount = balanceAmount - Float.parseFloat(item.repayment_account);
+                    System.out.println("balanceAmount22 " + balanceAmount);
+                    helper.setText(R.id.tvMoney, String.valueOf(balanceAmount));
+
+                    if (position + 1 == adapter.getCount()) {
+                        return;
+                    }
+
+                } else if (type == 3) {     //3到期还本,按月付息
+
+                    System.out.println("position " + (position + 1));
+                    System.out.println("balanceAmount11 " + balanceAmount);
+                    System.out.println("repayment_account " + item.repayment_account);
+                    balanceAmount = balanceAmount - Float.parseFloat(item.repayment_account);
+                    System.out.println("balanceAmount22 " + balanceAmount);
+                    helper.setText(R.id.tvMoney, String.valueOf(balanceAmount));
+
+                    if (position + 1 == adapter.getCount()) {
+                        helper.setText(R.id.tvMoney, "0");
+                    } else {
+                        helper.setText(R.id.tvMoney, etAmount.getText().toString());
+                    }
+                }
+            }
+        };
+
+        listView = (ListView) findViewById(R.id.listView);
+        listView.setAdapter(adapter);
 
     }
 
@@ -170,11 +205,19 @@ public class CalculatorInterestActivity extends BaseActivity {
                 tvRepaymentMonthly.setText(result.data.monthpay + " 元");
                 tvRepaymentAccount.setText(result.data.allpay + " 元");
 
-//                List<CalculatorList> list = result.data.list;
-//                if (list != null && list.size() != 0) {
+                balanceAmount = Float.parseFloat(etAmount.getText().toString());
+
+                List<CalculatorList> list = result.data.list;
+                if (list != null && list.size() != 0) {
 //                    dataList = list;
 //                    adapter.replaceAll(dataList);
-//                }
+                    dataList.addAll(list);
+                    adapter.addAll(dataList);
+//                    adapter
+//                    listView.setAdapter(adapter);
+                }
+                ListViewUtil.setListViewHeightBasedOnChildren(listView);
+                adapter.notifyDataSetChanged();
             }
 
             @Override
