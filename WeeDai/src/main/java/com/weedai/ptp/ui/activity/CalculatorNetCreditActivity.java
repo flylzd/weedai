@@ -10,18 +10,26 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.error.VolleyError;
+import com.lemon.aklib.adapter.BaseAdapterHelper;
+import com.lemon.aklib.adapter.QuickAdapter;
 import com.weedai.ptp.R;
 import com.weedai.ptp.app.ApiClient;
 import com.weedai.ptp.constant.Constant;
 import com.weedai.ptp.model.Calculator;
+import com.weedai.ptp.model.CalculatorList;
+import com.weedai.ptp.utils.ListViewUtil;
 import com.weedai.ptp.volley.ResponseListener;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class CalculatorNetCreditActivity extends BaseActivity implements View.OnClickListener {
 
@@ -45,6 +53,12 @@ public class CalculatorNetCreditActivity extends BaseActivity implements View.On
 
     private int type = 3;   //0等额本息
     //3到期还本,按月付息
+
+    private LinearLayout layoutViewCalculate;
+
+    private ListView listView;
+    private QuickAdapter<CalculatorList> adapter;
+    private List<CalculatorList> dataList = new ArrayList<CalculatorList>();
 
     private AlertDialog alertDialog;
 
@@ -91,6 +105,52 @@ public class CalculatorNetCreditActivity extends BaseActivity implements View.On
         tvNianlilv = (TextView) findViewById(R.id.tvNianlilv);
         tvYuelilv = (TextView) findViewById(R.id.tvYuelilv);
 
+        layoutViewCalculate = (LinearLayout) findViewById(R.id.layoutViewCalculate);
+
+//        adapter = new QuickAdapter<CalculatorList>(CalculatorNetCreditActivity.this, R.layout.listitem_calculate_net_credit) {
+//            @Override
+//            protected void convert(BaseAdapterHelper helper, CalculatorList item) {
+//
+//                int position = helper.getPosition();
+//                helper.setText(R.id.tvNumber, String.valueOf(position + 1));
+//                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+//                String addtime = sdf.format(Long.parseLong(item.repayment_time + "000"));
+//                helper.setText(R.id.tvRepaymentTime, addtime);
+//                helper.setText(R.id.tvRepaymentMoney, item.capital);
+//                helper.setText(R.id.tvInterest, item.interest);
+//                helper.setText(R.id.tvMoney, item.repayment_account);
+//            }
+//        };
+//
+//        listView = (ListView) findViewById(R.id.listView);
+//        listView.setAdapter(adapter);
+    }
+
+
+    private void setLayoutViewCalculate() {
+
+        layoutViewCalculate.removeAllViews();
+        int size = dataList.size();
+        for (int i = 0; i < size; i++) {
+
+            View view = getLayoutInflater().inflate(R.layout.listitem_calculate_net_credit, null);
+            TextView tvNumber = (TextView) view.findViewById(R.id.tvNumber);
+            TextView tvRepaymentTime = (TextView) view.findViewById(R.id.tvRepaymentTime);
+            TextView tvRepaymentMoney = (TextView) view.findViewById(R.id.tvRepaymentMoney);
+            TextView tvInterest = (TextView) view.findViewById(R.id.tvInterest);
+            TextView tvMoney = (TextView) view.findViewById(R.id.tvMoney);
+
+            CalculatorList item = dataList.get(i);
+            tvNumber.setText(String.valueOf(i + 1));
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            String addtime = sdf.format(Long.parseLong(item.repayment_time + "000"));
+            tvRepaymentTime.setText(addtime);
+            tvRepaymentMoney.setText(item.capital);
+            tvInterest.setText(item.interest);
+            tvMoney.setText(item.repayment_account);
+
+            layoutViewCalculate.addView(view);
+        }
     }
 
     @Override
@@ -246,6 +306,16 @@ public class CalculatorNetCreditActivity extends BaseActivity implements View.On
                 tvAwards.setText("含奖励:" + awards + "元");
                 tvNianlilv.setText("年化利率:" + nianlilv + "%");
                 tvYuelilv.setText("年月化利率:" + yuelilv + "%");
+
+                dataList.clear();
+                List<CalculatorList> list = result.data.list;
+                if (list != null && list.size() != 0) {
+                    dataList = list;
+//                    adapter.replaceAll(dataList);
+//                    ListViewUtil.setListViewHeightBasedOnChildren(listView);
+                    setLayoutViewCalculate();
+                }
+
             }
 
             @Override

@@ -163,7 +163,6 @@ public class ArticleActivity extends BaseActivity implements SwipeRefreshLayout.
                                 getArticleInfo(infoPage);
                             }
                         }
-
                         break;
                     case R.id.rbArticleNotice:
                         synchronized (ArticleActivity.this){

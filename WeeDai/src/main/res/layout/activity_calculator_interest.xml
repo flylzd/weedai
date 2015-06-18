@@ -285,7 +285,6 @@
 
         </LinearLayout>
 
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -338,7 +337,16 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
                     android:gravity="center"
-                    android:text="金额" />
+                    android:text="余额" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutViewCalculate"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
 
             </LinearLayout>
 
@@ -346,7 +354,8 @@
                 android:id="@+id/listView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:cacheColorHint="@android:color/transparent" />
+                android:cacheColorHint="@android:color/transparent"
+                android:visibility="gone" />
 
         </LinearLayout>
 

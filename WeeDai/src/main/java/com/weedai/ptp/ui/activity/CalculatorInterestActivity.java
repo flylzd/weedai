@@ -8,6 +8,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -42,6 +43,8 @@ public class CalculatorInterestActivity extends BaseActivity {
     private TextView tvAprMonthly;
     private TextView tvRepaymentMonthly;
     private TextView tvRepaymentAccount;
+
+    private LinearLayout layoutViewCalculate;
 
     private ListView listView;
     private QuickAdapter<CalculatorList> adapter;
@@ -87,6 +90,8 @@ public class CalculatorInterestActivity extends BaseActivity {
         tvAprMonthly = (TextView) findViewById(R.id.tvAprMonthly);
         tvRepaymentMonthly = (TextView) findViewById(R.id.tvRepaymentMonthly);
         tvRepaymentAccount = (TextView) findViewById(R.id.tvRepaymentAccount);
+
+        layoutViewCalculate = (LinearLayout) findViewById(R.id.layoutViewCalculate);
 
         tvType.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -135,50 +140,94 @@ public class CalculatorInterestActivity extends BaseActivity {
             }
         });
 
-        adapter = new QuickAdapter<CalculatorList>(CalculatorInterestActivity.this, R.layout.listitem_calculate_interest) {
-            @Override
-            protected void convert(BaseAdapterHelper helper, CalculatorList item) {
+//        adapter = new QuickAdapter<CalculatorList>(CalculatorInterestActivity.this, R.layout.listitem_calculate_interest) {
+//            @Override
+//            protected void convert(BaseAdapterHelper helper, CalculatorList item) {
+//
+//                int position = helper.getPosition();
+//                helper.setText(R.id.tvNumber, String.valueOf(position + 1));
+//                helper.setText(R.id.tvRepaymentInterest, item.repayment_account);
+//                helper.setText(R.id.tvRepaymentMoney, item.capital);
+//                helper.setText(R.id.tvInterest, item.interest);
+//
+//                if (type == 0) {//0等额本息
+//
+//                    System.out.println("position " + (position + 1));
+//                    System.out.println("balanceAmount11 " + balanceAmount);
+//                    System.out.println("repayment_account " + item.repayment_account);
+//                    balanceAmount = balanceAmount - Float.parseFloat(item.repayment_account);
+//                    System.out.println("balanceAmount22 " + balanceAmount);
+//                    helper.setText(R.id.tvMoney, String.valueOf(balanceAmount));
+//
+//                    if (position + 1 == adapter.getCount()) {
+//                        return;
+//                    }
+//
+//                } else if (type == 3) {     //3到期还本,按月付息
+//
+//                    System.out.println("position " + (position + 1));
+//                    System.out.println("balanceAmount11 " + balanceAmount);
+//                    System.out.println("repayment_account " + item.repayment_account);
+//                    balanceAmount = balanceAmount - Float.parseFloat(item.repayment_account);
+//                    System.out.println("balanceAmount22 " + balanceAmount);
+//                    helper.setText(R.id.tvMoney, String.valueOf(balanceAmount));
+//
+//                    if (position + 1 == adapter.getCount()) {
+//                        helper.setText(R.id.tvMoney, "0");
+//                    } else {
+//                        helper.setText(R.id.tvMoney, etAmount.getText().toString());
+//                    }
+//                }
+//            }
+//        };
+//
+//        listView = (ListView) findViewById(R.id.listView);
+//        listView.setAdapter(adapter);
 
-                int position = helper.getPosition();
-                helper.setText(R.id.tvNumber, String.valueOf(position + 1));
-                helper.setText(R.id.tvRepaymentInterest, item.repayment_account);
-                helper.setText(R.id.tvRepaymentMoney, item.capital);
-                helper.setText(R.id.tvInterest, item.interest);
+    }
 
-                if (type == 0) {//0等额本息
+    private void setLayoutViewCalculate() {
 
-                    System.out.println("position " + (position + 1));
-                    System.out.println("balanceAmount11 " + balanceAmount);
-                    System.out.println("repayment_account " + item.repayment_account);
-                    balanceAmount = balanceAmount - Float.parseFloat(item.repayment_account);
-                    System.out.println("balanceAmount22 " + balanceAmount);
-                    helper.setText(R.id.tvMoney, String.valueOf(balanceAmount));
+        layoutViewCalculate.removeAllViews();
+        int size = dataList.size();
+        for (int i = 0; i < size; i++) {
 
-                    if (position + 1 == adapter.getCount()) {
-                        return;
-                    }
+            View view = getLayoutInflater().inflate(R.layout.listitem_calculate_interest, null);
+            TextView tvNumber = (TextView) view.findViewById(R.id.tvNumber);
+            TextView tvRepaymentInterest = (TextView) view.findViewById(R.id.tvRepaymentInterest);
+            TextView tvRepaymentMoney = (TextView) view.findViewById(R.id.tvRepaymentMoney);
+            TextView tvInterest = (TextView) view.findViewById(R.id.tvInterest);
+            TextView tvMoney = (TextView) view.findViewById(R.id.tvMoney);
 
-                } else if (type == 3) {     //3到期还本,按月付息
+            CalculatorList item = dataList.get(i);
+            tvNumber.setText(String.valueOf(i + 1));
+            tvRepaymentInterest.setText(item.repayment_account);
+            tvRepaymentMoney.setText(item.capital);
+            tvInterest.setText(item.interest);
 
-                    System.out.println("position " + (position + 1));
-                    System.out.println("balanceAmount11 " + balanceAmount);
-                    System.out.println("repayment_account " + item.repayment_account);
-                    balanceAmount = balanceAmount - Float.parseFloat(item.repayment_account);
-                    System.out.println("balanceAmount22 " + balanceAmount);
-                    helper.setText(R.id.tvMoney, String.valueOf(balanceAmount));
+            if (type == 0) {//0等额本息
 
-                    if (position + 1 == adapter.getCount()) {
-                        helper.setText(R.id.tvMoney, "0");
-                    } else {
-                        helper.setText(R.id.tvMoney, etAmount.getText().toString());
-                    }
+                System.out.println("balanceAmount11 " + balanceAmount);
+                System.out.println("repayment_account " + item.repayment_account);
+                balanceAmount = balanceAmount - Float.parseFloat(item.repayment_account);
+                System.out.println("balanceAmount22 " + balanceAmount);
+                tvMoney.setText(String.format("%.1f",balanceAmount));
+
+            } else if (type == 3) {     //3到期还本,按月付息
+
+                System.out.println("balanceAmount11 " + balanceAmount);
+                System.out.println("repayment_account " + item.repayment_account);
+                balanceAmount = balanceAmount - Float.parseFloat(item.repayment_account);
+                System.out.println("balanceAmount22 " + balanceAmount);
+
+                if (i + 1 == size) {
+                    tvMoney.setText(String.valueOf("0"));
+                } else {
+                    tvMoney.setText(etAmount.getText().toString());
                 }
             }
-        };
-
-        listView = (ListView) findViewById(R.id.listView);
-        listView.setAdapter(adapter);
-
+            layoutViewCalculate.addView(view);
+        }
     }
 
     private void calculator(String account, final String lilv, final String times, int type) {
@@ -205,19 +254,23 @@ public class CalculatorInterestActivity extends BaseActivity {
                 tvRepaymentMonthly.setText(result.data.monthpay + " 元");
                 tvRepaymentAccount.setText(result.data.allpay + " 元");
 
-                balanceAmount = Float.parseFloat(etAmount.getText().toString());
+//                balanceAmount = Float.parseFloat(etAmount.getText().toString());
+                balanceAmount = Float.parseFloat(result.data.allpay);
 
+                dataList.clear();
                 List<CalculatorList> list = result.data.list;
                 if (list != null && list.size() != 0) {
 //                    dataList = list;
 //                    adapter.replaceAll(dataList);
                     dataList.addAll(list);
-                    adapter.addAll(dataList);
+//                    adapter.addAll(dataList);
 //                    adapter
 //                    listView.setAdapter(adapter);
                 }
-                ListViewUtil.setListViewHeightBasedOnChildren(listView);
-                adapter.notifyDataSetChanged();
+//                ListViewUtil.setListViewHeightBasedOnChildren(listView);
+//                adapter.notifyDataSetChanged();
+
+                setLayoutViewCalculate();
             }
 
             @Override
