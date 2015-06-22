@@ -27,6 +27,8 @@ import com.weedai.ptp.view.SimpleValidateCodeView;
 import com.weedai.ptp.view.SimpleWaveView;
 import com.weedai.ptp.volley.ResponseListener;
 
+import pl.droidsonroids.gif.GifImageView;
+
 /**
  * 投资理财
  */
@@ -34,6 +36,7 @@ public class FinanceInvestmentActivity extends BaseActivity {
 
     private final static String TAG = "FinanceInvestmentActivity";
 
+    private GifImageView imgGifScale;
     private SimpleWaveView simpleWaveView;
     private TextView tvScale;
     private ImageView imgAward;
@@ -81,6 +84,7 @@ public class FinanceInvestmentActivity extends BaseActivity {
 
     private void initView() {
 
+        imgGifScale = (GifImageView) findViewById(R.id.imgGifScale);
         simpleWaveView = (SimpleWaveView) findViewById(R.id.simpleWaveView);
         tvScale = (TextView) findViewById(R.id.tvScale);
         imgAward = (ImageView) findViewById(R.id.imgAward);
@@ -193,10 +197,39 @@ public class FinanceInvestmentActivity extends BaseActivity {
             tvLimitTime.setText(data.time_limit + "个月");
 
             final float scale = data.scale;
-            float percentage = scale / 100;
-            simpleWaveView.setColor(getResources().getColor(R.color.main_text_orange));
-            simpleWaveView.setPercentage(percentage);
-            tvScale.setText(scale + "%");
+//            float percentage = scale / 100;
+//            simpleWaveView.setColor(getResources().getColor(R.color.main_text_orange));
+//            simpleWaveView.setPercentage(percentage);
+//            tvScale.setText(scale + "%");
+
+            int percentage = (int) (scale / 10);
+            int resId = R.drawable.p1;
+            if (percentage == 10) {  //100%
+                resId = R.drawable.p11;
+            } else if (percentage == 9) {
+                resId = R.drawable.p10;
+            } else if (percentage == 8) {
+                resId = R.drawable.p9;
+            } else if (percentage == 7) {
+                resId = R.drawable.p8;
+            } else if (percentage == 6) {
+                resId = R.drawable.p7;
+            } else if (percentage == 6) {
+                resId = R.drawable.p7;
+            } else if (percentage == 5) {
+                resId = R.drawable.p6;
+            } else if (percentage == 4) {
+                resId = R.drawable.p5;
+            } else if (percentage == 3) {
+                resId = R.drawable.p4;
+            } else if (percentage == 2) {
+                resId = R.drawable.p3;
+            } else if (percentage == 1) {
+                resId = R.drawable.p2;
+            } else if (percentage == 0) {
+                resId = R.drawable.p1;
+            }
+            imgGifScale.setImageResource(resId);
         }
     }
 

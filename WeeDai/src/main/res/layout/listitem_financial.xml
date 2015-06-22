@@ -27,10 +27,10 @@
                 android:layout_height="wrap_content"
                 android:layout_alignBaseline="@+id/tvAnnualRate"
 
+                android:layout_marginLeft="10dp"
                 android:background="@drawable/ic_break_even"
                 android:gravity="center"
                 android:padding="3dp"
-                android:layout_marginLeft="10dp"
                 android:text="保"
                 android:textColor="@color/white" />
 
@@ -95,7 +95,7 @@
             android:layout_weight="1"
             android:orientation="vertical">
 
-            <FrameLayout
+            <RelativeLayout
                 android:id="@+id/layoutProgress"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -105,31 +105,44 @@
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_gravity="center"
-
                     android:scaleType="centerCrop"
-                    android:src="@drawable/bg_border" />
+                    android:src="@drawable/bg_border"
+                    android:visibility="gone" />
 
                 <com.weedai.ptp.view.SimpleWaveView
                     android:id="@+id/simpleWaveView"
                     android:layout_width="90dp"
                     android:layout_height="90dp"
-                    android:layout_gravity="center" />
+                    android:layout_gravity="center"
+                    android:visibility="gone" />
+
+
+                <pl.droidsonroids.gif.GifImageView
+                    android:id="@+id/imgGifScale"
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/p1" />
+
 
                 <TextView
                     android:id="@+id/tvScale"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
                     android:layout_gravity="center"
                     android:layout_marginBottom="10dp"
                     android:gravity="center"
                     android:text="18.8%"
                     android:textSize="18sp" />
-            </FrameLayout>
+            </RelativeLayout>
 
             <ImageView
                 android:id="@+id/imgCompleted"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
                 android:layout_gravity="center"
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/bg_completed"
@@ -137,8 +150,8 @@
 
             <ImageView
                 android:id="@+id/imgPayment"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
                 android:layout_gravity="center"
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/bg_payment"
