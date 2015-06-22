@@ -295,6 +295,141 @@
                         android:textColor="#f14728" />
                 </LinearLayout>
 
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:background="@color/white"
+                android:paddingBottom="8dp"
+                android:paddingLeft="@dimen/financial_detail_layout_padding_left"
+                android:paddingRight="@dimen/financial_detail_layout_padding_right">
+
+                <LinearLayout
+                    android:id="@+id/layoutFinancialInvest"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingBottom="8dp"
+                    android:paddingTop="8dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="4dp"
+                        android:text="投资记录"
+                        android:textSize="16sp" />
+
+                    <include layout="@layout/view_horizontal_line" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvInvestTotalTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/layoutFinancialInvest"
+                    android:paddingBottom="3dp"
+                    android:paddingRight="@dimen/financial_detail_about_title_padding_end"
+                    android:paddingTop="3dp"
+                    android:text="目前投资总额"
+                    android:textColor="@color/financial_main_text" />
+
+                <TextView
+                    android:id="@+id/tvInvestTotal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/tvInvestTotalTitle"
+                    android:layout_toRightOf="@+id/tvInvestTotalTitle"
+                    android:text="1000元"
+                    android:textColor="@color/main_text_black"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/tvInvestRemainTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tvInvestTotalTitle"
+                    android:paddingBottom="3dp"
+                    android:paddingRight="@dimen/financial_detail_about_title_padding_end"
+                    android:paddingTop="3dp"
+                    android:text="剩下投资总额"
+                    android:textColor="@color/financial_main_text" />
+
+                <TextView
+                    android:id="@+id/tvInvestRemain"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/tvInvestRemainTitle"
+                    android:layout_toRightOf="@+id/tvInvestRemainTitle"
+                    android:text="1000元"
+                    android:textColor="@color/main_text_black"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/tvInvestAverageTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tvInvestRemainTitle"
+                    android:paddingBottom="3dp"
+                    android:paddingRight="@dimen/financial_detail_about_title_padding_end"
+                    android:paddingTop="3dp"
+                    android:text="平均投资总额"
+                    android:textColor="@color/financial_main_text" />
+
+                <TextView
+                    android:id="@+id/tvInvestAverage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/tvInvestAverageTitle"
+                    android:layout_toRightOf="@+id/tvInvestAverageTitle"
+                    android:text="1000元"
+                    android:textColor="@color/main_text_black"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/tvInvestCountTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tvInvestAverageTitle"
+                    android:paddingBottom="3dp"
+                    android:paddingRight="@dimen/financial_detail_about_title_padding_end"
+                    android:paddingTop="3dp"
+                    android:text="投资次数"
+                    android:textColor="@color/financial_main_text" />
+
+                <TextView
+                    android:id="@+id/tvInvestCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/tvInvestCountTitle"
+                    android:layout_alignLeft="@+id/tvInvestAverage"
+                    android:layout_toRightOf="@+id/tvInvestCountTitle"
+                    android:text="2次"
+                    android:textColor="@color/main_text_black"
+                    android:textSize="18sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tvInvestCountTitle"
+                    android:orientation="vertical"
+                    android:paddingTop="8dp">
+
+                    <include layout="@layout/view_horizontal_line" />
+
+                    <TextView
+                        android:id="@+id/layoutInvestList"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/selector_bg_layout"
+                        android:clickable="true"
+                        android:paddingBottom="8dp"
+                        android:paddingTop="4dp"
+                        android:text="投资列表"
+                        android:textColor="#f14728" />
+                </LinearLayout>
+
 
             </RelativeLayout>
 

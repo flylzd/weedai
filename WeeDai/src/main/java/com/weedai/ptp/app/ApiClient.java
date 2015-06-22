@@ -25,6 +25,7 @@ import com.weedai.ptp.model.Days;
 import com.weedai.ptp.model.FinancialManager;
 import com.weedai.ptp.model.Hero;
 import com.weedai.ptp.model.Invest;
+import com.weedai.ptp.model.Investor;
 import com.weedai.ptp.model.Micro;
 import com.weedai.ptp.model.Money;
 import com.weedai.ptp.model.MyWeallth;
@@ -1168,6 +1169,27 @@ public class ApiClient {
 
         String url = Urls.ACTION_INDEX;
         GsonPostRequest request = createGsonPostRequest(url, requestParams, About.class, listener);
+        request.setTag(tag);
+        requestQueue.add(request);
+    }
+
+    /**
+     * 投资人列表
+     */
+    public static void getInvester(String tag, String bid, ResponseListener listener) {
+
+        if (!hashkNewwork()) {
+            return;
+        }
+
+        listener.onStarted();
+
+        Map<String, String> requestParams = getSignatureMap();
+        requestParams.put("bid", bid);
+        requestParams.put(Urls.ACTION, "getinvester");
+
+        String url = Urls.ACTION_INDEX;
+        GsonPostRequest request = createGsonPostRequest(url, requestParams, Investor.class, listener);
         request.setTag(tag);
         requestQueue.add(request);
     }

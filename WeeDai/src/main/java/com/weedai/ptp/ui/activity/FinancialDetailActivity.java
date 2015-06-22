@@ -42,6 +42,13 @@ public class FinancialDetailActivity extends BaseActivity {
     private TextView tvAboutAudit;  //距离审核
     private TextView tvAboutReviewTime;  //复审时间
 
+    private TextView tvInvestTotal;
+    private TextView tvInvestRemain;
+    private TextView tvInvestAverage;
+    private TextView tvInvestCount;
+    private View layoutInvestList;
+
+
     private TextView tvInterestAgreement;
 
     private TextView tvReimbursement;
@@ -179,6 +186,31 @@ public class FinancialDetailActivity extends BaseActivity {
             tvReimbursement.setText(getString(R.string.financial_detail_reimbursement_one));
         } else if (style == 3) {
             tvReimbursement.setText(getString(R.string.financial_detail_reimbursement_two));
+        }
+
+        tvInvestTotal = (TextView) findViewById(R.id.tvInvestTotal);
+        tvInvestRemain = (TextView) findViewById(R.id.tvInvestRemain);
+        tvInvestAverage = (TextView) findViewById(R.id.tvInvestAverage);
+        tvInvestCount = (TextView) findViewById(R.id.tvInvestCount);
+        layoutInvestList = findViewById(R.id.layoutInvestList);
+        layoutInvestList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                System.out.println("tender_times " + data.tender_times);
+                UIHelper.showInvestor(FinancialDetailActivity.this, data.id);
+            }
+        });
+
+        int total = Integer.parseInt(data.account) - Integer.parseInt(data.other);
+        tvInvestTotal.setText(String.valueOf(total) + " 元");
+        tvInvestRemain.setText(String.valueOf(data.other) + " 元");
+        int tenderTimes = Integer.parseInt(data.tender_times);
+        tvInvestCount.setText(data.tender_times + " 次");
+        if (tenderTimes != 0) {
+            String average = String.format("%.2f", (float) total / tenderTimes);
+            tvInvestAverage.setText(average + " 元");
+        } else {
+            tvInvestAverage.setText(String.valueOf(total) + " 元");
         }
     }
 

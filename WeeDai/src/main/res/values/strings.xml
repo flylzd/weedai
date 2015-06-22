@@ -42,6 +42,8 @@
     <string name="title_hero">英雄榜</string>
     <string name="title_lucky_draw">抽奖</string>
     <string name="title_stand_inside_letter">信件</string>
+    <string name="title_investor">投资人列表</string>
+
 
     <string name="login_user_hint">手机号/邮箱/用户名</string>
     <string name="login_password_hint">请输入密码</string>

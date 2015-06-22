@@ -200,7 +200,7 @@ public class FinanceInvestmentActivity extends BaseActivity {
 //            float percentage = scale / 100;
 //            simpleWaveView.setColor(getResources().getColor(R.color.main_text_orange));
 //            simpleWaveView.setPercentage(percentage);
-//            tvScale.setText(scale + "%");
+            tvScale.setText(scale + "%");
 
             int percentage = (int) (scale / 10);
             int resId = R.drawable.p1;

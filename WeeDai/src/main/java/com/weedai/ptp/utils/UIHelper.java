@@ -23,6 +23,7 @@ import com.weedai.ptp.ui.activity.FinancialActivity;
 import com.weedai.ptp.ui.activity.FinancialDetailActivity;
 import com.weedai.ptp.ui.activity.HeroActivity;
 import com.weedai.ptp.ui.activity.HomeVideoActivity;
+import com.weedai.ptp.ui.activity.InvestorActivity;
 import com.weedai.ptp.ui.activity.LiCaiRecommendActivity;
 import com.weedai.ptp.ui.activity.LoginActivity;
 import com.weedai.ptp.ui.activity.LuckyDrawActivity;
@@ -311,8 +312,20 @@ public class UIHelper {
         context.startActivity(intent);
     }
 
+    /**
+     * 首页视频
+     */
     public static void showHomeVideo(Context context) {
         Intent intent = new Intent(context, HomeVideoActivity.class);
+        context.startActivity(intent);
+    }
+
+    /**
+     * 投资人列表
+     */
+    public static void showInvestor(Context context, String bid) {
+        Intent intent = new Intent(context, InvestorActivity.class);
+        intent.putExtra("bid", bid);
         context.startActivity(intent);
     }
 }
