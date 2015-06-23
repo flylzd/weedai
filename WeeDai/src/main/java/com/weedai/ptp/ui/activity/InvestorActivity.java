@@ -67,7 +67,10 @@ public class InvestorActivity extends BaseActivity {
             @Override
             protected void convert(BaseAdapterHelper helper, InvestorData item) {
 
-                helper.setText(R.id.tvInvestorName, DataUtil.urlDecode(item.username));
+                String itemUsename = DataUtil.urlDecode(item.username);
+                String username = itemUsename.substring(0, itemUsename.length() - 2);
+                username = username + "**";
+                helper.setText(R.id.tvInvestorName, username);
                 helper.setText(R.id.tvInvestorInvestmentAmount, DataUtil.urlDecode(item.money));
                 helper.setText(R.id.tvInvestorForceAmount, DataUtil.urlDecode(item.tender_account));
 
