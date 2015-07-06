@@ -41,7 +41,7 @@ public class AccountActivity extends BaseActivity implements View.OnClickListene
     private RelativeLayout layoutAccountEmail;
     private RelativeLayout layoutAccountModifyLoginPassword;
     private RelativeLayout layoutAccountPasswordProtection;
-    private RelativeLayout layoutAccountPasswordManagementGestures;
+    private RelativeLayout layoutPasswordGestures;
     private Button btnExit;
 
     private TextView tvAccountPasswordDateBirth;
@@ -86,7 +86,7 @@ public class AccountActivity extends BaseActivity implements View.OnClickListene
         layoutAccountEmail = (RelativeLayout) findViewById(R.id.layoutAccountEmail);
         layoutAccountModifyLoginPassword = (RelativeLayout) findViewById(R.id.layoutAccountModifyLoginPassword);
         layoutAccountPasswordProtection = (RelativeLayout) findViewById(R.id.layoutAccountPasswordProtection);
-        layoutAccountPasswordManagementGestures = (RelativeLayout) findViewById(R.id.layoutAccountPasswordManagementGestures);
+        layoutPasswordGestures = (RelativeLayout) findViewById(R.id.layoutPasswordGestures);
         btnExit = (Button) findViewById(R.id.btnExit);
         layoutAccountDateBirth.setOnClickListener(this);
         layoutAccount.setOnClickListener(this);
@@ -94,7 +94,7 @@ public class AccountActivity extends BaseActivity implements View.OnClickListene
         layoutAccountEmail.setOnClickListener(this);
         layoutAccountModifyLoginPassword.setOnClickListener(this);
         layoutAccountPasswordProtection.setOnClickListener(this);
-        layoutAccountPasswordManagementGestures.setOnClickListener(this);
+        layoutPasswordGestures.setOnClickListener(this);
         btnExit.setOnClickListener(this);
 
         imgAvatar = (ImageView) findViewById(R.id.imgAvatar);
@@ -207,7 +207,8 @@ public class AccountActivity extends BaseActivity implements View.OnClickListene
             case R.id.layoutAccountPasswordProtection:
                 UIHelper.showChangePaymentPassword(AccountActivity.this);
                 break;
-            case R.id.layoutAccountPasswordManagementGestures:
+            case R.id.layoutPasswordGestures:
+
                 break;
             case R.id.btnExit:
                 AlertDialog.Builder builder = new AlertDialog.Builder(AccountActivity.this);
