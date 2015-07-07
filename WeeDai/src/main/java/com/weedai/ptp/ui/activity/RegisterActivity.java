@@ -115,15 +115,32 @@ public class RegisterActivity extends BaseActivity {
                     return;
                 }
 
-                if (username.length() < 5){
+                if (username.length() < 5) {
                     Toast.makeText(RegisterActivity.this, "用户名格式不正确,用户名须由大小写英文字符开头，可以由大小写英文字符、数字以及英文下划线符号'_'组成，并且大于5位，请检查后重新注册。", Toast.LENGTH_SHORT).show();
                     return;
+                } else {
+                    if (!checkFirstIsLetter(username)){
+                        Toast.makeText(RegisterActivity.this, "用户名格式不正确,用户名须由大小写英文字符开头，可以由大小写英文字符、数字以及英文下划线符号'_'组成，并且大于5位，请检查后重新注册。", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
                 }
 
                 checkUsername(username);
 
             }
         });
+    }
+
+    /**
+     * 判断一个字符串的首字符是否为字母
+     */
+    private  boolean checkFirstIsLetter(String fstrData) {
+        char c = fstrData.charAt(0);
+        if (((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     private void checkUsername(final String username) {
