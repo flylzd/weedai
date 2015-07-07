@@ -25,6 +25,7 @@ import com.weedai.ptp.ui.activity.HeroActivity;
 import com.weedai.ptp.ui.activity.HomeVideoActivity;
 import com.weedai.ptp.ui.activity.InvestorActivity;
 import com.weedai.ptp.ui.activity.LiCaiRecommendActivity;
+import com.weedai.ptp.ui.activity.Lock9ViewActivity;
 import com.weedai.ptp.ui.activity.LoginActivity;
 import com.weedai.ptp.ui.activity.LuckyDrawActivity;
 import com.weedai.ptp.ui.activity.MainActivity;
@@ -40,6 +41,7 @@ import com.weedai.ptp.ui.activity.MyWealthActivity;
 import com.weedai.ptp.ui.activity.MyWithdrawalActivity;
 import com.weedai.ptp.ui.activity.MyWithdrawalRecordActivity;
 import com.weedai.ptp.ui.activity.PartnerActivity;
+import com.weedai.ptp.ui.activity.PasswordGesturesActivity;
 import com.weedai.ptp.ui.activity.ReceivableSearchActivity;
 import com.weedai.ptp.ui.activity.RegisterActivity;
 import com.weedai.ptp.ui.activity.SecurityLevelActivity;
@@ -326,6 +328,22 @@ public class UIHelper {
     public static void showInvestor(Context context, String bid) {
         Intent intent = new Intent(context, InvestorActivity.class);
         intent.putExtra("bid", bid);
+        context.startActivity(intent);
+    }
+
+    /**
+     * 手势密码
+     */
+    public static void showPasswordGestures(Context context) {
+        Intent intent = new Intent(context, PasswordGesturesActivity.class);
+        context.startActivity(intent);
+    }
+
+    /**
+     * 手势密码
+     */
+    public static void showLock9View(Context context) {
+        Intent intent = new Intent(context, Lock9ViewActivity.class);
         context.startActivity(intent);
     }
 }

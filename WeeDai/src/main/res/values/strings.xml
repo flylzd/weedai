@@ -2,7 +2,8 @@
 <resources>
 
     <!--<string name="app_name">WeeDai</string>-->
-    <string name="app_name">微E贷－全国领先的纯P2P网贷平台</string>
+    <!--<string name="app_name">微E贷－全国领先的纯P2P网贷平台</string>-->
+    <string name="app_name">微E贷</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
 
@@ -43,6 +44,8 @@
     <string name="title_lucky_draw">抽奖</string>
     <string name="title_stand_inside_letter">信件</string>
     <string name="title_investor">投资人列表</string>
+    <string name="title_password_gestures">手势密码</string>
+    <string name="title_password_gestures_lock">设置手势密码</string>
 
 
     <string name="login_user_hint">手机号/邮箱/用户名</string>
@@ -68,7 +71,7 @@
     <string name="register_sex">性&#160;&#160;&#160;&#160;别: </string>
 
     <string name="register_email_hint">邮件地址不能为空</string>
-    <string name="register_username_hint">请输入4-15位字符(中文5个)</string>
+    <string name="register_username_hint">请输入5-15位字符</string>
     <string name="register_login_password_hint">登陆密码不能少于6个字符</string>
     <string name="register_real_name_hint">真实姓名不能为空</string>
 

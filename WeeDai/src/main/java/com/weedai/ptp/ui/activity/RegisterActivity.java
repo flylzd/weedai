@@ -115,6 +115,11 @@ public class RegisterActivity extends BaseActivity {
                     return;
                 }
 
+                if (username.length() < 5){
+                    Toast.makeText(RegisterActivity.this, "用户名格式不正确,用户名须由大小写英文字符开头，可以由大小写英文字符、数字以及英文下划线符号'_'组成，并且大于5位，请检查后重新注册。", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 checkUsername(username);
 
             }

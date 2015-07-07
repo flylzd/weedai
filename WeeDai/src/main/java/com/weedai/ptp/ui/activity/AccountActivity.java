@@ -208,7 +208,7 @@ public class AccountActivity extends BaseActivity implements View.OnClickListene
                 UIHelper.showChangePaymentPassword(AccountActivity.this);
                 break;
             case R.id.layoutPasswordGestures:
-
+                UIHelper.showPasswordGestures(AccountActivity.this);
                 break;
             case R.id.btnExit:
                 AlertDialog.Builder builder = new AlertDialog.Builder(AccountActivity.this);
