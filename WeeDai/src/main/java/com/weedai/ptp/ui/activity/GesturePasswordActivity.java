@@ -9,7 +9,7 @@ import com.weedai.ptp.R;
 import com.weedai.ptp.constant.Config;
 import com.weedai.ptp.utils.UIHelper;
 
-public class PasswordGesturesActivity extends BaseActivity implements View.OnClickListener {
+public class GesturePasswordActivity extends BaseActivity implements View.OnClickListener {
 
 
     private View layoutPasswordGestures;
@@ -43,12 +43,13 @@ public class PasswordGesturesActivity extends BaseActivity implements View.OnCli
 
         switch (v.getId()) {
             case R.id.layoutPasswordGestures:
-                UIHelper.showLock9View(PasswordGesturesActivity.this);
+                UIHelper.showLock9View(GesturePasswordActivity.this);
                 break;
             case R.id.layoutPasswordGesturesClear:
 //                UIHelper.showLock9View(PasswordGesturesActivity.this);
                 SharedPreferences preferences = getSharedPreferences(Config.PREFERENCE_NAME_LOCK, MODE_PRIVATE);
-                preferences.getAll().clear();
+                preferences.edit().clear();
+                preferences.edit().commit();
                 layoutPasswordGestures.setVisibility(View.VISIBLE);
                 layoutPasswordGesturesClear.setVisibility(View.GONE);
                 break;

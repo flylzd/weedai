@@ -4,6 +4,7 @@ package com.weedai.ptp.ui.activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -47,6 +48,7 @@ public class AccountActivity extends BaseActivity implements View.OnClickListene
     private TextView tvAccountPasswordDateBirth;
     private TextView tvAccountPhone;
     private TextView tvAccountEmail;
+    private TextView tvAccountPasswordGestures;
 
     private static UserData data;
 
@@ -104,6 +106,15 @@ public class AccountActivity extends BaseActivity implements View.OnClickListene
         tvAccountPasswordDateBirth = (TextView) findViewById(R.id.tvAccountPasswordDateBirth);
         tvAccountPhone = (TextView) findViewById(R.id.tvAccountPhone);
         tvAccountEmail = (TextView) findViewById(R.id.tvAccountEmail);
+        tvAccountPasswordGestures = (TextView) findViewById(R.id.tvAccountPasswordGestures);
+
+        SharedPreferences preferences = getSharedPreferences(Config.PREFERENCE_NAME_LOCK, MODE_PRIVATE);
+        boolean isLock = preferences.getBoolean(Config.REMEBER_LOCK_LOGIN, false);
+        if (isLock) {
+            tvAccountPasswordGestures.setText("已设置");
+        } else {
+            tvAccountPasswordGestures.setText("未设置");
+        }
     }
 
     private void loadData() {

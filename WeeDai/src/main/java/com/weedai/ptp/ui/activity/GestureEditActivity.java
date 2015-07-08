@@ -1,7 +1,6 @@
 package com.weedai.ptp.ui.activity;
 
 
-import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Html;
@@ -19,7 +18,7 @@ import com.weedai.ptp.widget.lockview.GestureContentView;
 import com.weedai.ptp.widget.lockview.GestureDrawline;
 import com.weedai.ptp.widget.lockview.LockIndicator;
 
-public class Lock9ViewActivity extends BaseActivity implements View.OnClickListener {
+public class GestureEditActivity extends BaseActivity implements View.OnClickListener {
 
 //    private Lock9View lock9View;
     /**
@@ -110,9 +109,9 @@ public class Lock9ViewActivity extends BaseActivity implements View.OnClickListe
                     mTextReset.setText(getString(R.string.reset_gesture_code));
                 } else {
                     if (inputCode.equals(mFirstPassword)) {
-                        Toast.makeText(Lock9ViewActivity.this, "手势设置成功", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(GestureEditActivity.this, "手势设置成功", Toast.LENGTH_SHORT).show();
                         mGestureContentView.clearDrawlineState(0L);
-                        Lock9ViewActivity.this.finish();
+                        GestureEditActivity.this.finish();
 
                         SharedPreferences preferences = getSharedPreferences(Config.PREFERENCE_NAME_LOCK, MODE_PRIVATE);
                         SharedPreferences.Editor editor = preferences.edit();
@@ -123,7 +122,7 @@ public class Lock9ViewActivity extends BaseActivity implements View.OnClickListe
                     } else {
                         mTextTip.setText(Html.fromHtml("<font color='#c70c1e'>与上一次绘制不一致，请重新绘制</font>"));
                         // 左右移动动画
-                        Animation shakeAnimation = AnimationUtils.loadAnimation(Lock9ViewActivity.this, R.anim.shake);
+                        Animation shakeAnimation = AnimationUtils.loadAnimation(GestureEditActivity.this, R.anim.shake);
                         mTextTip.startAnimation(shakeAnimation);
                         // 保持绘制的线，1.5秒后清除
                         mGestureContentView.clearDrawlineState(1300L);

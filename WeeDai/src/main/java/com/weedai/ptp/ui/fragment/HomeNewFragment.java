@@ -115,25 +115,6 @@ public class HomeNewFragment extends Fragment implements View.OnClickListener {
 
         System.out.println("HomeFragment onViewCreated");
         init(view);
-
-        if (TextUtils.isEmpty(zongchengjiao)) {
-            getDaysData();
-        } else {
-            showDaysData();
-        }
-
-        if (itemDataInfo1 != null) {
-            showInfoList();
-        } else {
-            getInfoList();
-        }
-
-        if (itemDataNotice != null) {
-            showNotice();
-        } else {
-            getNoticeList();
-        }
-
     }
 
     @Override
@@ -158,6 +139,25 @@ public class HomeNewFragment extends Fragment implements View.OnClickListener {
             showImageViewPager();
         } else {
             scrollPic();
+        }
+
+
+        if (TextUtils.isEmpty(zongchengjiao)) {
+            getDaysData();
+        } else {
+            showDaysData();
+        }
+
+        if (itemDataInfo1 != null) {
+            showInfoList();
+        } else {
+            getInfoList();
+        }
+
+        if (itemDataNotice != null) {
+            showNotice();
+        } else {
+            getNoticeList();
         }
     }
 

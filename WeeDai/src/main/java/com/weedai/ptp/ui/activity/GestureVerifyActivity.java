@@ -119,8 +119,9 @@ public class GestureVerifyActivity extends Activity implements View.OnClickListe
                     @Override
                     public void checkedSuccess() {
                         mGestureContentView.clearDrawlineState(0L);
-                        Toast.makeText(GestureVerifyActivity.this, "密码正确", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(GestureVerifyActivity.this, "密码正确", Toast.LENGTH_SHORT).show();
 //                        GestureVerifyActivity.this.finish();
+                        getImgcode();
                     }
 
                     @Override
@@ -145,28 +146,32 @@ public class GestureVerifyActivity extends Activity implements View.OnClickListe
 
     private void login() {
 
-//        ApiClient.login(TAG, username, password, valicode, new ResponseListener() {
-//            @Override
-//            public void onStarted() {
-//                progressDialog = ProgressDialog.show(GestureVerifyActivity.this, null, getString(R.string.login_waiting));
-//            }
-//
-//            @Override
-//            public void onResponse(Object response) {
-//                progressDialog.dismiss();
-//
-//                BaseModel result = (BaseModel) response;
-//                if (result.code != Constant.CodeResult.SUCCESS) {
-//                    String message = result.message;
-//                    if (message.equals("login_fail")) {
-//                        message = "登录失败,密码不正确";
+        SharedPreferences preferences = getSharedPreferences(Config.PREFERENCE_NAME, MODE_PRIVATE);
+        String username = preferences.getString(Config.REMEBER_USERNAME,"");
+        String password = preferences.getString(Config.REMEBER_PASSWORD,"");
+
+        ApiClient.login(TAG, username, password, valicode, new ResponseListener() {
+            @Override
+            public void onStarted() {
+                progressDialog = ProgressDialog.show(GestureVerifyActivity.this, null, getString(R.string.login_waiting));
+            }
+
+            @Override
+            public void onResponse(Object response) {
+                progressDialog.dismiss();
+
+                BaseModel result = (BaseModel) response;
+                if (result.code != Constant.CodeResult.SUCCESS) {
+                    String message = result.message;
+                    if (message.equals("login_fail")) {
+                        message = "登录失败,密码不正确";
 //                        getImgcode();
-////                        etValicode.getText().clear();
-//                    }
-//                    Toast.makeText(GestureVerifyActivity.this, message, Toast.LENGTH_SHORT).show();
-//                    return;
-//                }
-//
+//                        etValicode.getText().clear();
+                    }
+                    Toast.makeText(GestureVerifyActivity.this, message, Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
 //                if (HomeFragment.isLoginFromHome) {
 //                    Config.isLogin = true;
 //                    finish();
@@ -180,16 +185,17 @@ public class GestureVerifyActivity extends Activity implements View.OnClickListe
 //                    finish();
 //                    return;
 //                }
-//
-//                Config.isLogin = true;
-//                finish();
-//            }
-//
-//            @Override
-//            public void onErrorResponse(VolleyError volleyError) {
-//                progressDialog.dismiss();
-//            }
-//        });
+
+                Config.isLogin = true;
+                UIHelper.showMain(GestureVerifyActivity.this);
+                finish();
+            }
+
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                progressDialog.dismiss();
+            }
+        });
 
     }
 
@@ -198,6 +204,7 @@ public class GestureVerifyActivity extends Activity implements View.OnClickListe
         ApiClient.getImgcode(TAG, new ResponseListener() {
             @Override
             public void onStarted() {
+                progressDialog = ProgressDialog.show(GestureVerifyActivity.this, null, getString(R.string.login_waiting));
             }
 
             @Override
@@ -210,6 +217,8 @@ public class GestureVerifyActivity extends Activity implements View.OnClickListe
                 }
                 valicode = result.data.code;
                 System.out.println("valicode : " + valicode);
+
+                login();
             }
 
             @Override

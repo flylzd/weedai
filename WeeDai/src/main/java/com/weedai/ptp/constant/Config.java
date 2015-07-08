@@ -10,8 +10,13 @@ public class Config {
 
     public static boolean isLock;
 
-    public static final String PREFERENCE_NAME_LOCK = "lock";
+    public static final String PREFERENCE_NAME = "userinfo";
+    public static final String REMEBER_USER = "remeber_user";
 
+    public static final String REMEBER_USERNAME = "remeber_username";
+    public static final String REMEBER_PASSWORD = "remeber_password";
+
+    public static final String PREFERENCE_NAME_LOCK = "lock";
     public static final String REMEBER_LOCK_VALUE = "lock_value";
     public static final String REMEBER_LOCK_LOGIN = "lock_login";
 

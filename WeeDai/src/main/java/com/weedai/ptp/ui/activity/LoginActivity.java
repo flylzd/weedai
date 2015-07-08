@@ -66,11 +66,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
 //    private List<String> dataList = new ArrayList<String>();
 //    private Set<String> hashSet = new HashSet<String>();
 
-    private final String PREFERENCE_NAME = "userinfo";
-    private final String REMEBER_USER = "remeber_user";
 
-    private final String REMEBER_USERNAME = "remeber_username";
-    private final String REMEBER_PASSWORD = "remeber_password";
 
 
     @Override
@@ -310,9 +306,9 @@ public class LoginActivity extends Activity implements View.OnClickListener {
 ////        adapter.replaceAll(dataList);
 //        spinner.performClick();
 
-        SharedPreferences preferences = getSharedPreferences(PREFERENCE_NAME, MODE_PRIVATE);
-        String username = preferences.getString(REMEBER_USERNAME,"");
-        String password = preferences.getString(REMEBER_PASSWORD,"");
+        SharedPreferences preferences = getSharedPreferences(Config.PREFERENCE_NAME, MODE_PRIVATE);
+        String username = preferences.getString(Config.REMEBER_USERNAME,"");
+        String password = preferences.getString(Config.REMEBER_PASSWORD,"");
         etUsername.setText(username);
         etPassword.setText(password);
 
@@ -331,10 +327,10 @@ public class LoginActivity extends Activity implements View.OnClickListener {
 //        editor.putStringSet(REMEBER_USER, hashSet);
 //        editor.commit();
 
-        SharedPreferences preferences = getSharedPreferences(PREFERENCE_NAME, MODE_PRIVATE);
+        SharedPreferences preferences = getSharedPreferences(Config.PREFERENCE_NAME, MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
-        editor.putString(REMEBER_USERNAME, username);
-        editor.putString(REMEBER_PASSWORD, password);
+        editor.putString(Config.REMEBER_USERNAME, username);
+        editor.putString(Config.REMEBER_PASSWORD, password);
         editor.commit();
     }
 

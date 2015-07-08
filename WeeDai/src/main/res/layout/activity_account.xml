@@ -175,7 +175,7 @@
                 android:text="@string/account_password_management_gestures" />
 
             <TextView
-                android:id="@+id/tvAccountPasswordManagementGestures"
+                android:id="@+id/tvAccountPasswordGestures"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"

@@ -21,12 +21,13 @@ import com.weedai.ptp.ui.activity.ChangePaymentPasswordActivity;
 import com.weedai.ptp.ui.activity.FinanceInvestmentActivity;
 import com.weedai.ptp.ui.activity.FinancialActivity;
 import com.weedai.ptp.ui.activity.FinancialDetailActivity;
+import com.weedai.ptp.ui.activity.GestureEditActivity;
+import com.weedai.ptp.ui.activity.GesturePasswordActivity;
 import com.weedai.ptp.ui.activity.GestureVerifyActivity;
 import com.weedai.ptp.ui.activity.HeroActivity;
 import com.weedai.ptp.ui.activity.HomeVideoActivity;
 import com.weedai.ptp.ui.activity.InvestorActivity;
 import com.weedai.ptp.ui.activity.LiCaiRecommendActivity;
-import com.weedai.ptp.ui.activity.Lock9ViewActivity;
 import com.weedai.ptp.ui.activity.LoginActivity;
 import com.weedai.ptp.ui.activity.LuckyDrawActivity;
 import com.weedai.ptp.ui.activity.MainActivity;
@@ -42,7 +43,6 @@ import com.weedai.ptp.ui.activity.MyWealthActivity;
 import com.weedai.ptp.ui.activity.MyWithdrawalActivity;
 import com.weedai.ptp.ui.activity.MyWithdrawalRecordActivity;
 import com.weedai.ptp.ui.activity.PartnerActivity;
-import com.weedai.ptp.ui.activity.PasswordGesturesActivity;
 import com.weedai.ptp.ui.activity.ReceivableSearchActivity;
 import com.weedai.ptp.ui.activity.RegisterActivity;
 import com.weedai.ptp.ui.activity.SecurityLevelActivity;
@@ -336,7 +336,7 @@ public class UIHelper {
      * 手势密码
      */
     public static void showPasswordGestures(Context context) {
-        Intent intent = new Intent(context, PasswordGesturesActivity.class);
+        Intent intent = new Intent(context, GesturePasswordActivity.class);
         context.startActivity(intent);
     }
 
@@ -344,7 +344,7 @@ public class UIHelper {
      * 编辑手势密码
      */
     public static void showLock9View(Context context) {
-        Intent intent = new Intent(context, Lock9ViewActivity.class);
+        Intent intent = new Intent(context, GestureEditActivity.class);
         context.startActivity(intent);
     }
 
