@@ -68,6 +68,13 @@ public class MainActivity extends BaseActivity {
 
         System.out.println("MainActivity onResume");
 
+        SharedPreferences preferences = getSharedPreferences(Config.PREFERENCE_NAME_LOCK, MODE_PRIVATE);
+        boolean isLock = preferences.getBoolean(Config.REMEBER_LOCK_LOGIN, false);
+        if (isLock) {
+            UIHelper.showGestureVerify(MainActivity.this);
+            MainActivity.this.finish();
+        }
+
         switch (lastSelect) {
             case 0:
                 fragmentSwitcher.setCurrentItem(0);

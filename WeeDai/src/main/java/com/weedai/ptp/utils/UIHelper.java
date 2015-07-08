@@ -21,6 +21,7 @@ import com.weedai.ptp.ui.activity.ChangePaymentPasswordActivity;
 import com.weedai.ptp.ui.activity.FinanceInvestmentActivity;
 import com.weedai.ptp.ui.activity.FinancialActivity;
 import com.weedai.ptp.ui.activity.FinancialDetailActivity;
+import com.weedai.ptp.ui.activity.GestureVerifyActivity;
 import com.weedai.ptp.ui.activity.HeroActivity;
 import com.weedai.ptp.ui.activity.HomeVideoActivity;
 import com.weedai.ptp.ui.activity.InvestorActivity;
@@ -340,10 +341,18 @@ public class UIHelper {
     }
 
     /**
-     * 手势密码
+     * 编辑手势密码
      */
     public static void showLock9View(Context context) {
         Intent intent = new Intent(context, Lock9ViewActivity.class);
+        context.startActivity(intent);
+    }
+
+    /**
+     * 手势绘制/校验界面
+     */
+    public static void showGestureVerify(Context context) {
+        Intent intent = new Intent(context, GestureVerifyActivity.class);
         context.startActivity(intent);
     }
 }
