@@ -23,5 +23,12 @@ public class Config {
     public static final String DEFAULT_IMG_URL = "http://www.weedai.com";
     public static final String DEFAULT_IMG_DOWNLOAD = "http://chuantu.biz/t2/9/1432287458x1822611433.jpg";
 
+    //手势密码出错
+    public static boolean GESTURE_VERIFY_ERROR = false;
+    //清除手势密码出错
+    public static boolean GESTURE_VERIFY_ERROR_CLEAR = false;
+    //清楚手势密码
+    public static boolean GESTURE_VERIFY_CLEAR = false;
+
 
 }

@@ -27,6 +27,14 @@ public class GesturePasswordActivity extends BaseActivity implements View.OnClic
     @Override
     protected void onResume() {
         super.onResume();
+
+        System.out.println("onResume " );
+        if (Config.GESTURE_VERIFY_CLEAR) {
+            SharedPreferences preferences = getSharedPreferences(Config.PREFERENCE_NAME_LOCK, MODE_PRIVATE);
+            preferences.edit().clear();
+            preferences.edit().commit();
+        }
+        System.out.println("GESTURE_VERIFY_CLEAR " + Config.GESTURE_VERIFY_CLEAR);
         SharedPreferences preferences = getSharedPreferences(Config.PREFERENCE_NAME_LOCK, MODE_PRIVATE);
         boolean isLock = preferences.getBoolean(Config.REMEBER_LOCK_LOGIN, false);
         if (isLock) {
@@ -46,12 +54,12 @@ public class GesturePasswordActivity extends BaseActivity implements View.OnClic
                 UIHelper.showLock9View(GesturePasswordActivity.this);
                 break;
             case R.id.layoutPasswordGesturesClear:
-//                UIHelper.showLock9View(PasswordGesturesActivity.this);
-                SharedPreferences preferences = getSharedPreferences(Config.PREFERENCE_NAME_LOCK, MODE_PRIVATE);
-                preferences.edit().clear();
-                preferences.edit().commit();
-                layoutPasswordGestures.setVisibility(View.VISIBLE);
-                layoutPasswordGesturesClear.setVisibility(View.GONE);
+                UIHelper.showGestureClear(GesturePasswordActivity.this);
+//                SharedPreferences preferences = getSharedPreferences(Config.PREFERENCE_NAME_LOCK, MODE_PRIVATE);
+//                preferences.edit().clear();
+//                preferences.edit().commit();
+//                layoutPasswordGestures.setVisibility(View.VISIBLE);
+//                layoutPasswordGesturesClear.setVisibility(View.GONE);
                 break;
         }
     }

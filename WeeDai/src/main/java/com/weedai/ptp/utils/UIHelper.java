@@ -21,6 +21,7 @@ import com.weedai.ptp.ui.activity.ChangePaymentPasswordActivity;
 import com.weedai.ptp.ui.activity.FinanceInvestmentActivity;
 import com.weedai.ptp.ui.activity.FinancialActivity;
 import com.weedai.ptp.ui.activity.FinancialDetailActivity;
+import com.weedai.ptp.ui.activity.GestureClearActivity;
 import com.weedai.ptp.ui.activity.GestureEditActivity;
 import com.weedai.ptp.ui.activity.GesturePasswordActivity;
 import com.weedai.ptp.ui.activity.GestureVerifyActivity;
@@ -353,6 +354,14 @@ public class UIHelper {
      */
     public static void showGestureVerify(Context context) {
         Intent intent = new Intent(context, GestureVerifyActivity.class);
+        context.startActivity(intent);
+    }
+
+    /**
+     * 手势绘制/校验界面
+     */
+    public static void showGestureClear(Context context) {
+        Intent intent = new Intent(context, GestureClearActivity.class);
         context.startActivity(intent);
     }
 }

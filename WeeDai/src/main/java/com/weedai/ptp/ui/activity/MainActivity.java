@@ -68,7 +68,11 @@ public class MainActivity extends BaseActivity {
 
         System.out.println("MainActivity onResume");
 
-        if (!Config.isLogin){
+        if (!Config.isLogin) {
+            if (Config.GESTURE_VERIFY_ERROR) {
+                UIHelper.showLogin(MainActivity.this);
+                return;
+            }
             SharedPreferences preferences = getSharedPreferences(Config.PREFERENCE_NAME_LOCK, MODE_PRIVATE);
             boolean isLock = preferences.getBoolean(Config.REMEBER_LOCK_LOGIN, false);
             if (isLock) {

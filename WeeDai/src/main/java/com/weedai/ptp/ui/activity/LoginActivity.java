@@ -67,8 +67,6 @@ public class LoginActivity extends Activity implements View.OnClickListener {
 //    private Set<String> hashSet = new HashSet<String>();
 
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -232,22 +230,33 @@ public class LoginActivity extends Activity implements View.OnClickListener {
 
                 if (cbRememberUser.isChecked()) {  //记住用户
                     saveRemeberUser(username, password);
-                } else{
+                } else {
                     saveRemeberUser("", "");
                 }
 
-                if (HomeFragment.isLoginFromHome) {
-                    Config.isLogin = true;
-                    finish();
-                    return;
+                if (Config.GESTURE_VERIFY_ERROR_CLEAR) {
+                    Config.GESTURE_VERIFY_CLEAR = true;
+                    SharedPreferences preferences = getSharedPreferences(Config.PREFERENCE_NAME_LOCK, MODE_PRIVATE);
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.putString(Config.REMEBER_LOCK_VALUE, "");
+                    editor.putBoolean(Config.REMEBER_LOCK_LOGIN, false);
+                    editor.commit();
+//                    finish();
+//                    return;
                 }
+
+//                if (HomeFragment.isLoginFromHome) {
+//                    Config.isLogin = true;
+//                    finish();
+//                    return;
+//                }
 
                 if (MainActivity.isLoginFromMain) {
 //                UIHelper.showMain(LoginActivity.this);
                     MainActivity.lastSelect = 1;
-                    Config.isLogin = true;
-                    finish();
-                    return;
+//                    Config.isLogin = true;
+//                    finish();
+//                    return;
                 }
 
                 Config.isLogin = true;
@@ -307,8 +316,8 @@ public class LoginActivity extends Activity implements View.OnClickListener {
 //        spinner.performClick();
 
         SharedPreferences preferences = getSharedPreferences(Config.PREFERENCE_NAME, MODE_PRIVATE);
-        String username = preferences.getString(Config.REMEBER_USERNAME,"");
-        String password = preferences.getString(Config.REMEBER_PASSWORD,"");
+        String username = preferences.getString(Config.REMEBER_USERNAME, "");
+        String password = preferences.getString(Config.REMEBER_PASSWORD, "");
         etUsername.setText(username);
         etPassword.setText(password);
 

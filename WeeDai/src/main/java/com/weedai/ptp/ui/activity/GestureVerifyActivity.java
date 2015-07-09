@@ -80,7 +80,8 @@ public class GestureVerifyActivity extends Activity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.text_other_account:
-                UIHelper.showLogin(GestureVerifyActivity.this);
+                Config.GESTURE_VERIFY_ERROR = true;      //手势密码出错
+                UIHelper.showMain(GestureVerifyActivity.this);
                 this.finish();
                 break;
             default:
@@ -128,7 +129,14 @@ public class GestureVerifyActivity extends Activity implements View.OnClickListe
                     public void checkedFail() {
                         countGesture++;
                         if (countGesture == 5) {
-                            UIHelper.showLogin(GestureVerifyActivity.this);
+                            Config.GESTURE_VERIFY_ERROR = true;      //手势密码出错
+
+                            SharedPreferences preferences = getSharedPreferences(Config.PREFERENCE_NAME, MODE_PRIVATE);
+                            SharedPreferences.Editor editor = preferences.edit();
+                            editor.putString(Config.REMEBER_PASSWORD, "");  //清楚记录密码
+                            editor.commit();
+
+                            UIHelper.showMain(GestureVerifyActivity.this);
                             GestureVerifyActivity.this.finish();
                         }
                         mGestureContentView.clearDrawlineState(1300L);
@@ -147,8 +155,8 @@ public class GestureVerifyActivity extends Activity implements View.OnClickListe
     private void login() {
 
         SharedPreferences preferences = getSharedPreferences(Config.PREFERENCE_NAME, MODE_PRIVATE);
-        String username = preferences.getString(Config.REMEBER_USERNAME,"");
-        String password = preferences.getString(Config.REMEBER_PASSWORD,"");
+        String username = preferences.getString(Config.REMEBER_USERNAME, "");
+        String password = preferences.getString(Config.REMEBER_PASSWORD, "");
 
         ApiClient.login(TAG, username, password, valicode, new ResponseListener() {
             @Override
