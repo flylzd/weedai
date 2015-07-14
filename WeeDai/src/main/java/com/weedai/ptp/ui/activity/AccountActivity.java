@@ -256,6 +256,13 @@ public class AccountActivity extends BaseActivity implements View.OnClickListene
 
                 if (result.message.equals("logout_success")) {
                     Config.isLogin = false;
+
+                    SharedPreferences preferences = getSharedPreferences(Config.PREFERENCE_NAME_LOCK, MODE_PRIVATE);
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.putString(Config.REMEBER_LOCK_VALUE, "");
+                    editor.putBoolean(Config.REMEBER_LOCK_LOGIN, false);
+                    editor.commit();
+
                     finish();
                 } else {
                     Toast.makeText(AccountActivity.this, "安全退出失败", Toast.LENGTH_SHORT).show();
