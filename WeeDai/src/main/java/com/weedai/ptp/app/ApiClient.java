@@ -1196,6 +1196,33 @@ public class ApiClient {
 
 
     /**
+     * 线下充值
+     */
+    public static void recharge(String tag, String money,  String valicode,String remark, ResponseListener listener) {
+
+        if (!hashkNewwork()) {
+            return;
+        }
+
+        listener.onStarted();
+
+        Map<String, String> requestParams = getSignatureMap();
+        requestParams.put("type", "2"); //固定值为2
+        requestParams.put("money", money);
+        requestParams.put("valicode", valicode);
+        requestParams.put("remark", remark);
+        requestParams.put("q", "code/account/recharge_new");
+        requestParams.put(Urls.ACTION, "users");
+
+        String url = Urls.ACTION_INDEX;
+        GsonPostRequest request = createGsonPostRequest(url, requestParams, BaseModel.class, listener);
+        request.setTag(tag);
+        requestQueue.add(request);
+    }
+
+
+
+    /**
      * 头像获得
      */
     public static void getAvatars(String tag, ResponseListener listener) {

@@ -46,6 +46,7 @@
     <string name="title_investor">投资人列表</string>
     <string name="title_password_gestures">手势密码</string>
     <string name="title_password_gestures_lock">设置手势密码</string>
+    <string name="title_my_recharge">线下充值</string>
 
 
     <string name="login_user_hint">手机号/邮箱/用户名</string>
