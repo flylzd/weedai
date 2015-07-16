@@ -23,6 +23,7 @@ import com.weedai.ptp.model.InvestList;
 import com.weedai.ptp.model.MyWeallth;
 import com.weedai.ptp.model.Valicode;
 import com.weedai.ptp.utils.DataUtil;
+import com.weedai.ptp.utils.UIHelper;
 import com.weedai.ptp.view.SimpleValidateCodeView;
 import com.weedai.ptp.view.SimpleWaveView;
 import com.weedai.ptp.volley.ResponseListener;
@@ -98,6 +99,12 @@ public class FinanceInvestmentActivity extends BaseActivity {
 
         etInvestmentAmount = (EditText) findViewById(R.id.etInvestmentAmount);
         btnTopUp = (Button) findViewById(R.id.btnTopUp);
+        btnTopUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                UIHelper.showMyRecharge(FinanceInvestmentActivity.this);
+            }
+        });
         btnOk = (Button) findViewById(R.id.btnOk);
         btnOk.setOnClickListener(new View.OnClickListener() {
             @Override

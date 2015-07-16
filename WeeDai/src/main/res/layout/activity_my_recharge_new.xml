@@ -1,0 +1,421 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <LinearLayout style="@style/layoutMyBank">
+
+            <TextView
+                style="@style/textMyBankTitle"
+                android:text="真实姓名：" />
+
+            <TextView
+                android:id="@+id/tvRealName"
+                style="@style/textMyBank"/>
+        </LinearLayout>
+
+        <include layout="@layout/view_horizontal_line" />
+
+        <LinearLayout style="@style/layoutMyBank">
+
+            <TextView
+                style="@style/textMyBankTitle"
+                android:text="账号：" />
+
+            <TextView
+                android:id="@+id/tvAccount"
+                style="@style/textMyBank"/>
+        </LinearLayout>
+
+        <include layout="@layout/view_horizontal_line" />
+
+        <LinearLayout style="@style/layoutMyBank">
+
+            <TextView
+                style="@style/textMyBankTitle"
+                android:text="充值金额：" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/etAmount"
+                    style="@style/textMyBank"
+                    android:numeric="integer"
+                    android:inputType="number"
+                    android:singleLine="true"
+                    android:layout_width="100dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:text="元"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <include layout="@layout/view_horizontal_line" />
+
+        <LinearLayout style="@style/layoutMyBank">
+
+            <TextView
+                style="@style/textMyBankTitle"
+                android:text="验证码：" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/etValicode"
+                    style="@style/textMyBank"
+                    android:singleLine="true"
+                    android:layout_width="120dp" />
+
+                <com.weedai.ptp.view.SimpleValidateCodeView
+                    android:id="@+id/viewValicode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:gravity="center_vertical" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <include layout="@layout/view_horizontal_line" />
+
+        <LinearLayout style="@style/layoutMyBank">
+
+            <TextView
+                style="@style/textMyBankTitle"
+                android:text="流水账号：" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/etWaterAccount"
+                    style="@style/textMyBank"
+                    android:singleLine="true"
+                    android:layout_width="0dp"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:paddingRight="20dp"
+                    android:text="(可选填)"
+                    android:textColor="@color/main_text"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnOk"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/selector_btn_bg"
+            android:text="提交"
+            android:textColor="@color/white" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="温馨提示："
+                android:textColor="@color/main_text"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="网上银行充值过程中请耐心等待，充值成功后，充值金额才能打入您的账号。如有问题，请与我们联系。"
+                android:textColor="@color/main_text"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:text="可选银行："
+            android:textColor="@color/main_text_black"
+            android:textSize="20sp" />
+
+        <include layout="@layout/view_horizontal_line" />
+
+        <LinearLayout style="@style/rechargeContainer">
+
+            <ImageView
+                style="@style/rechargeBankImg"
+                android:src="@drawable/icon_bank_jianshe" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/rechargeBankMainText"
+                        android:text="中国建设银行" />
+
+                    <TextView
+                        style="@style/rechargeBankMainText"
+                        android:text="(顺德德福分理处)"
+                        android:textColor="@color/main_text" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/rechargeBankText"
+                        android:text="6236 6831 1000 0435 821" />
+
+                    <TextView
+                        style="@style/rechargeBankText"
+                        android:layout_width="wrap_content"
+                        android:text="林思敏"
+                        android:textColor="@color/main_text" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <include layout="@layout/view_horizontal_line" />
+
+        <LinearLayout style="@style/rechargeContainer">
+
+            <ImageView
+                style="@style/rechargeBankImg"
+                android:src="@drawable/icon_bank_gongshang" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/rechargeBankMainText"
+                        android:text="中国工商银行" />
+
+                    <TextView
+                        style="@style/rechargeBankMainText"
+                        android:text="(佛山顺德龙泉支行)"
+                        android:textColor="@color/main_text" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/rechargeBankText"
+                        android:text="622208 2013 0038 89852" />
+
+                    <TextView
+                        style="@style/rechargeBankText"
+                        android:layout_width="wrap_content"
+                        android:text="林思敏"
+                        android:textColor="@color/main_text" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <include layout="@layout/view_horizontal_line" />
+
+        <LinearLayout style="@style/rechargeContainer">
+
+            <ImageView
+                style="@style/rechargeBankImg"
+                android:src="@drawable/icon_bank_nongye" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/rechargeBankMainText"
+                        android:text="中国农业银行" />
+
+                    <TextView
+                        style="@style/rechargeBankMainText"
+                        android:text="(佛山勒流梅花园支行)"
+                        android:textColor="@color/main_text" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/rechargeBankText"
+                        android:text="622848 1458 5627 99774" />
+
+                    <TextView
+                        style="@style/rechargeBankText"
+                        android:layout_width="wrap_content"
+                        android:text="林思敏"
+                        android:textColor="@color/main_text" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <include layout="@layout/view_horizontal_line" />
+
+        <LinearLayout style="@style/rechargeContainer">
+
+            <ImageView
+                style="@style/rechargeBankImg"
+                android:src="@drawable/icon_bank_minsheng" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/rechargeBankMainText"
+                        android:text="中国民生银行" />
+
+                    <TextView
+                        style="@style/rechargeBankMainText"
+                        android:text="(中国民生银行佛山支行)"
+                        android:textColor="@color/main_text" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/rechargeBankText"
+                        android:text="6226 1903 0154 1870" />
+
+                    <TextView
+                        style="@style/rechargeBankText"
+                        android:layout_width="wrap_content"
+                        android:text="林思敏"
+                        android:textColor="@color/main_text" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <include layout="@layout/view_horizontal_line" />
+
+        <LinearLayout style="@style/rechargeContainer">
+
+            <ImageView
+                style="@style/rechargeBankImg"
+                android:src="@drawable/icon_bank_zhongguo" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/rechargeBankMainText"
+                        android:text="中国银行" />
+
+                    <TextView
+                        style="@style/rechargeBankMainText"
+                        android:text="(佛山顺德勒流支行)"
+                        android:textColor="@color/main_text" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/rechargeBankText"
+                        android:text="6217 8570 0001 2769 202" />
+
+                    <TextView
+                        style="@style/rechargeBankText"
+                        android:layout_width="wrap_content"
+                        android:text="林思敏"
+                        android:textColor="@color/main_text" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>
