@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#48443c">
+    android:background="#232736">
 
     <LinearLayout
         android:id="@+id/gesture_tip_layout"
@@ -71,7 +71,7 @@
             android:layout_weight="1.0"
             android:gravity="center"
             android:text="@string/use_other_account_login"
-            android:textColor="#E7E7E6"
+            android:textColor="#666a7d"
             android:textSize="16sp" />
     </LinearLayout>
 

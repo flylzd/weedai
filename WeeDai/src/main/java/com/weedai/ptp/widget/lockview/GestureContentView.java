@@ -17,7 +17,7 @@ import java.util.List;
  */
 public class GestureContentView extends ViewGroup {
 
-    private int baseNum = 6;
+    private int baseNum = 5;
 
     private int[] screenDispaly;
 
@@ -69,6 +69,7 @@ public class GestureContentView extends ViewGroup {
             int rightX = col*blockWidth+blockWidth-blockWidth/baseNum;
             int bottomY = row*blockWidth+blockWidth-blockWidth/baseNum;
             GesturePoint p = new GesturePoint(leftX, rightX, topY, bottomY, image,i+1);
+            System.out.println("GesturePoint " + i + " == " + p.toString());
             this.list.add(p);
         }
     }
