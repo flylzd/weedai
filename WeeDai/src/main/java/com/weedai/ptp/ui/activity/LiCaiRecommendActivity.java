@@ -8,6 +8,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -216,10 +217,40 @@ public class LiCaiRecommendActivity extends BaseActivity implements SwipeRefresh
 
                 helper.setText(R.id.tvScale, scale + "%");
 
-                float percentage = scale / 100;
-                SimpleWaveView simpleWaveView = helper.getView(R.id.simpleWaveView);
-                simpleWaveView.setColor(getResources().getColor(R.color.main_text_orange));
-                simpleWaveView.setPercentage(percentage);
+//                float percentage = scale / 100;
+//                SimpleWaveView simpleWaveView = helper.getView(R.id.simpleWaveView);
+//                simpleWaveView.setColor(getResources().getColor(R.color.main_text_orange));
+//                simpleWaveView.setPercentage(percentage);
+
+                int percentage = (int) (scale / 10);
+                ImageView imgGifScale = helper.getView(R.id.imgGifScale);
+                int resId = R.drawable.p1;
+                if (percentage == 10) {  //100%
+                    resId = R.drawable.p11;
+                } else if (percentage == 9) {
+                    resId = R.drawable.p10;
+                } else if (percentage == 8) {
+                    resId = R.drawable.p9;
+                } else if (percentage == 7) {
+                    resId = R.drawable.p8;
+                } else if (percentage == 6) {
+                    resId = R.drawable.p7;
+                } else if (percentage == 6) {
+                    resId = R.drawable.p7;
+                } else if (percentage == 5) {
+                    resId = R.drawable.p6;
+                } else if (percentage == 4) {
+                    resId = R.drawable.p5;
+                } else if (percentage == 3) {
+                    resId = R.drawable.p4;
+                } else if (percentage == 2) {
+                    resId = R.drawable.p3;
+                } else if (percentage == 1) {
+                    resId = R.drawable.p2;
+                } else if (percentage == 0) {
+                    resId = R.drawable.p1;
+                }
+                imgGifScale.setImageResource(resId);
 
                 final Button btnState = helper.getView(R.id.btnState);
                 helper.setOnClickListener(R.id.btnState, new View.OnClickListener() {

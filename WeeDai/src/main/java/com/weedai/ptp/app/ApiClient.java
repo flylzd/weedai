@@ -504,6 +504,7 @@ public class ApiClient {
         requestParams.put("q", "code/borrow/gathering");
         requestParams.put("page", String.valueOf(page));
         requestParams.put("status", "0");
+        requestParams.put("order", "repay_time");
         requestParams.put(Urls.ACTION, "users");
 
         String url = Urls.ACTION_INDEX;

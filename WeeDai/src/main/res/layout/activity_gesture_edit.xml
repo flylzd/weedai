@@ -55,7 +55,7 @@
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:text="@string/set_gesture_pattern"
-            android:textColor="#F98F12"
+            android:textColor="#a3a9c3"
             android:layout_marginTop="10dip" />
     </LinearLayout>
 
