@@ -11,7 +11,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="120dp">
+            android:layout_height="160dp">
 
             <com.weedai.ptp.view.AutoScrollViewPager
                 android:id="@+id/viewPager"
@@ -39,11 +39,13 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:scaleType="centerCrop"
                     android:src="@drawable/icon_home_licai_left" />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:paddingTop="15dp">
 
                     <TextView
                         android:id="@+id/tvLiCaiTitle"
@@ -59,7 +61,7 @@
                             android:id="@+id/tvTitleBankOne"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:gravity="left|center_vertical"
+                            android:gravity="center"
                             android:text="银行活期存款的50倍"
                             android:textSize="@dimen/home_sub_title" />
 
@@ -68,20 +70,20 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="2dp"
-                            android:gravity="left|center_vertical"
-                            android:text="银行定期存款的5倍"
+                            android:gravity="center"
+                            android:text="银行定期存款的5倍&#160;&#160;"
                             android:textSize="@dimen/home_sub_title" />
 
                     </LinearLayout>
 
                     <ImageView
                         android:id="@+id/imgHomeLicai"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
                         android:layout_below="@+id/layoutLiCaiSubTitle"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginTop="2dp"
-                        android:scaleType="fitXY"
+                        android:layout_marginTop="8dp"
+                        android:scaleType="centerCrop"
                         android:src="@drawable/icon_home_licai" />
 
                     <TextView
@@ -89,9 +91,10 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/imgHomeLicai"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginTop="2dp"
+                        android:layout_marginTop="4dp"
                         android:gravity="center"
                         android:text="立即投标"
+                        android:textColor="@color/main_text"
                         android:textSize="@dimen/home_bottom_title" />
 
                 </RelativeLayout>
@@ -105,11 +108,13 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:scaleType="centerCrop"
                     android:src="@drawable/icon_home_xiangmu_left" />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:paddingTop="15dp">
 
                     <TextView
                         android:id="@+id/tvXiangMuTitle"
@@ -132,12 +137,12 @@
 
                     <ImageView
                         android:id="@+id/imgHomeXiangMu"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
                         android:layout_below="@+id/layoutXiangMuSubTitle"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginTop="2dp"
-                        android:scaleType="fitXY"
+                        android:layout_marginTop="8dp"
+                        android:scaleType="centerCrop"
                         android:src="@drawable/icon_home_xiangmu" />
 
                     <TextView
@@ -145,9 +150,10 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/imgHomeXiangMu"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginTop="2dp"
+                        android:layout_marginTop="4dp"
                         android:gravity="center"
                         android:text="立即加入"
+                        android:textColor="@color/main_text"
                         android:textSize="@dimen/home_bottom_title" />
 
                 </RelativeLayout>
@@ -156,10 +162,7 @@
         </LinearLayout>
 
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="140dp"
-            android:orientation="horizontal">
+        <LinearLayout style="@style/homeLayoutContainer">
 
             <FrameLayout
                 android:id="@+id/layoutHomeZhaiQuan"
@@ -168,9 +171,11 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:scaleType="centerCrop"
                     android:src="@drawable/icon_home_zhaiquan_left" />
 
                 <RelativeLayout
+                    android:paddingTop="15dp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
@@ -203,12 +208,12 @@
 
                     <ImageView
                         android:id="@+id/imgHomeZhaiQuan"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
                         android:layout_below="@+id/layoutZhaiQuanSubTitle"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginTop="2dp"
-                        android:scaleType="fitXY"
+                        android:layout_marginTop="8dp"
+                        android:scaleType="centerCrop"
                         android:src="@drawable/icon_home_zhaiquan" />
 
                     <TextView
@@ -216,9 +221,10 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/imgHomeZhaiQuan"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginTop="2dp"
+                        android:layout_marginTop="4dp"
                         android:gravity="center"
                         android:text="了解详情"
+                        android:textColor="@color/main_text"
                         android:textSize="@dimen/home_bottom_title" />
 
                 </RelativeLayout>
@@ -230,6 +236,7 @@
                 style="@style/homeLayoutodule">
 
                 <RelativeLayout
+                    android:paddingTop="15dp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
@@ -259,12 +266,12 @@
 
                     <ImageView
                         android:id="@+id/imgHomeUser"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
                         android:layout_below="@+id/layoutGeRenSubTitle"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginTop="2dp"
-                        android:scaleType="fitXY"
+                        android:layout_marginTop="8dp"
+                        android:scaleType="centerCrop"
                         android:src="@drawable/icon_home_sign" />
 
                     <TextView
@@ -272,8 +279,9 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/imgHomeUser"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginTop="2dp"
+                        android:layout_marginTop="4dp"
                         android:gravity="center"
+                        android:textColor="@color/main_text"
                         android:text="签到有微币赠送"
                         android:textSize="@dimen/home_bottom_title" />
 
@@ -285,7 +293,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="90dp"
             android:orientation="horizontal">
 
             <RelativeLayout
@@ -311,7 +319,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="right|center_vertical"
                         android:textColor="@color/white"
-                        android:textSize="18sp" />
+                        android:textSize="22sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -319,7 +327,7 @@
                         android:gravity="right|center_vertical"
                         android:text="------总成交金额"
                         android:textColor="@color/white"
-                        android:textSize="10sp" />
+                        android:textSize="14sp" />
 
                 </LinearLayout>
 
@@ -350,7 +358,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="left|center_vertical"
                         android:textColor="@color/white"
-                        android:textSize="18sp" />
+                        android:textSize="22sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -358,7 +366,7 @@
                         android:gravity="left|center_vertical"
                         android:text="昨日总成交量"
                         android:textColor="@color/white"
-                        android:textSize="10sp" />
+                        android:textSize="14sp" />
 
                 </LinearLayout>
 
@@ -370,23 +378,27 @@
                 android:layout_height="match_parent"
                 android:layout_marginRight="10dp"
                 android:layout_weight="1"
+                android:gravity="center"
                 android:background="@color/home_video"
                 android:clickable="true">
 
                 <ImageView
                     android:id="@+id/imgHomeVideo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="30dp"
+                    android:layout_height="25dp"
                     android:layout_centerHorizontal="true"
+                    android:layout_above="@+id/textHomeVideo"
                     android:layout_centerVertical="true"
+                    android:scaleType="fitXY"
                     android:src="@drawable/icon_home_video" />
 
                 <TextView
+                    android:id="@+id/textHomeVideo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/imgHomeVideo"
+                    android:layout_alignParentBottom="true"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginTop="4dp"
+                    android:layout_marginTop="10dp"
                     android:text="微E贷宣传视频"
                     android:textColor="@color/white"
                     android:textSize="12sp" />
@@ -398,7 +410,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="180dp"
+            android:layout_height="190dp"
             android:orientation="horizontal">
 
             <LinearLayout
@@ -413,12 +425,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
+                    android:gravity="center"
                     android:background="@color/home_daikuai">
 
                     <ImageView
                         android:id="@+id/imgHomeDaiKuai"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="10dp"
                         android:src="@drawable/icon_home_daikuai" />
@@ -428,7 +441,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/imgHomeDaiKuai"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginTop="4dp"
+                        android:layout_marginTop="6dp"
                         android:text="贷款计算器"
                         android:textColor="@color/white"
                         android:textSize="14sp" />
@@ -441,12 +454,13 @@
                     android:layout_height="0dp"
                     android:layout_marginTop="5dp"
                     android:layout_weight="1"
+                    android:gravity="center"
                     android:background="@color/home_shouyi">
 
                     <ImageView
                         android:id="@+id/imgHomeShouYi"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="10dp"
                         android:src="@drawable/icon_home_shouyi" />
@@ -456,7 +470,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/imgHomeShouYi"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginTop="4dp"
+                        android:layout_marginTop="6dp"
                         android:text="收益计算器"
                         android:textColor="@color/white"
                         android:textSize="14sp" />
@@ -472,14 +486,17 @@
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
+
                 android:background="@drawable/selector_bg_layout">
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:scaleType="centerCrop"
                     android:src="@drawable/icon_home_hot" />
 
                 <RelativeLayout
+                    android:paddingTop="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
@@ -489,9 +506,11 @@
                         android:text="NEWS" />
 
                     <LinearLayout
+                        android:paddingBottom="8dp"
+                        android:paddingTop="8dp"
                         android:id="@+id/layoutNewSubTitle"
                         style="@style/homeLayoutSubTitle"
-                        android:layout_height="20dp"
+                        android:layout_height="wrap_content"
                         android:layout_below="@+id/tvNewTitle">
 
                         <TextView
