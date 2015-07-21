@@ -8,7 +8,7 @@ android {
         applicationId "com.weedai.p2p"
         minSdkVersion 14
         targetSdkVersion 19
-        versionCode 17
+        versionCode 18
         versionName "1.0.2"
     }
 

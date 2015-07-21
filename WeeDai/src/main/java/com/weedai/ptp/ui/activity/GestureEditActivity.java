@@ -89,6 +89,18 @@ public class GestureEditActivity extends BaseActivity implements View.OnClickLis
         mTextCancel = (TextView) findViewById(R.id.text_cancel);
         mTextReset = (TextView) findViewById(R.id.text_reset);
         mTextReset.setClickable(false);
+        mTextReset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (!mIsFirstInput) {
+                    updateCodeList("");
+                    mTextTip.setText(getString(R.string.set_gesture_pattern));
+                    mGestureContentView.clearDrawlineState(0L);
+                    mIsFirstInput = true;
+                }
+            }
+        });
         mLockIndicator = (LockIndicator) findViewById(R.id.lock_indicator);
         mTextTip = (TextView) findViewById(R.id.text_tip);
         mGestureContainer = (FrameLayout) findViewById(R.id.gesture_container);
