@@ -18,8 +18,9 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-}
 
+}
+413234103
 
 repositories {
     flatDir {
@@ -38,6 +39,6 @@ dependencies {
 //    compile 'pl.droidsonroids.gif:android-gif-drawable:1.1.+'
 //    compile 'com.takwolf.android:lock9view:0.0.6'
 
-    compile(name:'AkHttp', ext:'aar')
-    compile(name:'android-gif-drawable-1.1.7', ext:'aar')
+    compile(name: 'AkHttp', ext: 'aar')
+    compile(name: 'android-gif-drawable-1.1.7', ext: 'aar')
 }

@@ -133,7 +133,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:background="@drawable/selector_btn_bg"
-            android:text="提交"
+            android:text="确认提交"
             android:textColor="@color/white" />
 
         <LinearLayout

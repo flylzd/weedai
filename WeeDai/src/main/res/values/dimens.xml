@@ -47,4 +47,6 @@
     <dimen name="home_sub_title">14sp</dimen>
     <dimen name="home_bottom_title">12sp</dimen>
 
+    <dimen name="actionBarSize">45dp</dimen>
+
 </resources>

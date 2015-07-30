@@ -1,10 +1,13 @@
 package com.weedai.ptp.ui.activity;
 
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -21,7 +24,7 @@ import com.weedai.ptp.utils.DataUtil;
 import com.weedai.ptp.view.SimpleValidateCodeView;
 import com.weedai.ptp.volley.ResponseListener;
 
-public class MyRechargeActivity extends BaseActivity {
+public class MyRechargeActivity extends Activity {
 
     private final static String TAG = "MyRechargeActivity";
 
@@ -37,24 +40,31 @@ public class MyRechargeActivity extends BaseActivity {
 
     private ProgressDialog progressDialog;
 
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my_recharge_new);
+
+//        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+//        隐藏标题栏
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        setContentView(R.layout.activity_my_recharge);
 
         initView();
         loadData();
     }
 
-    @Override
-    protected int getActionBarTitle() {
-        return R.string.title_my_recharge;
-    }
-
-    @Override
-    protected boolean hasBackButton() {
-        return true;
-    }
+//    @Override
+//    protected int getActionBarTitle() {
+//        return R.string.title_my_recharge;
+//    }
+//
+//    @Override
+//    protected boolean hasBackButton() {
+//        return true;
+//    }
 
 
     private void initView() {
