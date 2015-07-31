@@ -89,7 +89,7 @@ public class MyFinancialManagementActivity extends BaseActivity implements EndOf
     private void showIndeterminateProgress(boolean visibility) {
         if (selectType == 0) {
             adapter.showIndeterminateProgress(visibility);
-        }else {
+        } else {
             adapter2.showIndeterminateProgress(visibility);
         }
     }
@@ -144,7 +144,7 @@ public class MyFinancialManagementActivity extends BaseActivity implements EndOf
 //                String receivableDate = String.format(getString(R.string.user_my_financial_borrowers_receivable_date), repay_time);
                 String receivableDate = String.format(getString(R.string.user_my_financial_borrowers_receivable_date), item.repayment_times_d);
 
-                String order = item.order + "/" + item.time_limit;
+                String order = (item.order + 1) + "/" + item.time_limit;
                 order = String.format(getString(R.string.user_my_financial_borrowers_installment), order);
                 String capital = String.format(getString(R.string.user_my_financial_borrowers_capital), item.capital);
                 String lateInterest = String.format(getString(R.string.user_my_financial_borrowers_late_interest), item.late_interest);

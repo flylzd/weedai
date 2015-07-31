@@ -45,6 +45,7 @@ import com.weedai.ptp.ui.activity.MyWithdrawalActivity;
 import com.weedai.ptp.ui.activity.MyWithdrawalRecordActivity;
 import com.weedai.ptp.ui.activity.PartnerActivity;
 import com.weedai.ptp.ui.activity.ReceivableSearchActivity;
+import com.weedai.ptp.ui.activity.RechargeOnlineActivity;
 import com.weedai.ptp.ui.activity.RegisterActivity;
 import com.weedai.ptp.ui.activity.SecurityLevelActivity;
 import com.weedai.ptp.ui.activity.SecurityPhoneActivity;
@@ -362,6 +363,16 @@ public class UIHelper {
      */
     public static void showGestureClear(Context context) {
         Intent intent = new Intent(context, GestureClearActivity.class);
+        context.startActivity(intent);
+    }
+
+
+    /**
+     * 在线充值
+     */
+    public static void showRechargeOnline(Context context,String url) {
+        Intent intent = new Intent(context, RechargeOnlineActivity.class);
+        intent.putExtra("url", url);
         context.startActivity(intent);
     }
 }

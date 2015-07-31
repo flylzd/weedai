@@ -9,7 +9,6 @@
         android:layout_height="@dimen/actionBarSize"
         android:background="@color/actionbar_background">
 
-
         <ImageView
             android:id="@+id/imgBack"
             android:layout_width="wrap_content"
@@ -38,8 +37,6 @@
                 android:layout_height="match_parent"
                 android:background="@drawable/selector_tab_top"
                 android:gravity="center"
-                android:paddingLeft="8dp"
-                android:paddingRight="8dp"
                 android:text="线下充值"
                 android:textColor="@drawable/text_tab_top" />
 
@@ -49,7 +46,6 @@
                 android:layout_height="match_parent"
                 android:background="@drawable/selector_tab_top"
                 android:gravity="center"
-                android:padding="4dp"
                 android:text="在线充值"
                 android:textColor="@drawable/text_tab_top" />
 
@@ -543,7 +539,6 @@
                     android:id="@+id/etAmountOnline"
                     style="@style/textMyBank"
                     android:layout_width="100dp"
-                    android:inputType="number"
                     android:numeric="integer"
                     android:singleLine="true" />
 

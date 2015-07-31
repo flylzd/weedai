@@ -550,7 +550,8 @@ public class HomeNewFragment extends Fragment implements View.OnClickListener {
             imageView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    UIHelper.showLuckyDraw(getActivity());
+//                    UIHelper.showLuckyDraw(getActivity());
+                    Toast.makeText(getActivity(), "新活动即将开始，敬请期待", Toast.LENGTH_SHORT).show();
                 }
             });
 

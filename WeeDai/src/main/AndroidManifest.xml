@@ -220,6 +220,12 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
 
+        <activity
+            android:name="com.weedai.ptp.ui.activity.RechargeOnlineActivity"
+            android:configChanges="keyboard|orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+
     </application>
 
 </manifest>

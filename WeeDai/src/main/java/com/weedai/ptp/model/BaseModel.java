@@ -8,4 +8,6 @@ public class BaseModel implements Serializable {
     public int code;
     public String message;
 
+
+
 }

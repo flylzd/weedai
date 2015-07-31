@@ -30,6 +30,7 @@ import com.weedai.ptp.model.Micro;
 import com.weedai.ptp.model.Money;
 import com.weedai.ptp.model.MyWeallth;
 import com.weedai.ptp.model.ReceivableSearch;
+import com.weedai.ptp.model.Result;
 import com.weedai.ptp.model.RotationImage;
 import com.weedai.ptp.model.SecurityPhone;
 import com.weedai.ptp.model.SignIn;
@@ -1199,7 +1200,7 @@ public class ApiClient {
     /**
      * 线下充值
      */
-    public static void recharge(String tag, String money,  String valicode,String remark, ResponseListener listener) {
+    public static void recharge(String tag, String money, String valicode, String remark, ResponseListener listener) {
 
         if (!hashkNewwork()) {
             return;
@@ -1221,6 +1222,28 @@ public class ApiClient {
         requestQueue.add(request);
     }
 
+
+    /**
+     * 在线充值
+     */
+    public static void rechargeOnline(String tag, String money, String valicode, ResponseListener listener) {
+
+        if (!hashkNewwork()) {
+            return;
+        }
+
+        listener.onStarted();
+
+        Map<String, String> requestParams = getSignatureMap();
+        requestParams.put("money", money);
+        requestParams.put("valicode", valicode);
+        requestParams.put(Urls.ACTION, "yepoorecharge");
+
+        String url = Urls.ACTION_INDEX;
+        GsonPostRequest request = createGsonPostRequest(url, requestParams, Result.class, listener);
+        request.setTag(tag);
+        requestQueue.add(request);
+    }
 
 
     /**
@@ -1371,7 +1394,7 @@ public class ApiClient {
         return baos.toByteArray();
     }
 
-    private static Map<String, String> getSignatureMap() {
+    public static Map<String, String> getSignatureMap() {
 
         long time = System.currentTimeMillis();
         String timestamp = String.valueOf(time);
