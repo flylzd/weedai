@@ -315,8 +315,8 @@ public class MyFragment extends Fragment implements View.OnClickListener {
                 UIHelper.showMyStandInsideLetter(getActivity());
                 break;
             case R.id.tvMyLuckyDraw:
-//                UIHelper.showLuckyDraw(getActivity());
-                Toast.makeText(getActivity(), "新活动即将开始，敬请期待", Toast.LENGTH_SHORT).show();
+                UIHelper.showLuckyDraw(getActivity());
+//                Toast.makeText(getActivity(), "新活动即将开始，敬请期待", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.layoutSecurityLevel:
                 UIHelper.showSecurityLevel(getActivity());

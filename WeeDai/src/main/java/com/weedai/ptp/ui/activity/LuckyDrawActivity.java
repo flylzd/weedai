@@ -39,9 +39,9 @@ public class LuckyDrawActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_lucky_draw);
+        setContentView(R.layout.activity_lucky_draw_new);
 
-        initView();
+//        initView();
     }
 
     @Override
@@ -118,7 +118,7 @@ public class LuckyDrawActivity extends BaseActivity {
                 AwardData data = result.data;
                 number = data.cishu;
                 String award = String.format(getString(R.string.award_number_hint), number);
-                tvAward.setText(Html.fromHtml(award));
+//                tvAward.setText(Html.fromHtml(award));
             }
 
             @Override
