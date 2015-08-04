@@ -95,13 +95,16 @@ public class MyRechargeActivity extends Activity {
         btnOnlineTopUp = (Button) findViewById(R.id.btnOnlineTopUp);
         layoutOffline = findViewById(R.id.layoutOffline);
         layoutOnline = findViewById(R.id.layoutOnline);
+
+        layoutOffline.setVisibility(View.GONE);
+        layoutOnline.setVisibility(View.VISIBLE);
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
-        btnOfflineTopUp.setSelected(true);
+        btnOnlineTopUp.setSelected(true);
         btnOfflineTopUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -229,7 +232,7 @@ public class MyRechargeActivity extends Activity {
 
     private void loadData() {
         getBank();
-        getImgcode();
+        getImgcodeOnline();
     }
 
     private void recharge(String money, String valicode, String remark) {

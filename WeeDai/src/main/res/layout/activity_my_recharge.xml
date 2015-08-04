@@ -32,21 +32,21 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/btnOfflineTopUp"
-                android:layout_width="110dp"
-                android:layout_height="match_parent"
-                android:background="@drawable/selector_tab_top"
-                android:gravity="center"
-                android:text="线下充值"
-                android:textColor="@drawable/text_tab_top" />
-
-            <Button
                 android:id="@+id/btnOnlineTopUp"
                 android:layout_width="110dp"
                 android:layout_height="match_parent"
                 android:background="@drawable/selector_tab_top"
                 android:gravity="center"
                 android:text="在线充值"
+                android:textColor="@drawable/text_tab_top" />
+
+            <Button
+                android:id="@+id/btnOfflineTopUp"
+                android:layout_width="110dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/selector_tab_top"
+                android:gravity="center"
+                android:text="线下充值"
                 android:textColor="@drawable/text_tab_top" />
 
         </LinearLayout>

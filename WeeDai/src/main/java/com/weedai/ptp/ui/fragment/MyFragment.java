@@ -86,6 +86,7 @@ public class MyFragment extends Fragment implements View.OnClickListener {
 //        } else {
 //            setUserInfo();
 //        }
+
     }
 
     @Override
@@ -191,13 +192,24 @@ public class MyFragment extends Fragment implements View.OnClickListener {
             tvEmail.setText(DataUtil.urlDecode(data.email));
 
             level = 0;
-            if (data.avatar_status == 1) {
+            if (data.real_status == 1) {
                 imgUser.setImageResource(R.drawable.icon_user_on);
                 level++;
             } else {
                 imgUser.setImageResource(R.drawable.icon_user);
             }
-
+            if (data.phone_status == 1) {
+                imgPhone.setImageResource(R.drawable.icon_phone_on);
+                level++;
+            } else {
+                imgPhone.setImageResource(R.drawable.icon_phone);
+            }
+            if (data.email_status == 1) {
+                imgEmail.setImageResource(R.drawable.icon_email_on);
+                level++;
+            } else {
+                imgEmail.setImageResource(R.drawable.icon_email);
+            }
             if (data.vip_status == 1) {
                 imgVip.setImageResource(R.drawable.icon_vip_on);
                 level++;
@@ -205,35 +217,22 @@ public class MyFragment extends Fragment implements View.OnClickListener {
                 imgVip.setImageResource(R.drawable.icon_vip);
             }
 
-            if (data.phone_status == 1) {
-                imgPhone.setImageResource(R.drawable.icon_phone_on);
-                level++;
-            } else {
-                imgPhone.setImageResource(R.drawable.icon_phone);
-            }
-
-            if (data.email_status == 1) {
-                imgEmail.setImageResource(R.drawable.icon_email_on);
-                level++;
-            } else {
-                imgEmail.setImageResource(R.drawable.icon_email);
-            }
-
+            System.out.println("level == " + level);
             if (level == 0) {
                 securityLevel = "低";
             } else if (level == 1) {
                 securityLevel = "低";
             } else if (level == 2) {
                 securityLevel = "中";
-            } else if (level == 3) {
+            } else if (level >= 3) {
                 securityLevel = "高";
             }
             tvSecurityLevel.setText(securityLevel);
 
-//            System.out.println("data.avatar_status " + data.avatar_status);
-//            System.out.println("data.vip_status " + data.vip_status);
-//            System.out.println("data.phone_status " + data.phone_status);
-//            System.out.println("data.email_status " + data.email_status);
+            System.out.println("data.avatar_status " + data.real_status);
+            System.out.println("data.vip_status " + data.vip_status);
+            System.out.println("data.phone_status " + data.phone_status);
+            System.out.println("data.email_status " + data.email_status);
 
             String userMoney;
             if (TextUtils.isEmpty(data.use_money)) {

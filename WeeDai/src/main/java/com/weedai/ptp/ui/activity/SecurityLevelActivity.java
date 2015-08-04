@@ -134,30 +134,30 @@ public class SecurityLevelActivity extends BaseActivity implements View.OnClickL
 
     }
 
-    private void loadData() {
-        ApiClient.getSecurityLevel(TAG, new ResponseListener() {
-            @Override
-            public void onStarted() {
-                progressDialog = ProgressDialog.show(SecurityLevelActivity.this, null, getString(R.string.message_waiting));
-            }
-
-            @Override
-            public void onResponse(Object response) {
-                progressDialog.dismiss();
-
-                User result = (User) response;
-                if (result.code != Constant.CodeResult.SUCCESS) {
-                    Toast.makeText(SecurityLevelActivity.this, result.message, Toast.LENGTH_SHORT).show();
-                    return;
-                }
-            }
-
-            @Override
-            public void onErrorResponse(VolleyError volleyError) {
-                progressDialog.dismiss();
-            }
-        });
-    }
+//    private void loadData() {
+//        ApiClient.getSecurityLevel(TAG, new ResponseListener() {
+//            @Override
+//            public void onStarted() {
+//                progressDialog = ProgressDialog.show(SecurityLevelActivity.this, null, getString(R.string.message_waiting));
+//            }
+//
+//            @Override
+//            public void onResponse(Object response) {
+//                progressDialog.dismiss();
+//
+//                User result = (User) response;
+//                if (result.code != Constant.CodeResult.SUCCESS) {
+//                    Toast.makeText(SecurityLevelActivity.this, result.message, Toast.LENGTH_SHORT).show();
+//                    return;
+//                }
+//            }
+//
+//            @Override
+//            public void onErrorResponse(VolleyError volleyError) {
+//                progressDialog.dismiss();
+//            }
+//        });
+//    }
 
     @Override
     public void onClick(View v) {

@@ -70,14 +70,35 @@
                     android:scaleType="centerCrop"
                     android:src="@drawable/icon_award_4" />
 
-                <ImageView
+                <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="10dp"
                     android:layout_marginStart="10dp"
-                    android:layout_weight="2"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/icon_award_5" />
+                    android:layout_weight="2">
+
+                    <ImageView
+                        android:id="@+id/imgAward"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/icon_award_5" />
+
+                    <TextView
+                        android:id="@+id/tvAward"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginTop="20dp"
+                        android:paddingRight="5dp"
+                        android:paddingTop="25dp"
+                        android:text="0次"
+                        android:textColor="@color/white"
+                        android:textSize="13sp" />
+
+                </RelativeLayout>
+
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -141,15 +162,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            android:paddingBottom="10dp"
             android:background="@drawable/bg_lucky_draw_bottom"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingBottom="10dp">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
                 android:layout_marginBottom="10dp"
+                android:layout_marginLeft="20dp"
                 android:layout_marginTop="10dp"
                 android:text="抽奖规则"
                 android:textColor="@color/white"
@@ -199,79 +220,79 @@
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
                     android:orientation="vertical">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:gravity="left"
                         android:text="@string/award_1"
                         android:textColor="@color/white"
-                        android:gravity="left"
                         android:textSize="12sp" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:gravity="left"
                         android:text="@string/award_2"
                         android:textColor="@color/white"
-                        android:gravity="left"
                         android:textSize="12sp" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/award_3"
                         android:gravity="left"
+                        android:text="@string/award_3"
                         android:textColor="@color/white"
                         android:textSize="12sp" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:gravity="left"
                         android:text="@string/award_4"
                         android:textColor="@color/white"
-                        android:gravity="left"
                         android:textSize="12sp" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:gravity="left"
                         android:text="@string/award_5"
-                        android:gravity="left"
                         android:textColor="@color/white"
                         android:textSize="12sp" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:gravity="left"
                         android:text="@string/award_6"
-                        android:gravity="left"
                         android:textColor="@color/white"
                         android:textSize="12sp" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:gravity="left"
                         android:text="@string/award_7"
-                        android:gravity="left"
                         android:textColor="@color/white"
                         android:textSize="12sp" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:gravity="left"
                         android:text="@string/award_8"
-                        android:gravity="left"
                         android:textColor="@color/white"
                         android:textSize="12sp" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/award_9"
                         android:gravity="left"
+                        android:text="@string/award_9"
                         android:textColor="@color/white"
                         android:textSize="12sp" />
 

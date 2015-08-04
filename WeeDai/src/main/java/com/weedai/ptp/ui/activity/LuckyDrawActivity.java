@@ -41,7 +41,8 @@ public class LuckyDrawActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lucky_draw_new);
 
-//        initView();
+        initView();
+
     }
 
     @Override
@@ -84,12 +85,15 @@ public class LuckyDrawActivity extends BaseActivity {
         String award = String.format(getString(R.string.award_number_hint), number);
         tvAward.setText(Html.fromHtml(award));
 
-        awardMap.put(1, "ipadmini");
-        awardMap.put(2, "魅族mx4");
-        awardMap.put(3, "魅族魅蓝");
-        awardMap.put(4, "神奇干红");
-        awardMap.put(5, "智能开关");
-        awardMap.put(6, "50 微币");
+        awardMap.put(1, "普吉岛单人游");
+        awardMap.put(2, "液晶电视");
+        awardMap.put(3, "魅蓝note2");
+        awardMap.put(4, "行李箱");
+        awardMap.put(5, "小米移动电源");
+        awardMap.put(6, "凡易智能遥控开关");
+        awardMap.put(7, "金士顿U盘");
+        awardMap.put(8, "100微币");
+        awardMap.put(9, "20微币");
     }
 
     private void loadData() {
@@ -118,7 +122,7 @@ public class LuckyDrawActivity extends BaseActivity {
                 AwardData data = result.data;
                 number = data.cishu;
                 String award = String.format(getString(R.string.award_number_hint), number);
-//                tvAward.setText(Html.fromHtml(award));
+                tvAward.setText(Html.fromHtml(award));
             }
 
             @Override
