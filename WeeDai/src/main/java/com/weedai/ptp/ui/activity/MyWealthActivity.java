@@ -28,6 +28,8 @@ public class MyWealthActivity extends BaseActivity implements View.OnClickListen
     private View layoutRecharge;
     private View layoutWithdrawal;
 
+    private TextView tvMyBankCard;
+
     private TextView tvTotalAmount;
     private TextView tvAvailableBalance;
     private TextView tvCollectingMoney;
@@ -94,6 +96,9 @@ public class MyWealthActivity extends BaseActivity implements View.OnClickListen
         layoutWithdrawal.setOnClickListener(this);
         imgCurrencyConversion.setOnClickListener(this);
         tvCheckCurrency.setOnClickListener(this);
+
+        tvMyBankCard = (TextView) findViewById(R.id.tvMyBankCard);
+        tvMyBankCard.setOnClickListener(this);
 
         progressDialog = ProgressDialog.show(MyWealthActivity.this, null, getString(R.string.message_waiting));
     }
@@ -163,6 +168,9 @@ public class MyWealthActivity extends BaseActivity implements View.OnClickListen
                 break;
             case R.id.tvCheckCurrency:
                 UIHelper.showMyMicroCurrencyHistory(MyWealthActivity.this, tvAvailableMicroCurrency.getText().toString());
+                break;
+            case R.id.tvMyBankCard:
+                UIHelper.showMyBankCard(MyWealthActivity.this);
                 break;
         }
     }

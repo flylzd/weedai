@@ -28,7 +28,7 @@
                     android:layout_height="80dp"
                     android:layout_marginLeft="20dp"
                     android:scaleType="centerCrop"
-                    android:layout_marginEnd="2dp"
+                    android:layout_marginRight="2dp"
                     android:src="@drawable/icon_male" />
 
                 <LinearLayout
@@ -36,7 +36,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignBottom="@id/imgAvatar"
                     android:layout_alignTop="@+id/imgAvatar"
-                    android:layout_toEndOf="@+id/imgAvatar"
+                    android:layout_toRightOf="@+id/imgAvatar"
                     android:orientation="vertical"
                     android:padding="4dp">
 
@@ -155,10 +155,61 @@
 
             <include layout="@layout/view_horizontal_line" />
 
+
+            <LinearLayout
+                android:layout_marginTop="@dimen/main_content_margin_top"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:id="@+id/layoutRecharge"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/selector_bg_my_wealth_recharge"
+                    android:clickable="true">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:paddingBottom="10dp"
+                        android:paddingTop="10dp"
+                        android:text="@string/user_my_wealth_recharge"
+                        android:textColor="@color/white"
+                        android:textSize="18sp" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/layoutWithdrawal"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/selector_bg_my_wealth_withdrawal"
+                    android:clickable="true">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:paddingBottom="10dp"
+                        android:paddingTop="10dp"
+                        android:text="@string/user_my_wealth_withdrawal"
+                        android:textColor="@color/white"
+                        android:textSize="18sp" />
+
+                </RelativeLayout>
+            </LinearLayout>
+
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/main_content_margin_top"
+
                 android:orientation="vertical">
 
                 <RelativeLayout
@@ -227,9 +278,10 @@
                     android:drawableRight="@drawable/ic_arrow_right"
                     android:text="@string/user_financial_management" />
 
-                <include layout="@layout/view_horizontal_line" />
+                <!--<include layout="@layout/view_horizontal_line" />-->
 
                 <TextView
+                    android:visibility="gone"
                     android:id="@+id/tvMyBankCard"
                     style="@style/layoutUser"
                     android:clickable="true"
@@ -276,7 +328,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_toStartOf="@+id/tvFinancialDetailHint"
+                android:layout_toLeftOf="@+id/tvFinancialDetailHint"
                 android:scaleType="centerCrop"
                 android:src="@drawable/ic_exclamation_mark" />
 
@@ -316,8 +368,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginEnd="40dp"
-                android:layout_toStartOf="@+id/tvSecurityLevel"
+                android:layout_marginRight="40dp"
+                android:layout_toLeftOf="@+id/tvSecurityLevel"
                 android:paddingBottom="2dp"
                 android:paddingTop="2dp"
                 android:text="安全等级"
@@ -330,7 +382,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:layout_marginEnd="30dp"
+                android:layout_marginRight="30dp"
                 android:text="低"
                 android:textSize="16sp"
                 android:textColor="@color/white" />
@@ -338,7 +390,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:src="@drawable/ic_arrow_right" />
 

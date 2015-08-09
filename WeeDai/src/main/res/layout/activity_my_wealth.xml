@@ -254,12 +254,10 @@
                 android:textColor="@android:color/holo_blue_light"
                 android:textSize="18sp" />
         </RelativeLayout>
-
-
     </LinearLayout>
 
-
     <LinearLayout
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -306,9 +304,17 @@
                 android:textSize="18sp" />
 
         </RelativeLayout>
-
-
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvMyBankCard"
+        style="@style/layoutUser"
+        android:clickable="true"
+        android:layout_gravity="bottom"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:drawableRight="@drawable/ic_arrow_right"
+        android:text="@string/user_bank_card" />
 
 
 </LinearLayout>

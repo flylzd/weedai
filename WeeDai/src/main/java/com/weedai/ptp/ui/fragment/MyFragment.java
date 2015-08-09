@@ -54,6 +54,9 @@ public class MyFragment extends Fragment implements View.OnClickListener {
     private Button btnMoneyRecord;
     private Button btnReturnSearch;
 
+    private View layoutRecharge;
+    private View layoutWithdrawal;
+
     private TextView tvAvailableBalance;
     private TextView tvAvailableMicroCurrency;
 
@@ -138,6 +141,11 @@ public class MyFragment extends Fragment implements View.OnClickListener {
         tvMyStandInsideLetter.setOnClickListener(this);
         tvMyLuckyDraw.setOnClickListener(this);
         layoutSecurityLevel.setOnClickListener(this);
+
+        layoutRecharge = view.findViewById(R.id.layoutRecharge);
+        layoutWithdrawal = view.findViewById(R.id.layoutWithdrawal);
+        layoutRecharge.setOnClickListener(this);
+        layoutWithdrawal.setOnClickListener(this);
     }
 
     private void loadData() {
@@ -319,6 +327,13 @@ public class MyFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.layoutSecurityLevel:
                 UIHelper.showSecurityLevel(getActivity());
+                break;
+            case R.id.layoutRecharge:
+                UIHelper.showMyRecharge(getActivity());
+//                Toast.makeText(MyWealthActivity.this, "此功能暂不开放", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.layoutWithdrawal:
+                UIHelper.showMyWithdrawal(getActivity());
                 break;
         }
     }
