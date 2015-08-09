@@ -236,6 +236,7 @@ public class CalculatorInterestActivity extends BaseActivity {
             @Override
             public void onStarted() {
                 progressDialog = ProgressDialog.show(CalculatorInterestActivity.this, null, "正在提交数据");
+                btnCalculator.setEnabled(false);
             }
 
             @Override
@@ -271,11 +272,13 @@ public class CalculatorInterestActivity extends BaseActivity {
 //                adapter.notifyDataSetChanged();
 
                 setLayoutViewCalculate();
+                btnCalculator.setEnabled(true);
             }
 
             @Override
             public void onErrorResponse(VolleyError volleyError) {
                 progressDialog.dismiss();
+                btnCalculator.setEnabled(true);
             }
         });
     }

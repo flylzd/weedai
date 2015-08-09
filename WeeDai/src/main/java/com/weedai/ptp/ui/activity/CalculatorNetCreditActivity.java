@@ -278,6 +278,7 @@ public class CalculatorNetCreditActivity extends BaseActivity implements View.On
             @Override
             public void onStarted() {
                 progressDialog = ProgressDialog.show(CalculatorNetCreditActivity.this, null, "正在提交数据");
+                btnCalculator.setEnabled(false);
             }
 
             @Override
@@ -315,12 +316,13 @@ public class CalculatorNetCreditActivity extends BaseActivity implements View.On
 //                    ListViewUtil.setListViewHeightBasedOnChildren(listView);
                     setLayoutViewCalculate();
                 }
-
+                btnCalculator.setEnabled(true);
             }
 
             @Override
             public void onErrorResponse(VolleyError volleyError) {
                 progressDialog.dismiss();
+                btnCalculator.setEnabled(true);
             }
         });
 

@@ -14,6 +14,8 @@ import com.weedai.ptp.R;
 import com.weedai.ptp.utils.NetworkStateManager;
 import com.weedai.ptp.volley.VolleySingleton;
 
+import im.fir.sdk.FIR;
+
 
 public class AppContext extends Application {
 
@@ -23,6 +25,9 @@ public class AppContext extends Application {
 
     @Override
     public void onCreate() {
+
+        FIR.init(this);
+
         super.onCreate();
 
         mInstance = this;

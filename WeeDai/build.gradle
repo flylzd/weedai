@@ -20,7 +20,6 @@ android {
     }
 
 }
-413234103
 
 repositories {
     flatDir {
@@ -38,6 +37,7 @@ dependencies {
 
 //    compile 'pl.droidsonroids.gif:android-gif-drawable:1.1.+'
 //    compile 'com.takwolf.android:lock9view:0.0.6'
+    compile 'im.fir:sdk:latest.integration'
 
     compile(name: 'AkHttp', ext: 'aar')
     compile(name: 'android-gif-drawable-1.1.7', ext: 'aar')
