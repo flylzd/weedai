@@ -41,7 +41,8 @@
     <string name="title_calculator_net_credit">网贷计算器</string>
     <string name="title_information">资讯</string>
     <string name="title_hero">英雄榜</string>
-    <string name="title_lucky_draw">抽奖</string>
+    <string name="title_lucky_draw">抽奖活动</string>
+    <string name="title_lucky_draw_record">抽奖记录</string>
     <string name="title_stand_inside_letter">信件</string>
     <string name="title_investor">投资人列表</string>
     <string name="title_password_gestures">手势密码</string>
@@ -119,10 +120,13 @@
     <string name="user_bank_card">银行卡</string>
     <string name="user_stand_inside_letter">站内信</string>
     <string name="user_lucky_draw">抽奖活动</string>
+    <string name="user_lucky_draw_record">抽奖记录</string>
     <string name="user_account_security">账户安全</string>
     <string name="user_available_balance">可用余额%s元</string>
     <string name="user_available_balance_empty">暂无可用余额</string>
     <string name="user_available_micro_currency">可用微币 %s (个)</string>
+
+    <string name="user_my_lucky_draw_record">抽奖总次数 %s</string>
 
     <string name="user_receivable"> <![CDATA[ <b><font color="#ff5601">%s </font></b> ]]> 元</string>
     <string name="user_receivable_micro_currency"> <![CDATA[ <b><font color="#ff5601">%s </font></b> ]]> 微币</string>

@@ -31,6 +31,7 @@ import com.weedai.ptp.ui.activity.InvestorActivity;
 import com.weedai.ptp.ui.activity.LiCaiRecommendActivity;
 import com.weedai.ptp.ui.activity.LoginActivity;
 import com.weedai.ptp.ui.activity.LuckyDrawActivity;
+import com.weedai.ptp.ui.activity.LuckyDrawRecordActivity;
 import com.weedai.ptp.ui.activity.MainActivity;
 import com.weedai.ptp.ui.activity.MoneyRecordActivity;
 import com.weedai.ptp.ui.activity.MyBankCardActivity;
@@ -220,6 +221,14 @@ public class UIHelper {
     }
 
     /**
+     * 抽奖记录
+     */
+    public static void showLuckyDrawRecord(Context context) {
+        Intent intent = new Intent(context, LuckyDrawRecordActivity.class);
+        context.startActivity(intent);
+    }
+
+    /**
      * 优选理财
      */
     public static void showOptimizingFinancial(Context context) {
@@ -370,7 +379,7 @@ public class UIHelper {
     /**
      * 在线充值
      */
-    public static void showRechargeOnline(Context context,String url) {
+    public static void showRechargeOnline(Context context, String url) {
         Intent intent = new Intent(context, RechargeOnlineActivity.class);
         intent.putExtra("url", url);
         context.startActivity(intent);

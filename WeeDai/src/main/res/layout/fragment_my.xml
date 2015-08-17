@@ -308,6 +308,15 @@
 
                 <include layout="@layout/view_horizontal_line" />
 
+                <TextView
+                    android:id="@+id/tvMyLuckyDrawRecord"
+                    style="@style/layoutUser"
+                    android:clickable="true"
+                    android:drawableRight="@drawable/ic_arrow_right"
+                    android:text="@string/user_lucky_draw_record" />
+
+                <include layout="@layout/view_horizontal_line" />
+
             </LinearLayout>
         </LinearLayout>
 

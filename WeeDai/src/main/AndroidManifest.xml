@@ -155,6 +155,10 @@
             android:configChanges="keyboard|orientation|screenSize"
             android:screenOrientation="portrait" />
         <activity
+            android:name="com.weedai.ptp.ui.activity.LuckyDrawRecordActivity"
+            android:configChanges="keyboard|orientation|screenSize"
+            android:screenOrientation="portrait" />
+        <activity
             android:name="com.weedai.ptp.ui.activity.ChangePasswordActivity"
             android:configChanges="keyboard|orientation|screenSize"
             android:screenOrientation="portrait" />
