@@ -209,7 +209,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="网上银行充值过程中请耐心等待，充值成功后，充值金额才能打入您的账号。如有问题，请与我们联系。"
+                    android:text="线下充值前请先与客服确认转账账号，避免失误造成资金损失。"
                     android:textColor="@color/main_text"
                     android:textSize="16sp" />
 
@@ -429,7 +429,7 @@
 
                 <ImageView
                     style="@style/rechargeBankImg"
-                    android:src="@drawable/icon_bank_zhongguo" />
+                    android:src="@drawable/icon_bank_zhaoshang" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -443,11 +443,11 @@
 
                         <TextView
                             style="@style/rechargeBankMainText"
-                            android:text="中国银行" />
+                            android:text="招商银行" />
 
                         <TextView
                             style="@style/rechargeBankMainText"
-                            android:text="(佛山顺德勒流支行)"
+                            android:text="(招商银行佛山乐从支行)"
                             android:textColor="@color/main_text" />
 
                     </LinearLayout>
@@ -459,7 +459,7 @@
 
                         <TextView
                             style="@style/rechargeBankText"
-                            android:text="6217 8570 0001 2769 202" />
+                            android:text="6225 9875 7023 5006" />
 
                         <TextView
                             style="@style/rechargeBankText"
@@ -563,6 +563,31 @@
             android:background="@drawable/selector_btn_bg"
             android:text="确认充值"
             android:textColor="@color/white" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="温馨提示："
+                android:textColor="@color/main_text"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="网上银行充值过程中请耐心等待，充值成功后，充值金额才能打入您的账号。如有问题，请与我们联系。"
+                android:textColor="@color/main_text"
+                android:textSize="16sp" />
+
+        </LinearLayout>
 
 
     </LinearLayout>
