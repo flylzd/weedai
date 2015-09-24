@@ -232,6 +232,61 @@
 
                 <ImageView
                     style="@style/rechargeBankImg"
+                    android:src="@drawable/icon_bank_zhaoshang" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            style="@style/rechargeBankMainText"
+                            android:text="招商银行" />
+
+                        <TextView
+                            style="@style/rechargeBankMainText"
+                            android:text="(招商银行佛山乐从支行)"
+                            android:textColor="@color/main_text" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            style="@style/rechargeBankText"
+                            android:text="6225 9875 7023 5006" />
+
+                        <!--<TextView-->
+                        <!--style="@style/rechargeBankText"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:text="深圳市微贷投资有限公司"-->
+                        <!--android:textColor="@color/main_text" />-->
+
+                    </LinearLayout>
+
+                    <TextView
+                        style="@style/rechargeBankText"
+                        android:layout_width="wrap_content"
+                        android:text="深圳市微贷投资有限公司"
+                        android:textColor="@color/main_text" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <include layout="@layout/view_horizontal_line" />
+
+            <LinearLayout style="@style/rechargeContainer">
+
+                <ImageView
+                    style="@style/rechargeBankImg"
                     android:src="@drawable/icon_bank_jianshe" />
 
                 <LinearLayout
@@ -423,54 +478,6 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <include layout="@layout/view_horizontal_line" />
-
-            <LinearLayout style="@style/rechargeContainer">
-
-                <ImageView
-                    style="@style/rechargeBankImg"
-                    android:src="@drawable/icon_bank_zhaoshang" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            style="@style/rechargeBankMainText"
-                            android:text="招商银行" />
-
-                        <TextView
-                            style="@style/rechargeBankMainText"
-                            android:text="(招商银行佛山乐从支行)"
-                            android:textColor="@color/main_text" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            style="@style/rechargeBankText"
-                            android:text="6225 9875 7023 5006" />
-
-                        <TextView
-                            style="@style/rechargeBankText"
-                            android:layout_width="wrap_content"
-                            android:text="林思敏"
-                            android:textColor="@color/main_text" />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-            </LinearLayout>
 
         </LinearLayout>
     </ScrollView>

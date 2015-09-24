@@ -290,7 +290,7 @@ public class MainActivity extends BaseActivity {
     protected void qqClick() {
         Intent intent = new Intent();
         intent.setAction("android.intent.action.VIEW");
-        Uri content_url = Uri.parse("http://wpa.qq.com/msgrd?v=3&uin=372643910&site=qq&menu=yes");
+        Uri content_url = Uri.parse("http://wpa.qq.com/msgrd?v=3&uin=347088201&site=qq&menu=yes");
         intent.setData(content_url);
         startActivity(intent);
     }
