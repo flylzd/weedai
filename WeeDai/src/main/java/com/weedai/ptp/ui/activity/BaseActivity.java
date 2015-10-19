@@ -61,10 +61,23 @@ public class BaseActivity extends ActionBarActivity {
             back.setVisibility(View.GONE);
         }
 
+        View qq = view.findViewById(R.id.imgQQ);
+        if (hasQQ()){
+            qq.setVisibility(View.VISIBLE);
+        } else {
+            qq.setVisibility(View.GONE);
+        }
+        qq.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                qqClick();
+            }
+        });
+
         ActionBar.LayoutParams params = new ActionBar.LayoutParams(
                 ActionBar.LayoutParams.MATCH_PARENT,
                 ActionBar.LayoutParams.MATCH_PARENT);
-        mActionBar.setCustomView(view,params);
+        mActionBar.setCustomView(view, params);
     }
 
 
@@ -89,6 +102,10 @@ public class BaseActivity extends ActionBarActivity {
         return false;
     }
 
+    protected boolean hasQQ() {
+        return false;
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
@@ -101,6 +118,10 @@ public class BaseActivity extends ActionBarActivity {
 
     protected void backClick() {
 //        finish();
+    }
+
+    protected void qqClick() {
+
     }
 
 }

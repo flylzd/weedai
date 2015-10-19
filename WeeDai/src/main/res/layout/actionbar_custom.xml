@@ -15,6 +15,17 @@
         android:paddingRight="@dimen/space_8"
         android:src="@drawable/actionbar_back_icon_normal" />
 
+    <ImageView
+        android:id="@+id/imgQQ"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:clickable="true"
+        android:visibility="gone"
+        android:paddingLeft="@dimen/space_8"
+        android:paddingRight="@dimen/space_8"
+        android:src="@drawable/icon_main_qq" />
 
     <TextView
         android:id="@+id/tvActionbarTitle"

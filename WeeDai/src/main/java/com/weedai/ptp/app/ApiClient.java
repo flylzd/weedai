@@ -26,6 +26,7 @@ import com.weedai.ptp.model.FinancialManager;
 import com.weedai.ptp.model.Hero;
 import com.weedai.ptp.model.Invest;
 import com.weedai.ptp.model.Investor;
+import com.weedai.ptp.model.LuckyDraw;
 import com.weedai.ptp.model.Micro;
 import com.weedai.ptp.model.Money;
 import com.weedai.ptp.model.MyWeallth;
@@ -1132,6 +1133,28 @@ public class ApiClient {
 
         String url = Urls.ACTION_INDEX;
         GsonPostRequest request = createGsonPostRequest(url, requestParams, Award.class, listener);
+        request.setTag(tag);
+        requestQueue.add(request);
+    }
+
+    /**
+     * 抽奖记录
+     */
+    public static void getLuckyDrawRecord(String tag, int page, ResponseListener listener) {
+
+        if (!hashkNewwork()) {
+            return;
+        }
+
+        listener.onStarted();
+
+        Map<String, String> requestParams = getSignatureMap();
+        requestParams.put("q", "code/account/prizelogs");
+        requestParams.put("page", String.valueOf(page));
+        requestParams.put(Urls.ACTION, "users");
+
+        String url = Urls.ACTION_INDEX;
+        GsonGetRequest request = createGsonGetRequest(url, requestParams, LuckyDraw.class, listener);
         request.setTag(tag);
         requestQueue.add(request);
     }

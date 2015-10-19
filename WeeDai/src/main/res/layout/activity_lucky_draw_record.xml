@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tvLuckyDrawTotal"
+        android:paddingBottom="8dp"
+        android:paddingTop="8dp"
+        android:layout_width="match_parent"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:textColor="@color/main_text_black"
+        android:text="@string/user_my_lucky_draw_record"
+        android:layout_height="wrap_content" />
+
+    <com.lemon.aklib.widget.EndOfListView
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:cacheColorHint="@android:color/transparent" />
+
+</LinearLayout>

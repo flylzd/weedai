@@ -39,6 +39,7 @@ public class MyFragment extends Fragment implements View.OnClickListener {
     private TextView tvMyBankCard;
     private TextView tvMyStandInsideLetter;
     private TextView tvMyLuckyDraw;
+    private TextView tvMyLuckyDrawRecord;
     private View layoutSecurityLevel;
     private TextView tvSecurityLevel;
 
@@ -129,6 +130,7 @@ public class MyFragment extends Fragment implements View.OnClickListener {
         tvMyBankCard = (TextView) view.findViewById(R.id.tvMyBankCard);
         tvMyStandInsideLetter = (TextView) view.findViewById(R.id.tvMyStandInsideLetter);
         tvMyLuckyDraw = (TextView) view.findViewById(R.id.tvMyLuckyDraw);
+        tvMyLuckyDrawRecord = (TextView) view.findViewById(R.id.tvMyLuckyDrawRecord);
         tvSecurityLevel = (TextView) view.findViewById(R.id.tvSecurityLevel);
         layoutSecurityLevel = view.findViewById(R.id.layoutSecurityLevel);
 
@@ -140,6 +142,7 @@ public class MyFragment extends Fragment implements View.OnClickListener {
         tvMyBankCard.setOnClickListener(this);
         tvMyStandInsideLetter.setOnClickListener(this);
         tvMyLuckyDraw.setOnClickListener(this);
+        tvMyLuckyDrawRecord.setOnClickListener(this);
         layoutSecurityLevel.setOnClickListener(this);
 
         layoutRecharge = view.findViewById(R.id.layoutRecharge);
@@ -323,6 +326,10 @@ public class MyFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.tvMyLuckyDraw:
                 UIHelper.showLuckyDraw(getActivity());
+//                Toast.makeText(getActivity(), "新活动即将开始，敬请期待", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.tvMyLuckyDrawRecord:
+                UIHelper.showLuckyDrawRecord(getActivity());
 //                Toast.makeText(getActivity(), "新活动即将开始，敬请期待", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.layoutSecurityLevel:
