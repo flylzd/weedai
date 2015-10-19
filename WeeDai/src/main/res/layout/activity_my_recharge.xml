@@ -119,7 +119,6 @@
                 </LinearLayout>
             </LinearLayout>
 
-
             <include layout="@layout/view_horizontal_line" />
 
             <LinearLayout style="@style/layoutMyBank">
@@ -476,96 +475,269 @@
     </ScrollView>
 
 
-    <LinearLayout
+    <ScrollView
         android:id="@+id/layoutOnline"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <LinearLayout style="@style/layoutMyBank">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            <TextView
-                style="@style/textMyBankTitle"
-                android:text="真实姓名：" />
-
-            <TextView
-                android:id="@+id/tvRealNameOnline"
-                style="@style/textMyBank" />
-        </LinearLayout>
-
-
-        <include layout="@layout/view_horizontal_line" />
-
-        <LinearLayout style="@style/layoutMyBank">
-
-            <TextView
-                style="@style/textMyBankTitle"
-                android:text="验证码：" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <EditText
-                    android:id="@+id/etValicodeOnline"
-                    style="@style/textMyBank"
-                    android:layout_width="120dp"
-                    android:singleLine="true" />
-
-                <com.weedai.ptp.view.SimpleValidateCodeView
-                    android:id="@+id/viewValicodeOnline"
-                    android:layout_width="wrap_content"
-                    android:layout_height="30dp"
-                    android:gravity="center_vertical" />
-
-            </LinearLayout>
-        </LinearLayout>
-
-        <include layout="@layout/view_horizontal_line" />
-
-        <LinearLayout style="@style/layoutMyBank">
-
-            <TextView
-                style="@style/textMyBankTitle"
-                android:text="充值金额：" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <EditText
-                    android:id="@+id/etAmountOnline"
-                    style="@style/textMyBank"
-                    android:layout_width="100dp"
-                    android:numeric="integer"
-                    android:singleLine="true" />
+            <LinearLayout style="@style/layoutMyBank">
 
                 <TextView
+                    style="@style/textMyBankTitle"
+                    android:text="充值金额：" />
+
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:text="元"
-                    android:textSize="18sp" />
+                    android:orientation="horizontal">
 
+                    <EditText
+                        android:id="@+id/etAmountOnline"
+                        style="@style/textMyBank"
+                        android:layout_width="100dp"
+                        android:numeric="decimal"
+                        android:singleLine="true" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="元"
+                        android:textSize="18sp" />
+
+                </LinearLayout>
             </LinearLayout>
+
+            <include layout="@layout/view_horizontal_line" />
+
+            <LinearLayout style="@style/layoutMyBank">
+
+                <TextView
+                    style="@style/textMyBankTitle"
+                    android:text="真实姓名：" />
+
+                <EditText
+                    android:id="@+id/etRealNameOnline"
+                    style="@style/textMyBank" />
+            </LinearLayout>
+
+
+            <include layout="@layout/view_horizontal_line" />
+
+            <LinearLayout style="@style/layoutMyBank">
+
+                <TextView
+                    style="@style/textMyBankTitle"
+                    android:text="身份证号：" />
+
+                <EditText
+                    android:id="@+id/etIDCardOnline"
+                    style="@style/textMyBank" />
+            </LinearLayout>
+
+
+            <include layout="@layout/view_horizontal_line" />
+
+            <LinearLayout style="@style/layoutMyBank">
+
+                <TextView
+                    style="@style/textMyBankTitle"
+                    android:text="银行卡号：" />
+
+                <EditText
+                    android:id="@+id/etBankCodeOnline"
+                    style="@style/textMyBank" />
+            </LinearLayout>
+
+            <include layout="@layout/view_horizontal_line" />
+
+            <LinearLayout style="@style/layoutMyBank">
+
+                <!--<LinearLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:orientation="vertical">-->
+
+                <!--</LinearLayout>-->
+
+                <TextView
+                    style="@style/textMyBankTitle"
+                    android:text="可选银行：" />
+
+
+                <ImageView
+                    android:id="@+id/imgBankIcon"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY"
+                    android:layout_width="match_parent"
+                    android:src="@drawable/bg_bank_gongshang" />
+            </LinearLayout>
+
+            <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginBottom="10dp"-->
+            <!--android:layout_marginEnd="20dp"-->
+            <!--android:layout_marginStart="20dp"-->
+            <!--android:layout_marginTop="20dp"-->
+            <!--android:textColor="@color/main_text_black"-->
+            <!--android:textSize="20sp" />-->
+
+            <include layout="@layout/view_horizontal_line" />
+
+            <!--<GridView xmlns:android="http://schemas.android.com/apk/res/android"-->
+            <!--android:id="@+id/gridViewBank"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="0dp"-->
+            <!--android:layout_weight="1"-->
+            <!--android:gravity="center"-->
+            <!--android:horizontalSpacing="10dp"-->
+            <!--android:numColumns="2"-->
+            <!--android:stretchMode="columnWidth"-->
+            <!--android:verticalSpacing="10dp" />-->
+
+
+            <LinearLayout style="@style/layoutMyBank">
+
+                <TextView
+                    style="@style/textMyBankTitle"
+                    android:text="付款码：" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/etValicodeOnline"
+                        style="@style/textMyBank"
+                        android:layout_width="120dp"
+                        android:singleLine="true" />
+
+                    <Button
+                        android:layout_marginTop="3dp"
+                        android:layout_marginBottom="3dp"
+                        android:id="@+id/btnValicodeOnline"
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/selector_btn_bg"
+                        android:gravity="center"
+                        android:text="发送手机验证码"
+                        android:textColor="@color/white" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnOnline"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/selector_btn_bg"
+                android:text="确认充值"
+                android:textColor="@color/white" />
+
         </LinearLayout>
+    </ScrollView>
 
 
-        <Button
-            android:id="@+id/btnOnline"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="20dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/selector_btn_bg"
-            android:text="确认充值"
-            android:textColor="@color/white" />
+    <!--<LinearLayout-->
+    <!--android:id="@+id/layoutOnline"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:orientation="vertical">-->
+
+    <!--<LinearLayout style="@style/layoutMyBank">-->
+
+    <!--<TextView-->
+    <!--style="@style/textMyBankTitle"-->
+    <!--android:text="真实姓名：" />-->
+
+    <!--<TextView-->
+    <!--android:id="@+id/tvRealNameOnline"-->
+    <!--style="@style/textMyBank" />-->
+    <!--</LinearLayout>-->
 
 
-    </LinearLayout>
+    <!--<include layout="@layout/view_horizontal_line" />-->
+
+    <!--<LinearLayout style="@style/layoutMyBank">-->
+
+    <!--<TextView-->
+    <!--style="@style/textMyBankTitle"-->
+    <!--android:text="验证码：" />-->
+
+    <!--<LinearLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:orientation="horizontal">-->
+
+    <!--<EditText-->
+    <!--android:id="@+id/etValicodeOnline"-->
+    <!--style="@style/textMyBank"-->
+    <!--android:layout_width="120dp"-->
+    <!--android:singleLine="true" />-->
+
+    <!--<com.weedai.ptp.view.SimpleValidateCodeView-->
+    <!--android:id="@+id/viewValicodeOnline"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="30dp"-->
+    <!--android:gravity="center_vertical" />-->
+
+    <!--</LinearLayout>-->
+    <!--</LinearLayout>-->
+
+    <!--<include layout="@layout/view_horizontal_line" />-->
+
+    <!--<LinearLayout style="@style/layoutMyBank">-->
+
+    <!--<TextView-->
+    <!--style="@style/textMyBankTitle"-->
+    <!--android:text="充值金额：" />-->
+
+    <!--<LinearLayout-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:orientation="horizontal">-->
+
+    <!--<EditText-->
+    <!--android:id="@+id/etAmountOnline"-->
+    <!--style="@style/textMyBank"-->
+    <!--android:layout_width="100dp"-->
+    <!--android:numeric="integer"-->
+    <!--android:singleLine="true" />-->
+
+    <!--<TextView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:gravity="center_vertical"-->
+    <!--android:text="元"-->
+    <!--android:textSize="18sp" />-->
+
+    <!--</LinearLayout>-->
+    <!--</LinearLayout>-->
+    <!-- -->
+    <!--<Button-->
+    <!--android:id="@+id/btnOnline"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginEnd="20dp"-->
+    <!--android:layout_marginStart="20dp"-->
+    <!--android:layout_marginTop="20dp"-->
+    <!--android:background="@drawable/selector_btn_bg"-->
+    <!--android:text="确认充值"-->
+    <!--android:textColor="@color/white" />-->
+
+    <!--</LinearLayout>-->
 
 
 </LinearLayout>

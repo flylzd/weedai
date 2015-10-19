@@ -51,6 +51,7 @@ import com.weedai.ptp.volley.SimpleMultipartRequest;
 import com.weedai.ptp.volley.VolleySingleton;
 
 import java.io.ByteArrayOutputStream;
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -1246,6 +1247,59 @@ public class ApiClient {
     }
 
 
+
+    /**
+     * 在线充值，获取手机验证
+     */
+    public static void getRechargePhoneCode(String tag, String money, String bankCode, String realName, String cardNo, String bankNo,  ResponseListener listener) {
+
+        if (!hashkNewwork()) {
+            return;
+        }
+
+        listener.onStarted();
+
+        Map<String, String> requestParams = getSignatureMap();
+        requestParams.put("total_fee", money);
+        requestParams.put("default_bank", bankCode);
+        requestParams.put("real_name", URLEncoder.encode(realName));
+        requestParams.put("cert_no", cardNo);
+        requestParams.put("bank_no", bankNo);
+        requestParams.put(Urls.ACTION, "bf_getmas");
+
+        String url = Urls.ACTION_INDEX;
+        GsonPostRequest request = createGsonPostRequest(url, requestParams, BaseModel.class, listener);
+        request.setTag(tag);
+        requestQueue.add(request);
+    }
+
+    /**
+     * 在线充值新的接口
+     */
+    public static void rechargeOnlineNew(String tag, String money, String bankCode, String realName, String cardNo, String bankNo,  String phoneCode,ResponseListener listener) {
+
+        if (!hashkNewwork()) {
+            return;
+        }
+
+        listener.onStarted();
+
+        Map<String, String> requestParams = getSignatureMap();
+        requestParams.put("total_fee", money);
+        requestParams.put("default_bank", bankCode);
+        requestParams.put("real_name", URLEncoder.encode(realName));
+        requestParams.put("cert_no", cardNo);
+        requestParams.put("bank_no", bankNo);
+        requestParams.put("code", phoneCode);
+        requestParams.put(Urls.ACTION, "bf_pay");
+
+        String url = Urls.ACTION_INDEX;
+        GsonPostRequest request = createGsonPostRequest(url, requestParams, BaseModel.class, listener);
+        request.setTag(tag);
+        requestQueue.add(request);
+    }
+
+
     /**
      * 头像获得
      */
@@ -1387,6 +1441,7 @@ public class ApiClient {
         request.setTag(tag);
         requestQueue.add(request);
     }
+
 
     private static byte[] bitmapToBytes(Bitmap bm) {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
