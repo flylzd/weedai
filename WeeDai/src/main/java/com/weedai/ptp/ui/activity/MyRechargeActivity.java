@@ -261,7 +261,7 @@ public class MyRechargeActivity extends Activity {
                 String moeny = etAmountOnline.getText().toString();
                 String realName = etRealNameOnline.getText().toString();
                 String cardID = etIDCardOnline.getText().toString();
-                String bankCode = etBankCodeOnline.getText().toString();
+                String bankNo = etBankCodeOnline.getText().toString();
 //                String phoneCode =   etValicodeOnline.getText().toString();
                 if (TextUtils.isEmpty(moeny)
                         || TextUtils.isEmpty(realName)
@@ -271,7 +271,7 @@ public class MyRechargeActivity extends Activity {
                     return;
                 }
 
-                getPhoneCodeOnline(moeny, bankCode, realName, cardID, bankCode);
+                getPhoneCodeOnline(moeny, bankCode, realName, cardID, bankNo);
 
                 btnOnline.setEnabled(true);
                 handler.postDelayed(runnable, 1000);
@@ -285,7 +285,7 @@ public class MyRechargeActivity extends Activity {
                 String moeny = etAmountOnline.getText().toString();
                 String realName = etRealNameOnline.getText().toString();
                 String cardID = etIDCardOnline.getText().toString();
-                String bankCode = etBankCodeOnline.getText().toString();
+                String bankNo = etBankCodeOnline.getText().toString();
                 String phoneCode = etValicodeOnline.getText().toString();
                 if (TextUtils.isEmpty(moeny)
                         || TextUtils.isEmpty(realName)
@@ -296,7 +296,7 @@ public class MyRechargeActivity extends Activity {
                     return;
                 }
 
-                rechargeOnlineNew(moeny, bankCode, realName, cardID, bankCode, phoneCode);
+                rechargeOnlineNew(moeny, bankCode, realName, cardID, bankNo, phoneCode);
 
             }
         });
@@ -511,29 +511,29 @@ public class MyRechargeActivity extends Activity {
         bankNameList.add("ICBC_D_B2C");  //工商银行
         bankNameList.add("ABC_D_B2C");  //农业银行
         bankNameList.add("CCB_D_B2C");  //建设银行
-        bankNameList.add("CMBCD_D_B2C");  //民生银行
+//        bankNameList.add("CMBCD_D_B2C");  //民生银行
 
-        bankNameList.add("BOCSH_D_B2C");  //中国银行
+//        bankNameList.add("BOCSH_D_B2C");  //中国银行
         bankNameList.add("CIB_D_B2C");  //兴业银行
-        bankNameList.add("CEB_D_B2C");  //光大银行
+//        bankNameList.add("CEB_D_B2C");  //光大银行
         bankNameList.add("CNCB_D_B2C");  //中信银行
 
         bankNameList.add("PINGAN_D_B2C");  //平安银行
-        bankNameList.add("POSTGC_D_B2C");  //中国邮政
+//        bankNameList.add("POSTGC_D_B2C");  //中国邮政
         bankNameList.add("COMM_D_B2C");  //交通银行
 
         bankIconMap.put("ICBC_D_B2C", R.drawable.bg_bank_gongshang);
         bankIconMap.put("ABC_D_B2C", R.drawable.bg_bank_nongye);
         bankIconMap.put("CCB_D_B2C", R.drawable.bg_bank_jianshe);
-        bankIconMap.put("CMBCD_D_B2C", R.drawable.bg_bank_mingsheng);
+//        bankIconMap.put("CMBCD_D_B2C", R.drawable.bg_bank_mingsheng);
 
-        bankIconMap.put("BOCSH_D_B2C", R.drawable.bg_bank_zhongguo);
+//        bankIconMap.put("BOCSH_D_B2C", R.drawable.bg_bank_zhongguo);
         bankIconMap.put("CIB_D_B2C", R.drawable.bg_bank_xingye);
-        bankIconMap.put("CEB_D_B2C", R.drawable.bg_bank_guangda);
+//        bankIconMap.put("CEB_D_B2C", R.drawable.bg_bank_guangda);
         bankIconMap.put("CNCB_D_B2C", R.drawable.bg_bank_zhongxin);
 
         bankIconMap.put("PINGAN_D_B2C", R.drawable.bg_bank_pingan);
-        bankIconMap.put("POSTGC_D_B2C", R.drawable.bg_bank_youzheng);
+//        bankIconMap.put("POSTGC_D_B2C", R.drawable.bg_bank_youzheng);
         bankIconMap.put("COMM_D_B2C", R.drawable.bg_bank_jiaotong);
 
     }

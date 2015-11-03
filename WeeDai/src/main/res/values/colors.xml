@@ -31,6 +31,10 @@
     <color name="btn_bg_pressed">#00912c</color>
     <color name="btn_bg_normal">#01a533</color>
 
+
+    <color name="btn_phone_bg_pressed">#ff5601</color>
+    <color name="btn_phone_bg_normal">#ff7700</color>
+
     <color name="btn_my_wealth_withdrawal_pressed">#4d5fca</color>
     <color name="btn_my_wealth_withdrawal_normal">#6171d1</color>
 

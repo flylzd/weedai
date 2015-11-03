@@ -499,7 +499,7 @@
                     <EditText
                         android:id="@+id/etAmountOnline"
                         style="@style/textMyBank"
-                        android:layout_width="100dp"
+                        android:layout_width="120dp"
                         android:numeric="decimal"
                         android:singleLine="true" />
 
@@ -536,6 +536,7 @@
                     android:text="身份证号：" />
 
                 <EditText
+                    android:textColor="@color/btn_phone_bg_normal"
                     android:id="@+id/etIDCardOnline"
                     style="@style/textMyBank" />
             </LinearLayout>
@@ -550,6 +551,7 @@
                     android:text="银行卡号：" />
 
                 <EditText
+                    android:textColor="@color/btn_phone_bg_normal"
                     android:id="@+id/etBankCodeOnline"
                     style="@style/textMyBank" />
             </LinearLayout>
@@ -575,7 +577,7 @@
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
                     android:layout_height="match_parent"
-                    android:scaleType="fitXY"
+                    android:scaleType="centerInside"
                     android:layout_width="match_parent"
                     android:src="@drawable/bg_bank_gongshang" />
             </LinearLayout>
@@ -618,18 +620,21 @@
                     <EditText
                         android:id="@+id/etValicodeOnline"
                         style="@style/textMyBank"
-                        android:layout_width="120dp"
+                        android:layout_width="80dp"
                         android:singleLine="true" />
 
                     <Button
-                        android:layout_marginTop="3dp"
-                        android:layout_marginBottom="3dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
                         android:id="@+id/btnValicodeOnline"
-                        android:layout_width="80dp"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/selector_btn_bg"
+                        android:background="@drawable/selector_btn_phone_bg"
                         android:gravity="center"
-                        android:text="发送手机验证码"
+                        android:textSize="14sp"
+                        android:layout_marginRight="20dp"
+                        android:text="点击发送手机验证码"
                         android:textColor="@color/white" />
 
                 </LinearLayout>
@@ -645,6 +650,45 @@
                 android:background="@drawable/selector_btn_bg"
                 android:text="确认充值"
                 android:textColor="@color/white" />
+
+            <LinearLayout
+                android:layout_marginTop="8dp"
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_marginLeft="20dp"
+                    android:text="说明："
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:text="1.为了账户安全，支付前请先进行手机认证。"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:text="2.支付时，请先发送付款码。"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:text="3.请填写真实的姓名和银行卡号，否则无法完成支付。"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
 
         </LinearLayout>
     </ScrollView>
