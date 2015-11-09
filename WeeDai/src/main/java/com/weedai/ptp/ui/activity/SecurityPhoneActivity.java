@@ -16,6 +16,7 @@ import com.weedai.ptp.constant.Constant;
 import com.weedai.ptp.model.SecurityPhone;
 import com.weedai.ptp.model.SecurityPhoneData;
 import com.weedai.ptp.model.User;
+import com.weedai.ptp.ui.fragment.MyFragment;
 import com.weedai.ptp.volley.ResponseListener;
 
 
@@ -164,6 +165,7 @@ public class SecurityPhoneActivity extends BaseActivity {
                 if (result.message.equals("success")) {
                     Toast.makeText(SecurityPhoneActivity.this, "手机绑定成功", Toast.LENGTH_SHORT).show();
                     User.userInfo.phone_status = 1;
+                    MyFragment.phoneStatus = true;  // 在线充值的判断条件
                     finish();
                 } else {
                     Toast.makeText(SecurityPhoneActivity.this, "手机绑定失败", Toast.LENGTH_SHORT).show();

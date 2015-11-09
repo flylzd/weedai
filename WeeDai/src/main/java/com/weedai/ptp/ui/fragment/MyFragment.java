@@ -68,6 +68,8 @@ public class MyFragment extends Fragment implements View.OnClickListener {
     private String securityLevel;
     private int level = 0;
 
+    public static boolean phoneStatus = false;  //手机是否验证
+
     public static MyFragment newInstance() {
         MyFragment fragment = new MyFragment();
         return fragment;
@@ -212,6 +214,7 @@ public class MyFragment extends Fragment implements View.OnClickListener {
             if (data.phone_status == 1) {
                 imgPhone.setImageResource(R.drawable.icon_phone_on);
                 level++;
+                phoneStatus = true;
             } else {
                 imgPhone.setImageResource(R.drawable.icon_phone);
             }

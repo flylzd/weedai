@@ -32,6 +32,7 @@ import com.weedai.ptp.constant.Urls;
 import com.weedai.ptp.model.Bank;
 import com.weedai.ptp.model.BaseModel;
 import com.weedai.ptp.model.Valicode;
+import com.weedai.ptp.ui.fragment.MyFragment;
 import com.weedai.ptp.utils.AppUtil;
 import com.weedai.ptp.utils.DataUtil;
 import com.weedai.ptp.utils.UIHelper;
@@ -70,6 +71,8 @@ public class MyRechargeActivity extends Activity {
     //在线充值(新)
     private GridView gridViewBank;
     private BankAdapter adapter;
+
+    private TextView tvPhoneStatus;
 
     private EditText etAmountOnline;
     private EditText etRealNameOnline;
@@ -301,71 +304,24 @@ public class MyRechargeActivity extends Activity {
             }
         });
 
+        tvPhoneStatus = (TextView) findViewById(R.id.tvPhoneStatus);
+        tvPhoneStatus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                UIHelper.showSecurityPhone(MyRechargeActivity.this);
+            }
+        });
 
-//        gridViewBank = (GridView) findViewById(R.id.gridViewBank);
-//        gridViewBank.setAdapter(adapter);
-//        gridViewBank.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                System.out.println("bankName == " + bankNameList.get(position));
-//            }
-//        });
+    }
 
-//        tvRealNameOnline = (TextView) findViewById(R.id.tvRealNameOnline);
-//        etValicodeOnline = (EditText) findViewById(R.id.etValicodeOnline);
-//        viewValicodeOnline = (SimpleValidateCodeView) findViewById(R.id.viewValicodeOnline);
-//        viewValicodeOnline.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                getImgcodeOnline();
-//            }
-//        });
-//        etAmountOnline = (EditText) findViewById(R.id.etAmountOnline);
-//        btnOnline = (Button) findViewById(R.id.btnOnline);
-//        btnOnline.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                String money = etAmountOnline.getText().toString();
-//                String code = etValicodeOnline.getText().toString();
-//
-//                if (TextUtils.isEmpty(money)) {
-//                    Toast.makeText(MyRechargeActivity.this, "请填写充值金额", Toast.LENGTH_SHORT).show();
-//                    return;
-//                }
-//
-//                if (TextUtils.isEmpty(code)) {
-//                    Toast.makeText(MyRechargeActivity.this, getString(R.string.login_valicode_empty), Toast.LENGTH_SHORT).show();
-//                    return;
-//                } else {
-//                    if (!valicode.equalsIgnoreCase(code)) {
-//                        Toast.makeText(MyRechargeActivity.this, getString(R.string.login_valicode_not_match), Toast.LENGTH_SHORT).show();
-//                        getImgcodeOnline();
-//                        etValicodeOnline.getText().clear();
-//                        return;
-//                    }
-//                }
-////                rechargeOnline(money, code);
-////                ApiClient.getSignatureMap();
-//
-//                if (money.equals("0")) {
-//                    Toast.makeText(MyRechargeActivity.this, "充值金额不能为零", Toast.LENGTH_SHORT).show();
-//                    return;
-//                }
-//
-//
-//                long time = System.currentTimeMillis();
-//                String timestamp = String.valueOf(time);
-//                String signature = AppUtil.getSignature(timestamp);
-//                String url = Urls.ACTION_INDEX + "?" + "actions=yepoorecharge" + "&money=" + money + "&valicode=" + code + "&signature=" + signature + "&timestamp=" + timestamp;
-//
-//                System.out.println("online url " + url);
-//
-//                UIHelper.showRechargeOnline(MyRechargeActivity.this, url);
-//
-//            }
-//        });
-
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (MyFragment.phoneStatus){
+            tvPhoneStatus.setVisibility(View.GONE);
+        } else {
+            tvPhoneStatus.setVisibility(View.VISIBLE);
+        }
     }
 
     private void loadData() {
