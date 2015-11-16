@@ -12,7 +12,6 @@
         android:textSize="18sp"
         android:gravity="center"
         android:textColor="@color/main_text_black"
-        android:text="@string/user_my_lucky_draw_record"
         android:layout_height="wrap_content" />
 
     <com.lemon.aklib.widget.EndOfListView

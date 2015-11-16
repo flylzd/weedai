@@ -2,6 +2,7 @@ package com.weedai.ptp.ui.activity;
 
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,6 +18,7 @@ import com.weedai.ptp.model.LuckyDrawList;
 import com.weedai.ptp.model.Money;
 import com.weedai.ptp.model.MoneyList;
 import com.weedai.ptp.utils.DataUtil;
+import com.weedai.ptp.utils.UIHelper;
 import com.weedai.ptp.volley.ResponseListener;
 
 import java.text.SimpleDateFormat;
@@ -62,6 +64,17 @@ public class LuckyDrawRecordActivity extends BaseActivity implements EndOfListVi
         return true;
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        page = DEFAULT_PAGE;
+//        if (isBottomLoadingComplete) {
+//            showIndeterminateProgress(false);
+//            return;
+//        }
+        page++;
+        getLuckyDrawRecord();
+    }
 
     @Override
     public void onEndOfList(Object lastItem) {
@@ -83,16 +96,26 @@ public class LuckyDrawRecordActivity extends BaseActivity implements EndOfListVi
 
         adapter = new QuickAdapter<LuckyDrawList>(LuckyDrawRecordActivity.this, R.layout.listitem_lucky_draw) {
             @Override
-            protected void convert(BaseAdapterHelper helper, LuckyDrawList item) {
+            protected void convert(BaseAdapterHelper helper, final LuckyDrawList item) {
 
                 String fangStr;
                 Integer fang = item.if_fang;
                 if (fang != null && fang == 1) {
                     fangStr = "已发放";
+                    helper.setText(R.id.tvLUckyDrawState, fangStr);
+                    helper.getView(R.id.tvLUckyDrawState).setVisibility(View.VISIBLE);
+                    helper.getView(R.id.btnLuckyDrawState).setVisibility(View.GONE);
                 } else {
-                    fangStr = "没发放";
+//                    fangStr = "没发放";
+                    helper.getView(R.id.tvLUckyDrawState).setVisibility(View.GONE);
+                    helper.getView(R.id.btnLuckyDrawState).setVisibility(View.VISIBLE);
+                    helper.getView(R.id.btnLuckyDrawState).setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            UIHelper.showAwardConvert(LuckyDrawRecordActivity.this,item.id,item.prize);
+                        }
+                    });
                 }
-                helper.setText(R.id.tvLUckyDrawState, fangStr);
                 helper.setText(R.id.tvLUckyDrawPrize, DataUtil.urlDecode(item.prize));
 
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");

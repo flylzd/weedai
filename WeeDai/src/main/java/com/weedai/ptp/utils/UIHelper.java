@@ -14,6 +14,7 @@ import com.weedai.ptp.ui.activity.AccountAvatarsActivity;
 import com.weedai.ptp.ui.activity.AccountEmailActivity;
 import com.weedai.ptp.ui.activity.ArticleActivity;
 import com.weedai.ptp.ui.activity.ArticleDetailActivity;
+import com.weedai.ptp.ui.activity.AwardConvertActity;
 import com.weedai.ptp.ui.activity.CalculatorInterestActivity;
 import com.weedai.ptp.ui.activity.CalculatorNetCreditActivity;
 import com.weedai.ptp.ui.activity.ChangePasswordActivity;
@@ -225,6 +226,16 @@ public class UIHelper {
      */
     public static void showLuckyDrawRecord(Context context) {
         Intent intent = new Intent(context, LuckyDrawRecordActivity.class);
+        context.startActivity(intent);
+    }
+
+    /**
+     * 奖品折现
+     */
+    public static void showAwardConvert(Context context, String id, String name) {
+        Intent intent = new Intent(context, AwardConvertActity.class);
+        intent.putExtra("id", id);
+        intent.putExtra("name", name);
         context.startActivity(intent);
     }
 

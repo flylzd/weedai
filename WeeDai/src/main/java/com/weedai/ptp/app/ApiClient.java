@@ -1466,6 +1466,31 @@ public class ApiClient {
     }
 
 
+    /**
+     * 奖品折现
+     *
+     * @param tag
+     * @param listener
+     */
+    public static void awardConvert(String tag,String id, final ResponseListener listener) {
+
+        if (!hashkNewwork()) {
+            return;
+        }
+
+        listener.onStarted();
+
+        Map<String, String> requestParams = getSignatureMap();
+        requestParams.put("id", id);
+        requestParams.put(Urls.ACTION, "wb_zhexian");
+
+        String url = Urls.ACTION_INDEX;
+        GsonGetRequest request = createGsonGetRequest(url, requestParams, BaseModel.class, listener);
+        request.setTag(tag);
+        requestQueue.add(request);
+    }
+
+
     private static byte[] bitmapToBytes(Bitmap bm) {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bm.compress(Bitmap.CompressFormat.PNG, 100, baos);
