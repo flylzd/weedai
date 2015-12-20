@@ -22,6 +22,7 @@ import com.weedai.ptp.model.Calculator;
 import com.weedai.ptp.model.Comment;
 import com.weedai.ptp.model.Company;
 import com.weedai.ptp.model.Days;
+import com.weedai.ptp.model.Discount;
 import com.weedai.ptp.model.FinancialManager;
 import com.weedai.ptp.model.Hero;
 import com.weedai.ptp.model.Invest;
@@ -1490,6 +1491,47 @@ public class ApiClient {
         requestQueue.add(request);
     }
 
+    /**
+     *   手机充值 接口 -- 取得优惠信息
+     */
+    public static void getDiscount(String tag,final ResponseListener listener) {
+
+        if (!hashkNewwork()) {
+            return;
+        }
+
+        listener.onStarted();
+
+        Map<String, String> requestParams = getSignatureMap();
+        requestParams.put(Urls.ACTION, "getyouhui");
+
+        String url = Urls.ACTION_INDEX;
+        GsonGetRequest request = createGsonGetRequest(url, requestParams, Discount.class, listener);
+        request.setTag(tag);
+        requestQueue.add(request);
+    }
+
+    /**
+     *   手机充值 接口 --  开始充值
+     */
+    public static void phoneRecharges(String tag,String phone,String money,final ResponseListener listener) {
+
+        if (!hashkNewwork()) {
+            return;
+        }
+
+        listener.onStarted();
+
+        Map<String, String> requestParams = getSignatureMap();
+        requestParams.put("phonenums", phone);
+        requestParams.put("cardnums", money);
+        requestParams.put(Urls.ACTION, "phonerecharges");
+
+        String url = Urls.ACTION_INDEX;
+        GsonGetRequest request = createGsonGetRequest(url, requestParams, BaseModel.class, listener);
+        request.setTag(tag);
+        requestQueue.add(request);
+    }
 
     private static byte[] bitmapToBytes(Bitmap bm) {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();

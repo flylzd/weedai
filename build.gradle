@@ -18,8 +18,11 @@ allprojects {
         jcenter()
         mavenCentral()
 
+//        maven {
+//            url "http://dl.bintray.com/fir/maven"
+//        }
         maven {
-            url "http://dl.bintray.com/fir/maven"
+            url "http://maven.bughd.com/public"
         }
     }
 }

@@ -37,6 +37,7 @@ public class MyFragment extends Fragment implements View.OnClickListener {
     private TextView tvMyWithdrawalRecord;
     private TextView tvMyFinancialManagement;
     private TextView tvMyBankCard;
+    private TextView tvPhoneRecharge;
     private TextView tvMyStandInsideLetter;
     private TextView tvMyLuckyDraw;
     private TextView tvMyLuckyDrawRecord;
@@ -130,6 +131,7 @@ public class MyFragment extends Fragment implements View.OnClickListener {
         layoutMyMicroCurrency = view.findViewById(R.id.layoutMyMicroCurrency);
         tvMyFinancialManagement = (TextView) view.findViewById(R.id.tvMyFinancialManagement);
         tvMyBankCard = (TextView) view.findViewById(R.id.tvMyBankCard);
+        tvPhoneRecharge = (TextView) view.findViewById(R.id.tvPhoneRecharge);
         tvMyStandInsideLetter = (TextView) view.findViewById(R.id.tvMyStandInsideLetter);
         tvMyLuckyDraw = (TextView) view.findViewById(R.id.tvMyLuckyDraw);
         tvMyLuckyDrawRecord = (TextView) view.findViewById(R.id.tvMyLuckyDrawRecord);
@@ -142,6 +144,7 @@ public class MyFragment extends Fragment implements View.OnClickListener {
         layoutMyMicroCurrency.setOnClickListener(this);
         tvMyFinancialManagement.setOnClickListener(this);
         tvMyBankCard.setOnClickListener(this);
+        tvPhoneRecharge.setOnClickListener(this);
         tvMyStandInsideLetter.setOnClickListener(this);
         tvMyLuckyDraw.setOnClickListener(this);
         tvMyLuckyDrawRecord.setOnClickListener(this);
@@ -323,6 +326,9 @@ public class MyFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.tvMyBankCard:
                 UIHelper.showMyBankCard(getActivity());
+                break;
+            case R.id.tvPhoneRecharge:
+                UIHelper.showPhoneRecharge(getActivity());
                 break;
             case R.id.tvMyStandInsideLetter:
                 UIHelper.showMyStandInsideLetter(getActivity());

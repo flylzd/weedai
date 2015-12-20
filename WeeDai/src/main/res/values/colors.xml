@@ -51,5 +51,8 @@
     <color name="about_reset_normal">#757575</color>
     <color name="about_reset_pressed">#4f4e4e</color>
 
+    <color name="phone_recharge">#656565</color>
+    <color name="phone_recharge_pressed">#ff6634</color>
+
 
 </resources>

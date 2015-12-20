@@ -12,6 +12,7 @@ import com.weedai.ptp.R;
 import com.weedai.ptp.app.ApiClient;
 import com.weedai.ptp.constant.Constant;
 import com.weedai.ptp.model.About;
+import com.weedai.ptp.model.BaseModel;
 import com.weedai.ptp.utils.DataUtil;
 import com.weedai.ptp.volley.ResponseListener;
 
@@ -72,7 +73,7 @@ public class AwardConvertActity extends BaseActivity {
             public void onResponse(Object response) {
                 progressDialog.dismiss();
 
-                About result = (About) response;
+                BaseModel result = (BaseModel) response;
                 if (result.code != Constant.CodeResult.SUCCESS) {
                     Toast.makeText(AwardConvertActity.this, result.message, Toast.LENGTH_SHORT).show();
                     return;

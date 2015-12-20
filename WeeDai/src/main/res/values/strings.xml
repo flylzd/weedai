@@ -50,7 +50,7 @@
     <string name="title_password_gestures_lock">设置手势密码</string>
     <string name="title_my_recharge">充值</string>
     <string name="title_my_recharge_online">在线充值</string>
-
+    <string name="title_phone_recharge">手机充值</string>
 
     <string name="login_user_hint">手机号/邮箱/用户名</string>
     <string name="login_password_hint">请输入密码</string>
@@ -286,6 +286,9 @@
     <string name="award_8">八等奖：100个投资微币&#160;&#160;&#160;&#160;多名</string>
     <string name="award_9">九等奖：20个投资微币&#160;&#160;&#160;&#160;&#160;&#160;多名</string>
 
+    <string name="phone_recharge_discount">当前折扣&#160;&#160;：&#160;&#160; %s &#160;折</string>
+    <string name="phone_recharge_hint_one">【充值时间】:本商品24小时系统自动充值，无任何时间限制（运营商系统/地区维护除外）。</string>
+    <string name="phone_recharge_hint_two">【到账时间】:非充值高峰期到账时间为1分到10分钟不等（若运营商系统正常时，到账时间几乎是即时到账）。</string>
 
     <string name="message_waiting">正在加载数据.....</string>
     <string name="message_submit">正在提交数据.....</string>

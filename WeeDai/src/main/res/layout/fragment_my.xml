@@ -278,7 +278,7 @@
                     android:drawableRight="@drawable/ic_arrow_right"
                     android:text="@string/user_financial_management" />
 
-                <!--<include layout="@layout/view_horizontal_line" />-->
+                <include layout="@layout/view_horizontal_line" />
 
                 <TextView
                     android:visibility="gone"
@@ -287,6 +287,13 @@
                     android:clickable="true"
                     android:drawableRight="@drawable/ic_arrow_right"
                     android:text="@string/user_bank_card" />
+
+                <TextView
+                    android:id="@+id/tvPhoneRecharge"
+                    style="@style/layoutUser"
+                    android:clickable="true"
+                    android:drawableRight="@drawable/ic_arrow_right"
+                    android:text="@string/title_phone_recharge" />
 
                 <include layout="@layout/view_horizontal_line" />
 
