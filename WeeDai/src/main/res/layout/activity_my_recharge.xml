@@ -287,7 +287,7 @@
                 </LinearLayout>
             </LinearLayout>
 
-
+<!--
             <include layout="@layout/view_horizontal_line" />
 
             <LinearLayout style="@style/rechargeContainer">
@@ -531,8 +531,8 @@
 
                     </LinearLayout>
 
-                </LinearLayout>
-            </LinearLayout>
+                </LinearLayout>-->
+           <!-- </LinearLayout>-->
 
         </LinearLayout>
     </ScrollView>
