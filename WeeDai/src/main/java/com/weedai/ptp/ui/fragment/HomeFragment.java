@@ -146,7 +146,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                         Toast.makeText(getActivity(), "此功能暂未开放", Toast.LENGTH_SHORT).show();
                         break;
                     case 6:
-                        Toast.makeText(getActivity(), "此功能暂未开放", Toast.LENGTH_SHORT).show();
+                        UIHelper.showCardeal(getActivity());
                         break;
                     case 7:
                         UIHelper.showArticle(getActivity());
@@ -161,7 +161,17 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                         UIHelper.showArticle(getActivity());
                         break;
                     case 11:
-                        Toast.makeText(getActivity(), "此功能暂未开放", Toast.LENGTH_SHORT).show();
+                        if (Config.isLogin) {
+                            if (Config.isSignIn) {  //成功签到
+                                Toast.makeText(getActivity(), "今日已签", Toast.LENGTH_SHORT).show();
+                                return;
+                            }
+                            signIn();  //签到
+
+                        } else {  // 未登录
+                            HomeFragment.isLoginFromHome = true;
+                            UIHelper.showLogin(getActivity());
+                        }
                         break;
                 }
             }
@@ -170,6 +180,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
     public List<Map<String, Object>> getData(){
         //cion和iconName的长度是相同的，这里任选其一都可以
+        dataList.clear();
         for(int i=0;i<icons.length;i++){
             Map<String, Object> map = new HashMap<String, Object>();
             map.put("image", icons[i]);
@@ -181,6 +192,41 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
     private void loadData() {
         scrollPic();
+    }
+
+    private void signIn() {
+        ApiClient.signIn(TAG, new ResponseListener() {
+            @Override
+            public void onStarted() {
+                progressDialog = ProgressDialog.show(getActivity(), null, "正在签到...");
+            }
+
+            @Override
+            public void onResponse(Object response) {
+                progressDialog.dismiss();
+
+                SignIn result = (SignIn) response;
+                if (result.code != Constant.CodeResult.SUCCESS) {
+                    Toast.makeText(getActivity(), result.message, Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (result.message.equals("success")) {
+                    Config.isSignIn = true;
+//                    tvSign.setText("今日已签");
+                    Toast.makeText(getActivity(), "今日签到获得奖励", Toast.LENGTH_SHORT).show();
+                } else if (result.message.equals("signuped")) {
+                    Config.isSignIn = true;
+//                    tvSign.setText("今日已签");
+                    Toast.makeText(getActivity(), "今日已签", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                progressDialog.dismiss();
+            }
+        });
     }
 
     private void showImageViewPager() {

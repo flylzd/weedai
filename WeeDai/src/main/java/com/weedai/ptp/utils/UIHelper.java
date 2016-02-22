@@ -17,6 +17,7 @@ import com.weedai.ptp.ui.activity.ArticleDetailActivity;
 import com.weedai.ptp.ui.activity.AwardConvertActity;
 import com.weedai.ptp.ui.activity.CalculatorInterestActivity;
 import com.weedai.ptp.ui.activity.CalculatorNetCreditActivity;
+import com.weedai.ptp.ui.activity.CardealActivity;
 import com.weedai.ptp.ui.activity.ChangePasswordActivity;
 import com.weedai.ptp.ui.activity.ChangePaymentPasswordActivity;
 import com.weedai.ptp.ui.activity.FinanceInvestmentActivity;
@@ -392,13 +393,20 @@ public class UIHelper {
         context.startActivity(intent);
     }
 
-
     /**
      * 在线充值
      */
     public static void showRechargeOnline(Context context, String url) {
         Intent intent = new Intent(context, RechargeOnlineActivity.class);
         intent.putExtra("url", url);
+        context.startActivity(intent);
+    }
+
+    /**
+     * 代办违章
+     */
+    public static void showCardeal(Context context) {
+        Intent intent = new Intent(context, CardealActivity.class);
         context.startActivity(intent);
     }
 }

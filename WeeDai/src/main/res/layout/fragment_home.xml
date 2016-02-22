@@ -10,7 +10,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="120dp">
+            android:layout_height="160dp">
 
             <com.weedai.ptp.view.AutoScrollViewPager
                 android:id="@+id/viewPager"

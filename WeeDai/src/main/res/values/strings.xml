@@ -51,6 +51,7 @@
     <string name="title_my_recharge">充值</string>
     <string name="title_my_recharge_online">在线充值</string>
     <string name="title_phone_recharge">手机充值</string>
+    <string name="title_cardeal">代办违章</string>
 
     <string name="login_user_hint">手机号/邮箱/用户名</string>
     <string name="login_password_hint">请输入密码</string>
