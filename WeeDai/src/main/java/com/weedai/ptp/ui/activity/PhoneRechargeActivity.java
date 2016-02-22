@@ -100,7 +100,7 @@ public class PhoneRechargeActivity extends BaseActivity implements View.OnClickL
                 break;
             case R.id.btnSubmit: {
 
-//                phoneRecharge(money);
+                phoneRecharge(money);
             }
 
             break;
@@ -111,6 +111,11 @@ public class PhoneRechargeActivity extends BaseActivity implements View.OnClickL
         String phoneNum = etPhone.getText().toString();
         if (TextUtils.isEmpty(phoneNum)) {
             Toast.makeText(PhoneRechargeActivity.this, "充值手机号码不能为空!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (phoneNum.length() != 11) {
+            Toast.makeText(PhoneRechargeActivity.this, "手机号码出错!", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -125,10 +130,14 @@ public class PhoneRechargeActivity extends BaseActivity implements View.OnClickL
                 progressDialog.dismiss();
                 BaseModel result = (BaseModel) response;
                 if (result.code != Constant.CodeResult.SUCCESS) {
+                    if (result.message.equals("no_money")){
+                        Toast.makeText(PhoneRechargeActivity.this, "你的账号没有余额了。", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
                     Toast.makeText(PhoneRechargeActivity.this, result.message, Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if (result.message.equals("recharge_success")){
+                if (result.message.equals("success")){
                     Toast.makeText(PhoneRechargeActivity.this, "充值成功", Toast.LENGTH_SHORT).show();
                     finish();
                 } else {

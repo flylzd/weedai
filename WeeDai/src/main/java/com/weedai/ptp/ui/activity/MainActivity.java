@@ -137,14 +137,14 @@ public class MainActivity extends BaseActivity {
         fragmentAdapter = new FragmentStateArrayPagerAdapter(getSupportFragmentManager());
         fragmentSwitcher.setAdapter(fragmentAdapter);
 
-//        HomeFragment homeFragment = HomeFragment.newInstance();
-        HomeNewFragment homeNewFragment = HomeNewFragment.newInstance();
+        HomeFragment homeFragment = HomeFragment.newInstance();
+//        HomeNewFragment homeNewFragment = HomeNewFragment.newInstance();
         MyFragment myFragment = MyFragment.newInstance();
         BbsFragment bbsFragment = BbsFragment.newInstance();
         MoreFragment moreFragment = MoreFragment.newInstance();
 
-//        fragmentAdapter.add(homeFragment);
-        fragmentAdapter.add(homeNewFragment);
+        fragmentAdapter.add(homeFragment);
+//        fragmentAdapter.add(homeNewFragment);
         fragmentAdapter.add(myFragment);
         fragmentAdapter.add(bbsFragment);
         fragmentAdapter.add(moreFragment);

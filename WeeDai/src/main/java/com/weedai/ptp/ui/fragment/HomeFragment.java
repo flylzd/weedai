@@ -12,9 +12,12 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,7 +40,9 @@ import com.weedai.ptp.view.AutoScrollViewPager;
 import com.weedai.ptp.volley.ResponseListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class HomeFragment extends Fragment implements View.OnClickListener {
 
@@ -56,24 +61,16 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     //放圆点的View的list
     private List<View> dotViewsList = new ArrayList<View>();
 
-    private ImageView imgYou;
-    private ImageView imgYa;
-    private ImageView imgSign;
-    private ImageView imgMyAccount;
-
-    private RelativeLayout layoutInformation;
-
-    private TextView tvSign;
-    private TextView tvMyAccount;
-
-    private TextView tvArticleTitle;
-    private TextView tvArticleTime;
-    private TextView tvArticleComment;
-    private ImageView imgTitle;
-
     private ProgressDialog progressDialog;
 
-    private ArticleList item;
+    private GridView gridView;
+    private List<Map<String, Object>> dataList = new ArrayList<Map<String, Object>>();
+    private SimpleAdapter simpleAdapter;
+    // 图片封装为一个数组
+    private int[] icons = { R.drawable.e1, R.drawable.e2, R.drawable.e3, R.drawable.e4,
+            R.drawable.e5, R.drawable.e6, R.drawable.e7, R.drawable.e8,
+            R.drawable.e13, R.drawable.e14, R.drawable.e15, R.drawable.e16 };
+
 
     public static HomeFragment newInstance() {
         HomeFragment fragment = new HomeFragment();
@@ -93,31 +90,13 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
         System.out.println("HomeFragment onViewCreated");
         init(view);
-
-        if (item != null && imageUrls.size() != 0){
-            setArticle();
-        } else {
-            loadData();
-        }
+        loadData();
     }
 
     @Override
     public void onResume() {
         super.onResume();
         System.out.println("HomeFragment onResume");
-        if (Config.isLogin) {
-            tvMyAccount.setText("已登录");
-            if (Config.isSignIn) {
-                tvSign.setText("今日已签");
-            } else {
-                tvSign.setText("今日未签");
-            }
-        } else {
-            tvMyAccount.setText(getActivity().getString(R.string.home_my_account_right));
-            tvSign.setText(getActivity().getString(R.string.home_my_account_right));
-        }
-//        viewPager.startAutoScroll();
-
         if (imageUrls.size() != 0){
             System.out.println("onResume imageViewsList.size() == " + imageViewsList.size());
             showImageViewPager();
@@ -134,43 +113,74 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         viewPager = (AutoScrollViewPager) view.findViewById(R.id.viewPager);
         layoutIndicator = (LinearLayout) view.findViewById(R.id.layoutIndicator);
 
-        imgYou = (ImageView) view.findViewById(R.id.imgYou);
-        imgYa =(ImageView) view.findViewById(R.id.imgYa);
-        imgSign = (ImageView) view.findViewById(R.id.imgSign);
-        imgMyAccount = (ImageView) view.findViewById(R.id.imgMyAccount);
-
-        imgYou.setOnClickListener(this);
-        imgYa.setOnClickListener(this);
-        imgSign.setOnClickListener(this);
-        imgMyAccount.setOnClickListener(this);
-
-        layoutInformation = (RelativeLayout) view.findViewById(R.id.layoutInformation);
-        layoutInformation.setOnClickListener(this);
-
-        tvSign = (TextView) view.findViewById(R.id.tvSign);
-        tvMyAccount = (TextView) view.findViewById(R.id.tvMyAccount);
-//        if (Config.isLogin) {
-//            tvMyAccount.setText("已登录");
-//            if (Config.isSignIn) {
-//                tvSign.setText("今日已签");
-//            } else {
-//                tvSign.setText("今日未签");
-//            }
-//        } else {
-//            tvMyAccount.setText(getActivity().getString(R.string.home_my_account_right));
-//            tvSign.setText(getActivity().getString(R.string.home_my_account_right));
-//        }
-
-        tvArticleTitle = (TextView) view.findViewById(R.id.tvArticleTitle);
-        tvArticleTime = (TextView) view.findViewById(R.id.tvArticleTime);
-        tvArticleComment = (TextView) view.findViewById(R.id.tvArticleComment);
-        imgTitle = (ImageView) view.findViewById(R.id.imgTitle);
+        gridView = (GridView) view.findViewById(R.id.gridView);
+        //新建适配器
+        String [] from ={"image"};
+        int [] to = {R.id.imgHome};
+        simpleAdapter = new SimpleAdapter(getActivity(),getData(),R.layout.griditem_home,from,to);
+        gridView.setAdapter(simpleAdapter);
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                switch (position) {
+                    case 0:
+                        UIHelper.showOptimizingFinancial(getActivity());
+                        break;
+                    case 1:
+                        UIHelper.showLiCaiRecommend(getActivity());
+                        break;
+                    case 2:
+                        UIHelper.showTransfer(getActivity());
+                        break;
+                    case 3:
+                        if (Config.isLogin) {
+                            UIHelper.showPhoneRecharge(getActivity());
+                        } else {
+                            Toast.makeText(getActivity(), "还未登陆，不能进行话费充值", Toast.LENGTH_SHORT).show();
+                        }
+                        break;
+                    case 4:
+                        UIHelper.showLuckyDraw(getActivity());
+                        break;
+                    case 5:
+                        Toast.makeText(getActivity(), "此功能暂未开放", Toast.LENGTH_SHORT).show();
+                        break;
+                    case 6:
+                        Toast.makeText(getActivity(), "此功能暂未开放", Toast.LENGTH_SHORT).show();
+                        break;
+                    case 7:
+                        UIHelper.showArticle(getActivity());
+                        break;
+                    case 8:
+                        UIHelper.showAbout(getActivity());
+                        break;
+                    case 9:
+                        UIHelper.showCalculatorInterest(getActivity());
+                        break;
+                    case 10:
+                        UIHelper.showArticle(getActivity());
+                        break;
+                    case 11:
+                        Toast.makeText(getActivity(), "此功能暂未开放", Toast.LENGTH_SHORT).show();
+                        break;
+                }
+            }
+        });
     }
 
+    public List<Map<String, Object>> getData(){
+        //cion和iconName的长度是相同的，这里任选其一都可以
+        for(int i=0;i<icons.length;i++){
+            Map<String, Object> map = new HashMap<String, Object>();
+            map.put("image", icons[i]);
+//            map.put("text", iconName[i]);
+            dataList.add(map);
+        }
+        return dataList;
+    }
 
     private void loadData() {
-
-        getArticleList();
+        scrollPic();
     }
 
     private void showImageViewPager() {
@@ -212,112 +222,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
 
         switch (v.getId()) {
-            case R.id.imgYou:
-                UIHelper.showOptimizingFinancial(getActivity());
-                break;
-            case R.id.imgYa:
-                UIHelper.showLiCaiRecommend(getActivity());
-                break;
-            case R.id.imgSign:
-
-                if (Config.isLogin) {
-                    if (Config.isSignIn) {  //成功签到
-                        return;
-                    }
-                    signIn();  //签到
-
-                } else {  // 未登录
-                    HomeFragment.isLoginFromHome = true;
-                    UIHelper.showLogin(getActivity());
-                }
-                break;
-            case R.id.imgMyAccount:
-                if (Config.isLogin) {
-                    UIHelper.showAccount(getActivity());
-                } else {
-                    HomeFragment.isLoginFromHome = true;
-                    UIHelper.showLogin(getActivity());
-                }
-                break;
-            case R.id.layoutInformation:
-                UIHelper.showArticle(getActivity());
-                break;
-        }
-    }
-
-    private void signIn() {
-        ApiClient.signIn(TAG, new ResponseListener() {
-            @Override
-            public void onStarted() {
-                progressDialog = ProgressDialog.show(getActivity(), null, "正在签到...");
-            }
-
-            @Override
-            public void onResponse(Object response) {
-                progressDialog.dismiss();
-
-                SignIn result = (SignIn) response;
-                if (result.code != Constant.CodeResult.SUCCESS) {
-                    Toast.makeText(getActivity(), result.message, Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                if (result.message.equals("success")) {
-                    Config.isSignIn = true;
-                    tvSign.setText("今日已签");
-                    Toast.makeText(getActivity(), "今日签到获得奖励", Toast.LENGTH_SHORT).show();
-                } else if (result.message.equals("signuped")) {
-                    Config.isSignIn = true;
-                    tvSign.setText("今日已签");
-                }
-            }
-
-            @Override
-            public void onErrorResponse(VolleyError volleyError) {
-                progressDialog.dismiss();
-            }
-        });
-    }
-
-    private void getArticleList() {
-
-        ApiClient.getArticleList(TAG, 1, Constant.ArticleType.INFORMATION, new RefreshResponseListener() {
-
-            @Override
-            public void onResponse(Object response) {
-                super.onResponse(response);
-
-                Article result = (Article) response;
-                if (result.code != Constant.CodeResult.SUCCESS) {
-                    Toast.makeText(getActivity(), result.message, Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                List<ArticleList> articleList = result.data.list;
-                if (articleList != null && articleList.size() != 0){
-                    item = articleList.get(0);
-                    setArticle();
-                }
-                scrollPic();
-            }
-        });
-    }
-
-    private void setArticle() {
-        if (item != null){
-
-            String url = item.litpic;
-            System.out.println("url " + url);
-            if (!TextUtils.isEmpty(url)) {
-                url = Config.DEFAULT_IMG_URL + url;
-                ImageLoader.getInstance().displayImage(url, imgTitle);
-            } else {
-                url = Config.DEFAULT_IMG_DOWNLOAD;
-                ImageLoader.getInstance().displayImage(url, imgTitle);
-            }
-
-            tvArticleTitle.setText(DataUtil.urlDecode(item.name));
-            tvArticleComment.setText(item.comment);
-            tvArticleTime.setText(item.publish);
         }
     }
 
