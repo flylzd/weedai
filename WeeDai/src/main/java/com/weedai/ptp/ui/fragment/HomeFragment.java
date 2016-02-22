@@ -124,10 +124,10 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 switch (position) {
                     case 0:
-                        UIHelper.showOptimizingFinancial(getActivity());
+                        UIHelper.showLiCaiRecommend(getActivity());
                         break;
                     case 1:
-                        UIHelper.showLiCaiRecommend(getActivity());
+                        UIHelper.showOptimizingFinancial(getActivity());
                         break;
                     case 2:
                         UIHelper.showTransfer(getActivity());
