@@ -27,7 +27,7 @@ public class GuidedActivity extends Activity {
     private AutoScrollViewPager viewPager;
     private LinearLayout layoutIndicator;
 
-    private int GUIDEED_CONUT = 4;
+    private int GUIDEED_CONUT = 5;
     //放轮播图片的ImageView 的list
     private List<View> imageViewsList = new ArrayList<View>();
     //放圆点的View的list
@@ -62,12 +62,14 @@ public class GuidedActivity extends Activity {
         View view2 = getLayoutInflater().inflate(R.layout.view_guided_2, null);
         View view3 = getLayoutInflater().inflate(R.layout.view_guided_3, null);
         View view4 = getLayoutInflater().inflate(R.layout.view_guided_4, null);
+        View view5 = getLayoutInflater().inflate(R.layout.view_guided_5, null);
         imageViewsList.add(view1);
         imageViewsList.add(view2);
         imageViewsList.add(view3);
         imageViewsList.add(view4);
+        imageViewsList.add(view5);
 
-        Button btnStart = (Button) view4.findViewById(R.id.btnStart);
+        Button btnStart = (Button) view5.findViewById(R.id.btnStart);
         btnStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
