@@ -90,7 +90,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
         System.out.println("HomeFragment onViewCreated");
         init(view);
-        loadData();
+        if (imageUrls.size() == 0){
+            loadData();
+        }
     }
 
     @Override
@@ -112,6 +114,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     private void init(View view) {
         viewPager = (AutoScrollViewPager) view.findViewById(R.id.viewPager);
         layoutIndicator = (LinearLayout) view.findViewById(R.id.layoutIndicator);
+        viewPager.setInterval(4*1000);
 
         gridView = (GridView) view.findViewById(R.id.gridView);
         //新建适配器
