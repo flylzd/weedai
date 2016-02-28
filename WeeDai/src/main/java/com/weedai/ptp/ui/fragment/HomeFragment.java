@@ -30,6 +30,7 @@ import com.weedai.ptp.constant.Constant;
 import com.weedai.ptp.constant.Urls;
 import com.weedai.ptp.model.Article;
 import com.weedai.ptp.model.ArticleList;
+import com.weedai.ptp.model.Days;
 import com.weedai.ptp.model.Invest;
 import com.weedai.ptp.model.RotationImage;
 import com.weedai.ptp.model.RotationImageList;
@@ -67,9 +68,17 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     private List<Map<String, Object>> dataList = new ArrayList<Map<String, Object>>();
     private SimpleAdapter simpleAdapter;
     // 图片封装为一个数组
-    private int[] icons = { R.drawable.e1, R.drawable.e2, R.drawable.e3, R.drawable.e4,
+    private int[] icons = {R.drawable.e1, R.drawable.e2, R.drawable.e3, R.drawable.e4,
             R.drawable.e5, R.drawable.e6, R.drawable.e7, R.drawable.e8,
-            R.drawable.e13, R.drawable.e14, R.drawable.e15, R.drawable.e16 };
+            R.drawable.e13, R.drawable.e14, R.drawable.e15, R.drawable.e16};
+
+    private String zongchengjiao;
+    private String yesterdatcj;
+
+    private TextView tv_zcj_yi;
+    private TextView tv_zcj_yi_unit;
+    private TextView tv_zcj_wang;
+    private TextView tv_zcj_yuan;
 
 
     public static HomeFragment newInstance() {
@@ -90,16 +99,25 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
         System.out.println("HomeFragment onViewCreated");
         init(view);
-        loadData();
+//        loadData();
     }
 
     @Override
     public void onResume() {
         super.onResume();
         System.out.println("HomeFragment onResume");
-        if (imageUrls.size() != 0){
+        if (imageUrls.size() != 0) {
             System.out.println("onResume imageViewsList.size() == " + imageViewsList.size());
             showImageViewPager();
+        } else {
+            scrollPic();
+        }
+
+
+        if (TextUtils.isEmpty(zongchengjiao)) {
+            getDaysData();
+        } else {
+            showDaysData();
         }
     }
 
@@ -113,11 +131,16 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         viewPager = (AutoScrollViewPager) view.findViewById(R.id.viewPager);
         layoutIndicator = (LinearLayout) view.findViewById(R.id.layoutIndicator);
 
+        tv_zcj_yi = (TextView) view.findViewById(R.id.tv_zcj_yi);
+        tv_zcj_yi_unit = (TextView) view.findViewById(R.id.tv_zcj_yi_unit);
+        tv_zcj_wang = (TextView) view.findViewById(R.id.tv_zcj_wang);
+        tv_zcj_yuan = (TextView) view.findViewById(R.id.tv_zcj_yuan);
+
         gridView = (GridView) view.findViewById(R.id.gridView);
         //新建适配器
-        String [] from ={"image"};
-        int [] to = {R.id.imgHome};
-        simpleAdapter = new SimpleAdapter(getActivity(),getData(),R.layout.griditem_home,from,to);
+        String[] from = {"image"};
+        int[] to = {R.id.imgHome};
+        simpleAdapter = new SimpleAdapter(getActivity(), getData(), R.layout.griditem_home, from, to);
         gridView.setAdapter(simpleAdapter);
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -178,10 +201,10 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         });
     }
 
-    public List<Map<String, Object>> getData(){
+    public List<Map<String, Object>> getData() {
         //cion和iconName的长度是相同的，这里任选其一都可以
         dataList.clear();
-        for(int i=0;i<icons.length;i++){
+        for (int i = 0; i < icons.length; i++) {
             Map<String, Object> map = new HashMap<String, Object>();
             map.put("image", icons[i]);
 //            map.put("text", iconName[i]);
@@ -192,6 +215,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
     private void loadData() {
         scrollPic();
+        getDaysData();
     }
 
     private void signIn() {
@@ -229,9 +253,47 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         });
     }
 
+    private void getDaysData() {
+        ApiClient.getDaysData(TAG, new ResponseListener() {
+            @Override
+            public void onStarted() {
+
+            }
+
+            @Override
+            public void onResponse(Object response) {
+                Days result = (Days) response;
+                if (result.code != Constant.CodeResult.SUCCESS) {
+                    Toast.makeText(getActivity(), result.message, Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                zongchengjiao = result.data.zongchengjiao;
+                yesterdatcj = result.data.yesterdatcj;
+
+                showDaysData();
+            }
+
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+
+            }
+        });
+    }
+
+    private void showDaysData() {
+
+        int zcjLength = zongchengjiao.length();
+        String[] zcjs = new String[3];
+        if (zcjLength >=9){
+
+        }
+
+    }
+
     private void showImageViewPager() {
         int size = imageUrls.size();
-        System.out.println("showImageViewPager size ==  "  + size);
+        System.out.println("showImageViewPager size ==  " + size);
         if (imageUrls == null || size == 0) {
             return;
         }

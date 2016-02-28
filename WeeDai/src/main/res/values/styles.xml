@@ -309,4 +309,21 @@
         <item name="android:textColor">@color/main_text</item>
     </style>
 
+
+    <style name="today_data_zhi">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">30dp</item>
+        <item name="android:gravity">center_vertical|bottom</item>
+        <item name="android:textColor">@color/today_data_zhi</item>
+        <item name="android:textSize">@dimen/today_data_zhi_text_size</item>
+    </style>
+
+    <style name="today_data_unit">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">30dp</item>
+        <item name="android:gravity">center_vertical|bottom</item>
+        <item name="android:textColor">@color/today_data_unit</item>
+        <item name="android:textSize">@dimen/today_data_unit_text_size</item>
+    </style>
+
 </resources>

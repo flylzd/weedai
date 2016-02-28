@@ -49,4 +49,7 @@
 
     <dimen name="actionBarSize">45dp</dimen>
 
+    <dimen name="today_data_zhi_text_size">@dimen/space_24</dimen>
+    <dimen name="today_data_unit_text_size">@dimen/space_14</dimen>
+
 </resources>

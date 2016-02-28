@@ -54,5 +54,8 @@
     <color name="phone_recharge">#656565</color>
     <color name="phone_recharge_pressed">#ff6634</color>
 
+    <color name="today_data_zhi">#ff7271</color>
+    <color name="today_data_unit">#656565</color>
+
 
 </resources>
