@@ -74,11 +74,19 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
     private String zongchengjiao;
     private String yesterdatcj;
+    private String today_trade;
 
     private TextView tv_zcj_yi;
     private TextView tv_zcj_yi_unit;
     private TextView tv_zcj_wang;
     private TextView tv_zcj_yuan;
+
+    private TextView tv_jrcj_wang;
+    private TextView tv_jrcj_wang_unit;
+    private TextView tv_jrcj_yuan;
+    private TextView tv_zrcj_wang;
+    private TextView tv_zrcj_wang_unit;
+    private TextView tv_zrcj_yuan;
 
 
     public static HomeFragment newInstance() {
@@ -135,6 +143,15 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         tv_zcj_yi_unit = (TextView) view.findViewById(R.id.tv_zcj_yi_unit);
         tv_zcj_wang = (TextView) view.findViewById(R.id.tv_zcj_wang);
         tv_zcj_yuan = (TextView) view.findViewById(R.id.tv_zcj_yuan);
+
+        tv_jrcj_wang = (TextView) view.findViewById(R.id.tv_jrcj_wang);
+        tv_jrcj_yuan = (TextView) view.findViewById(R.id.tv_jrcj_yuan);
+
+        tv_zrcj_wang = (TextView) view.findViewById(R.id.tv_zrcj_wang);
+        tv_zrcj_yuan = (TextView) view.findViewById(R.id.tv_zrcj_yuan);
+
+        tv_jrcj_wang_unit = (TextView) view.findViewById(R.id.tv_jrcj_wang_unit);
+        tv_zrcj_wang_unit = (TextView) view.findViewById(R.id.tv_zrcj_wang_unit);
 
         gridView = (GridView) view.findViewById(R.id.gridView);
         //新建适配器
@@ -270,6 +287,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
                 zongchengjiao = result.data.zongchengjiao;
                 yesterdatcj = result.data.yesterdatcj;
+                today_trade = result.data.today_trade;
 
                 showDaysData();
             }
@@ -284,9 +302,39 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     private void showDaysData() {
 
         int zcjLength = zongchengjiao.length();
-        String[] zcjs = new String[3];
-        if (zcjLength >=9){
+//        String[] zcjs = new String[3];
+        if (zcjLength >= 9) {
+//            zcjs = new String[3]
+            int indexOne = (zcjLength - 9) + 1;
+            tv_zcj_yi.setText(zongchengjiao.substring(0, indexOne));
+            tv_zcj_wang.setText(zongchengjiao.substring(indexOne, zcjLength - 4));
+            tv_zcj_yuan.setText(zongchengjiao.substring(zcjLength - 4, zcjLength));
 
+        } else {
+            tv_zcj_yi.setVisibility(View.GONE);
+            tv_zcj_yi_unit.setVisibility(View.GONE);
+            tv_zcj_wang.setText(zongchengjiao.substring(0, zcjLength - 4));
+            tv_zcj_yuan.setText(zongchengjiao.substring(zcjLength - 4, zcjLength));
+        }
+
+        int todayLength = today_trade.length();
+        if (todayLength >4) {
+            tv_jrcj_wang.setText(today_trade.substring(0, todayLength - 4));
+            tv_jrcj_yuan.setText(today_trade.substring(todayLength - 4, todayLength));
+        } else {
+            tv_jrcj_wang.setVisibility(View.GONE);
+            tv_jrcj_wang_unit.setVisibility(View.GONE);
+            tv_jrcj_yuan.setText(today_trade.substring(0, todayLength));
+        }
+
+        int yesLength = yesterdatcj.length();
+        if (yesLength >4) {
+            tv_zrcj_wang.setText(yesterdatcj.substring(0, yesLength - 4));
+            tv_zrcj_yuan.setText(yesterdatcj.substring(yesLength - 4, yesLength));
+        } else {
+            tv_zrcj_wang.setVisibility(View.GONE);
+            tv_zrcj_wang_unit.setVisibility(View.GONE);
+            tv_zrcj_yuan.setText(yesterdatcj.substring(0, todayLength));
         }
 
     }

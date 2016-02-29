@@ -7,4 +7,5 @@ public class DaysData implements Serializable {
 
     public String zongchengjiao;
     public String yesterdatcj;
+    public String today_trade;
 }
