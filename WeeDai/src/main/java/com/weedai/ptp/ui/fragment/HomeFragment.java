@@ -88,6 +88,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     private TextView tv_zrcj_wang_unit;
     private TextView tv_zrcj_yuan;
 
+    private ImageView ivCaiWu;
 
     public static HomeFragment newInstance() {
         HomeFragment fragment = new HomeFragment();
@@ -152,6 +153,14 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
         tv_jrcj_wang_unit = (TextView) view.findViewById(R.id.tv_jrcj_wang_unit);
         tv_zrcj_wang_unit = (TextView) view.findViewById(R.id.tv_zrcj_wang_unit);
+
+        ivCaiWu = (ImageView) view.findViewById(R.id.ivCaiWu);
+        ivCaiWu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getActivity(), "此功能暂未开放", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         gridView = (GridView) view.findViewById(R.id.gridView);
         //新建适配器

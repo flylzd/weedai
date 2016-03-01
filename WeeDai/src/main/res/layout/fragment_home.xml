@@ -102,7 +102,7 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/layoutJrcj"
                             android:layout_marginTop="2dp"
-                            android:textSize="12sp"
+                            android:textSize="8dp"
                             android:gravity="center"
                             android:text="今日成交量" />
 
@@ -154,7 +154,7 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/layoutZrcj"
                             android:layout_marginTop="2dp"
-                            android:textSize="12sp"
+                            android:textSize="8dp"
                             android:gravity="center"
                             android:text="昨日成交量" />
 
@@ -215,6 +215,7 @@
                         android:layout_below="@+id/layoutZCJ"
                         android:layout_marginTop="2dp"
                         android:gravity="center"
+                        android:textSize="10dp"
                         android:text="总成交量" />
 
                 </RelativeLayout>
@@ -225,6 +226,7 @@
                     android:background="#eeeeee" />
 
                 <ImageView
+                    android:id="@+id/ivCaiWu"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
