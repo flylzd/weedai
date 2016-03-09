@@ -28,6 +28,7 @@
             android:layout_centerVertical="true"
             android:layout_marginBottom="8dp"
             android:layout_marginTop="8dp"
+            android:gravity="center"
             android:background="@drawable/tab_top"
             android:orientation="horizontal">
 
@@ -38,16 +39,17 @@
                 android:background="@drawable/selector_tab_top"
                 android:gravity="center"
                 android:text="在线充值"
+                android:visibility="gone"
                 android:textColor="@drawable/text_tab_top" />
 
             <Button
                 android:id="@+id/btnOfflineTopUp"
                 android:layout_width="110dp"
                 android:layout_height="match_parent"
-                android:background="@drawable/selector_tab_top"
+                android:background="@color/transparent"
                 android:gravity="center"
                 android:text="线下充值"
-                android:textColor="@drawable/text_tab_top" />
+                android:textColor="@color/white" />
 
         </LinearLayout>
 

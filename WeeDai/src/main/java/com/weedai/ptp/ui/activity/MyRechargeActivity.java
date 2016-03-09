@@ -148,16 +148,17 @@ public class MyRechargeActivity extends Activity {
         layoutOffline = findViewById(R.id.layoutOffline);
         layoutOnline = findViewById(R.id.layoutOnline);
 
-        layoutOffline.setVisibility(View.GONE);
-        layoutOnline.setVisibility(View.VISIBLE);
+        layoutOffline.setVisibility(View.VISIBLE);
+        layoutOnline.setVisibility(View.GONE);
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
-        btnOnlineTopUp.setSelected(true);
-        btnOfflineTopUp.setOnClickListener(new View.OnClickListener() {
+        getImgcode();
+//        btnOfflineTopUp.setSelected(true);
+/*        btnOfflineTopUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -181,7 +182,7 @@ public class MyRechargeActivity extends Activity {
 
 //                getImgcodeOnline();
             }
-        });
+        });*/
 
         tvRealName = (TextView) findViewById(R.id.tvRealName);
         tvAccount = (TextView) findViewById(R.id.tvAccount);
