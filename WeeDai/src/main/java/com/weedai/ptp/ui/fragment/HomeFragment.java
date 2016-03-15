@@ -185,7 +185,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                         if (Config.isLogin) {
                             UIHelper.showPhoneRecharge(getActivity());
                         } else {
-                            Toast.makeText(getActivity(), "还未登陆，不能进行话费充值", Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(getActivity(), "还未登陆，不能进行话费充值", Toast.LENGTH_SHORT).show();
+                            UIHelper.showLogin(getActivity());
                         }
                         break;
                     case 4:
